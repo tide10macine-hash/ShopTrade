@@ -1,0 +1,202 @@
+[
+  {
+    "id": "amazon",
+    "name": "Amazon",
+    "domain": "amazon.com",
+    "apiSource": "amazon-paapi",
+    "affiliateNetwork": "Amazon Associates",
+    "affiliateLinkTemplate": "{url}?tag=shoptrade-20",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 4.1, "trustpilotReviewCount": 582000, "manuallyReviewed": true },
+    "accentColor": "#FF9900"
+  },
+  {
+    "id": "walmart",
+    "name": "Walmart",
+    "domain": "walmart.com",
+    "apiSource": "walmart-affiliate",
+    "affiliateNetwork": "Walmart Creator (Impact)",
+    "affiliateLinkTemplate": "{url}?athcpid=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.8, "trustpilotReviewCount": 41000, "manuallyReviewed": true },
+    "accentColor": "#0071CE"
+  },
+  {
+    "id": "ebay",
+    "name": "eBay",
+    "domain": "ebay.com",
+    "apiSource": "ebay-browse",
+    "affiliateNetwork": "eBay Partner Network",
+    "affiliateLinkTemplate": "{url}?mkcid=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.9, "trustpilotReviewCount": 76000, "manuallyReviewed": true },
+    "accentColor": "#E53238"
+  },
+  {
+    "id": "target",
+    "name": "Target",
+    "domain": "target.com",
+    "apiSource": "google-shopping-content",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?afid=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.6, "trustpilotReviewCount": 12500, "manuallyReviewed": true },
+    "accentColor": "#CC0000"
+  },
+  {
+    "id": "bestbuy",
+    "name": "Best Buy",
+    "domain": "bestbuy.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.4, "trustpilotReviewCount": 9800, "manuallyReviewed": true },
+    "accentColor": "#0046BE"
+  },
+  {
+    "id": "costco",
+    "name": "Costco",
+    "domain": "costco.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 4.0, "trustpilotReviewCount": 15200, "manuallyReviewed": true },
+    "accentColor": "#005DAA"
+  },
+  {
+    "id": "homedepot",
+    "name": "The Home Depot",
+    "domain": "homedepot.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.5, "trustpilotReviewCount": 8100, "manuallyReviewed": true },
+    "accentColor": "#F96302"
+  },
+  {
+    "id": "lowes",
+    "name": "Lowe's",
+    "domain": "lowes.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.3, "trustpilotReviewCount": 6400, "manuallyReviewed": true },
+    "accentColor": "#004990"
+  },
+  {
+    "id": "newegg",
+    "name": "Newegg",
+    "domain": "newegg.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 4.2, "trustpilotReviewCount": 21300, "manuallyReviewed": true },
+    "accentColor": "#F5AF02"
+  },
+  {
+    "id": "bhphoto",
+    "name": "B&H Photo",
+    "domain": "bhphotovideo.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 4.6, "trustpilotReviewCount": 33800, "manuallyReviewed": true },
+    "accentColor": "#0C3F6E"
+  },
+  {
+    "id": "gamestop",
+    "name": "GameStop",
+    "domain": "gamestop.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B", "trustpilotScore": 2.9, "trustpilotReviewCount": 5200, "manuallyReviewed": true },
+    "accentColor": "#EB1000"
+  },
+  {
+    "id": "kohls",
+    "name": "Kohl's",
+    "domain": "kohls.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.2, "trustpilotReviewCount": 4100, "manuallyReviewed": true },
+    "accentColor": "#7A1FA2"
+  },
+  {
+    "id": "macys",
+    "name": "Macy's",
+    "domain": "macys.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.0, "trustpilotReviewCount": 3600, "manuallyReviewed": true },
+    "accentColor": "#E21A2C"
+  },
+  {
+    "id": "nike",
+    "name": "Nike",
+    "domain": "nike.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 2.8, "trustpilotReviewCount": 7300, "manuallyReviewed": true },
+    "accentColor": "#111111"
+  },
+  {
+    "id": "adidas",
+    "name": "Adidas",
+    "domain": "adidas.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.1, "trustpilotReviewCount": 4900, "manuallyReviewed": true },
+    "accentColor": "#000000"
+  },
+  {
+    "id": "footlocker",
+    "name": "Foot Locker",
+    "domain": "footlocker.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B+", "trustpilotScore": 2.6, "trustpilotReviewCount": 3300, "manuallyReviewed": true },
+    "accentColor": "#000000"
+  },
+  {
+    "id": "dickssportinggoods",
+    "name": "Dick's Sporting Goods",
+    "domain": "dicks.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.3, "trustpilotReviewCount": 2100, "manuallyReviewed": true },
+    "accentColor": "#005430"
+  },
+  {
+    "id": "samsclub",
+    "name": "Sam's Club",
+    "domain": "samsclub.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.7, "trustpilotReviewCount": 5600, "manuallyReviewed": true },
+    "accentColor": "#0067A0"
+  },
+  {
+    "id": "wayfair",
+    "name": "Wayfair",
+    "domain": "wayfair.com",
+    "apiSource": "skimlinks",
+    "affiliateNetwork": "Skimlinks",
+    "affiliateLinkTemplate": "{url}?xid=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.4, "trustpilotReviewCount": 18700, "manuallyReviewed": true },
+    "accentColor": "#7B189F"
+  },
+  {
+    "id": "woot",
+    "name": "Woot!",
+    "domain": "woot.com",
+    "apiSource": "amazon-paapi",
+    "affiliateNetwork": "Amazon Associates",
+    "affiliateLinkTemplate": "{url}?tag=shoptrade-20",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 4.0, "trustpilotReviewCount": 1900, "manuallyReviewed": true },
+    "accentColor": "#F04E23"
+  }
+]
