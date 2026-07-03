@@ -18,13 +18,15 @@ const RETAILERS = JSON.parse(readFileSync(RETAILERS_FILE, "utf-8"));
 const DOMAIN_BY_RETAILER = Object.fromEntries(RETAILERS.map((r) => [r.id, r.domain]));
 
 // No real product-catalog deep links yet (that's what the live adapters in
-// src/lib/retailers/liveAdapters.ts are for) — until then, "View deal" points
-// at a real, working Google search scoped to the retailer's own domain
-// instead of a dead placeholder link.
-function buildOfferUrl(retailerId, productName) {
+// src/lib/retailers/liveAdapters.ts are for) — a search-engine link isn't a
+// reliable stand-in because plenty of curated demo pairings (an off-price
+// retailer + a specific branded item) genuinely don't exist as a real page,
+// so the search comes back empty. Until live deep links are wired up, "View
+// deal" points straight at the retailer's real homepage — always a real,
+// working destination — rather than gambling on a search matching.
+function buildOfferUrl(retailerId) {
   const domain = DOMAIN_BY_RETAILER[retailerId] ?? `${retailerId}.com`;
-  const query = `${productName} site:${domain}`;
-  return `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+  return `https://www.${domain}`;
 }
 
 // Mulberry32 seeded PRNG so the generated dataset is reproducible.
@@ -104,12 +106,13 @@ function generateResaleComps(seedKey, basePrice, premiumRange) {
 }
 
 const RETAILERS_BY_CATEGORY = {
-  electronics: ["amazon", "bestbuy", "walmart", "target", "bhphoto", "newegg"],
+  electronics: ["amazon", "bestbuy", "walmart", "target", "bhphoto", "newegg", "microcenter", "staples"],
   gaming: ["amazon", "bestbuy", "walmart", "target", "gamestop", "newegg"],
   sneakers: [
     "nike", "adidas", "footlocker", "dickssportinggoods", "ebay", "amazon",
     "puma", "newbalance", "reebok", "vans", "converse", "champssports",
     "finishline", "jdsports", "academysports", "dsw", "zappos", "goat", "stockx",
+    "scheels", "big5",
   ],
   apparel: [
     "nike", "adidas", "underarmour", "puma", "reebok", "lululemon", "gap",
@@ -119,10 +122,16 @@ const RETAILERS_BY_CATEGORY = {
     "americaneagle", "abercrombie", "hollister", "jcrew", "bananarepublic",
     "anthropologie", "freepeople", "shein", "tjmaxx", "marshalls", "ross",
     "nordstromrack", "burlington", "jcpenney", "llbean", "eddiebauer", "basspro",
+    "cabelas",
   ],
-  collectibles: ["amazon", "target", "walmart", "ebay", "gamestop", "stockx"],
-  home: ["amazon", "walmart", "target", "costco", "bestbuy", "samsclub"],
-  toys: ["amazon", "walmart", "target", "samsclub"],
+  collectibles: ["amazon", "target", "walmart", "ebay", "gamestop", "stockx", "etsy", "barnesandnoble"],
+  home: [
+    "amazon", "walmart", "target", "costco", "bestbuy", "samsclub", "ikea",
+    "acehardware", "menards", "harborfreight", "crateandbarrel", "westelm",
+    "potterybarn", "homegoods", "overstock", "worldmarket", "bjswholesale",
+    "cvs", "walgreens",
+  ],
+  toys: ["amazon", "walmart", "target", "samsclub", "legostore", "buildabear"],
 };
 
 // Cap how many retailers appear per product, even when a category's pool is large.
@@ -166,7 +175,7 @@ const products = CATALOG.map((item) => {
       price,
       currency: "USD",
       inStock: rand() > 0.08,
-      url: buildOfferUrl(retailerId, item.name),
+      url: buildOfferUrl(retailerId),
       lastChecked: TODAY.toISOString(),
       history: generateHistory(`${item.id}-${retailerId}`, price),
     };

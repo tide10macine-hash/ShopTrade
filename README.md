@@ -13,17 +13,14 @@ marketplace fees.
 The hardest part of "compare every trusted store" is data sourcing, not code.
 This MVP is built around that constraint on purpose:
 
-- **A curated retailer set, not "every store."** 66 retailers to start
-  (`src/data/retailers.json`) — general merchandise plus a deep apparel/footwear
-  bench: sportswear (Nike, Adidas, Puma, Under Armour, New Balance, Reebok,
-  Vans, Converse), mall/fast fashion (American Eagle, Abercrombie, Hollister,
-  J.Crew, Banana Republic, Anthropologie, Free People, Shein), off-price and
-  department stores (T.J. Maxx, Marshalls, Ross, Nordstrom Rack, Burlington,
-  JCPenney, Macy's, Kohl's), outdoor (Patagonia, The North Face, Columbia,
-  L.L.Bean, Eddie Bauer, Bass Pro Shops, REI), shoe specialty (DSW, Zappos,
-  Foot Locker, Finish Line, JD Sports), and sneaker resale marketplaces (GOAT,
-  StockX) — each picked deliberately. Coverage grows by adding retailers to
-  that list, not by scraping indiscriminately.
+- **A curated retailer set, not "every store."** 97 retailers to start
+  (`src/data/retailers.json`) spanning general merchandise, apparel/footwear
+  (sportswear, mall/fast fashion, off-price, department stores, shoe
+  specialty, sneaker resale marketplaces), electronics, home/furniture,
+  pharmacy/beauty, pet, books/toys, jewelry, and outdoor/sporting goods —
+  each picked deliberately. Coverage grows by adding retailers to that list,
+  not by scraping indiscriminately; see `/retailers` in the app for the full,
+  current roster.
 - **"Trusted" is computed, not claimed.** `src/lib/trust.ts` scores every retailer
   on SSL, registered business status, BBB rating, Trustpilot standing (discounted
   if the review sample is thin), and manual review. See it in the UI at

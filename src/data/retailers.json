@@ -658,5 +658,315 @@
     "affiliateLinkTemplate": "{url}?xid=shoptrade",
     "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B", "trustpilotScore": 2.7, "trustpilotReviewCount": 9600, "manuallyReviewed": true },
     "accentColor": "#00A651"
+  },
+  {
+    "id": "microcenter",
+    "name": "Micro Center",
+    "domain": "microcenter.com",
+    "apiSource": "manual-verified",
+    "affiliateNetwork": "None (direct link)",
+    "affiliateLinkTemplate": "{url}",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 4.3, "trustpilotReviewCount": 2100, "manuallyReviewed": true },
+    "accentColor": "#DA291C"
+  },
+  {
+    "id": "staples",
+    "name": "Staples",
+    "domain": "staples.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 2.9, "trustpilotReviewCount": 3400, "manuallyReviewed": true },
+    "accentColor": "#CC0000"
+  },
+  {
+    "id": "officedepot",
+    "name": "Office Depot",
+    "domain": "officedepot.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.7, "trustpilotReviewCount": 2600, "manuallyReviewed": true },
+    "accentColor": "#C8102E"
+  },
+  {
+    "id": "ikea",
+    "name": "IKEA",
+    "domain": "ikea.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.5, "trustpilotReviewCount": 8700, "manuallyReviewed": true },
+    "accentColor": "#0058A3"
+  },
+  {
+    "id": "acehardware",
+    "name": "Ace Hardware",
+    "domain": "acehardware.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.7, "trustpilotReviewCount": 1900, "manuallyReviewed": true },
+    "accentColor": "#D91F27"
+  },
+  {
+    "id": "menards",
+    "name": "Menards",
+    "domain": "menards.com",
+    "apiSource": "manual-verified",
+    "affiliateNetwork": "None (direct link)",
+    "affiliateLinkTemplate": "{url}",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.1, "trustpilotReviewCount": 1200, "manuallyReviewed": true },
+    "accentColor": "#00447C"
+  },
+  {
+    "id": "harborfreight",
+    "name": "Harbor Freight",
+    "domain": "harborfreight.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.4, "trustpilotReviewCount": 2200, "manuallyReviewed": true },
+    "accentColor": "#E4002B"
+  },
+  {
+    "id": "crateandbarrel",
+    "name": "Crate & Barrel",
+    "domain": "crateandbarrel.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.9, "trustpilotReviewCount": 1500, "manuallyReviewed": true },
+    "accentColor": "#000000"
+  },
+  {
+    "id": "westelm",
+    "name": "West Elm",
+    "domain": "westelm.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A-", "trustpilotScore": 2.4, "trustpilotReviewCount": 1800, "manuallyReviewed": true },
+    "accentColor": "#2E2A25"
+  },
+  {
+    "id": "potterybarn",
+    "name": "Pottery Barn",
+    "domain": "potterybarn.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.6, "trustpilotReviewCount": 1600, "manuallyReviewed": true },
+    "accentColor": "#3B3B3B"
+  },
+  {
+    "id": "homegoods",
+    "name": "HomeGoods",
+    "domain": "homegoods.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.4, "trustpilotReviewCount": 1300, "manuallyReviewed": true },
+    "accentColor": "#5B7F95"
+  },
+  {
+    "id": "overstock",
+    "name": "Overstock",
+    "domain": "overstock.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.2, "trustpilotReviewCount": 4700, "manuallyReviewed": true },
+    "accentColor": "#004B8D"
+  },
+  {
+    "id": "worldmarket",
+    "name": "World Market",
+    "domain": "worldmarket.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.0, "trustpilotReviewCount": 1100, "manuallyReviewed": true },
+    "accentColor": "#8A6D3B"
+  },
+  {
+    "id": "cvs",
+    "name": "CVS Pharmacy",
+    "domain": "cvs.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 2.3, "trustpilotReviewCount": 3900, "manuallyReviewed": true },
+    "accentColor": "#CC0000"
+  },
+  {
+    "id": "walgreens",
+    "name": "Walgreens",
+    "domain": "walgreens.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 2.2, "trustpilotReviewCount": 4100, "manuallyReviewed": true },
+    "accentColor": "#E31837"
+  },
+  {
+    "id": "sephora",
+    "name": "Sephora",
+    "domain": "sephora.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.0, "trustpilotReviewCount": 6200, "manuallyReviewed": true },
+    "accentColor": "#000000"
+  },
+  {
+    "id": "ulta",
+    "name": "Ulta Beauty",
+    "domain": "ulta.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.3, "trustpilotReviewCount": 5100, "manuallyReviewed": true },
+    "accentColor": "#F16A9A"
+  },
+  {
+    "id": "chewy",
+    "name": "Chewy",
+    "domain": "chewy.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 4.4, "trustpilotReviewCount": 12300, "manuallyReviewed": true },
+    "accentColor": "#1A4C8B"
+  },
+  {
+    "id": "petsmart",
+    "name": "PetSmart",
+    "domain": "petsmart.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.0, "trustpilotReviewCount": 2400, "manuallyReviewed": true },
+    "accentColor": "#0072CE"
+  },
+  {
+    "id": "petco",
+    "name": "Petco",
+    "domain": "petco.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.8, "trustpilotReviewCount": 1900, "manuallyReviewed": true },
+    "accentColor": "#00543D"
+  },
+  {
+    "id": "barnesandnoble",
+    "name": "Barnes & Noble",
+    "domain": "barnesandnoble.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.6, "trustpilotReviewCount": 2000, "manuallyReviewed": true },
+    "accentColor": "#00693E"
+  },
+  {
+    "id": "legostore",
+    "name": "LEGO Store",
+    "domain": "lego.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.9, "trustpilotReviewCount": 3300, "manuallyReviewed": true },
+    "accentColor": "#D50000"
+  },
+  {
+    "id": "buildabear",
+    "name": "Build-A-Bear",
+    "domain": "buildabear.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.2, "trustpilotReviewCount": 900, "manuallyReviewed": true },
+    "accentColor": "#8B1D41"
+  },
+  {
+    "id": "kayjewelers",
+    "name": "Kay Jewelers",
+    "domain": "kay.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B+", "trustpilotScore": 2.5, "trustpilotReviewCount": 1400, "manuallyReviewed": true },
+    "accentColor": "#000000"
+  },
+  {
+    "id": "bluenile",
+    "name": "Blue Nile",
+    "domain": "bluenile.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 4.3, "trustpilotReviewCount": 1600, "manuallyReviewed": true },
+    "accentColor": "#003057"
+  },
+  {
+    "id": "etsy",
+    "name": "Etsy",
+    "domain": "etsy.com",
+    "apiSource": "skimlinks",
+    "affiliateNetwork": "Skimlinks",
+    "affiliateLinkTemplate": "{url}?xid=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B+", "trustpilotScore": 2.9, "trustpilotReviewCount": 15800, "manuallyReviewed": true },
+    "accentColor": "#F1641E"
+  },
+  {
+    "id": "bjswholesale",
+    "name": "BJ's Wholesale Club",
+    "domain": "bjs.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.1, "trustpilotReviewCount": 1700, "manuallyReviewed": true },
+    "accentColor": "#D0103A"
+  },
+  {
+    "id": "scheels",
+    "name": "SCHEELS",
+    "domain": "scheels.com",
+    "apiSource": "manual-verified",
+    "affiliateNetwork": "None (direct link)",
+    "affiliateLinkTemplate": "{url}",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 4.0, "trustpilotReviewCount": 1100, "manuallyReviewed": true },
+    "accentColor": "#004B87"
+  },
+  {
+    "id": "big5",
+    "name": "Big 5 Sporting Goods",
+    "domain": "big5sportinggoods.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.7, "trustpilotReviewCount": 900, "manuallyReviewed": true },
+    "accentColor": "#D2232A"
+  },
+  {
+    "id": "cabelas",
+    "name": "Cabela's",
+    "domain": "cabelas.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.5, "trustpilotReviewCount": 1900, "manuallyReviewed": true },
+    "accentColor": "#3C2A1E"
+  },
+  {
+    "id": "guitarcenter",
+    "name": "Guitar Center",
+    "domain": "guitarcenter.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B+", "trustpilotScore": 2.6, "trustpilotReviewCount": 1500, "manuallyReviewed": true },
+    "accentColor": "#F47920"
   }
 ]
