@@ -35,6 +35,13 @@ export interface Retailer {
   trust: TrustCriteria;
   /** Accent color for UI badges when no logo asset is available. */
   accentColor: string;
+  /** If set, this is a direct brand storefront that only carries this exact
+   *  brand's products (e.g. Nike only sells Nike) — never assigned as an
+   *  offer for a product from a different brand. */
+  brandOnly?: string;
+  /** Verified on-site search URL pattern, `{q}` = URL-encoded product name.
+   *  Falls back to a generic `{domain}/search?q={q}` guess when unset. */
+  searchUrlTemplate?: string;
 }
 
 export type ProductCategory =
@@ -98,6 +105,20 @@ export interface ResaleEstimate {
   netResaleValue: number | null;
   estimatedMargin: number | null;
   estimatedMarginPct: number | null;
+}
+
+export interface ResaleChannelEstimate {
+  channel: "ebay" | "stockx" | "facebook-marketplace" | "shopify";
+  label: string;
+  grossPrice: number;
+  /** Combined marketplace + payment processing fee rate. */
+  feePct: number;
+  flatFee: number;
+  shippingCost: number;
+  netProceeds: number;
+  /** Net proceeds minus what you paid at retail. */
+  netMargin: number;
+  note: string;
 }
 
 export interface PriceAlertRequest {

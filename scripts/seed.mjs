@@ -16,17 +16,28 @@ const RETAILERS_FILE = path.join(__dirname, "..", "src", "data", "retailers.json
 
 const RETAILERS = JSON.parse(readFileSync(RETAILERS_FILE, "utf-8"));
 const DOMAIN_BY_RETAILER = Object.fromEntries(RETAILERS.map((r) => [r.id, r.domain]));
+const BRAND_ONLY_BY_RETAILER = Object.fromEntries(RETAILERS.map((r) => [r.id, r.brandOnly ?? null]));
+const SEARCH_URL_BY_RETAILER = Object.fromEntries(RETAILERS.map((r) => [r.id, r.searchUrlTemplate ?? null]));
+
+// Direct brand storefronts (Nike, Adidas, Lululemon, ...) only ever carry
+// their own brand — never assigned as an offer for a different brand's item.
+function retailerCarriesBrand(retailerId, productBrand) {
+  const brandOnly = BRAND_ONLY_BY_RETAILER[retailerId];
+  return !brandOnly || brandOnly === productBrand;
+}
 
 // No real product-catalog deep links yet (that's what the live adapters in
-// src/lib/retailers/liveAdapters.ts are for) — a search-engine link isn't a
-// reliable stand-in because plenty of curated demo pairings (an off-price
-// retailer + a specific branded item) genuinely don't exist as a real page,
-// so the search comes back empty. Until live deep links are wired up, "View
-// deal" points straight at the retailer's real homepage — always a real,
-// working destination — rather than gambling on a search matching.
-function buildOfferUrl(retailerId) {
+// src/lib/retailers/liveAdapters.ts are for — they're the thing that would
+// return an actual product-page URL from each retailer's real API). Until
+// then, "View deal" points at that retailer's own on-site search for the
+// product name: a verified search URL pattern where we have one, or a
+// generic {domain}/search?q= guess otherwise. Either way it's a real,
+// working page that surfaces the item (or close to it) — not a guess at a
+// specific product-page URL that may not exist.
+function buildOfferUrl(retailerId, productName) {
   const domain = DOMAIN_BY_RETAILER[retailerId] ?? `${retailerId}.com`;
-  return `https://www.${domain}`;
+  const template = SEARCH_URL_BY_RETAILER[retailerId] ?? `https://www.${domain}/search?q={q}`;
+  return template.replace("{q}", encodeURIComponent(productName));
 }
 
 // Mulberry32 seeded PRNG so the generated dataset is reproducible.
@@ -124,7 +135,7 @@ const RETAILERS_BY_CATEGORY = {
     "nordstromrack", "burlington", "jcpenney", "llbean", "eddiebauer", "basspro",
     "cabelas",
   ],
-  collectibles: ["amazon", "target", "walmart", "ebay", "gamestop", "stockx", "etsy", "barnesandnoble"],
+  collectibles: ["amazon", "target", "walmart", "ebay", "gamestop", "stockx", "etsy", "barnesandnoble", "legostore"],
   home: [
     "amazon", "walmart", "target", "costco", "bestbuy", "samsclub", "ikea",
     "acehardware", "menards", "harborfreight", "crateandbarrel", "westelm",
@@ -161,11 +172,20 @@ const CATALOG = [
 ];
 
 const products = CATALOG.map((item) => {
-  const retailerIds = RETAILERS_BY_CATEGORY[item.category] ?? ["amazon", "walmart", "target"];
+  const categoryPool = RETAILERS_BY_CATEGORY[item.category] ?? ["amazon", "walmart", "target"];
+  const retailerIds = categoryPool.filter((id) => retailerCarriesBrand(id, item.brand));
   const rand = mulberry32(hashSeed(item.id));
   const maxPossible = Math.min(MAX_OFFERS_PER_PRODUCT, retailerIds.length);
   const offerCount = Math.min(maxPossible, 4 + Math.floor(rand() * (maxPossible - 3)));
-  const chosen = [...retailerIds].sort(() => rand() - 0.5).slice(0, offerCount);
+
+  // A brand's own direct storefront (if it's in the pool) always carries its
+  // own product — don't leave it to chance the way third-party retailers are.
+  const ownBrandStore = retailerIds.find((id) => BRAND_ONLY_BY_RETAILER[id] === item.brand);
+  const rest = retailerIds.filter((id) => id !== ownBrandStore);
+  const shuffledRest = [...rest].sort(() => rand() - 0.5);
+  const chosen = ownBrandStore
+    ? [ownBrandStore, ...shuffledRest.slice(0, Math.max(0, offerCount - 1))]
+    : shuffledRest.slice(0, offerCount);
 
   const offers = chosen.map((retailerId) => {
     const variance = 1 + (rand() * 0.16 - 0.06); // -6% to +10% off MSRP
@@ -175,7 +195,7 @@ const products = CATALOG.map((item) => {
       price,
       currency: "USD",
       inStock: rand() > 0.08,
-      url: buildOfferUrl(retailerId),
+      url: buildOfferUrl(retailerId, item.name),
       lastChecked: TODAY.toISOString(),
       history: generateHistory(`${item.id}-${retailerId}`, price),
     };

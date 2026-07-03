@@ -1,4 +1,4 @@
-import type { Product, ResaleComp, ResaleEstimate } from "@/types";
+import type { Product, ResaleChannelEstimate, ResaleComp, ResaleEstimate } from "@/types";
 
 // Approximate seller-side fee schedules. Real values vary by category/seller
 // level — treat as an estimate, not a quote.
@@ -62,4 +62,87 @@ export function computeResaleEstimate(product: Product, retailPrice: number): Re
     estimatedMargin,
     estimatedMarginPct,
   };
+}
+
+interface ChannelConfig {
+  channel: ResaleChannelEstimate["channel"];
+  label: string;
+  feePct: number;
+  paymentProcessingPct: number;
+  flatFee: number;
+  includesShipping: boolean;
+  note: string;
+}
+
+const CHANNELS: ChannelConfig[] = [
+  {
+    channel: "facebook-marketplace",
+    label: "Facebook Marketplace",
+    feePct: 0,
+    paymentProcessingPct: 0,
+    flatFee: 0,
+    includesShipping: false,
+    note: "Assumes local pickup — no listing fee, no shipping cost. Shipped Facebook orders instead carry a ~5% selling fee plus shipping.",
+  },
+  {
+    channel: "shopify",
+    label: "Your own Shopify store",
+    feePct: 0,
+    paymentProcessingPct: 0.029,
+    flatFee: 0.3,
+    includesShipping: true,
+    note: "No marketplace commission — just card processing. You cover shipping, buyer trust, and driving your own traffic, and need a paid Shopify plan (from ~$39/mo).",
+  },
+  {
+    channel: "stockx",
+    label: "StockX",
+    feePct: MARKETPLACE_FEE_PCT.stockx,
+    paymentProcessingPct: PAYMENT_PROCESSING_FEE_PCT,
+    flatFee: 0,
+    includesShipping: true,
+    note: "Authenticated marketplace — StockX handles buyer trust and ships on your behalf for a cut.",
+  },
+  {
+    channel: "ebay",
+    label: "eBay",
+    feePct: MARKETPLACE_FEE_PCT["ebay-sold"],
+    paymentProcessingPct: PAYMENT_PROCESSING_FEE_PCT,
+    flatFee: 0,
+    includesShipping: true,
+    note: "Widest buyer reach of the four, at the highest take rate.",
+  },
+];
+
+/**
+ * Compares net proceeds across sell-through channels for the same assumed
+ * asking price (the most recent comp), so "where should I actually sell
+ * this" is an apples-to-apples comparison of take rates — not a
+ * recommendation to list everywhere at once.
+ */
+export function computeResaleChannels(product: Product, retailPrice: number): ResaleChannelEstimate[] {
+  const comps = product.resaleComps ?? [];
+  if (comps.length === 0) return [];
+
+  const sorted = [...comps].sort((a, b) => (a.date < b.date ? 1 : -1));
+  const grossPrice = sorted[0].price;
+  const shippingCost = SHIPPING_ESTIMATE_BY_CATEGORY[product.category] ?? 10;
+
+  const estimates = CHANNELS.map((config): ResaleChannelEstimate => {
+    const fees = grossPrice * (config.feePct + config.paymentProcessingPct) + config.flatFee;
+    const shipping = config.includesShipping ? shippingCost : 0;
+    const netProceeds = Math.round((grossPrice - fees - shipping) * 100) / 100;
+    return {
+      channel: config.channel,
+      label: config.label,
+      grossPrice,
+      feePct: config.feePct + config.paymentProcessingPct,
+      flatFee: config.flatFee,
+      shippingCost: shipping,
+      netProceeds,
+      netMargin: Math.round((netProceeds - retailPrice) * 100) / 100,
+      note: config.note,
+    };
+  });
+
+  return estimates.sort((a, b) => b.netProceeds - a.netProceeds);
 }

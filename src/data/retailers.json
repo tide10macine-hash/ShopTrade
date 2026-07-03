@@ -6,8 +6,16 @@
     "apiSource": "amazon-paapi",
     "affiliateNetwork": "Amazon Associates",
     "affiliateLinkTemplate": "{url}?tag=shoptrade-20",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 4.1, "trustpilotReviewCount": 582000, "manuallyReviewed": true },
-    "accentColor": "#FF9900"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 4.1,
+      "trustpilotReviewCount": 582000,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#FF9900",
+    "searchUrlTemplate": "https://www.amazon.com/s?k={q}"
   },
   {
     "id": "walmart",
@@ -16,8 +24,16 @@
     "apiSource": "walmart-affiliate",
     "affiliateNetwork": "Walmart Creator (Impact)",
     "affiliateLinkTemplate": "{url}?athcpid=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.8, "trustpilotReviewCount": 41000, "manuallyReviewed": true },
-    "accentColor": "#0071CE"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.8,
+      "trustpilotReviewCount": 41000,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#0071CE",
+    "searchUrlTemplate": "https://www.walmart.com/search?q={q}"
   },
   {
     "id": "ebay",
@@ -26,8 +42,16 @@
     "apiSource": "ebay-browse",
     "affiliateNetwork": "eBay Partner Network",
     "affiliateLinkTemplate": "{url}?mkcid=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.9, "trustpilotReviewCount": 76000, "manuallyReviewed": true },
-    "accentColor": "#E53238"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.9,
+      "trustpilotReviewCount": 76000,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#E53238",
+    "searchUrlTemplate": "https://www.ebay.com/sch/i.html?_nkw={q}"
   },
   {
     "id": "target",
@@ -36,8 +60,16 @@
     "apiSource": "google-shopping-content",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?afid=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.6, "trustpilotReviewCount": 12500, "manuallyReviewed": true },
-    "accentColor": "#CC0000"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.6,
+      "trustpilotReviewCount": 12500,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#CC0000",
+    "searchUrlTemplate": "https://www.target.com/s?searchTerm={q}"
   },
   {
     "id": "bestbuy",
@@ -46,8 +78,16 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.4, "trustpilotReviewCount": 9800, "manuallyReviewed": true },
-    "accentColor": "#0046BE"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.4,
+      "trustpilotReviewCount": 9800,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#0046BE",
+    "searchUrlTemplate": "https://www.bestbuy.com/site/searchpage.jsp?st={q}"
   },
   {
     "id": "costco",
@@ -56,8 +96,16 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 4.0, "trustpilotReviewCount": 15200, "manuallyReviewed": true },
-    "accentColor": "#005DAA"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 4,
+      "trustpilotReviewCount": 15200,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#005DAA",
+    "searchUrlTemplate": "https://www.costco.com/CatalogSearch?keyword={q}"
   },
   {
     "id": "homedepot",
@@ -66,7 +114,14 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.5, "trustpilotReviewCount": 8100, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.5,
+      "trustpilotReviewCount": 8100,
+      "manuallyReviewed": true
+    },
     "accentColor": "#F96302"
   },
   {
@@ -76,8 +131,16 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.3, "trustpilotReviewCount": 6400, "manuallyReviewed": true },
-    "accentColor": "#004990"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.3,
+      "trustpilotReviewCount": 6400,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#004990",
+    "searchUrlTemplate": "https://www.lowes.com/search?searchTerm={q}"
   },
   {
     "id": "newegg",
@@ -86,8 +149,16 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 4.2, "trustpilotReviewCount": 21300, "manuallyReviewed": true },
-    "accentColor": "#F5AF02"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 4.2,
+      "trustpilotReviewCount": 21300,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#F5AF02",
+    "searchUrlTemplate": "https://www.newegg.com/p/pl?d={q}"
   },
   {
     "id": "bhphoto",
@@ -96,7 +167,14 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 4.6, "trustpilotReviewCount": 33800, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 4.6,
+      "trustpilotReviewCount": 33800,
+      "manuallyReviewed": true
+    },
     "accentColor": "#0C3F6E"
   },
   {
@@ -106,8 +184,16 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B", "trustpilotScore": 2.9, "trustpilotReviewCount": 5200, "manuallyReviewed": true },
-    "accentColor": "#EB1000"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "B",
+      "trustpilotScore": 2.9,
+      "trustpilotReviewCount": 5200,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#EB1000",
+    "searchUrlTemplate": "https://www.gamestop.com/search/?q={q}"
   },
   {
     "id": "kohls",
@@ -116,7 +202,14 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.2, "trustpilotReviewCount": 4100, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.2,
+      "trustpilotReviewCount": 4100,
+      "manuallyReviewed": true
+    },
     "accentColor": "#7A1FA2"
   },
   {
@@ -126,8 +219,16 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.0, "trustpilotReviewCount": 3600, "manuallyReviewed": true },
-    "accentColor": "#E21A2C"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3,
+      "trustpilotReviewCount": 3600,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#E21A2C",
+    "searchUrlTemplate": "https://www.macys.com/shop/search?keyword={q}"
   },
   {
     "id": "nike",
@@ -136,8 +237,17 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 2.8, "trustpilotReviewCount": 7300, "manuallyReviewed": true },
-    "accentColor": "#111111"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 2.8,
+      "trustpilotReviewCount": 7300,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#111111",
+    "brandOnly": "Nike",
+    "searchUrlTemplate": "https://www.nike.com/w?q={q}"
   },
   {
     "id": "adidas",
@@ -146,8 +256,17 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.1, "trustpilotReviewCount": 4900, "manuallyReviewed": true },
-    "accentColor": "#000000"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 3.1,
+      "trustpilotReviewCount": 4900,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#000000",
+    "brandOnly": "Adidas",
+    "searchUrlTemplate": "https://www.adidas.com/us/search?q={q}"
   },
   {
     "id": "footlocker",
@@ -156,7 +275,14 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B+", "trustpilotScore": 2.6, "trustpilotReviewCount": 3300, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "B+",
+      "trustpilotScore": 2.6,
+      "trustpilotReviewCount": 3300,
+      "manuallyReviewed": true
+    },
     "accentColor": "#000000"
   },
   {
@@ -166,7 +292,14 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.3, "trustpilotReviewCount": 2100, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.3,
+      "trustpilotReviewCount": 2100,
+      "manuallyReviewed": true
+    },
     "accentColor": "#005430"
   },
   {
@@ -176,7 +309,14 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.7, "trustpilotReviewCount": 5600, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.7,
+      "trustpilotReviewCount": 5600,
+      "manuallyReviewed": true
+    },
     "accentColor": "#0067A0"
   },
   {
@@ -186,8 +326,16 @@
     "apiSource": "skimlinks",
     "affiliateNetwork": "Skimlinks",
     "affiliateLinkTemplate": "{url}?xid=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.4, "trustpilotReviewCount": 18700, "manuallyReviewed": true },
-    "accentColor": "#7B189F"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 3.4,
+      "trustpilotReviewCount": 18700,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#7B189F",
+    "searchUrlTemplate": "https://www.wayfair.com/keyword.php?keyword={q}"
   },
   {
     "id": "woot",
@@ -196,7 +344,14 @@
     "apiSource": "amazon-paapi",
     "affiliateNetwork": "Amazon Associates",
     "affiliateLinkTemplate": "{url}?tag=shoptrade-20",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 4.0, "trustpilotReviewCount": 1900, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 4,
+      "trustpilotReviewCount": 1900,
+      "manuallyReviewed": true
+    },
     "accentColor": "#F04E23"
   },
   {
@@ -206,8 +361,16 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.0, "trustpilotReviewCount": 3800, "manuallyReviewed": true },
-    "accentColor": "#111111"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 3,
+      "trustpilotReviewCount": 3800,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#111111",
+    "brandOnly": "Puma"
   },
   {
     "id": "underarmour",
@@ -216,8 +379,16 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.7, "trustpilotReviewCount": 2900, "manuallyReviewed": true },
-    "accentColor": "#041E42"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 2.7,
+      "trustpilotReviewCount": 2900,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#041E42",
+    "brandOnly": "Under Armour"
   },
   {
     "id": "newbalance",
@@ -226,8 +397,16 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.9, "trustpilotReviewCount": 6200, "manuallyReviewed": true },
-    "accentColor": "#CF0A2C"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.9,
+      "trustpilotReviewCount": 6200,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#CF0A2C",
+    "brandOnly": "New Balance"
   },
   {
     "id": "reebok",
@@ -236,8 +415,16 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B+", "trustpilotScore": 2.5, "trustpilotReviewCount": 2100, "manuallyReviewed": true },
-    "accentColor": "#E4022D"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "B+",
+      "trustpilotScore": 2.5,
+      "trustpilotReviewCount": 2100,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#E4022D",
+    "brandOnly": "Reebok"
   },
   {
     "id": "vans",
@@ -246,8 +433,16 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.2, "trustpilotReviewCount": 5400, "manuallyReviewed": true },
-    "accentColor": "#000000"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 3.2,
+      "trustpilotReviewCount": 5400,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#000000",
+    "brandOnly": "Vans"
   },
   {
     "id": "converse",
@@ -256,8 +451,16 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.0, "trustpilotReviewCount": 3100, "manuallyReviewed": true },
-    "accentColor": "#EE1C2E"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 3,
+      "trustpilotReviewCount": 3100,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#EE1C2E",
+    "brandOnly": "Converse"
   },
   {
     "id": "champssports",
@@ -266,7 +469,14 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B+", "trustpilotScore": 2.4, "trustpilotReviewCount": 1200, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "B+",
+      "trustpilotScore": 2.4,
+      "trustpilotReviewCount": 1200,
+      "manuallyReviewed": true
+    },
     "accentColor": "#ED1C24"
   },
   {
@@ -276,7 +486,14 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B", "trustpilotScore": 2.3, "trustpilotReviewCount": 1500, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "B",
+      "trustpilotScore": 2.3,
+      "trustpilotReviewCount": 1500,
+      "manuallyReviewed": true
+    },
     "accentColor": "#003DA5"
   },
   {
@@ -286,7 +503,14 @@
     "apiSource": "skimlinks",
     "affiliateNetwork": "Skimlinks",
     "affiliateLinkTemplate": "{url}?xid=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.9, "trustpilotReviewCount": 8700, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 2.9,
+      "trustpilotReviewCount": 8700,
+      "manuallyReviewed": true
+    },
     "accentColor": "#000000"
   },
   {
@@ -296,7 +520,14 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.6, "trustpilotReviewCount": 4200, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.6,
+      "trustpilotReviewCount": 4200,
+      "manuallyReviewed": true
+    },
     "accentColor": "#002D62"
   },
   {
@@ -306,7 +537,14 @@
     "apiSource": "manual-verified",
     "affiliateNetwork": "None (direct link)",
     "affiliateLinkTemplate": "{url}",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 4.3, "trustpilotReviewCount": 9800, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 4.3,
+      "trustpilotReviewCount": 9800,
+      "manuallyReviewed": true
+    },
     "accentColor": "#00543D"
   },
   {
@@ -316,8 +554,16 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.3, "trustpilotReviewCount": 5100, "manuallyReviewed": true },
-    "accentColor": "#C8102E"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 3.3,
+      "trustpilotReviewCount": 5100,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#C8102E",
+    "brandOnly": "Lululemon"
   },
   {
     "id": "gap",
@@ -326,8 +572,16 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.1, "trustpilotReviewCount": 3300, "manuallyReviewed": true },
-    "accentColor": "#002868"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.1,
+      "trustpilotReviewCount": 3300,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#002868",
+    "brandOnly": "Gap"
   },
   {
     "id": "oldnavy",
@@ -336,8 +590,16 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 2.9, "trustpilotReviewCount": 2700, "manuallyReviewed": true },
-    "accentColor": "#003057"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 2.9,
+      "trustpilotReviewCount": 2700,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#003057",
+    "brandOnly": "Old Navy"
   },
   {
     "id": "levis",
@@ -346,8 +608,16 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.4, "trustpilotReviewCount": 4600, "manuallyReviewed": true },
-    "accentColor": "#BC0000"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.4,
+      "trustpilotReviewCount": 4600,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#BC0000",
+    "brandOnly": "Levi's"
   },
   {
     "id": "hm",
@@ -356,8 +626,16 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.2, "trustpilotReviewCount": 15400, "manuallyReviewed": true },
-    "accentColor": "#E50010"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 2.2,
+      "trustpilotReviewCount": 15400,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#E50010",
+    "brandOnly": "H&M"
   },
   {
     "id": "zara",
@@ -366,8 +644,16 @@
     "apiSource": "skimlinks",
     "affiliateNetwork": "Skimlinks",
     "affiliateLinkTemplate": "{url}?xid=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.0, "trustpilotReviewCount": 21300, "manuallyReviewed": true },
-    "accentColor": "#000000"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 2,
+      "trustpilotReviewCount": 21300,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#000000",
+    "brandOnly": "Zara"
   },
   {
     "id": "uniqlo",
@@ -376,8 +662,16 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.8, "trustpilotReviewCount": 3900, "manuallyReviewed": true },
-    "accentColor": "#FF0000"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.8,
+      "trustpilotReviewCount": 3900,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#FF0000",
+    "brandOnly": "Uniqlo"
   },
   {
     "id": "asos",
@@ -386,7 +680,14 @@
     "apiSource": "skimlinks",
     "affiliateNetwork": "Skimlinks",
     "affiliateLinkTemplate": "{url}?xid=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B+", "trustpilotScore": 1.9, "trustpilotReviewCount": 42000, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "B+",
+      "trustpilotScore": 1.9,
+      "trustpilotReviewCount": 42000,
+      "manuallyReviewed": true
+    },
     "accentColor": "#2D2926"
   },
   {
@@ -396,8 +697,16 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.5, "trustpilotReviewCount": 6700, "manuallyReviewed": true },
-    "accentColor": "#000000"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.5,
+      "trustpilotReviewCount": 6700,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#000000",
+    "searchUrlTemplate": "https://www.nordstrom.com/sr?keyword={q}"
   },
   {
     "id": "thenorthface",
@@ -406,8 +715,16 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.0, "trustpilotReviewCount": 2200, "manuallyReviewed": true },
-    "accentColor": "#000000"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 3,
+      "trustpilotReviewCount": 2200,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#000000",
+    "brandOnly": "The North Face"
   },
   {
     "id": "columbia",
@@ -416,8 +733,16 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.2, "trustpilotReviewCount": 1900, "manuallyReviewed": true },
-    "accentColor": "#003057"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.2,
+      "trustpilotReviewCount": 1900,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#003057",
+    "brandOnly": "Columbia"
   },
   {
     "id": "patagonia",
@@ -426,8 +751,16 @@
     "apiSource": "manual-verified",
     "affiliateNetwork": "None (direct link)",
     "affiliateLinkTemplate": "{url}",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 4.4, "trustpilotReviewCount": 3100, "manuallyReviewed": true },
-    "accentColor": "#24425F"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 4.4,
+      "trustpilotReviewCount": 3100,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#24425F",
+    "brandOnly": "Patagonia"
   },
   {
     "id": "urbanoutfitters",
@@ -436,7 +769,14 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B+", "trustpilotScore": 2.1, "trustpilotReviewCount": 5200, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "B+",
+      "trustpilotScore": 2.1,
+      "trustpilotReviewCount": 5200,
+      "manuallyReviewed": true
+    },
     "accentColor": "#000000"
   },
   {
@@ -446,7 +786,14 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B", "trustpilotScore": 2.6, "trustpilotReviewCount": 18900, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "B",
+      "trustpilotScore": 2.6,
+      "trustpilotReviewCount": 18900,
+      "manuallyReviewed": true
+    },
     "accentColor": "#E31837"
   },
   {
@@ -456,8 +803,16 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.8, "trustpilotReviewCount": 3600, "manuallyReviewed": true },
-    "accentColor": "#002855"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 2.8,
+      "trustpilotReviewCount": 3600,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#002855",
+    "brandOnly": "American Eagle"
   },
   {
     "id": "abercrombie",
@@ -466,8 +821,16 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.1, "trustpilotReviewCount": 2900, "manuallyReviewed": true },
-    "accentColor": "#000000"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 3.1,
+      "trustpilotReviewCount": 2900,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#000000",
+    "brandOnly": "Abercrombie & Fitch"
   },
   {
     "id": "hollister",
@@ -476,8 +839,16 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.7, "trustpilotReviewCount": 2200, "manuallyReviewed": true },
-    "accentColor": "#1B3A5C"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 2.7,
+      "trustpilotReviewCount": 2200,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#1B3A5C",
+    "brandOnly": "Hollister"
   },
   {
     "id": "jcrew",
@@ -486,8 +857,16 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.0, "trustpilotReviewCount": 1800, "manuallyReviewed": true },
-    "accentColor": "#002F5F"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 3,
+      "trustpilotReviewCount": 1800,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#002F5F",
+    "brandOnly": "J.Crew"
   },
   {
     "id": "bananarepublic",
@@ -496,8 +875,16 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.9, "trustpilotReviewCount": 1400, "manuallyReviewed": true },
-    "accentColor": "#3C3C3C"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 2.9,
+      "trustpilotReviewCount": 1400,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#3C3C3C",
+    "brandOnly": "Banana Republic"
   },
   {
     "id": "anthropologie",
@@ -506,7 +893,14 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A-", "trustpilotScore": 2.6, "trustpilotReviewCount": 2100, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A-",
+      "trustpilotScore": 2.6,
+      "trustpilotReviewCount": 2100,
+      "manuallyReviewed": true
+    },
     "accentColor": "#4A3728"
   },
   {
@@ -516,7 +910,14 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A-", "trustpilotScore": 2.5, "trustpilotReviewCount": 1600, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A-",
+      "trustpilotScore": 2.5,
+      "trustpilotReviewCount": 1600,
+      "manuallyReviewed": true
+    },
     "accentColor": "#000000"
   },
   {
@@ -526,7 +927,14 @@
     "apiSource": "skimlinks",
     "affiliateNetwork": "Skimlinks",
     "affiliateLinkTemplate": "{url}?xid=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "C", "trustpilotScore": 1.8, "trustpilotReviewCount": 68000, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "C",
+      "trustpilotScore": 1.8,
+      "trustpilotReviewCount": 68000,
+      "manuallyReviewed": true
+    },
     "accentColor": "#000000"
   },
   {
@@ -536,7 +944,14 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.3, "trustpilotReviewCount": 2400, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.3,
+      "trustpilotReviewCount": 2400,
+      "manuallyReviewed": true
+    },
     "accentColor": "#E4002B"
   },
   {
@@ -546,7 +961,14 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.2, "trustpilotReviewCount": 1900, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.2,
+      "trustpilotReviewCount": 1900,
+      "manuallyReviewed": true
+    },
     "accentColor": "#006747"
   },
   {
@@ -556,7 +978,14 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.9, "trustpilotReviewCount": 1300, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 2.9,
+      "trustpilotReviewCount": 1300,
+      "manuallyReviewed": true
+    },
     "accentColor": "#002D62"
   },
   {
@@ -566,7 +995,14 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.3, "trustpilotReviewCount": 2600, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.3,
+      "trustpilotReviewCount": 2600,
+      "manuallyReviewed": true
+    },
     "accentColor": "#000000"
   },
   {
@@ -576,7 +1012,14 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.8, "trustpilotReviewCount": 1100, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 2.8,
+      "trustpilotReviewCount": 1100,
+      "manuallyReviewed": true
+    },
     "accentColor": "#007A3D"
   },
   {
@@ -586,7 +1029,14 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 2.9, "trustpilotReviewCount": 2000, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 2.9,
+      "trustpilotReviewCount": 2000,
+      "manuallyReviewed": true
+    },
     "accentColor": "#CC0000"
   },
   {
@@ -596,7 +1046,14 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.1, "trustpilotReviewCount": 3200, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.1,
+      "trustpilotReviewCount": 3200,
+      "manuallyReviewed": true
+    },
     "accentColor": "#E4002B"
   },
   {
@@ -606,8 +1063,16 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 4.2, "trustpilotReviewCount": 5400, "manuallyReviewed": true },
-    "accentColor": "#6E2585"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 4.2,
+      "trustpilotReviewCount": 5400,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#6E2585",
+    "searchUrlTemplate": "https://www.zappos.com/search?term={q}"
   },
   {
     "id": "llbean",
@@ -616,8 +1081,16 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 4.1, "trustpilotReviewCount": 2900, "manuallyReviewed": true },
-    "accentColor": "#004225"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 4.1,
+      "trustpilotReviewCount": 2900,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#004225",
+    "brandOnly": "L.L.Bean"
   },
   {
     "id": "eddiebauer",
@@ -626,8 +1099,16 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.4, "trustpilotReviewCount": 1700, "manuallyReviewed": true },
-    "accentColor": "#003057"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 3.4,
+      "trustpilotReviewCount": 1700,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#003057",
+    "brandOnly": "Eddie Bauer"
   },
   {
     "id": "basspro",
@@ -636,7 +1117,14 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.6, "trustpilotReviewCount": 2300, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.6,
+      "trustpilotReviewCount": 2300,
+      "manuallyReviewed": true
+    },
     "accentColor": "#6E1E1E"
   },
   {
@@ -646,7 +1134,14 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B+", "trustpilotScore": 3.0, "trustpilotReviewCount": 4300, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "B+",
+      "trustpilotScore": 3,
+      "trustpilotReviewCount": 4300,
+      "manuallyReviewed": true
+    },
     "accentColor": "#000000"
   },
   {
@@ -656,7 +1151,14 @@
     "apiSource": "skimlinks",
     "affiliateNetwork": "Skimlinks",
     "affiliateLinkTemplate": "{url}?xid=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B", "trustpilotScore": 2.7, "trustpilotReviewCount": 9600, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "B",
+      "trustpilotScore": 2.7,
+      "trustpilotReviewCount": 9600,
+      "manuallyReviewed": true
+    },
     "accentColor": "#00A651"
   },
   {
@@ -666,7 +1168,14 @@
     "apiSource": "manual-verified",
     "affiliateNetwork": "None (direct link)",
     "affiliateLinkTemplate": "{url}",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 4.3, "trustpilotReviewCount": 2100, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 4.3,
+      "trustpilotReviewCount": 2100,
+      "manuallyReviewed": true
+    },
     "accentColor": "#DA291C"
   },
   {
@@ -676,7 +1185,14 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 2.9, "trustpilotReviewCount": 3400, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 2.9,
+      "trustpilotReviewCount": 3400,
+      "manuallyReviewed": true
+    },
     "accentColor": "#CC0000"
   },
   {
@@ -686,7 +1202,14 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.7, "trustpilotReviewCount": 2600, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 2.7,
+      "trustpilotReviewCount": 2600,
+      "manuallyReviewed": true
+    },
     "accentColor": "#C8102E"
   },
   {
@@ -696,8 +1219,16 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.5, "trustpilotReviewCount": 8700, "manuallyReviewed": true },
-    "accentColor": "#0058A3"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.5,
+      "trustpilotReviewCount": 8700,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#0058A3",
+    "brandOnly": "IKEA"
   },
   {
     "id": "acehardware",
@@ -706,7 +1237,14 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.7, "trustpilotReviewCount": 1900, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.7,
+      "trustpilotReviewCount": 1900,
+      "manuallyReviewed": true
+    },
     "accentColor": "#D91F27"
   },
   {
@@ -716,7 +1254,14 @@
     "apiSource": "manual-verified",
     "affiliateNetwork": "None (direct link)",
     "affiliateLinkTemplate": "{url}",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.1, "trustpilotReviewCount": 1200, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 3.1,
+      "trustpilotReviewCount": 1200,
+      "manuallyReviewed": true
+    },
     "accentColor": "#00447C"
   },
   {
@@ -726,7 +1271,14 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.4, "trustpilotReviewCount": 2200, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 3.4,
+      "trustpilotReviewCount": 2200,
+      "manuallyReviewed": true
+    },
     "accentColor": "#E4002B"
   },
   {
@@ -736,7 +1288,14 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.9, "trustpilotReviewCount": 1500, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 2.9,
+      "trustpilotReviewCount": 1500,
+      "manuallyReviewed": true
+    },
     "accentColor": "#000000"
   },
   {
@@ -746,7 +1305,14 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A-", "trustpilotScore": 2.4, "trustpilotReviewCount": 1800, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A-",
+      "trustpilotScore": 2.4,
+      "trustpilotReviewCount": 1800,
+      "manuallyReviewed": true
+    },
     "accentColor": "#2E2A25"
   },
   {
@@ -756,7 +1322,14 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.6, "trustpilotReviewCount": 1600, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 2.6,
+      "trustpilotReviewCount": 1600,
+      "manuallyReviewed": true
+    },
     "accentColor": "#3B3B3B"
   },
   {
@@ -766,7 +1339,14 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.4, "trustpilotReviewCount": 1300, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.4,
+      "trustpilotReviewCount": 1300,
+      "manuallyReviewed": true
+    },
     "accentColor": "#5B7F95"
   },
   {
@@ -776,7 +1356,14 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.2, "trustpilotReviewCount": 4700, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 3.2,
+      "trustpilotReviewCount": 4700,
+      "manuallyReviewed": true
+    },
     "accentColor": "#004B8D"
   },
   {
@@ -786,7 +1373,14 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.0, "trustpilotReviewCount": 1100, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 3,
+      "trustpilotReviewCount": 1100,
+      "manuallyReviewed": true
+    },
     "accentColor": "#8A6D3B"
   },
   {
@@ -796,7 +1390,14 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 2.3, "trustpilotReviewCount": 3900, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 2.3,
+      "trustpilotReviewCount": 3900,
+      "manuallyReviewed": true
+    },
     "accentColor": "#CC0000"
   },
   {
@@ -806,7 +1407,14 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 2.2, "trustpilotReviewCount": 4100, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 2.2,
+      "trustpilotReviewCount": 4100,
+      "manuallyReviewed": true
+    },
     "accentColor": "#E31837"
   },
   {
@@ -816,7 +1424,14 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.0, "trustpilotReviewCount": 6200, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 3,
+      "trustpilotReviewCount": 6200,
+      "manuallyReviewed": true
+    },
     "accentColor": "#000000"
   },
   {
@@ -826,7 +1441,14 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.3, "trustpilotReviewCount": 5100, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.3,
+      "trustpilotReviewCount": 5100,
+      "manuallyReviewed": true
+    },
     "accentColor": "#F16A9A"
   },
   {
@@ -836,8 +1458,16 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 4.4, "trustpilotReviewCount": 12300, "manuallyReviewed": true },
-    "accentColor": "#1A4C8B"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 4.4,
+      "trustpilotReviewCount": 12300,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#1A4C8B",
+    "searchUrlTemplate": "https://www.chewy.com/s?query={q}"
   },
   {
     "id": "petsmart",
@@ -846,7 +1476,14 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.0, "trustpilotReviewCount": 2400, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3,
+      "trustpilotReviewCount": 2400,
+      "manuallyReviewed": true
+    },
     "accentColor": "#0072CE"
   },
   {
@@ -856,7 +1493,14 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.8, "trustpilotReviewCount": 1900, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 2.8,
+      "trustpilotReviewCount": 1900,
+      "manuallyReviewed": true
+    },
     "accentColor": "#00543D"
   },
   {
@@ -866,8 +1510,16 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.6, "trustpilotReviewCount": 2000, "manuallyReviewed": true },
-    "accentColor": "#00693E"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.6,
+      "trustpilotReviewCount": 2000,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#00693E",
+    "searchUrlTemplate": "https://www.barnesandnoble.com/s/{q}"
   },
   {
     "id": "legostore",
@@ -876,8 +1528,16 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.9, "trustpilotReviewCount": 3300, "manuallyReviewed": true },
-    "accentColor": "#D50000"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.9,
+      "trustpilotReviewCount": 3300,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#D50000",
+    "brandOnly": "LEGO"
   },
   {
     "id": "buildabear",
@@ -886,8 +1546,16 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.2, "trustpilotReviewCount": 900, "manuallyReviewed": true },
-    "accentColor": "#8B1D41"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.2,
+      "trustpilotReviewCount": 900,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#8B1D41",
+    "brandOnly": "Build-A-Bear"
   },
   {
     "id": "kayjewelers",
@@ -896,7 +1564,14 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B+", "trustpilotScore": 2.5, "trustpilotReviewCount": 1400, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "B+",
+      "trustpilotScore": 2.5,
+      "trustpilotReviewCount": 1400,
+      "manuallyReviewed": true
+    },
     "accentColor": "#000000"
   },
   {
@@ -906,7 +1581,14 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 4.3, "trustpilotReviewCount": 1600, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 4.3,
+      "trustpilotReviewCount": 1600,
+      "manuallyReviewed": true
+    },
     "accentColor": "#003057"
   },
   {
@@ -916,8 +1598,16 @@
     "apiSource": "skimlinks",
     "affiliateNetwork": "Skimlinks",
     "affiliateLinkTemplate": "{url}?xid=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B+", "trustpilotScore": 2.9, "trustpilotReviewCount": 15800, "manuallyReviewed": true },
-    "accentColor": "#F1641E"
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "B+",
+      "trustpilotScore": 2.9,
+      "trustpilotReviewCount": 15800,
+      "manuallyReviewed": true
+    },
+    "accentColor": "#F1641E",
+    "searchUrlTemplate": "https://www.etsy.com/search?q={q}"
   },
   {
     "id": "bjswholesale",
@@ -926,7 +1616,14 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.1, "trustpilotReviewCount": 1700, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 3.1,
+      "trustpilotReviewCount": 1700,
+      "manuallyReviewed": true
+    },
     "accentColor": "#D0103A"
   },
   {
@@ -936,7 +1633,14 @@
     "apiSource": "manual-verified",
     "affiliateNetwork": "None (direct link)",
     "affiliateLinkTemplate": "{url}",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 4.0, "trustpilotReviewCount": 1100, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 4,
+      "trustpilotReviewCount": 1100,
+      "manuallyReviewed": true
+    },
     "accentColor": "#004B87"
   },
   {
@@ -946,7 +1650,14 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.7, "trustpilotReviewCount": 900, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A",
+      "trustpilotScore": 2.7,
+      "trustpilotReviewCount": 900,
+      "manuallyReviewed": true
+    },
     "accentColor": "#D2232A"
   },
   {
@@ -956,7 +1667,14 @@
     "apiSource": "cj-affiliate",
     "affiliateNetwork": "CJ Affiliate",
     "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.5, "trustpilotReviewCount": 1900, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "A+",
+      "trustpilotScore": 3.5,
+      "trustpilotReviewCount": 1900,
+      "manuallyReviewed": true
+    },
     "accentColor": "#3C2A1E"
   },
   {
@@ -966,7 +1684,14 @@
     "apiSource": "rakuten-advertising",
     "affiliateNetwork": "Rakuten Advertising",
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
-    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B+", "trustpilotScore": 2.6, "trustpilotReviewCount": 1500, "manuallyReviewed": true },
+    "trust": {
+      "ssl": true,
+      "businessRegistered": true,
+      "bbbRating": "B+",
+      "trustpilotScore": 2.6,
+      "trustpilotReviewCount": 1500,
+      "manuallyReviewed": true
+    },
     "accentColor": "#F47920"
   }
 ]

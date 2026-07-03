@@ -28,6 +28,19 @@ This MVP is built around that constraint on purpose:
 - **Official APIs first, scraping as a last resort.** The real data-sourcing
   strategy is affiliate networks and product APIs — the same ones Honey,
   RetailMeNot, and Google Shopping run on. See "Data sourcing" below.
+- **Brand-direct storefronts only carry their own brand.** Nike.com never
+  shows a Lululemon offer. `retailers.json` marks single-brand stores with
+  `brandOnly`, and `scripts/seed.mjs` filters (and guarantees a brand's own
+  store is included for its own products) so comparisons stay realistic —
+  see `retailerCarriesBrand()` in that file.
+- **"View deal" is honest about not having live deep links yet.** Without a
+  real per-retailer product catalog, a link to a URL we can't verify exists
+  (a search-engine result, a guessed product-page URL) is worse than no link.
+  Offers instead point at that retailer's own on-site search for the product
+  name — a verified URL pattern for the ~18 retailers in
+  `searchUrlTemplate`, a generic `{domain}/search?q=` guess otherwise —
+  always a real, working page. True single-SKU deep links are what the live
+  adapters below are for.
 
 ## Data sourcing
 
@@ -97,8 +110,14 @@ src/
 - Resale/flip module: eBay sold-listing + StockX comps for flippable categories,
   net margin after marketplace + payment processing fees and shipping
   (already modeled in `src/lib/resale.ts`, currently fed by seed comps)
+- Sell-through channel comparison: net proceeds across eBay, StockX, Facebook
+  Marketplace (local pickup, no fee), and a self-hosted Shopify storefront —
+  same assumed asking price, different take rates
+  (`computeResaleChannels()` in `src/lib/resale.ts`)
 - Real price-drop alerts via a background job + email provider
 - Browser extension for on-page price comparison
+- Live per-retailer product URLs via the adapters in `liveAdapters.ts`,
+  replacing the on-site search links above with true deep links
 
 **V3 — later**
 - Personalized deal feed
