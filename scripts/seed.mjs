@@ -6,12 +6,26 @@
  *
  * Re-run with `npm run seed` any time the product catalog below changes.
  */
-import { writeFileSync } from "node:fs";
+import { writeFileSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_FILE = path.join(__dirname, "..", "src", "data", "products.json");
+const RETAILERS_FILE = path.join(__dirname, "..", "src", "data", "retailers.json");
+
+const RETAILERS = JSON.parse(readFileSync(RETAILERS_FILE, "utf-8"));
+const DOMAIN_BY_RETAILER = Object.fromEntries(RETAILERS.map((r) => [r.id, r.domain]));
+
+// No real product-catalog deep links yet (that's what the live adapters in
+// src/lib/retailers/liveAdapters.ts are for) — until then, "View deal" points
+// at a real, working Google search scoped to the retailer's own domain
+// instead of a dead placeholder link.
+function buildOfferUrl(retailerId, productName) {
+  const domain = DOMAIN_BY_RETAILER[retailerId] ?? `${retailerId}.com`;
+  const query = `${productName} site:${domain}`;
+  return `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+}
 
 // Mulberry32 seeded PRNG so the generated dataset is reproducible.
 function mulberry32(seed) {
@@ -95,15 +109,18 @@ const RETAILERS_BY_CATEGORY = {
   sneakers: [
     "nike", "adidas", "footlocker", "dickssportinggoods", "ebay", "amazon",
     "puma", "newbalance", "reebok", "vans", "converse", "champssports",
-    "finishline", "jdsports", "academysports",
+    "finishline", "jdsports", "academysports", "dsw", "zappos", "goat", "stockx",
   ],
   apparel: [
     "nike", "adidas", "underarmour", "puma", "reebok", "lululemon", "gap",
     "oldnavy", "levis", "hm", "zara", "uniqlo", "asos", "nordstrom",
     "thenorthface", "columbia", "patagonia", "urbanoutfitters", "rei",
     "macys", "kohls", "target", "walmart", "amazon", "fanatics",
+    "americaneagle", "abercrombie", "hollister", "jcrew", "bananarepublic",
+    "anthropologie", "freepeople", "shein", "tjmaxx", "marshalls", "ross",
+    "nordstromrack", "burlington", "jcpenney", "llbean", "eddiebauer", "basspro",
   ],
-  collectibles: ["amazon", "target", "walmart", "ebay", "gamestop"],
+  collectibles: ["amazon", "target", "walmart", "ebay", "gamestop", "stockx"],
   home: ["amazon", "walmart", "target", "costco", "bestbuy", "samsclub"],
   toys: ["amazon", "walmart", "target", "samsclub"],
 };
@@ -149,7 +166,7 @@ const products = CATALOG.map((item) => {
       price,
       currency: "USD",
       inStock: rand() > 0.08,
-      url: `https://${retailerId}.example/${item.id}`,
+      url: buildOfferUrl(retailerId, item.name),
       lastChecked: TODAY.toISOString(),
       history: generateHistory(`${item.id}-${retailerId}`, price),
     };

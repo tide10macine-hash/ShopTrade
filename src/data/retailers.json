@@ -448,5 +448,215 @@
     "affiliateLinkTemplate": "{url}?ref=shoptrade",
     "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B", "trustpilotScore": 2.6, "trustpilotReviewCount": 18900, "manuallyReviewed": true },
     "accentColor": "#E31837"
+  },
+  {
+    "id": "americaneagle",
+    "name": "American Eagle",
+    "domain": "ae.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.8, "trustpilotReviewCount": 3600, "manuallyReviewed": true },
+    "accentColor": "#002855"
+  },
+  {
+    "id": "abercrombie",
+    "name": "Abercrombie & Fitch",
+    "domain": "abercrombie.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.1, "trustpilotReviewCount": 2900, "manuallyReviewed": true },
+    "accentColor": "#000000"
+  },
+  {
+    "id": "hollister",
+    "name": "Hollister",
+    "domain": "hollisterco.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.7, "trustpilotReviewCount": 2200, "manuallyReviewed": true },
+    "accentColor": "#1B3A5C"
+  },
+  {
+    "id": "jcrew",
+    "name": "J.Crew",
+    "domain": "jcrew.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.0, "trustpilotReviewCount": 1800, "manuallyReviewed": true },
+    "accentColor": "#002F5F"
+  },
+  {
+    "id": "bananarepublic",
+    "name": "Banana Republic",
+    "domain": "bananarepublic.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.9, "trustpilotReviewCount": 1400, "manuallyReviewed": true },
+    "accentColor": "#3C3C3C"
+  },
+  {
+    "id": "anthropologie",
+    "name": "Anthropologie",
+    "domain": "anthropologie.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A-", "trustpilotScore": 2.6, "trustpilotReviewCount": 2100, "manuallyReviewed": true },
+    "accentColor": "#4A3728"
+  },
+  {
+    "id": "freepeople",
+    "name": "Free People",
+    "domain": "freepeople.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A-", "trustpilotScore": 2.5, "trustpilotReviewCount": 1600, "manuallyReviewed": true },
+    "accentColor": "#000000"
+  },
+  {
+    "id": "shein",
+    "name": "Shein",
+    "domain": "shein.com",
+    "apiSource": "skimlinks",
+    "affiliateNetwork": "Skimlinks",
+    "affiliateLinkTemplate": "{url}?xid=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "C", "trustpilotScore": 1.8, "trustpilotReviewCount": 68000, "manuallyReviewed": true },
+    "accentColor": "#000000"
+  },
+  {
+    "id": "tjmaxx",
+    "name": "T.J. Maxx",
+    "domain": "tjmaxx.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.3, "trustpilotReviewCount": 2400, "manuallyReviewed": true },
+    "accentColor": "#E4002B"
+  },
+  {
+    "id": "marshalls",
+    "name": "Marshalls",
+    "domain": "marshalls.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.2, "trustpilotReviewCount": 1900, "manuallyReviewed": true },
+    "accentColor": "#006747"
+  },
+  {
+    "id": "ross",
+    "name": "Ross Dress for Less",
+    "domain": "rossstores.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.9, "trustpilotReviewCount": 1300, "manuallyReviewed": true },
+    "accentColor": "#002D62"
+  },
+  {
+    "id": "nordstromrack",
+    "name": "Nordstrom Rack",
+    "domain": "nordstromrack.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.3, "trustpilotReviewCount": 2600, "manuallyReviewed": true },
+    "accentColor": "#000000"
+  },
+  {
+    "id": "burlington",
+    "name": "Burlington",
+    "domain": "burlington.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.8, "trustpilotReviewCount": 1100, "manuallyReviewed": true },
+    "accentColor": "#007A3D"
+  },
+  {
+    "id": "jcpenney",
+    "name": "JCPenney",
+    "domain": "jcpenney.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 2.9, "trustpilotReviewCount": 2000, "manuallyReviewed": true },
+    "accentColor": "#CC0000"
+  },
+  {
+    "id": "dsw",
+    "name": "DSW",
+    "domain": "dsw.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.1, "trustpilotReviewCount": 3200, "manuallyReviewed": true },
+    "accentColor": "#E4002B"
+  },
+  {
+    "id": "zappos",
+    "name": "Zappos",
+    "domain": "zappos.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 4.2, "trustpilotReviewCount": 5400, "manuallyReviewed": true },
+    "accentColor": "#6E2585"
+  },
+  {
+    "id": "llbean",
+    "name": "L.L.Bean",
+    "domain": "llbean.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 4.1, "trustpilotReviewCount": 2900, "manuallyReviewed": true },
+    "accentColor": "#004225"
+  },
+  {
+    "id": "eddiebauer",
+    "name": "Eddie Bauer",
+    "domain": "eddiebauer.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.4, "trustpilotReviewCount": 1700, "manuallyReviewed": true },
+    "accentColor": "#003057"
+  },
+  {
+    "id": "basspro",
+    "name": "Bass Pro Shops",
+    "domain": "basspro.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.6, "trustpilotReviewCount": 2300, "manuallyReviewed": true },
+    "accentColor": "#6E1E1E"
+  },
+  {
+    "id": "goat",
+    "name": "GOAT",
+    "domain": "goat.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B+", "trustpilotScore": 3.0, "trustpilotReviewCount": 4300, "manuallyReviewed": true },
+    "accentColor": "#000000"
+  },
+  {
+    "id": "stockx",
+    "name": "StockX",
+    "domain": "stockx.com",
+    "apiSource": "skimlinks",
+    "affiliateNetwork": "Skimlinks",
+    "affiliateLinkTemplate": "{url}?xid=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B", "trustpilotScore": 2.7, "trustpilotReviewCount": 9600, "manuallyReviewed": true },
+    "accentColor": "#00A651"
   }
 ]
