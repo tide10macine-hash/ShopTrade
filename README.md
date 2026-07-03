@@ -28,19 +28,27 @@ This MVP is built around that constraint on purpose:
 - **Official APIs first, scraping as a last resort.** The real data-sourcing
   strategy is affiliate networks and product APIs — the same ones Honey,
   RetailMeNot, and Google Shopping run on. See "Data sourcing" below.
-- **Brand-direct storefronts only carry their own brand.** Nike.com never
-  shows a Lululemon offer. `retailers.json` marks single-brand stores with
-  `brandOnly`, and `scripts/seed.mjs` filters (and guarantees a brand's own
-  store is included for its own products) so comparisons stay realistic —
-  see `retailerCarriesBrand()` in that file.
-- **"View deal" is honest about not having live deep links yet.** Without a
-  real per-retailer product catalog, a link to a URL we can't verify exists
-  (a search-engine result, a guessed product-page URL) is worse than no link.
-  Offers instead point at that retailer's own on-site search for the product
-  name — a verified URL pattern for the ~18 retailers in
-  `searchUrlTemplate`, a generic `{domain}/search?q=` guess otherwise —
-  always a real, working page. True single-SKU deep links are what the live
-  adapters below are for.
+- **Retailer lists are hand-curated per product, not randomly sampled.** Each
+  `CATALOG` entry in `scripts/seed.mjs` lists exactly the retailers that
+  plausibly carry it — an Instant Pot isn't "in stock" at a pharmacy, and
+  Lululemon (which doesn't wholesale) only shows at lululemon.com and eBay.
+  `retailers.json` also marks single-brand stores with `brandOnly` as a
+  safety net, so Nike.com can never show a Lululemon offer even by mistake.
+- **"View deal" links to the real, exact product page wherever one exists.**
+  `src/data/productUrlOverrides.json` is a hand-curated, web-search-verified
+  set of real per-product-per-retailer URLs (77 of 102 demo offers as of
+  this writing) — `scripts/seed.mjs` uses one when available. This is manual
+  curation for a 20-product demo catalog, not a live pipeline: it won't
+  scale past this catalog and it *will* drift stale (pages get discontinued,
+  SKUs change) since nothing re-checks it automatically. For the remaining
+  offers — mostly rotating-inventory off-price retailers (Marshalls, T.J.
+  Maxx, Ross) that genuinely don't have stable per-item pages — it falls
+  back to that retailer's own on-site search for the product name: a
+  verified URL pattern for the ~18 retailers in `searchUrlTemplate`, a
+  generic `{domain}/search?q=` guess otherwise. Either way it's a real,
+  working page, never a guessed URL that may 404. The sustainable fix is
+  the live adapters below returning real URLs straight from each retailer's
+  API — that's the thing an override file can't be.
 
 ## Data sourcing
 
