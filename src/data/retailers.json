@@ -198,5 +198,255 @@
     "affiliateLinkTemplate": "{url}?tag=shoptrade-20",
     "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 4.0, "trustpilotReviewCount": 1900, "manuallyReviewed": true },
     "accentColor": "#F04E23"
+  },
+  {
+    "id": "puma",
+    "name": "Puma",
+    "domain": "puma.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.0, "trustpilotReviewCount": 3800, "manuallyReviewed": true },
+    "accentColor": "#111111"
+  },
+  {
+    "id": "underarmour",
+    "name": "Under Armour",
+    "domain": "underarmour.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.7, "trustpilotReviewCount": 2900, "manuallyReviewed": true },
+    "accentColor": "#041E42"
+  },
+  {
+    "id": "newbalance",
+    "name": "New Balance",
+    "domain": "newbalance.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.9, "trustpilotReviewCount": 6200, "manuallyReviewed": true },
+    "accentColor": "#CF0A2C"
+  },
+  {
+    "id": "reebok",
+    "name": "Reebok",
+    "domain": "reebok.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B+", "trustpilotScore": 2.5, "trustpilotReviewCount": 2100, "manuallyReviewed": true },
+    "accentColor": "#E4022D"
+  },
+  {
+    "id": "vans",
+    "name": "Vans",
+    "domain": "vans.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.2, "trustpilotReviewCount": 5400, "manuallyReviewed": true },
+    "accentColor": "#000000"
+  },
+  {
+    "id": "converse",
+    "name": "Converse",
+    "domain": "converse.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.0, "trustpilotReviewCount": 3100, "manuallyReviewed": true },
+    "accentColor": "#EE1C2E"
+  },
+  {
+    "id": "champssports",
+    "name": "Champs Sports",
+    "domain": "champssports.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B+", "trustpilotScore": 2.4, "trustpilotReviewCount": 1200, "manuallyReviewed": true },
+    "accentColor": "#ED1C24"
+  },
+  {
+    "id": "finishline",
+    "name": "Finish Line",
+    "domain": "finishline.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B", "trustpilotScore": 2.3, "trustpilotReviewCount": 1500, "manuallyReviewed": true },
+    "accentColor": "#003DA5"
+  },
+  {
+    "id": "jdsports",
+    "name": "JD Sports",
+    "domain": "jdsports.com",
+    "apiSource": "skimlinks",
+    "affiliateNetwork": "Skimlinks",
+    "affiliateLinkTemplate": "{url}?xid=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.9, "trustpilotReviewCount": 8700, "manuallyReviewed": true },
+    "accentColor": "#000000"
+  },
+  {
+    "id": "academysports",
+    "name": "Academy Sports + Outdoors",
+    "domain": "academy.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.6, "trustpilotReviewCount": 4200, "manuallyReviewed": true },
+    "accentColor": "#002D62"
+  },
+  {
+    "id": "rei",
+    "name": "REI",
+    "domain": "rei.com",
+    "apiSource": "manual-verified",
+    "affiliateNetwork": "None (direct link)",
+    "affiliateLinkTemplate": "{url}",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 4.3, "trustpilotReviewCount": 9800, "manuallyReviewed": true },
+    "accentColor": "#00543D"
+  },
+  {
+    "id": "lululemon",
+    "name": "Lululemon",
+    "domain": "lululemon.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.3, "trustpilotReviewCount": 5100, "manuallyReviewed": true },
+    "accentColor": "#C8102E"
+  },
+  {
+    "id": "gap",
+    "name": "Gap",
+    "domain": "gap.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.1, "trustpilotReviewCount": 3300, "manuallyReviewed": true },
+    "accentColor": "#002868"
+  },
+  {
+    "id": "oldnavy",
+    "name": "Old Navy",
+    "domain": "oldnavy.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 2.9, "trustpilotReviewCount": 2700, "manuallyReviewed": true },
+    "accentColor": "#003057"
+  },
+  {
+    "id": "levis",
+    "name": "Levi's",
+    "domain": "levi.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.4, "trustpilotReviewCount": 4600, "manuallyReviewed": true },
+    "accentColor": "#BC0000"
+  },
+  {
+    "id": "hm",
+    "name": "H&M",
+    "domain": "hm.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.2, "trustpilotReviewCount": 15400, "manuallyReviewed": true },
+    "accentColor": "#E50010"
+  },
+  {
+    "id": "zara",
+    "name": "Zara",
+    "domain": "zara.com",
+    "apiSource": "skimlinks",
+    "affiliateNetwork": "Skimlinks",
+    "affiliateLinkTemplate": "{url}?xid=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 2.0, "trustpilotReviewCount": 21300, "manuallyReviewed": true },
+    "accentColor": "#000000"
+  },
+  {
+    "id": "uniqlo",
+    "name": "Uniqlo",
+    "domain": "uniqlo.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.8, "trustpilotReviewCount": 3900, "manuallyReviewed": true },
+    "accentColor": "#FF0000"
+  },
+  {
+    "id": "asos",
+    "name": "ASOS",
+    "domain": "asos.com",
+    "apiSource": "skimlinks",
+    "affiliateNetwork": "Skimlinks",
+    "affiliateLinkTemplate": "{url}?xid=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B+", "trustpilotScore": 1.9, "trustpilotReviewCount": 42000, "manuallyReviewed": true },
+    "accentColor": "#2D2926"
+  },
+  {
+    "id": "nordstrom",
+    "name": "Nordstrom",
+    "domain": "nordstrom.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.5, "trustpilotReviewCount": 6700, "manuallyReviewed": true },
+    "accentColor": "#000000"
+  },
+  {
+    "id": "thenorthface",
+    "name": "The North Face",
+    "domain": "thenorthface.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A", "trustpilotScore": 3.0, "trustpilotReviewCount": 2200, "manuallyReviewed": true },
+    "accentColor": "#000000"
+  },
+  {
+    "id": "columbia",
+    "name": "Columbia",
+    "domain": "columbia.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 3.2, "trustpilotReviewCount": 1900, "manuallyReviewed": true },
+    "accentColor": "#003057"
+  },
+  {
+    "id": "patagonia",
+    "name": "Patagonia",
+    "domain": "patagonia.com",
+    "apiSource": "manual-verified",
+    "affiliateNetwork": "None (direct link)",
+    "affiliateLinkTemplate": "{url}",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "A+", "trustpilotScore": 4.4, "trustpilotReviewCount": 3100, "manuallyReviewed": true },
+    "accentColor": "#24425F"
+  },
+  {
+    "id": "urbanoutfitters",
+    "name": "Urban Outfitters",
+    "domain": "urbanoutfitters.com",
+    "apiSource": "cj-affiliate",
+    "affiliateNetwork": "CJ Affiliate",
+    "affiliateLinkTemplate": "{url}?cjevent=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B+", "trustpilotScore": 2.1, "trustpilotReviewCount": 5200, "manuallyReviewed": true },
+    "accentColor": "#000000"
+  },
+  {
+    "id": "fanatics",
+    "name": "Fanatics",
+    "domain": "fanatics.com",
+    "apiSource": "rakuten-advertising",
+    "affiliateNetwork": "Rakuten Advertising",
+    "affiliateLinkTemplate": "{url}?ref=shoptrade",
+    "trust": { "ssl": true, "businessRegistered": true, "bbbRating": "B", "trustpilotScore": 2.6, "trustpilotReviewCount": 18900, "manuallyReviewed": true },
+    "accentColor": "#E31837"
   }
 ]

@@ -40,6 +40,7 @@ export interface Retailer {
 export type ProductCategory =
   | "electronics"
   | "sneakers"
+  | "apparel"
   | "collectibles"
   | "home"
   | "toys"

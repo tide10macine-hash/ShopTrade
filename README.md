@@ -13,8 +13,11 @@ marketplace fees.
 The hardest part of "compare every trusted store" is data sourcing, not code.
 This MVP is built around that constraint on purpose:
 
-- **A curated retailer set, not "every store."** 20 retailers to start
-  (`src/data/retailers.json`), each picked deliberately. Coverage grows by adding
+- **A curated retailer set, not "every store."** 45 retailers to start
+  (`src/data/retailers.json`) — general merchandise plus a deep apparel/footwear
+  bench (Nike, Adidas, Puma, Under Armour, New Balance, Reebok, Vans, Converse,
+  Lululemon, Patagonia, The North Face, Levi's, Gap, H&M, Zara, Uniqlo, ASOS,
+  Nordstrom, and more) — each picked deliberately. Coverage grows by adding
   retailers to that list, not by scraping indiscriminately.
 - **"Trusted" is computed, not claimed.** `src/lib/trust.ts` scores every retailer
   on SSL, registered business status, BBB rating, Trustpilot standing (discounted

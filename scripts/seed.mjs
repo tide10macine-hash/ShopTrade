@@ -92,11 +92,24 @@ function generateResaleComps(seedKey, basePrice, premiumRange) {
 const RETAILERS_BY_CATEGORY = {
   electronics: ["amazon", "bestbuy", "walmart", "target", "bhphoto", "newegg"],
   gaming: ["amazon", "bestbuy", "walmart", "target", "gamestop", "newegg"],
-  sneakers: ["nike", "adidas", "footlocker", "dickssportinggoods", "ebay", "amazon"],
+  sneakers: [
+    "nike", "adidas", "footlocker", "dickssportinggoods", "ebay", "amazon",
+    "puma", "newbalance", "reebok", "vans", "converse", "champssports",
+    "finishline", "jdsports", "academysports",
+  ],
+  apparel: [
+    "nike", "adidas", "underarmour", "puma", "reebok", "lululemon", "gap",
+    "oldnavy", "levis", "hm", "zara", "uniqlo", "asos", "nordstrom",
+    "thenorthface", "columbia", "patagonia", "urbanoutfitters", "rei",
+    "macys", "kohls", "target", "walmart", "amazon", "fanatics",
+  ],
   collectibles: ["amazon", "target", "walmart", "ebay", "gamestop"],
   home: ["amazon", "walmart", "target", "costco", "bestbuy", "samsclub"],
   toys: ["amazon", "walmart", "target", "samsclub"],
 };
+
+// Cap how many retailers appear per product, even when a category's pool is large.
+const MAX_OFFERS_PER_PRODUCT = 8;
 
 const CATALOG = [
   { id: "sony-wh1000xm5", name: "Sony WH-1000XM5 Wireless Headphones", brand: "Sony", upc: "027242920595", category: "electronics", emoji: "🎧", msrp: 399.99, flippable: false },
@@ -113,13 +126,20 @@ const CATALOG = [
   { id: "lego-millennium-falcon", name: "LEGO Star Wars Millennium Falcon 75192", brand: "LEGO", upc: "673419287960", category: "collectibles", emoji: "🧱", msrp: 849.99, flippable: true },
   { id: "stanley-quencher-40oz", name: "Stanley Quencher H2.0 FlowState 40oz Tumbler", brand: "Stanley", upc: "041604428561", category: "toys", emoji: "🥤", msrp: 45, flippable: true },
   { id: "instant-pot-duo", name: "Instant Pot Duo 7-in-1 6 Qt Multi-Cooker", brand: "Instant", upc: "845276028697", category: "home", emoji: "🍲", msrp: 99.95, flippable: false },
+  { id: "nike-tech-fleece-hoodie", name: "Nike Sportswear Tech Fleece Pullover Hoodie", brand: "Nike", upc: "195867432198", category: "apparel", emoji: "🧥", msrp: 130, flippable: false },
+  { id: "adidas-firebird-track-jacket", name: "Adidas Firebird Track Jacket", brand: "Adidas", upc: "789952874512", category: "apparel", emoji: "🧥", msrp: 90, flippable: false },
+  { id: "patagonia-better-sweater", name: "Patagonia Better Sweater Fleece Jacket", brand: "Patagonia", upc: "700099887744", category: "apparel", emoji: "🧥", msrp: 179, flippable: false },
+  { id: "levis-501-jeans", name: "Levi's 501 Original Fit Jeans", brand: "Levi's", upc: "052562433781", category: "apparel", emoji: "👖", msrp: 69.5, flippable: false },
+  { id: "lululemon-align-leggings", name: "Lululemon Align High-Rise Leggings 25\"", brand: "Lululemon", upc: "627987451236", category: "apparel", emoji: "🩳", msrp: 98, flippable: false },
+  { id: "the-north-face-nuptse", name: "The North Face 1996 Retro Nuptse Jacket", brand: "The North Face", upc: "196011234567", category: "apparel", emoji: "🧥", msrp: 320, flippable: true },
 ];
 
 const products = CATALOG.map((item) => {
   const retailerIds = RETAILERS_BY_CATEGORY[item.category] ?? ["amazon", "walmart", "target"];
   const rand = mulberry32(hashSeed(item.id));
-  const offerCount = 4 + Math.floor(rand() * (retailerIds.length - 3));
-  const chosen = [...retailerIds].sort(() => rand() - 0.5).slice(0, Math.max(4, offerCount));
+  const maxPossible = Math.min(MAX_OFFERS_PER_PRODUCT, retailerIds.length);
+  const offerCount = Math.min(maxPossible, 4 + Math.floor(rand() * (maxPossible - 3)));
+  const chosen = [...retailerIds].sort(() => rand() - 0.5).slice(0, offerCount);
 
   const offers = chosen.map((retailerId) => {
     const variance = 1 + (rand() * 0.16 - 0.06); // -6% to +10% off MSRP

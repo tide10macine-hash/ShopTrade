@@ -11,6 +11,7 @@ const PAYMENT_PROCESSING_FEE_PCT = 0.03;
 
 const SHIPPING_ESTIMATE_BY_CATEGORY: Record<Product["category"], number> = {
   sneakers: 12,
+  apparel: 10,
   electronics: 15,
   collectibles: 9,
   gaming: 14,
