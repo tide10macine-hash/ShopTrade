@@ -716,6 +716,124 @@
             "price": 348
           }
         ]
+      },
+      {
+        "retailerId": "costco",
+        "price": 349.99,
+        "currency": "USD",
+        "inStock": true,
+        "url": "https://www.costco.com/p/-/sony-wh1000xm5sa-wireless-noise-cancelling-over-the-ear-headphones-black-with-soft-case/4000374020",
+        "lastChecked": "2026-07-03T00:00:00.000Z",
+        "history": [
+          {
+            "date": "2026-01-02",
+            "price": 365.17
+          },
+          {
+            "date": "2026-01-09",
+            "price": 365.49
+          },
+          {
+            "date": "2026-01-16",
+            "price": 313.91
+          },
+          {
+            "date": "2026-01-23",
+            "price": 358.3
+          },
+          {
+            "date": "2026-01-30",
+            "price": 356.05
+          },
+          {
+            "date": "2026-02-06",
+            "price": 355.28
+          },
+          {
+            "date": "2026-02-13",
+            "price": 360.66
+          },
+          {
+            "date": "2026-02-20",
+            "price": 360.35
+          },
+          {
+            "date": "2026-02-27",
+            "price": 356.49
+          },
+          {
+            "date": "2026-03-06",
+            "price": 360.96
+          },
+          {
+            "date": "2026-03-13",
+            "price": 357.12
+          },
+          {
+            "date": "2026-03-20",
+            "price": 357.25
+          },
+          {
+            "date": "2026-03-27",
+            "price": 361.1
+          },
+          {
+            "date": "2026-04-03",
+            "price": 359.38
+          },
+          {
+            "date": "2026-04-10",
+            "price": 359.9
+          },
+          {
+            "date": "2026-04-17",
+            "price": 350.94
+          },
+          {
+            "date": "2026-04-24",
+            "price": 355.88
+          },
+          {
+            "date": "2026-05-01",
+            "price": 358.45
+          },
+          {
+            "date": "2026-05-08",
+            "price": 353.48
+          },
+          {
+            "date": "2026-05-15",
+            "price": 351.22
+          },
+          {
+            "date": "2026-05-22",
+            "price": 352.69
+          },
+          {
+            "date": "2026-05-29",
+            "price": 356.14
+          },
+          {
+            "date": "2026-06-05",
+            "price": 352.98
+          },
+          {
+            "date": "2026-06-12",
+            "price": 347.09
+          },
+          {
+            "date": "2026-06-19",
+            "price": 353.84
+          },
+          {
+            "date": "2026-06-26",
+            "price": 350.71
+          },
+          {
+            "date": "2026-07-03",
+            "price": 349.99
+          }
+        ]
       }
     ]
   },
@@ -849,119 +967,119 @@
       },
       {
         "retailerId": "walmart",
-        "price": 249,
+        "price": 262.85,
         "currency": "USD",
-        "inStock": true,
-        "url": "https://www.walmart.com/ip/AirPods-Pro-2nd-generation-with-MagSafe-Case-USB-C/5689919121",
+        "inStock": false,
+        "url": "https://www.walmart.com/search?q=Apple%20AirPods%20Pro%20(2nd%20Generation)",
         "lastChecked": "2026-07-03T00:00:00.000Z",
         "history": [
           {
             "date": "2026-01-02",
-            "price": 236.45
+            "price": 249.6
           },
           {
             "date": "2026-01-09",
-            "price": 236.29
+            "price": 249.44
           },
           {
             "date": "2026-01-16",
-            "price": 238.05
+            "price": 251.29
           },
           {
             "date": "2026-01-23",
-            "price": 241.7
+            "price": 255.15
           },
           {
             "date": "2026-01-30",
-            "price": 244.15
+            "price": 257.72
           },
           {
             "date": "2026-02-06",
-            "price": 239.51
+            "price": 252.84
           },
           {
             "date": "2026-02-13",
-            "price": 244.37
+            "price": 257.96
           },
           {
             "date": "2026-02-20",
-            "price": 239.29
+            "price": 252.6
           },
           {
             "date": "2026-02-27",
-            "price": 240.76
+            "price": 254.15
           },
           {
             "date": "2026-03-06",
-            "price": 243.52
+            "price": 257.06
           },
           {
             "date": "2026-03-13",
-            "price": 242.39
+            "price": 255.87
           },
           {
             "date": "2026-03-20",
-            "price": 244.72
+            "price": 258.33
           },
           {
             "date": "2026-03-27",
-            "price": 240.96
+            "price": 254.36
           },
           {
             "date": "2026-04-03",
-            "price": 243.68
+            "price": 257.23
           },
           {
             "date": "2026-04-10",
-            "price": 244.28
+            "price": 257.87
           },
           {
             "date": "2026-04-17",
-            "price": 247.17
+            "price": 260.92
           },
           {
             "date": "2026-04-24",
-            "price": 243.27
+            "price": 256.8
           },
           {
             "date": "2026-05-01",
-            "price": 245.25
+            "price": 258.89
           },
           {
             "date": "2026-05-08",
-            "price": 242.65
+            "price": 256.14
           },
           {
             "date": "2026-05-15",
-            "price": 218.84
+            "price": 231.01
           },
           {
             "date": "2026-05-22",
-            "price": 248.65
+            "price": 262.48
           },
           {
             "date": "2026-05-29",
-            "price": 246.8
+            "price": 260.53
           },
           {
             "date": "2026-06-05",
-            "price": 222.27
+            "price": 234.63
           },
           {
             "date": "2026-06-12",
-            "price": 250.06
+            "price": 263.97
           },
           {
             "date": "2026-06-19",
-            "price": 245.08
+            "price": 258.71
           },
           {
             "date": "2026-06-26",
-            "price": 247.7
+            "price": 261.47
           },
           {
             "date": "2026-07-03",
-            "price": 249
+            "price": 262.85
           }
         ]
       },
@@ -969,7 +1087,7 @@
         "retailerId": "target",
         "price": 249.99,
         "currency": "USD",
-        "inStock": false,
+        "inStock": true,
         "url": "https://www.target.com/p/airpods-pro-2nd-generation-with-magsafe-case-usb-c/-/A-85978622",
         "lastChecked": "2026-07-03T00:00:00.000Z",
         "history": [
@@ -1203,7 +1321,7 @@
       },
       {
         "retailerId": "newegg",
-        "price": 243.38,
+        "price": 255.95,
         "currency": "USD",
         "inStock": true,
         "url": "https://www.newegg.com/p/pl?d=Apple%20AirPods%20Pro%20(2nd%20Generation)",
@@ -1211,111 +1329,111 @@
         "history": [
           {
             "date": "2026-01-02",
-            "price": 216.2
+            "price": 227.36
           },
           {
             "date": "2026-01-09",
-            "price": 251.35
+            "price": 264.33
           },
           {
             "date": "2026-01-16",
-            "price": 248.87
+            "price": 261.73
           },
           {
             "date": "2026-01-23",
-            "price": 251.41
+            "price": 264.39
           },
           {
             "date": "2026-01-30",
-            "price": 251.17
+            "price": 264.14
           },
           {
             "date": "2026-02-06",
-            "price": 248.71
+            "price": 261.55
           },
           {
             "date": "2026-02-13",
-            "price": 244.84
+            "price": 257.48
           },
           {
             "date": "2026-02-20",
-            "price": 245.01
+            "price": 257.67
           },
           {
             "date": "2026-02-27",
-            "price": 248.89
+            "price": 261.74
           },
           {
             "date": "2026-03-06",
-            "price": 245.96
+            "price": 258.66
           },
           {
             "date": "2026-03-13",
-            "price": 228.88
+            "price": 240.7
           },
           {
             "date": "2026-03-20",
-            "price": 247.03
+            "price": 259.79
           },
           {
             "date": "2026-03-27",
-            "price": 242.96
+            "price": 255.51
           },
           {
             "date": "2026-04-03",
-            "price": 224.45
+            "price": 236.04
           },
           {
             "date": "2026-04-10",
-            "price": 246.94
+            "price": 259.69
           },
           {
             "date": "2026-04-17",
-            "price": 242.32
+            "price": 254.84
           },
           {
             "date": "2026-04-24",
-            "price": 247.63
+            "price": 260.41
           },
           {
             "date": "2026-05-01",
-            "price": 242.57
+            "price": 255.1
           },
           {
             "date": "2026-05-08",
-            "price": 244.63
+            "price": 257.26
           },
           {
             "date": "2026-05-15",
-            "price": 247.37
+            "price": 260.15
           },
           {
             "date": "2026-05-22",
-            "price": 241.12
+            "price": 253.58
           },
           {
             "date": "2026-05-29",
-            "price": 243.88
+            "price": 256.48
           },
           {
             "date": "2026-06-05",
-            "price": 241.18
+            "price": 253.64
           },
           {
             "date": "2026-06-12",
-            "price": 243.08
+            "price": 255.64
           },
           {
             "date": "2026-06-19",
-            "price": 241.08
+            "price": 253.53
           },
           {
             "date": "2026-06-26",
-            "price": 247.07
+            "price": 259.83
           },
           {
             "date": "2026-07-03",
-            "price": 243.38
+            "price": 255.95
           }
         ]
       },
@@ -1451,7 +1569,7 @@
     "offers": [
       {
         "retailerId": "amazon",
-        "price": 639.99,
+        "price": 649.99,
         "currency": "USD",
         "inStock": true,
         "url": "https://www.amazon.com/PlayStation%C2%AE5-console-slim-PlayStation-5/dp/B0CL61F39H",
@@ -1459,229 +1577,229 @@
         "history": [
           {
             "date": "2026-01-02",
-            "price": 610.5
+            "price": 620.04
           },
           {
             "date": "2026-01-09",
-            "price": 501.59
+            "price": 509.42
           },
           {
             "date": "2026-01-16",
-            "price": 620.5
+            "price": 630.2
           },
           {
             "date": "2026-01-23",
-            "price": 628.81
+            "price": 638.63
           },
           {
             "date": "2026-01-30",
-            "price": 613.09
+            "price": 622.67
           },
           {
             "date": "2026-02-06",
-            "price": 617.98
+            "price": 627.63
           },
           {
             "date": "2026-02-13",
-            "price": 615.58
+            "price": 625.2
           },
           {
             "date": "2026-02-20",
-            "price": 630.92
+            "price": 640.78
           },
           {
             "date": "2026-02-27",
-            "price": 619.62
+            "price": 629.3
           },
           {
             "date": "2026-03-06",
-            "price": 619.55
+            "price": 629.23
           },
           {
             "date": "2026-03-13",
-            "price": 621.9
+            "price": 631.61
           },
           {
             "date": "2026-03-20",
-            "price": 631.37
+            "price": 641.23
           },
           {
             "date": "2026-03-27",
-            "price": 625.55
+            "price": 635.32
           },
           {
             "date": "2026-04-03",
-            "price": 637.42
+            "price": 647.38
           },
           {
             "date": "2026-04-10",
-            "price": 638.31
+            "price": 648.28
           },
           {
             "date": "2026-04-17",
-            "price": 630.8
+            "price": 640.65
           },
           {
             "date": "2026-04-24",
-            "price": 634.9
+            "price": 644.82
           },
           {
             "date": "2026-05-01",
-            "price": 519.05
+            "price": 527.16
           },
           {
             "date": "2026-05-08",
-            "price": 635.63
+            "price": 645.56
           },
           {
             "date": "2026-05-15",
-            "price": 636.48
+            "price": 646.43
           },
           {
             "date": "2026-05-22",
-            "price": 636.54
+            "price": 646.48
           },
           {
             "date": "2026-05-29",
-            "price": 639.64
+            "price": 649.63
           },
           {
             "date": "2026-06-05",
-            "price": 628.24
+            "price": 638.06
           },
           {
             "date": "2026-06-12",
-            "price": 644.98
+            "price": 655.06
           },
           {
             "date": "2026-06-19",
-            "price": 562.42
+            "price": 571.21
           },
           {
             "date": "2026-06-26",
-            "price": 637.04
+            "price": 646.99
           },
           {
             "date": "2026-07-03",
-            "price": 639.99
+            "price": 649.99
           }
         ]
       },
       {
         "retailerId": "walmart",
-        "price": 599,
+        "price": 649,
         "currency": "USD",
         "inStock": true,
-        "url": "https://www.walmart.com/ip/PlayStation-5-Digital-Console-Slim/17852302051",
+        "url": "https://www.walmart.com/ip/PlayStation-5-Disc-Console-Slim/17816601985",
         "lastChecked": "2026-07-03T00:00:00.000Z",
         "history": [
           {
             "date": "2026-01-02",
-            "price": 630.26
+            "price": 682.86
           },
           {
             "date": "2026-01-09",
-            "price": 620.78
+            "price": 672.6
           },
           {
             "date": "2026-01-16",
-            "price": 618.12
+            "price": 669.72
           },
           {
             "date": "2026-01-23",
-            "price": 617.32
+            "price": 668.85
           },
           {
             "date": "2026-01-30",
-            "price": 629.32
+            "price": 681.85
           },
           {
             "date": "2026-02-06",
-            "price": 621.92
+            "price": 673.84
           },
           {
             "date": "2026-02-13",
-            "price": 611.62
+            "price": 662.68
           },
           {
             "date": "2026-02-20",
-            "price": 610.75
+            "price": 661.73
           },
           {
             "date": "2026-02-27",
-            "price": 609.85
+            "price": 660.75
           },
           {
             "date": "2026-03-06",
-            "price": 610.85
+            "price": 661.84
           },
           {
             "date": "2026-03-13",
-            "price": 623.68
+            "price": 675.74
           },
           {
             "date": "2026-03-20",
-            "price": 608.02
+            "price": 658.78
           },
           {
             "date": "2026-03-27",
-            "price": 614.04
+            "price": 665.29
           },
           {
             "date": "2026-04-03",
-            "price": 604.33
+            "price": 654.78
           },
           {
             "date": "2026-04-10",
-            "price": 526.51
+            "price": 570.45
           },
           {
             "date": "2026-04-17",
-            "price": 615.75
+            "price": 667.15
           },
           {
             "date": "2026-04-24",
-            "price": 610.56
+            "price": 661.53
           },
           {
             "date": "2026-05-01",
-            "price": 610.13
+            "price": 661.06
           },
           {
             "date": "2026-05-08",
-            "price": 613.32
+            "price": 664.52
           },
           {
             "date": "2026-05-15",
-            "price": 601.37
+            "price": 651.57
           },
           {
             "date": "2026-05-22",
-            "price": 596.49
+            "price": 646.28
           },
           {
             "date": "2026-05-29",
-            "price": 605.29
+            "price": 655.81
           },
           {
             "date": "2026-06-05",
-            "price": 599.93
+            "price": 650
           },
           {
             "date": "2026-06-12",
-            "price": 536.22
+            "price": 580.98
           },
           {
             "date": "2026-06-19",
-            "price": 596.78
+            "price": 646.6
           },
           {
             "date": "2026-06-26",
-            "price": 598.13
+            "price": 648.06
           },
           {
             "date": "2026-07-03",
-            "price": 599
+            "price": 649
           }
         ]
       },
@@ -2041,119 +2159,119 @@
       },
       {
         "retailerId": "newegg",
-        "price": 599,
+        "price": 644.99,
         "currency": "USD",
         "inStock": false,
-        "url": "https://www.newegg.com/p/N82E16868110341",
+        "url": "https://www.newegg.com/p/N82E16868110342",
         "lastChecked": "2026-07-03T00:00:00.000Z",
         "history": [
           {
             "date": "2026-01-02",
-            "price": 648.08
+            "price": 697.84
           },
           {
             "date": "2026-01-09",
-            "price": 659.13
+            "price": 709.73
           },
           {
             "date": "2026-01-16",
-            "price": 655.15
+            "price": 705.45
           },
           {
             "date": "2026-01-23",
-            "price": 645.8
+            "price": 695.39
           },
           {
             "date": "2026-01-30",
-            "price": 645.56
+            "price": 695.13
           },
           {
             "date": "2026-02-06",
-            "price": 636.08
+            "price": 684.92
           },
           {
             "date": "2026-02-13",
-            "price": 638.95
+            "price": 688.01
           },
           {
             "date": "2026-02-20",
-            "price": 636.25
+            "price": 685.1
           },
           {
             "date": "2026-02-27",
-            "price": 638.05
+            "price": 687.04
           },
           {
             "date": "2026-03-06",
-            "price": 641.94
+            "price": 691.23
           },
           {
             "date": "2026-03-13",
-            "price": 625.36
+            "price": 673.37
           },
           {
             "date": "2026-03-20",
-            "price": 627.47
+            "price": 675.65
           },
           {
             "date": "2026-03-27",
-            "price": 562.55
+            "price": 605.74
           },
           {
             "date": "2026-04-03",
-            "price": 622.5
+            "price": 670.29
           },
           {
             "date": "2026-04-10",
-            "price": 528.73
+            "price": 569.32
           },
           {
             "date": "2026-04-17",
-            "price": 627.69
+            "price": 675.89
           },
           {
             "date": "2026-04-24",
-            "price": 509.34
+            "price": 548.44
           },
           {
             "date": "2026-05-01",
-            "price": 619.89
+            "price": 667.49
           },
           {
             "date": "2026-05-08",
-            "price": 611.47
+            "price": 658.42
           },
           {
             "date": "2026-05-15",
-            "price": 616.22
+            "price": 663.54
           },
           {
             "date": "2026-05-22",
-            "price": 608.47
+            "price": 655.19
           },
           {
             "date": "2026-05-29",
-            "price": 609.19
+            "price": 655.96
           },
           {
             "date": "2026-06-05",
-            "price": 614.83
+            "price": 662.04
           },
           {
             "date": "2026-06-12",
-            "price": 610.31
+            "price": 657.17
           },
           {
             "date": "2026-06-19",
-            "price": 611.77
+            "price": 658.74
           },
           {
             "date": "2026-06-26",
-            "price": 608.13
+            "price": 654.82
           },
           {
             "date": "2026-07-03",
-            "price": 599
+            "price": 644.99
           }
         ]
       }
@@ -4977,243 +5095,243 @@
       },
       {
         "retailerId": "footlocker",
-        "price": 180,
+        "price": 193.87,
         "currency": "USD",
         "inStock": true,
-        "url": "https://www.footlocker.com/category/collection/jordan/retro-1/high/chicago.html",
+        "url": "https://www.footlocker.com/search?q=Air%20Jordan%201%20Retro%20High%20OG%20%22Chicago%22",
         "lastChecked": "2026-07-03T00:00:00.000Z",
         "history": [
           {
             "date": "2026-01-02",
-            "price": 181.93
+            "price": 195.95
           },
           {
             "date": "2026-01-09",
-            "price": 181.78
+            "price": 195.79
           },
           {
             "date": "2026-01-16",
-            "price": 181.74
+            "price": 195.74
           },
           {
             "date": "2026-01-23",
-            "price": 179.41
+            "price": 193.23
           },
           {
             "date": "2026-01-30",
-            "price": 183.01
+            "price": 197.11
           },
           {
             "date": "2026-02-06",
-            "price": 178.13
+            "price": 191.86
           },
           {
             "date": "2026-02-13",
-            "price": 179.68
+            "price": 193.53
           },
           {
             "date": "2026-02-20",
-            "price": 180.25
+            "price": 194.14
           },
           {
             "date": "2026-02-27",
-            "price": 179.86
+            "price": 193.72
           },
           {
             "date": "2026-03-06",
-            "price": 180.46
+            "price": 194.36
           },
           {
             "date": "2026-03-13",
-            "price": 178.51
+            "price": 192.27
           },
           {
             "date": "2026-03-20",
-            "price": 178.48
+            "price": 192.23
           },
           {
             "date": "2026-03-27",
-            "price": 179.45
+            "price": 193.27
           },
           {
             "date": "2026-04-03",
-            "price": 178.88
+            "price": 192.67
           },
           {
             "date": "2026-04-10",
-            "price": 178.87
+            "price": 192.65
           },
           {
             "date": "2026-04-17",
-            "price": 182.01
+            "price": 196.03
           },
           {
             "date": "2026-04-24",
-            "price": 179.02
+            "price": 192.81
           },
           {
             "date": "2026-05-01",
-            "price": 178.39
+            "price": 192.14
           },
           {
             "date": "2026-05-08",
-            "price": 178.83
+            "price": 192.61
           },
           {
             "date": "2026-05-15",
-            "price": 181.13
+            "price": 195.09
           },
           {
             "date": "2026-05-22",
-            "price": 159
+            "price": 171.26
           },
           {
             "date": "2026-05-29",
-            "price": 177.46
+            "price": 191.14
           },
           {
             "date": "2026-06-05",
-            "price": 178.8
+            "price": 192.58
           },
           {
             "date": "2026-06-12",
-            "price": 181.74
+            "price": 195.75
           },
           {
             "date": "2026-06-19",
-            "price": 179.56
+            "price": 193.4
           },
           {
             "date": "2026-06-26",
-            "price": 179.15
+            "price": 192.95
           },
           {
             "date": "2026-07-03",
-            "price": 180
+            "price": 193.87
           }
         ]
       },
       {
         "retailerId": "finishline",
-        "price": 189.55,
+        "price": 170.48,
         "currency": "USD",
-        "inStock": false,
+        "inStock": true,
         "url": "https://www.finishline.com/search?q=Air%20Jordan%201%20Retro%20High%20OG%20%22Chicago%22",
         "lastChecked": "2026-07-03T00:00:00.000Z",
         "history": [
           {
             "date": "2026-01-02",
-            "price": 210.63
+            "price": 189.44
           },
           {
             "date": "2026-01-09",
-            "price": 210.83
+            "price": 189.62
           },
           {
             "date": "2026-01-16",
-            "price": 207.42
+            "price": 186.55
           },
           {
             "date": "2026-01-23",
-            "price": 209.5
+            "price": 188.42
           },
           {
             "date": "2026-01-30",
-            "price": 208.65
+            "price": 187.66
           },
           {
             "date": "2026-02-06",
-            "price": 207.89
+            "price": 186.98
           },
           {
             "date": "2026-02-13",
-            "price": 205.39
+            "price": 184.73
           },
           {
             "date": "2026-02-20",
-            "price": 174.52
+            "price": 156.96
           },
           {
             "date": "2026-02-27",
-            "price": 206.58
+            "price": 185.8
           },
           {
             "date": "2026-03-06",
-            "price": 200.55
+            "price": 180.38
           },
           {
             "date": "2026-03-13",
-            "price": 204.22
+            "price": 183.68
           },
           {
             "date": "2026-03-20",
-            "price": 171.86
+            "price": 154.57
           },
           {
             "date": "2026-03-27",
-            "price": 170.07
+            "price": 152.96
           },
           {
             "date": "2026-04-03",
-            "price": 198.78
+            "price": 178.78
           },
           {
             "date": "2026-04-10",
-            "price": 198.89
+            "price": 178.88
           },
           {
             "date": "2026-04-17",
-            "price": 197.91
+            "price": 178
           },
           {
             "date": "2026-04-24",
-            "price": 196.83
+            "price": 177.02
           },
           {
             "date": "2026-05-01",
-            "price": 196.29
+            "price": 176.54
           },
           {
             "date": "2026-05-08",
-            "price": 195.41
+            "price": 175.75
           },
           {
             "date": "2026-05-15",
-            "price": 196.28
+            "price": 176.53
           },
           {
             "date": "2026-05-22",
-            "price": 194.42
+            "price": 174.86
           },
           {
             "date": "2026-05-29",
-            "price": 193.04
+            "price": 173.62
           },
           {
             "date": "2026-06-05",
-            "price": 192.19
+            "price": 172.86
           },
           {
             "date": "2026-06-12",
-            "price": 192.25
+            "price": 172.91
           },
           {
             "date": "2026-06-19",
-            "price": 192.48
+            "price": 173.12
           },
           {
             "date": "2026-06-26",
-            "price": 187.69
+            "price": 168.81
           },
           {
             "date": "2026-07-03",
-            "price": 189.55
+            "price": 170.48
           }
         ]
       },
       {
         "retailerId": "dickssportinggoods",
-        "price": 195.98,
+        "price": 193.31,
         "currency": "USD",
         "inStock": true,
         "url": "https://www.dicks.com/search?q=Air%20Jordan%201%20Retro%20High%20OG%20%22Chicago%22",
@@ -5221,111 +5339,111 @@
         "history": [
           {
             "date": "2026-01-02",
-            "price": 191.05
+            "price": 188.45
           },
           {
             "date": "2026-01-09",
-            "price": 190.39
+            "price": 187.8
           },
           {
             "date": "2026-01-16",
-            "price": 192.51
+            "price": 189.88
           },
           {
             "date": "2026-01-23",
-            "price": 190.58
+            "price": 187.99
           },
           {
             "date": "2026-01-30",
-            "price": 189.76
+            "price": 187.18
           },
           {
             "date": "2026-02-06",
-            "price": 192.31
+            "price": 189.69
           },
           {
             "date": "2026-02-13",
-            "price": 193.46
+            "price": 190.82
           },
           {
             "date": "2026-02-20",
-            "price": 193.45
+            "price": 190.81
           },
           {
             "date": "2026-02-27",
-            "price": 195.72
+            "price": 193.05
           },
           {
             "date": "2026-03-06",
-            "price": 165.29
+            "price": 163.04
           },
           {
             "date": "2026-03-13",
-            "price": 195.27
+            "price": 192.61
           },
           {
             "date": "2026-03-20",
-            "price": 192.08
+            "price": 189.46
           },
           {
             "date": "2026-03-27",
-            "price": 194.46
+            "price": 191.81
           },
           {
             "date": "2026-04-03",
-            "price": 193.27
+            "price": 190.63
           },
           {
             "date": "2026-04-10",
-            "price": 195.46
+            "price": 192.79
           },
           {
             "date": "2026-04-17",
-            "price": 191.72
+            "price": 189.11
           },
           {
             "date": "2026-04-24",
-            "price": 191.3
+            "price": 188.69
           },
           {
             "date": "2026-05-01",
-            "price": 197.29
+            "price": 194.6
           },
           {
             "date": "2026-05-08",
-            "price": 195.67
+            "price": 193
           },
           {
             "date": "2026-05-15",
-            "price": 194.39
+            "price": 191.74
           },
           {
             "date": "2026-05-22",
-            "price": 196.89
+            "price": 194.2
           },
           {
             "date": "2026-05-29",
-            "price": 194.18
+            "price": 191.54
           },
           {
             "date": "2026-06-05",
-            "price": 193.08
+            "price": 190.45
           },
           {
             "date": "2026-06-12",
-            "price": 164.62
+            "price": 162.37
           },
           {
             "date": "2026-06-19",
-            "price": 194.48
+            "price": 191.83
           },
           {
             "date": "2026-06-26",
-            "price": 196.57
+            "price": 193.89
           },
           {
             "date": "2026-07-03",
-            "price": 195.98
+            "price": 193.31
           }
         ]
       },
@@ -5567,7 +5685,7 @@
       },
       {
         "retailerId": "ebay",
-        "price": 171.98,
+        "price": 175.09,
         "currency": "USD",
         "inStock": true,
         "url": "https://www.ebay.com/sch/i.html?_nkw=Air%20Jordan%201%20Retro%20High%20OG%20%22Chicago%22",
@@ -5575,111 +5693,111 @@
         "history": [
           {
             "date": "2026-01-02",
-            "price": 174.47
+            "price": 177.63
           },
           {
             "date": "2026-01-09",
-            "price": 190.91
+            "price": 194.36
           },
           {
             "date": "2026-01-16",
-            "price": 190.81
+            "price": 194.26
           },
           {
             "date": "2026-01-23",
-            "price": 189.52
+            "price": 192.94
           },
           {
             "date": "2026-01-30",
-            "price": 189.14
+            "price": 192.56
           },
           {
             "date": "2026-02-06",
-            "price": 186.57
+            "price": 189.94
           },
           {
             "date": "2026-02-13",
-            "price": 189.38
+            "price": 192.81
           },
           {
             "date": "2026-02-20",
-            "price": 184.61
+            "price": 187.95
           },
           {
             "date": "2026-02-27",
-            "price": 183.59
+            "price": 186.91
           },
           {
             "date": "2026-03-06",
-            "price": 184.41
+            "price": 187.74
           },
           {
             "date": "2026-03-13",
-            "price": 184.67
+            "price": 188.01
           },
           {
             "date": "2026-03-20",
-            "price": 185.63
+            "price": 188.99
           },
           {
             "date": "2026-03-27",
-            "price": 182.33
+            "price": 185.62
           },
           {
             "date": "2026-04-03",
-            "price": 184.08
+            "price": 187.41
           },
           {
             "date": "2026-04-10",
-            "price": 181.58
+            "price": 184.86
           },
           {
             "date": "2026-04-17",
-            "price": 179.1
+            "price": 182.34
           },
           {
             "date": "2026-04-24",
-            "price": 152.98
+            "price": 155.75
           },
           {
             "date": "2026-05-01",
-            "price": 177.33
+            "price": 180.53
           },
           {
             "date": "2026-05-08",
-            "price": 178.61
+            "price": 181.84
           },
           {
             "date": "2026-05-15",
-            "price": 179.52
+            "price": 182.77
           },
           {
             "date": "2026-05-22",
-            "price": 178.45
+            "price": 181.68
           },
           {
             "date": "2026-05-29",
-            "price": 174.67
+            "price": 177.82
           },
           {
             "date": "2026-06-05",
-            "price": 172.79
+            "price": 175.92
           },
           {
             "date": "2026-06-12",
-            "price": 176.7
+            "price": 179.9
           },
           {
             "date": "2026-06-19",
-            "price": 171.27
+            "price": 174.36
           },
           {
             "date": "2026-06-26",
-            "price": 174.37
+            "price": 177.53
           },
           {
             "date": "2026-07-03",
-            "price": 171.98
+            "price": 175.09
           }
         ]
       }
@@ -5980,7 +6098,7 @@
         "price": 185,
         "currency": "USD",
         "inStock": false,
-        "url": "https://www.goat.com/sneakers/silhouette/yeezy-boost-350",
+        "url": "https://www.goat.com/sneakers/yeezy-boost-350-v2-zebra-cp9654",
         "lastChecked": "2026-07-03T00:00:00.000Z",
         "history": [
           {
@@ -6095,119 +6213,119 @@
       },
       {
         "retailerId": "ebay",
-        "price": 165,
+        "price": 244.04,
         "currency": "USD",
         "inStock": true,
-        "url": "https://www.ebay.com/b/Yeezy-Boost-350-V2-Low-Zebra/15709/bn_7117741169",
+        "url": "https://www.ebay.com/sch/i.html?_nkw=Adidas%20Yeezy%20Boost%20350%20V2%20%22Zebra%22",
         "lastChecked": "2026-07-03T00:00:00.000Z",
         "history": [
           {
             "date": "2026-01-02",
-            "price": 158.04
+            "price": 233.75
           },
           {
             "date": "2026-01-09",
-            "price": 157.3
+            "price": 232.64
           },
           {
             "date": "2026-01-16",
-            "price": 160.47
+            "price": 237.34
           },
           {
             "date": "2026-01-23",
-            "price": 156.99
+            "price": 232.19
           },
           {
             "date": "2026-01-30",
-            "price": 159.68
+            "price": 236.18
           },
           {
             "date": "2026-02-06",
-            "price": 157.2
+            "price": 232.5
           },
           {
             "date": "2026-02-13",
-            "price": 160.34
+            "price": 237.14
           },
           {
             "date": "2026-02-20",
-            "price": 162.07
+            "price": 239.7
           },
           {
             "date": "2026-02-27",
-            "price": 159.62
+            "price": 236.09
           },
           {
             "date": "2026-03-06",
-            "price": 158.71
+            "price": 234.73
           },
           {
             "date": "2026-03-13",
-            "price": 158.98
+            "price": 235.14
           },
           {
             "date": "2026-03-20",
-            "price": 162.16
+            "price": 239.84
           },
           {
             "date": "2026-03-27",
-            "price": 161.09
+            "price": 238.26
           },
           {
             "date": "2026-04-03",
-            "price": 162.95
+            "price": 241.01
           },
           {
             "date": "2026-04-10",
-            "price": 160.49
+            "price": 237.37
           },
           {
             "date": "2026-04-17",
-            "price": 163.62
+            "price": 242
           },
           {
             "date": "2026-04-24",
-            "price": 161.62
+            "price": 239.04
           },
           {
             "date": "2026-05-01",
-            "price": 161.99
+            "price": 239.59
           },
           {
             "date": "2026-05-08",
-            "price": 163.75
+            "price": 242.2
           },
           {
             "date": "2026-05-15",
-            "price": 164.26
+            "price": 242.95
           },
           {
             "date": "2026-05-22",
-            "price": 161.12
+            "price": 238.31
           },
           {
             "date": "2026-05-29",
-            "price": 163.2
+            "price": 241.37
           },
           {
             "date": "2026-06-05",
-            "price": 165.9
+            "price": 245.37
           },
           {
             "date": "2026-06-12",
-            "price": 165.49
+            "price": 244.76
           },
           {
             "date": "2026-06-19",
-            "price": 163.77
+            "price": 242.22
           },
           {
             "date": "2026-06-26",
-            "price": 136.13
+            "price": 201.34
           },
           {
             "date": "2026-07-03",
-            "price": 165
+            "price": 244.04
           }
         ]
       }
@@ -6387,355 +6505,355 @@
       },
       {
         "retailerId": "footlocker",
-        "price": 120,
+        "price": 109.85,
         "currency": "USD",
         "inStock": true,
-        "url": "https://www.footlocker.com/category/shoes/nike/dunk/panda.html",
+        "url": "https://www.footlocker.com/search?q=Nike%20Dunk%20Low%20%22Panda%22",
         "lastChecked": "2026-07-03T00:00:00.000Z",
         "history": [
           {
             "date": "2026-01-02",
-            "price": 117.84
+            "price": 107.87
           },
           {
             "date": "2026-01-09",
-            "price": 132.68
+            "price": 121.46
           },
           {
             "date": "2026-01-16",
-            "price": 131.22
+            "price": 120.12
           },
           {
             "date": "2026-01-23",
-            "price": 131.11
+            "price": 120.02
           },
           {
             "date": "2026-01-30",
-            "price": 128.31
+            "price": 117.46
           },
           {
             "date": "2026-02-06",
-            "price": 127.73
+            "price": 116.93
           },
           {
             "date": "2026-02-13",
-            "price": 128.82
+            "price": 117.92
           },
           {
             "date": "2026-02-20",
-            "price": 114.58
+            "price": 104.89
           },
           {
             "date": "2026-02-27",
-            "price": 126.73
+            "price": 116.01
           },
           {
             "date": "2026-03-06",
-            "price": 126.09
+            "price": 115.42
           },
           {
             "date": "2026-03-13",
-            "price": 108.47
+            "price": 99.3
           },
           {
             "date": "2026-03-20",
-            "price": 126.52
+            "price": 115.82
           },
           {
             "date": "2026-03-27",
-            "price": 104.82
+            "price": 95.96
           },
           {
             "date": "2026-04-03",
-            "price": 127.18
+            "price": 116.42
           },
           {
             "date": "2026-04-10",
-            "price": 124.37
+            "price": 113.85
           },
           {
             "date": "2026-04-17",
-            "price": 124.07
+            "price": 113.58
           },
           {
             "date": "2026-04-24",
-            "price": 101.82
+            "price": 93.21
           },
           {
             "date": "2026-05-01",
-            "price": 104.91
+            "price": 96.04
           },
           {
             "date": "2026-05-08",
-            "price": 123.99
+            "price": 113.5
           },
           {
             "date": "2026-05-15",
-            "price": 123.82
+            "price": 113.35
           },
           {
             "date": "2026-05-22",
-            "price": 121.02
+            "price": 110.79
           },
           {
             "date": "2026-05-29",
-            "price": 120.84
+            "price": 110.62
           },
           {
             "date": "2026-06-05",
-            "price": 122.01
+            "price": 111.69
           },
           {
             "date": "2026-06-12",
-            "price": 120.99
+            "price": 110.76
           },
           {
             "date": "2026-06-19",
-            "price": 122.28
+            "price": 111.94
           },
           {
             "date": "2026-06-26",
-            "price": 119.84
+            "price": 109.7
           },
           {
             "date": "2026-07-03",
-            "price": 120
+            "price": 109.85
           }
         ]
       },
       {
         "retailerId": "jdsports",
-        "price": 125,
+        "price": 120.24,
         "currency": "USD",
-        "inStock": true,
-        "url": "https://jdsports.com/nike-panda-dunk",
+        "inStock": false,
+        "url": "https://www.jdsports.com/search?q=Nike%20Dunk%20Low%20%22Panda%22",
         "lastChecked": "2026-07-03T00:00:00.000Z",
         "history": [
           {
             "date": "2026-01-02",
-            "price": 117.51
+            "price": 113.03
           },
           {
             "date": "2026-01-09",
-            "price": 130.87
+            "price": 125.89
           },
           {
             "date": "2026-01-16",
-            "price": 118.89
+            "price": 114.36
           },
           {
             "date": "2026-01-23",
-            "price": 129.22
+            "price": 124.3
           },
           {
             "date": "2026-01-30",
-            "price": 129.07
+            "price": 124.16
           },
           {
             "date": "2026-02-06",
-            "price": 129.83
+            "price": 124.89
           },
           {
             "date": "2026-02-13",
-            "price": 117.72
+            "price": 113.23
           },
           {
             "date": "2026-02-20",
-            "price": 117.36
+            "price": 112.89
           },
           {
             "date": "2026-02-27",
-            "price": 129.58
+            "price": 124.65
           },
           {
             "date": "2026-03-06",
-            "price": 127.41
+            "price": 122.56
           },
           {
             "date": "2026-03-13",
-            "price": 128.74
+            "price": 123.84
           },
           {
             "date": "2026-03-20",
-            "price": 128.13
+            "price": 123.25
           },
           {
             "date": "2026-03-27",
-            "price": 129.14
+            "price": 124.23
           },
           {
             "date": "2026-04-03",
-            "price": 126.93
+            "price": 122.1
           },
           {
             "date": "2026-04-10",
-            "price": 127.88
+            "price": 123.01
           },
           {
             "date": "2026-04-17",
-            "price": 126.5
+            "price": 121.68
           },
           {
             "date": "2026-04-24",
-            "price": 126.76
+            "price": 121.94
           },
           {
             "date": "2026-05-01",
-            "price": 127.54
+            "price": 122.68
           },
           {
             "date": "2026-05-08",
-            "price": 127.48
+            "price": 122.62
           },
           {
             "date": "2026-05-15",
-            "price": 125.74
+            "price": 120.95
           },
           {
             "date": "2026-05-22",
-            "price": 124.64
+            "price": 119.89
           },
           {
             "date": "2026-05-29",
-            "price": 125.8
+            "price": 121.01
           },
           {
             "date": "2026-06-05",
-            "price": 127.73
+            "price": 122.86
           },
           {
             "date": "2026-06-12",
-            "price": 126.9
+            "price": 122.07
           },
           {
             "date": "2026-06-19",
-            "price": 125.44
+            "price": 120.67
           },
           {
             "date": "2026-06-26",
-            "price": 125.82
+            "price": 121.03
           },
           {
             "date": "2026-07-03",
-            "price": 125
+            "price": 120.24
           }
         ]
       },
       {
         "retailerId": "finishline",
-        "price": 120.24,
+        "price": 119.97,
         "currency": "USD",
-        "inStock": false,
+        "inStock": true,
         "url": "https://www.finishline.com/search?q=Nike%20Dunk%20Low%20%22Panda%22",
         "lastChecked": "2026-07-03T00:00:00.000Z",
         "history": [
           {
             "date": "2026-01-02",
-            "price": 120.31
+            "price": 120.04
           },
           {
             "date": "2026-01-09",
-            "price": 120.92
+            "price": 120.65
           },
           {
             "date": "2026-01-16",
-            "price": 120.66
+            "price": 120.39
           },
           {
             "date": "2026-01-23",
-            "price": 120.8
+            "price": 120.53
           },
           {
             "date": "2026-01-30",
-            "price": 121.4
+            "price": 121.12
           },
           {
             "date": "2026-02-06",
-            "price": 103.75
+            "price": 103.51
           },
           {
             "date": "2026-02-13",
-            "price": 122.06
-          },
-          {
-            "date": "2026-02-20",
             "price": 121.79
           },
           {
+            "date": "2026-02-20",
+            "price": 121.52
+          },
+          {
             "date": "2026-02-27",
-            "price": 122.92
+            "price": 122.65
           },
           {
             "date": "2026-03-06",
-            "price": 119.84
+            "price": 119.57
           },
           {
             "date": "2026-03-13",
-            "price": 120.11
+            "price": 119.84
           },
           {
             "date": "2026-03-20",
-            "price": 119.8
+            "price": 119.53
           },
           {
             "date": "2026-03-27",
-            "price": 121.01
+            "price": 120.73
           },
           {
             "date": "2026-04-03",
-            "price": 120.79
+            "price": 120.52
           },
           {
             "date": "2026-04-10",
-            "price": 121.68
+            "price": 121.41
           },
           {
             "date": "2026-04-17",
-            "price": 120.64
+            "price": 120.37
           },
           {
             "date": "2026-04-24",
-            "price": 121.6
+            "price": 121.33
           },
           {
             "date": "2026-05-01",
-            "price": 122.48
+            "price": 122.21
           },
           {
             "date": "2026-05-08",
-            "price": 121.64
+            "price": 121.37
           },
           {
             "date": "2026-05-15",
-            "price": 120.22
+            "price": 119.95
           },
           {
             "date": "2026-05-22",
-            "price": 119.03
+            "price": 118.76
           },
           {
             "date": "2026-05-29",
-            "price": 120.55
+            "price": 120.28
           },
           {
             "date": "2026-06-05",
-            "price": 119.77
+            "price": 119.5
           },
           {
             "date": "2026-06-12",
-            "price": 120.09
+            "price": 119.82
           },
           {
             "date": "2026-06-19",
-            "price": 121
+            "price": 120.73
           },
           {
             "date": "2026-06-26",
-            "price": 120.68
+            "price": 120.41
           },
           {
             "date": "2026-07-03",
-            "price": 120.24
+            "price": 119.97
           }
         ]
       },
@@ -6859,7 +6977,7 @@
       },
       {
         "retailerId": "goat",
-        "price": 112.69,
+        "price": 120.55,
         "currency": "USD",
         "inStock": true,
         "url": "https://www.goat.com/search?q=Nike%20Dunk%20Low%20%22Panda%22",
@@ -6867,111 +6985,111 @@
         "history": [
           {
             "date": "2026-01-02",
-            "price": 116.75
+            "price": 124.89
           },
           {
             "date": "2026-01-09",
-            "price": 126.77
+            "price": 135.61
           },
           {
             "date": "2026-01-16",
-            "price": 125.33
+            "price": 134.07
           },
           {
             "date": "2026-01-23",
-            "price": 126.54
+            "price": 135.36
           },
           {
             "date": "2026-01-30",
-            "price": 126.87
+            "price": 135.72
           },
           {
             "date": "2026-02-06",
-            "price": 124
+            "price": 132.65
           },
           {
             "date": "2026-02-13",
-            "price": 125.15
+            "price": 133.88
           },
           {
             "date": "2026-02-20",
-            "price": 122.83
+            "price": 131.4
           },
           {
             "date": "2026-02-27",
-            "price": 121.37
+            "price": 129.83
           },
           {
             "date": "2026-03-06",
-            "price": 122.83
+            "price": 131.4
           },
           {
             "date": "2026-03-13",
-            "price": 123.28
+            "price": 131.87
           },
           {
             "date": "2026-03-20",
-            "price": 120.49
+            "price": 128.9
           },
           {
             "date": "2026-03-27",
-            "price": 120.16
+            "price": 128.54
           },
           {
             "date": "2026-04-03",
-            "price": 120.13
+            "price": 128.5
           },
           {
             "date": "2026-04-10",
-            "price": 120.34
+            "price": 128.74
           },
           {
             "date": "2026-04-17",
-            "price": 117.44
+            "price": 125.63
           },
           {
             "date": "2026-04-24",
-            "price": 117.44
+            "price": 125.64
           },
           {
             "date": "2026-05-01",
-            "price": 117.92
+            "price": 126.15
           },
           {
             "date": "2026-05-08",
-            "price": 118.66
+            "price": 126.94
           },
           {
             "date": "2026-05-15",
-            "price": 115.11
+            "price": 123.14
           },
           {
             "date": "2026-05-22",
-            "price": 116.23
+            "price": 124.33
           },
           {
             "date": "2026-05-29",
-            "price": 117.12
+            "price": 125.29
           },
           {
             "date": "2026-06-05",
-            "price": 115.72
+            "price": 123.79
           },
           {
             "date": "2026-06-12",
-            "price": 115.13
+            "price": 123.16
           },
           {
             "date": "2026-06-19",
-            "price": 112.83
+            "price": 120.7
           },
           {
             "date": "2026-06-26",
-            "price": 112.17
+            "price": 119.99
           },
           {
             "date": "2026-07-03",
-            "price": 112.69
+            "price": 120.55
           }
         ]
       }
@@ -7398,356 +7516,238 @@
         ]
       },
       {
-        "retailerId": "gamestop",
-        "price": 149.99,
-        "currency": "USD",
-        "inStock": true,
-        "url": "https://www.gamestop.com/toys-games/trading-cards/products/pokemon-trading-card-game-scarlet-and-violet-stellar-crown-booster-box-36-count/20014002.html",
-        "lastChecked": "2026-07-03T00:00:00.000Z",
-        "history": [
-          {
-            "date": "2026-01-02",
-            "price": 155.29
-          },
-          {
-            "date": "2026-01-09",
-            "price": 156.93
-          },
-          {
-            "date": "2026-01-16",
-            "price": 156.1
-          },
-          {
-            "date": "2026-01-23",
-            "price": 154.95
-          },
-          {
-            "date": "2026-01-30",
-            "price": 153.74
-          },
-          {
-            "date": "2026-02-06",
-            "price": 154.38
-          },
-          {
-            "date": "2026-02-13",
-            "price": 154.26
-          },
-          {
-            "date": "2026-02-20",
-            "price": 155.87
-          },
-          {
-            "date": "2026-02-27",
-            "price": 155.12
-          },
-          {
-            "date": "2026-03-06",
-            "price": 153.66
-          },
-          {
-            "date": "2026-03-13",
-            "price": 151.82
-          },
-          {
-            "date": "2026-03-20",
-            "price": 155.05
-          },
-          {
-            "date": "2026-03-27",
-            "price": 154.58
-          },
-          {
-            "date": "2026-04-03",
-            "price": 154.02
-          },
-          {
-            "date": "2026-04-10",
-            "price": 151.84
-          },
-          {
-            "date": "2026-04-17",
-            "price": 153.34
-          },
-          {
-            "date": "2026-04-24",
-            "price": 151.41
-          },
-          {
-            "date": "2026-05-01",
-            "price": 125.9
-          },
-          {
-            "date": "2026-05-08",
-            "price": 152.27
-          },
-          {
-            "date": "2026-05-15",
-            "price": 149.67
-          },
-          {
-            "date": "2026-05-22",
-            "price": 151.87
-          },
-          {
-            "date": "2026-05-29",
-            "price": 128.33
-          },
-          {
-            "date": "2026-06-05",
-            "price": 152.65
-          },
-          {
-            "date": "2026-06-12",
-            "price": 149.14
-          },
-          {
-            "date": "2026-06-19",
-            "price": 149.09
-          },
-          {
-            "date": "2026-06-26",
-            "price": 125.16
-          },
-          {
-            "date": "2026-07-03",
-            "price": 149.99
-          }
-        ]
-      },
-      {
         "retailerId": "barnesandnoble",
-        "price": 135.58,
+        "price": 141.81,
         "currency": "USD",
-        "inStock": true,
+        "inStock": false,
         "url": "https://www.barnesandnoble.com/s/Pok%C3%A9mon%20TCG%20Scarlet%20%26%20Violet%20Booster%20Box",
         "lastChecked": "2026-07-03T00:00:00.000Z",
         "history": [
           {
             "date": "2026-01-02",
-            "price": 136.44
+            "price": 142.71
           },
           {
             "date": "2026-01-09",
-            "price": 138.04
+            "price": 144.39
           },
           {
             "date": "2026-01-16",
-            "price": 137.51
+            "price": 143.83
           },
           {
             "date": "2026-01-23",
-            "price": 137.16
+            "price": 143.46
           },
           {
             "date": "2026-01-30",
-            "price": 136.2
+            "price": 142.46
           },
           {
             "date": "2026-02-06",
-            "price": 126.43
+            "price": 132.24
           },
           {
             "date": "2026-02-13",
-            "price": 114.74
+            "price": 120.01
           },
           {
             "date": "2026-02-20",
-            "price": 135.48
+            "price": 141.7
           },
           {
             "date": "2026-02-27",
-            "price": 137.54
+            "price": 143.86
           },
           {
             "date": "2026-03-06",
-            "price": 138.68
+            "price": 145.06
           },
           {
             "date": "2026-03-13",
-            "price": 135.74
+            "price": 141.97
           },
           {
             "date": "2026-03-20",
-            "price": 135.11
+            "price": 141.32
           },
           {
             "date": "2026-03-27",
-            "price": 136.51
+            "price": 142.79
           },
           {
             "date": "2026-04-03",
-            "price": 137.26
+            "price": 143.57
           },
           {
             "date": "2026-04-10",
-            "price": 137.79
+            "price": 144.12
           },
           {
             "date": "2026-04-17",
-            "price": 134.72
+            "price": 140.91
           },
           {
             "date": "2026-04-24",
-            "price": 135.12
+            "price": 141.33
           },
           {
             "date": "2026-05-01",
-            "price": 124.88
+            "price": 130.62
           },
           {
             "date": "2026-05-08",
-            "price": 137.16
+            "price": 143.46
           },
           {
             "date": "2026-05-15",
-            "price": 137.86
+            "price": 144.19
           },
           {
             "date": "2026-05-22",
-            "price": 137.87
+            "price": 144.2
           },
           {
             "date": "2026-05-29",
-            "price": 134.08
+            "price": 140.24
           },
           {
             "date": "2026-06-05",
-            "price": 133.88
+            "price": 140.03
           },
           {
             "date": "2026-06-12",
-            "price": 135.67
+            "price": 141.9
           },
           {
             "date": "2026-06-19",
-            "price": 134.59
+            "price": 140.77
           },
           {
             "date": "2026-06-26",
-            "price": 114.91
+            "price": 120.19
           },
           {
             "date": "2026-07-03",
-            "price": 135.58
+            "price": 141.81
           }
         ]
       },
       {
         "retailerId": "ebay",
-        "price": 160,
+        "price": 144,
         "currency": "USD",
         "inStock": true,
-        "url": "https://www.ebay.com/b/Nintendo-Pokemon-TCG-Scarlet-Violet-Booster-Sealed-Collectible-Card-Game-Boxes/261044/bn_7121761172",
+        "url": "https://www.ebay.com/sch/i.html?_nkw=Pok%C3%A9mon%20TCG%20Scarlet%20%26%20Violet%20Booster%20Box",
         "lastChecked": "2026-07-03T00:00:00.000Z",
         "history": [
           {
             "date": "2026-01-02",
-            "price": 159.61
+            "price": 143.65
           },
           {
             "date": "2026-01-09",
-            "price": 159.38
+            "price": 143.44
           },
           {
             "date": "2026-01-16",
-            "price": 158.65
+            "price": 142.78
           },
           {
             "date": "2026-01-23",
-            "price": 160.22
+            "price": 144.2
           },
           {
             "date": "2026-01-30",
-            "price": 158.04
+            "price": 142.24
           },
           {
             "date": "2026-02-06",
-            "price": 162.02
+            "price": 145.82
           },
           {
             "date": "2026-02-13",
-            "price": 133.86
+            "price": 120.47
           },
           {
             "date": "2026-02-20",
-            "price": 159.67
+            "price": 143.71
           },
           {
             "date": "2026-02-27",
-            "price": 159.78
+            "price": 143.8
           },
           {
             "date": "2026-03-06",
-            "price": 159.22
+            "price": 143.29
           },
           {
             "date": "2026-03-13",
-            "price": 162.04
+            "price": 145.84
           },
           {
             "date": "2026-03-20",
-            "price": 158.49
+            "price": 142.64
           },
           {
             "date": "2026-03-27",
-            "price": 157.77
+            "price": 141.99
           },
           {
             "date": "2026-04-03",
-            "price": 146.39
+            "price": 131.75
           },
           {
             "date": "2026-04-10",
-            "price": 160.99
+            "price": 144.89
           },
           {
             "date": "2026-04-17",
-            "price": 160.12
+            "price": 144.11
           },
           {
             "date": "2026-04-24",
-            "price": 159.99
+            "price": 143.99
           },
           {
             "date": "2026-05-01",
-            "price": 158.92
+            "price": 143.03
           },
           {
             "date": "2026-05-08",
-            "price": 159.61
+            "price": 143.65
           },
           {
             "date": "2026-05-15",
-            "price": 159.32
+            "price": 143.39
           },
           {
             "date": "2026-05-22",
-            "price": 159.11
+            "price": 143.2
           },
           {
             "date": "2026-05-29",
-            "price": 161.37
+            "price": 145.24
           },
           {
             "date": "2026-06-05",
-            "price": 161.69
+            "price": 145.52
           },
           {
             "date": "2026-06-12",
-            "price": 129.22
+            "price": 116.3
           },
           {
             "date": "2026-06-19",
-            "price": 158.37
+            "price": 142.53
           },
           {
             "date": "2026-06-26",
-            "price": 161.24
+            "price": 145.11
           },
           {
             "date": "2026-07-03",
-            "price": 160
+            "price": 144
           }
         ]
       }
@@ -8275,119 +8275,119 @@
       },
       {
         "retailerId": "ebay",
-        "price": 900,
+        "price": 808.98,
         "currency": "USD",
         "inStock": false,
-        "url": "https://www.ebay.com/itm/265753687778",
+        "url": "https://www.ebay.com/sch/i.html?_nkw=LEGO%20Star%20Wars%20Millennium%20Falcon%2075192",
         "lastChecked": "2026-07-03T00:00:00.000Z",
         "history": [
           {
             "date": "2026-01-02",
-            "price": 996.66
+            "price": 895.87
           },
           {
             "date": "2026-01-09",
-            "price": 853.23
+            "price": 766.94
           },
           {
             "date": "2026-01-16",
-            "price": 991.53
+            "price": 891.25
           },
           {
             "date": "2026-01-23",
-            "price": 970.32
+            "price": 872.19
           },
           {
             "date": "2026-01-30",
-            "price": 980
+            "price": 880.89
           },
           {
             "date": "2026-02-06",
-            "price": 958.58
+            "price": 861.64
           },
           {
             "date": "2026-02-13",
-            "price": 980.77
+            "price": 881.58
           },
           {
             "date": "2026-02-20",
-            "price": 969.77
+            "price": 871.7
           },
           {
             "date": "2026-02-27",
-            "price": 973.6
+            "price": 875.14
           },
           {
             "date": "2026-03-06",
-            "price": 948.69
+            "price": 852.75
           },
           {
             "date": "2026-03-13",
-            "price": 961.37
+            "price": 864.14
           },
           {
             "date": "2026-03-20",
-            "price": 950.04
+            "price": 853.96
           },
           {
             "date": "2026-03-27",
-            "price": 954.6
+            "price": 858.06
           },
           {
             "date": "2026-04-03",
-            "price": 931.71
+            "price": 837.48
           },
           {
             "date": "2026-04-10",
-            "price": 770.71
+            "price": 692.76
           },
           {
             "date": "2026-04-17",
-            "price": 927.96
+            "price": 834.11
           },
           {
             "date": "2026-04-24",
-            "price": 930.05
+            "price": 835.99
           },
           {
             "date": "2026-05-01",
-            "price": 943.37
+            "price": 847.96
           },
           {
             "date": "2026-05-08",
-            "price": 917.23
+            "price": 824.47
           },
           {
             "date": "2026-05-15",
-            "price": 935.93
+            "price": 841.28
           },
           {
             "date": "2026-05-22",
-            "price": 910.19
+            "price": 818.14
           },
           {
             "date": "2026-05-29",
-            "price": 905.52
+            "price": 813.94
           },
           {
             "date": "2026-06-05",
-            "price": 902.3
+            "price": 811.04
           },
           {
             "date": "2026-06-12",
-            "price": 922.04
+            "price": 828.79
           },
           {
             "date": "2026-06-19",
-            "price": 902.3
+            "price": 811.05
           },
           {
             "date": "2026-06-26",
-            "price": 901.11
+            "price": 809.98
           },
           {
             "date": "2026-07-03",
-            "price": 900
+            "price": 808.98
           }
         ]
       }
@@ -8802,120 +8802,120 @@
         ]
       },
       {
-        "retailerId": "samsclub",
-        "price": 47.28,
+        "retailerId": "dickssportinggoods",
+        "price": 45,
         "currency": "USD",
         "inStock": true,
-        "url": "https://www.samsclub.com/search?q=Stanley%20Quencher%20H2.0%20FlowState%2040oz%20Tumbler",
+        "url": "https://www.dickssportinggoods.com/p/stanley-40-ozquencher-h2-0-flowstate-tumbler-22stau40zstnlyqnchydb/22stau40zstnlyqnchydb",
         "lastChecked": "2026-07-03T00:00:00.000Z",
         "history": [
           {
             "date": "2026-01-02",
-            "price": 47.53
+            "price": 45.15
           },
           {
             "date": "2026-01-09",
-            "price": 47.67
+            "price": 45.62
           },
           {
             "date": "2026-01-16",
-            "price": 48.03
+            "price": 44.92
           },
           {
             "date": "2026-01-23",
-            "price": 41.34
+            "price": 37.89
           },
           {
             "date": "2026-01-30",
-            "price": 47.07
+            "price": 44.74
           },
           {
             "date": "2026-02-06",
-            "price": 46.95
+            "price": 44.66
           },
           {
             "date": "2026-02-13",
-            "price": 47.2
+            "price": 45.83
           },
           {
             "date": "2026-02-20",
-            "price": 47.85
+            "price": 39.2
           },
           {
             "date": "2026-02-27",
-            "price": 47.86
+            "price": 45.75
           },
           {
             "date": "2026-03-06",
-            "price": 47.95
+            "price": 45.08
           },
           {
             "date": "2026-03-13",
-            "price": 47.05
+            "price": 44.99
           },
           {
             "date": "2026-03-20",
-            "price": 47.24
+            "price": 44.49
           },
           {
             "date": "2026-03-27",
-            "price": 47.72
+            "price": 44.9
           },
           {
             "date": "2026-04-03",
-            "price": 47.1
+            "price": 45.51
           },
           {
             "date": "2026-04-10",
-            "price": 47.05
+            "price": 45.02
           },
           {
             "date": "2026-04-17",
-            "price": 47.47
+            "price": 44.84
           },
           {
             "date": "2026-04-24",
-            "price": 46.71
+            "price": 41.11
           },
           {
             "date": "2026-05-01",
-            "price": 40.41
+            "price": 45.76
           },
           {
             "date": "2026-05-08",
-            "price": 47.48
+            "price": 45.31
           },
           {
             "date": "2026-05-15",
-            "price": 47.76
+            "price": 45.3
           },
           {
             "date": "2026-05-22",
-            "price": 46.99
+            "price": 45.38
           },
           {
             "date": "2026-05-29",
-            "price": 47.53
+            "price": 45.11
           },
           {
             "date": "2026-06-05",
-            "price": 47.3
+            "price": 45.15
           },
           {
             "date": "2026-06-12",
-            "price": 46.8
+            "price": 44.54
           },
           {
             "date": "2026-06-19",
-            "price": 46.84
+            "price": 44.86
           },
           {
             "date": "2026-06-26",
-            "price": 46.84
+            "price": 38.75
           },
           {
             "date": "2026-07-03",
-            "price": 47.28
+            "price": 45
           }
         ]
       }
@@ -9207,119 +9207,119 @@
       },
       {
         "retailerId": "target",
-        "price": 108.64,
+        "price": 79.99,
         "currency": "USD",
         "inStock": true,
-        "url": "https://www.target.com/s?searchTerm=Instant%20Pot%20Duo%207-in-1%206%20Qt%20Multi-Cooker",
+        "url": "https://www.target.com/p/instant-pot-duo-6qt-7-in-1-pressure-cooker/-/A-50608360",
         "lastChecked": "2026-07-03T00:00:00.000Z",
         "history": [
           {
             "date": "2026-01-02",
-            "price": 111.46
+            "price": 82.06
           },
           {
             "date": "2026-01-09",
-            "price": 110.09
+            "price": 81.05
           },
           {
             "date": "2026-01-16",
-            "price": 109.91
+            "price": 80.93
           },
           {
             "date": "2026-01-23",
-            "price": 111.07
+            "price": 81.78
           },
           {
             "date": "2026-01-30",
-            "price": 111.8
+            "price": 82.31
           },
           {
             "date": "2026-02-06",
-            "price": 111.59
+            "price": 82.16
           },
           {
             "date": "2026-02-13",
-            "price": 109.78
+            "price": 80.83
           },
           {
             "date": "2026-02-20",
-            "price": 108.94
+            "price": 80.21
           },
           {
             "date": "2026-02-27",
-            "price": 110.14
+            "price": 81.09
           },
           {
             "date": "2026-03-06",
-            "price": 92.17
+            "price": 67.86
           },
           {
             "date": "2026-03-13",
-            "price": 110.97
+            "price": 81.71
           },
           {
             "date": "2026-03-20",
-            "price": 108.85
+            "price": 80.15
           },
           {
             "date": "2026-03-27",
-            "price": 108.73
+            "price": 80.06
           },
           {
             "date": "2026-04-03",
-            "price": 91.44
+            "price": 67.33
           },
           {
             "date": "2026-04-10",
-            "price": 110.98
+            "price": 81.71
           },
           {
             "date": "2026-04-17",
-            "price": 111.02
+            "price": 81.74
           },
           {
             "date": "2026-04-24",
-            "price": 111.12
+            "price": 81.82
           },
           {
             "date": "2026-05-01",
-            "price": 108.32
+            "price": 79.75
           },
           {
             "date": "2026-05-08",
-            "price": 109.23
+            "price": 80.42
           },
           {
             "date": "2026-05-15",
-            "price": 109.83
+            "price": 80.86
           },
           {
             "date": "2026-05-22",
-            "price": 96.69
+            "price": 71.19
           },
           {
             "date": "2026-05-29",
-            "price": 108.54
+            "price": 79.92
           },
           {
             "date": "2026-06-05",
-            "price": 108.2
+            "price": 79.67
           },
           {
             "date": "2026-06-12",
-            "price": 108.5
+            "price": 79.89
           },
           {
             "date": "2026-06-19",
-            "price": 109.61
+            "price": 80.71
           },
           {
             "date": "2026-06-26",
-            "price": 109.4
+            "price": 80.55
           },
           {
             "date": "2026-07-03",
-            "price": 108.64
+            "price": 79.99
           }
         ]
       },
@@ -9443,7 +9443,7 @@
       },
       {
         "retailerId": "costco",
-        "price": 103.92,
+        "price": 97.01,
         "currency": "USD",
         "inStock": true,
         "url": "https://www.costco.com/CatalogSearch?keyword=Instant%20Pot%20Duo%207-in-1%206%20Qt%20Multi-Cooker",
@@ -9451,111 +9451,111 @@
         "history": [
           {
             "date": "2026-01-02",
-            "price": 108.94
+            "price": 101.7
           },
           {
             "date": "2026-01-09",
-            "price": 106.7
+            "price": 99.61
           },
           {
             "date": "2026-01-16",
-            "price": 109.25
+            "price": 101.99
           },
           {
             "date": "2026-01-23",
-            "price": 106.13
+            "price": 99.07
           },
           {
             "date": "2026-01-30",
-            "price": 107.54
+            "price": 100.39
           },
           {
             "date": "2026-02-06",
-            "price": 107.75
+            "price": 100.58
           },
           {
             "date": "2026-02-13",
-            "price": 108.09
+            "price": 100.9
           },
           {
             "date": "2026-02-20",
-            "price": 105.94
+            "price": 98.9
           },
           {
             "date": "2026-02-27",
-            "price": 107.47
+            "price": 100.32
           },
           {
             "date": "2026-03-06",
-            "price": 107.55
+            "price": 100.4
           },
           {
             "date": "2026-03-13",
-            "price": 108
+            "price": 100.82
           },
           {
             "date": "2026-03-20",
-            "price": 107.75
+            "price": 100.58
           },
           {
             "date": "2026-03-27",
-            "price": 106.24
+            "price": 99.18
           },
           {
             "date": "2026-04-03",
-            "price": 105.55
+            "price": 98.53
           },
           {
             "date": "2026-04-10",
-            "price": 105.79
+            "price": 98.75
           },
           {
             "date": "2026-04-17",
-            "price": 104.26
+            "price": 97.32
           },
           {
             "date": "2026-04-24",
-            "price": 105.53
+            "price": 98.52
           },
           {
             "date": "2026-05-01",
-            "price": 106.17
+            "price": 99.11
           },
           {
             "date": "2026-05-08",
-            "price": 103.8
+            "price": 96.9
           },
           {
             "date": "2026-05-15",
-            "price": 106.18
+            "price": 99.12
           },
           {
             "date": "2026-05-22",
-            "price": 104.34
+            "price": 97.4
           },
           {
             "date": "2026-05-29",
-            "price": 104.1
+            "price": 97.18
           },
           {
             "date": "2026-06-05",
-            "price": 105.5
+            "price": 98.48
           },
           {
             "date": "2026-06-12",
-            "price": 89.16
+            "price": 83.23
           },
           {
             "date": "2026-06-19",
-            "price": 102.74
+            "price": 95.9
           },
           {
             "date": "2026-06-26",
-            "price": 102.94
+            "price": 96.09
           },
           {
             "date": "2026-07-03",
-            "price": 103.92
+            "price": 97.01
           }
         ]
       }
@@ -9927,95 +9927,213 @@
       },
       {
         "retailerId": "dickssportinggoods",
-        "price": 133.58,
+        "price": 130,
         "currency": "USD",
         "inStock": true,
-        "url": "https://www.dicks.com/search?q=Nike%20Sportswear%20Tech%20Fleece%20Pullover%20Hoodie",
+        "url": "https://www.dickssportinggoods.com/p/nike-mens-tech-fleece-hoodie-25nikmcasumnktchfldef/25nikmcasumnktchfldef",
         "lastChecked": "2026-07-03T00:00:00.000Z",
         "history": [
           {
             "date": "2026-01-02",
-            "price": 134.01
+            "price": 130.42
           },
           {
             "date": "2026-01-09",
-            "price": 136.53
+            "price": 132.87
           },
           {
             "date": "2026-01-16",
-            "price": 136.97
+            "price": 133.3
           },
           {
             "date": "2026-01-23",
-            "price": 135.32
+            "price": 131.69
           },
           {
             "date": "2026-01-30",
-            "price": 134.18
+            "price": 130.58
           },
           {
             "date": "2026-02-06",
-            "price": 134.74
+            "price": 131.13
           },
           {
             "date": "2026-02-13",
-            "price": 135.55
+            "price": 131.92
           },
           {
             "date": "2026-02-20",
-            "price": 133.63
+            "price": 130.04
           },
           {
             "date": "2026-02-27",
-            "price": 134.41
+            "price": 130.8
           },
           {
             "date": "2026-03-06",
-            "price": 133.01
+            "price": 129.44
           },
           {
             "date": "2026-03-13",
-            "price": 136.28
+            "price": 132.63
           },
           {
             "date": "2026-03-20",
-            "price": 133.95
+            "price": 130.36
           },
           {
             "date": "2026-03-27",
-            "price": 135.27
+            "price": 131.64
           },
           {
             "date": "2026-04-03",
-            "price": 135.26
+            "price": 131.63
           },
           {
             "date": "2026-04-10",
-            "price": 135.85
+            "price": 132.21
           },
           {
             "date": "2026-04-17",
-            "price": 134.62
+            "price": 131.01
           },
           {
             "date": "2026-04-24",
-            "price": 135.53
+            "price": 131.89
           },
           {
             "date": "2026-05-01",
-            "price": 134.65
+            "price": 131.04
           },
           {
             "date": "2026-05-08",
-            "price": 134.49
+            "price": 130.88
           },
           {
             "date": "2026-05-15",
-            "price": 133.58
+            "price": 130
           },
           {
             "date": "2026-05-22",
-            "price": 133.58
+            "price": 130
+          },
+          {
+            "date": "2026-05-29",
+            "price": 129.03
+          },
+          {
+            "date": "2026-06-05",
+            "price": 129.77
+          },
+          {
+            "date": "2026-06-12",
+            "price": 129.58
+          },
+          {
+            "date": "2026-06-19",
+            "price": 131.71
+          },
+          {
+            "date": "2026-06-26",
+            "price": 128.82
+          },
+          {
+            "date": "2026-07-03",
+            "price": 130
+          }
+        ]
+      },
+      {
+        "retailerId": "footlocker",
+        "price": 130,
+        "currency": "USD",
+        "inStock": true,
+        "url": "https://www.footlocker.com/product/model/nike-tech-fleece-hoodie/450666.html",
+        "lastChecked": "2026-07-03T00:00:00.000Z",
+        "history": [
+          {
+            "date": "2026-01-02",
+            "price": 147.2
+          },
+          {
+            "date": "2026-01-09",
+            "price": 124.45
+          },
+          {
+            "date": "2026-01-16",
+            "price": 143.58
+          },
+          {
+            "date": "2026-01-23",
+            "price": 142.68
+          },
+          {
+            "date": "2026-01-30",
+            "price": 145.13
+          },
+          {
+            "date": "2026-02-06",
+            "price": 130.73
+          },
+          {
+            "date": "2026-02-13",
+            "price": 141.52
+          },
+          {
+            "date": "2026-02-20",
+            "price": 142.06
+          },
+          {
+            "date": "2026-02-27",
+            "price": 141.78
+          },
+          {
+            "date": "2026-03-06",
+            "price": 142.01
+          },
+          {
+            "date": "2026-03-13",
+            "price": 139.7
+          },
+          {
+            "date": "2026-03-20",
+            "price": 140.67
+          },
+          {
+            "date": "2026-03-27",
+            "price": 138.88
+          },
+          {
+            "date": "2026-04-03",
+            "price": 137.97
+          },
+          {
+            "date": "2026-04-10",
+            "price": 136.64
+          },
+          {
+            "date": "2026-04-17",
+            "price": 138.06
+          },
+          {
+            "date": "2026-04-24",
+            "price": 134.29
+          },
+          {
+            "date": "2026-05-01",
+            "price": 111.31
+          },
+          {
+            "date": "2026-05-08",
+            "price": 136.21
+          },
+          {
+            "date": "2026-05-15",
+            "price": 133.52
+          },
+          {
+            "date": "2026-05-22",
+            "price": 132.19
           },
           {
             "date": "2026-05-29",
@@ -10023,141 +10141,23 @@
           },
           {
             "date": "2026-06-05",
-            "price": 133.35
+            "price": 131.23
           },
           {
             "date": "2026-06-12",
-            "price": 133.15
+            "price": 130.8
           },
           {
             "date": "2026-06-19",
-            "price": 135.34
+            "price": 132.87
           },
           {
             "date": "2026-06-26",
-            "price": 132.37
+            "price": 132.27
           },
           {
             "date": "2026-07-03",
-            "price": 133.58
-          }
-        ]
-      },
-      {
-        "retailerId": "footlocker",
-        "price": 136.54,
-        "currency": "USD",
-        "inStock": true,
-        "url": "https://www.footlocker.com/search?q=Nike%20Sportswear%20Tech%20Fleece%20Pullover%20Hoodie",
-        "lastChecked": "2026-07-03T00:00:00.000Z",
-        "history": [
-          {
-            "date": "2026-01-02",
-            "price": 154.6
-          },
-          {
-            "date": "2026-01-09",
-            "price": 130.71
-          },
-          {
-            "date": "2026-01-16",
-            "price": 150.81
-          },
-          {
-            "date": "2026-01-23",
-            "price": 149.86
-          },
-          {
-            "date": "2026-01-30",
-            "price": 152.43
-          },
-          {
-            "date": "2026-02-06",
-            "price": 137.31
-          },
-          {
-            "date": "2026-02-13",
-            "price": 148.64
-          },
-          {
-            "date": "2026-02-20",
-            "price": 149.21
-          },
-          {
-            "date": "2026-02-27",
-            "price": 148.91
-          },
-          {
-            "date": "2026-03-06",
-            "price": 149.16
-          },
-          {
-            "date": "2026-03-13",
-            "price": 146.73
-          },
-          {
-            "date": "2026-03-20",
-            "price": 147.75
-          },
-          {
-            "date": "2026-03-27",
-            "price": 145.86
-          },
-          {
-            "date": "2026-04-03",
-            "price": 144.91
-          },
-          {
-            "date": "2026-04-10",
-            "price": 143.52
-          },
-          {
-            "date": "2026-04-17",
-            "price": 145.01
-          },
-          {
-            "date": "2026-04-24",
-            "price": 141.05
-          },
-          {
-            "date": "2026-05-01",
-            "price": 116.91
-          },
-          {
-            "date": "2026-05-08",
-            "price": 143.06
-          },
-          {
-            "date": "2026-05-15",
-            "price": 140.23
-          },
-          {
-            "date": "2026-05-22",
-            "price": 138.84
-          },
-          {
-            "date": "2026-05-29",
-            "price": 139.26
-          },
-          {
-            "date": "2026-06-05",
-            "price": 137.83
-          },
-          {
-            "date": "2026-06-12",
-            "price": 137.38
-          },
-          {
-            "date": "2026-06-19",
-            "price": 139.55
-          },
-          {
-            "date": "2026-06-26",
-            "price": 138.93
-          },
-          {
-            "date": "2026-07-03",
-            "price": 136.54
+            "price": 130
           }
         ]
       }
@@ -10895,125 +10895,125 @@
       },
       {
         "retailerId": "nordstrom",
-        "price": 168.72,
+        "price": 179,
         "currency": "USD",
-        "inStock": true,
-        "url": "https://www.nordstrom.com/sr?keyword=Patagonia%20Better%20Sweater%20Fleece%20Jacket",
+        "inStock": false,
+        "url": "https://www.nordstrom.com/s/patagonia-better-sweater-fleece-jacket/4140345",
         "lastChecked": "2026-07-03T00:00:00.000Z",
         "history": [
           {
             "date": "2026-01-02",
-            "price": 166.49
+            "price": 176.63
           },
           {
             "date": "2026-01-09",
-            "price": 148.91
+            "price": 157.98
           },
           {
             "date": "2026-01-16",
-            "price": 169.09
+            "price": 179.39
           },
           {
             "date": "2026-01-23",
-            "price": 169.03
+            "price": 179.32
           },
           {
             "date": "2026-01-30",
-            "price": 167.8
+            "price": 178.02
           },
           {
             "date": "2026-02-06",
-            "price": 168.56
+            "price": 178.83
           },
           {
             "date": "2026-02-13",
-            "price": 170.63
+            "price": 181.03
           },
           {
             "date": "2026-02-20",
-            "price": 168.54
+            "price": 178.81
           },
           {
             "date": "2026-02-27",
-            "price": 166.37
+            "price": 176.51
           },
           {
             "date": "2026-03-06",
-            "price": 170.82
+            "price": 181.22
           },
           {
             "date": "2026-03-13",
-            "price": 170.98
+            "price": 181.4
           },
           {
             "date": "2026-03-20",
-            "price": 168.42
+            "price": 178.68
           },
           {
             "date": "2026-03-27",
-            "price": 144.41
+            "price": 153.21
           },
           {
             "date": "2026-04-03",
-            "price": 170.69
+            "price": 181.09
           },
           {
             "date": "2026-04-10",
-            "price": 168.4
+            "price": 178.66
           },
           {
             "date": "2026-04-17",
-            "price": 167.59
+            "price": 177.8
           },
           {
             "date": "2026-04-24",
-            "price": 169.67
+            "price": 180.01
           },
           {
             "date": "2026-05-01",
-            "price": 168.14
+            "price": 178.38
           },
           {
             "date": "2026-05-08",
-            "price": 167.65
+            "price": 177.87
           },
           {
             "date": "2026-05-15",
-            "price": 168.82
+            "price": 179.1
           },
           {
             "date": "2026-05-22",
-            "price": 169.07
+            "price": 179.37
           },
           {
             "date": "2026-05-29",
-            "price": 167.61
+            "price": 177.82
           },
           {
             "date": "2026-06-05",
-            "price": 170.38
+            "price": 180.76
           },
           {
             "date": "2026-06-12",
-            "price": 168.31
+            "price": 178.57
           },
           {
             "date": "2026-06-19",
-            "price": 169.19
+            "price": 179.5
           },
           {
             "date": "2026-06-26",
-            "price": 169.46
+            "price": 179.79
           },
           {
             "date": "2026-07-03",
-            "price": 168.72
+            "price": 179
           }
         ]
       },
       {
         "retailerId": "nordstromrack",
-        "price": 183.51,
+        "price": 194.74,
         "currency": "USD",
         "inStock": true,
         "url": "https://www.nordstromrack.com/search?q=Patagonia%20Better%20Sweater%20Fleece%20Jacket",
@@ -11021,111 +11021,111 @@
         "history": [
           {
             "date": "2026-01-02",
-            "price": 185.68
+            "price": 197.04
           },
           {
             "date": "2026-01-09",
-            "price": 185.98
+            "price": 197.37
           },
           {
             "date": "2026-01-16",
-            "price": 185.93
+            "price": 197.3
           },
           {
             "date": "2026-01-23",
-            "price": 155.87
+            "price": 165.41
           },
           {
             "date": "2026-01-30",
-            "price": 184.13
+            "price": 195.4
           },
           {
             "date": "2026-02-06",
-            "price": 186.9
+            "price": 198.34
           },
           {
             "date": "2026-02-13",
-            "price": 187.29
+            "price": 198.75
           },
           {
             "date": "2026-02-20",
-            "price": 167.42
+            "price": 177.66
           },
           {
             "date": "2026-02-27",
-            "price": 185.43
+            "price": 196.77
           },
           {
             "date": "2026-03-06",
-            "price": 185.65
+            "price": 197.02
           },
           {
             "date": "2026-03-13",
-            "price": 187.18
+            "price": 198.63
           },
           {
             "date": "2026-03-20",
-            "price": 161.81
+            "price": 171.71
           },
           {
             "date": "2026-03-27",
-            "price": 184.91
+            "price": 196.23
           },
           {
             "date": "2026-04-03",
-            "price": 153.56
+            "price": 162.96
           },
           {
             "date": "2026-04-10",
-            "price": 185.56
+            "price": 196.92
           },
           {
             "date": "2026-04-17",
-            "price": 154.88
+            "price": 164.36
           },
           {
             "date": "2026-04-24",
-            "price": 186.82
+            "price": 198.26
           },
           {
             "date": "2026-05-01",
-            "price": 185.22
+            "price": 196.56
           },
           {
             "date": "2026-05-08",
-            "price": 160.26
+            "price": 170.06
           },
           {
             "date": "2026-05-15",
-            "price": 183.1
+            "price": 194.3
           },
           {
             "date": "2026-05-22",
-            "price": 164.89
+            "price": 174.98
           },
           {
             "date": "2026-05-29",
-            "price": 182.2
+            "price": 193.35
           },
           {
             "date": "2026-06-05",
-            "price": 181.76
+            "price": 192.89
           },
           {
             "date": "2026-06-12",
-            "price": 150.54
+            "price": 159.75
           },
           {
             "date": "2026-06-19",
-            "price": 182.75
+            "price": 193.94
           },
           {
             "date": "2026-06-26",
-            "price": 183.79
+            "price": 195.04
           },
           {
             "date": "2026-07-03",
-            "price": 183.51
+            "price": 194.74
           }
         ]
       }
@@ -11733,119 +11733,119 @@
       },
       {
         "retailerId": "kohls",
-        "price": 74.1,
+        "price": 59.99,
         "currency": "USD",
         "inStock": true,
-        "url": "https://www.kohls.com/search?q=Levi's%20501%20Original%20Fit%20Jeans",
+        "url": "https://www.kohls.com/product/prd-396327/levis-501-original-fit-jeans-men.jsp",
         "lastChecked": "2026-07-03T00:00:00.000Z",
         "history": [
           {
             "date": "2026-01-02",
-            "price": 75.07
+            "price": 60.77
           },
           {
             "date": "2026-01-09",
-            "price": 81.57
+            "price": 66.04
           },
           {
             "date": "2026-01-16",
-            "price": 82.62
+            "price": 66.89
           },
           {
             "date": "2026-01-23",
-            "price": 80.62
+            "price": 65.27
           },
           {
             "date": "2026-01-30",
-            "price": 80.54
+            "price": 65.2
           },
           {
             "date": "2026-02-06",
-            "price": 81.22
+            "price": 65.75
           },
           {
             "date": "2026-02-13",
-            "price": 81
+            "price": 65.58
           },
           {
             "date": "2026-02-20",
-            "price": 79.13
+            "price": 64.06
           },
           {
             "date": "2026-02-27",
-            "price": 80.63
+            "price": 65.28
           },
           {
             "date": "2026-03-06",
-            "price": 79.38
+            "price": 64.26
           },
           {
             "date": "2026-03-13",
-            "price": 79.59
+            "price": 64.43
           },
           {
             "date": "2026-03-20",
-            "price": 77.85
+            "price": 63.03
           },
           {
             "date": "2026-03-27",
-            "price": 78.04
+            "price": 63.18
           },
           {
             "date": "2026-04-03",
-            "price": 77.29
+            "price": 62.58
           },
           {
             "date": "2026-04-10",
-            "price": 71.9
+            "price": 58.21
           },
           {
             "date": "2026-04-17",
-            "price": 66.22
+            "price": 53.61
           },
           {
             "date": "2026-04-24",
-            "price": 67.46
+            "price": 54.61
           },
           {
             "date": "2026-05-01",
-            "price": 77.9
+            "price": 63.07
           },
           {
             "date": "2026-05-08",
-            "price": 77.05
+            "price": 62.37
           },
           {
             "date": "2026-05-15",
-            "price": 75.44
+            "price": 61.08
           },
           {
             "date": "2026-05-22",
-            "price": 67.16
+            "price": 54.37
           },
           {
             "date": "2026-05-29",
-            "price": 75.25
+            "price": 60.92
           },
           {
             "date": "2026-06-05",
-            "price": 75.36
+            "price": 61.01
           },
           {
             "date": "2026-06-12",
-            "price": 74.18
+            "price": 60.05
           },
           {
             "date": "2026-06-19",
-            "price": 65.22
+            "price": 52.8
           },
           {
             "date": "2026-06-26",
-            "price": 67.68
+            "price": 54.79
           },
           {
             "date": "2026-07-03",
-            "price": 74.1
+            "price": 59.99
           }
         ]
       }
@@ -11981,119 +11981,119 @@
       },
       {
         "retailerId": "ebay",
-        "price": 82,
+        "price": 105.19,
         "currency": "USD",
         "inStock": true,
-        "url": "https://www.ebay.com/itm/265457694461",
+        "url": "https://www.ebay.com/sch/i.html?_nkw=Lululemon%20Align%20High-Rise%20Leggings%2025%22",
         "lastChecked": "2026-07-03T00:00:00.000Z",
         "history": [
           {
             "date": "2026-01-02",
-            "price": 83.48
+            "price": 107.09
           },
           {
             "date": "2026-01-09",
-            "price": 84.27
+            "price": 108.11
           },
           {
             "date": "2026-01-16",
-            "price": 83.89
+            "price": 107.62
           },
           {
             "date": "2026-01-23",
-            "price": 84.7
+            "price": 108.65
           },
           {
             "date": "2026-01-30",
-            "price": 84.15
+            "price": 107.95
           },
           {
             "date": "2026-02-06",
-            "price": 84.14
+            "price": 107.94
           },
           {
             "date": "2026-02-13",
-            "price": 83.18
+            "price": 106.7
           },
           {
             "date": "2026-02-20",
-            "price": 83.46
+            "price": 107.06
           },
           {
             "date": "2026-02-27",
-            "price": 82.66
+            "price": 106.04
           },
           {
             "date": "2026-03-06",
-            "price": 82.03
+            "price": 105.22
           },
           {
             "date": "2026-03-13",
-            "price": 84.34
+            "price": 108.2
           },
           {
             "date": "2026-03-20",
-            "price": 82.94
+            "price": 106.39
           },
           {
             "date": "2026-03-27",
-            "price": 81.99
+            "price": 105.17
           },
           {
             "date": "2026-04-03",
-            "price": 83.49
+            "price": 107.1
           },
           {
             "date": "2026-04-10",
-            "price": 82.86
+            "price": 106.3
           },
           {
             "date": "2026-04-17",
-            "price": 82.63
+            "price": 106
           },
           {
             "date": "2026-04-24",
-            "price": 82.95
+            "price": 106.41
           },
           {
             "date": "2026-05-01",
-            "price": 82.69
+            "price": 106.07
           },
           {
             "date": "2026-05-08",
-            "price": 81.66
+            "price": 104.75
           },
           {
             "date": "2026-05-15",
-            "price": 83.16
+            "price": 106.68
           },
           {
             "date": "2026-05-22",
-            "price": 82.43
+            "price": 105.74
           },
           {
             "date": "2026-05-29",
-            "price": 83.37
+            "price": 106.95
           },
           {
             "date": "2026-06-05",
-            "price": 81.14
+            "price": 104.09
           },
           {
             "date": "2026-06-12",
-            "price": 82.19
+            "price": 105.43
           },
           {
             "date": "2026-06-19",
-            "price": 82.64
+            "price": 106.01
           },
           {
             "date": "2026-06-26",
-            "price": 81.05
+            "price": 103.98
           },
           {
             "date": "2026-07-03",
-            "price": 82
+            "price": 105.19
           }
         ]
       }
@@ -12229,119 +12229,119 @@
       },
       {
         "retailerId": "nordstrom",
-        "price": 326.6,
+        "price": 320,
         "currency": "USD",
         "inStock": true,
-        "url": "https://www.nordstrom.com/sr?keyword=The%20North%20Face%201996%20Retro%20Nuptse%20Jacket",
+        "url": "https://www.nordstrom.com/s/1996-retro-nuptse-700-fill-power-down-packable-jacket/7929183",
         "lastChecked": "2026-07-03T00:00:00.000Z",
         "history": [
           {
             "date": "2026-01-02",
-            "price": 343.09
+            "price": 336.16
           },
           {
             "date": "2026-01-09",
-            "price": 350.76
+            "price": 343.67
           },
           {
             "date": "2026-01-16",
-            "price": 342.97
+            "price": 336.04
           },
           {
             "date": "2026-01-23",
-            "price": 345.06
+            "price": 338.09
           },
           {
             "date": "2026-01-30",
-            "price": 348.26
+            "price": 341.22
           },
           {
             "date": "2026-02-06",
-            "price": 347.42
+            "price": 340.4
           },
           {
             "date": "2026-02-13",
-            "price": 344.33
+            "price": 337.37
           },
           {
             "date": "2026-02-20",
-            "price": 345.58
+            "price": 338.6
           },
           {
             "date": "2026-02-27",
-            "price": 339.74
+            "price": 332.88
           },
           {
             "date": "2026-03-06",
-            "price": 342.79
+            "price": 335.87
           },
           {
             "date": "2026-03-13",
-            "price": 335.41
+            "price": 328.64
           },
           {
             "date": "2026-03-20",
-            "price": 336.27
+            "price": 329.47
           },
           {
             "date": "2026-03-27",
-            "price": 336.01
+            "price": 329.22
           },
           {
             "date": "2026-04-03",
-            "price": 336.63
+            "price": 329.82
           },
           {
             "date": "2026-04-10",
-            "price": 298.08
+            "price": 292.05
           },
           {
             "date": "2026-04-17",
-            "price": 301.25
+            "price": 295.16
           },
           {
             "date": "2026-04-24",
-            "price": 338.27
+            "price": 331.44
           },
           {
             "date": "2026-05-01",
-            "price": 330.16
+            "price": 323.49
           },
           {
             "date": "2026-05-08",
-            "price": 331.57
+            "price": 324.87
           },
           {
             "date": "2026-05-15",
-            "price": 336.8
+            "price": 329.99
           },
           {
             "date": "2026-05-22",
-            "price": 330.82
+            "price": 324.14
           },
           {
             "date": "2026-05-29",
-            "price": 327.02
+            "price": 320.41
           },
           {
             "date": "2026-06-05",
-            "price": 326.98
+            "price": 320.37
           },
           {
             "date": "2026-06-12",
-            "price": 327.1
+            "price": 320.49
           },
           {
             "date": "2026-06-19",
-            "price": 325.57
+            "price": 318.99
           },
           {
             "date": "2026-06-26",
-            "price": 327.58
+            "price": 320.96
           },
           {
             "date": "2026-07-03",
-            "price": 326.6
+            "price": 320
           }
         ]
       },
