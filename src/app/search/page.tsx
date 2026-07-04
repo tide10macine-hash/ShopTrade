@@ -1,5 +1,6 @@
 import SearchBar from "@/components/SearchBar";
 import ProductCard from "@/components/ProductCard";
+import MoreStoresSearch from "@/components/MoreStoresSearch";
 import { getAllProducts, searchProducts } from "@/lib/products";
 
 export default async function SearchPage({
@@ -36,6 +37,8 @@ export default async function SearchPage({
           ))}
         </div>
       )}
+
+      <MoreStoresSearch query={q} />
     </div>
   );
 }

@@ -37,7 +37,7 @@ This MVP is built around that constraint on purpose:
 - **"View deal" links to the real, exact product page wherever one exists —
   and the displayed price matches it.** `src/data/productUrlOverrides.json`
   pairs a hand-curated, web-search-verified URL with the real price found
-  *at that same URL* (88 of 169 demo offers as of this writing) —
+  *at that same URL* (95 of 208 demo offers as of this writing) —
   `scripts/seed.mjs` uses both together. Generating a URL and a price
   independently is exactly how you get a compare page that says $120 and a
   linked page that says $55 for the same shoe; the fix is to source them as
@@ -48,7 +48,7 @@ This MVP is built around that constraint on purpose:
   removed as a retailer for that product entirely, not just relinked), and
   single-seller marketplace listings (eBay `itm` URLs) are deliberately
   excluded since they expire when the item sells — eBay falls back to a
-  stable search link instead. This is manual curation for a 35-product demo
+  stable search link instead. This is manual curation for a 45-product demo
   catalog, not a live pipeline: it won't scale past this catalog and it
   *will* drift stale (prices change constantly, pages get discontinued,
   and some of today's "real" numbers are themselves approximate — search
@@ -60,9 +60,21 @@ This MVP is built around that constraint on purpose:
   MSRP-based price: a verified URL pattern for the ~18 retailers in
   `searchUrlTemplate`, a generic `{domain}/search?q=` guess otherwise.
   Either way it's a real, working page, never a guessed URL that may 404.
-  The sustainable fix is
-  the live adapters below returning real URLs straight from each retailer's
-  API — that's the thing an override file can't be.
+  The sustainable fix is the live adapters below returning real URLs
+  straight from each retailer's API — that's the thing an override file
+  can't be.
+- **A curated catalog can't hold everything a real store carries — so the
+  search page says so and hands off to the real thing.** `/search` always
+  shows quick links (`src/components/MoreStoresSearch.tsx`) straight to a
+  dozen major retailers' own live search for whatever you typed, so "show
+  me everything" is answered honestly: the demo catalog for depth and
+  comparison, the retailers' own search for actual completeness.
+- **Resale channels are category-aware.** `computeResaleChannels()` used to
+  offer StockX for every flippable item, including a LEGO set — StockX
+  doesn't sell LEGO. Sneakers get StockX/GOAT, apparel gets Poshmark/Depop,
+  everything else gets eBay/Facebook Marketplace/Shopify only. The
+  underlying comp data (`resaleComps`) is generated the same way — a
+  "StockX" comp source only appears for the `sneakers` category.
 
 ## Data sourcing
 
@@ -132,10 +144,11 @@ src/
 - Resale/flip module: eBay sold-listing + StockX comps for flippable categories,
   net margin after marketplace + payment processing fees and shipping
   (already modeled in `src/lib/resale.ts`, currently fed by seed comps)
-- Sell-through channel comparison: net proceeds across eBay, StockX, Facebook
-  Marketplace (local pickup, no fee), and a self-hosted Shopify storefront —
-  same assumed asking price, different take rates
-  (`computeResaleChannels()` in `src/lib/resale.ts`)
+- Sell-through channel comparison: net proceeds across eBay, Facebook
+  Marketplace (local pickup, no fee), and a self-hosted Shopify storefront
+  universally, plus StockX/GOAT for sneakers and Poshmark/Depop for apparel —
+  same assumed asking price, category-appropriate channels, different take
+  rates (`computeResaleChannels()` in `src/lib/resale.ts`)
 - Real price-drop alerts via a background job + email provider
 - Browser extension for on-page price comparison
 - Live per-retailer product URLs via the adapters in `liveAdapters.ts`,

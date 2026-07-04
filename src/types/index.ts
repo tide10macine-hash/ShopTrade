@@ -108,7 +108,7 @@ export interface ResaleEstimate {
 }
 
 export interface ResaleChannelEstimate {
-  channel: "ebay" | "stockx" | "facebook-marketplace" | "shopify";
+  channel: "ebay" | "stockx" | "goat" | "poshmark" | "depop" | "facebook-marketplace" | "shopify";
   label: string;
   grossPrice: number;
   /** Combined marketplace + payment processing fee rate. */

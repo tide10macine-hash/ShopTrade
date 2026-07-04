@@ -116,5 +116,17 @@
 
   "apple-watch-series-10:amazon": { "url": "https://www.amazon.com/Apple-Watch-Smartwatch-Aluminium-Always/dp/B0DGHQ2QH6", "price": 399.00 },
 
-  "ipad-air:amazon": { "url": "https://www.amazon.com/Apple-iPad-Air-11-inch-M4/dp/B0GQVPX1PJ", "price": 599.00 }
+  "ipad-air:amazon": { "url": "https://www.amazon.com/Apple-iPad-Air-11-inch-M4/dp/B0GQVPX1PJ", "price": 599.00 },
+
+  "nike-club-fleece-hoodie:nike": { "url": "https://www.nike.com/t/club-fleece-mens-pullover-hoodie-s0mWlB", "price": 65.00 },
+  "nike-club-fleece-hoodie:dickssportinggoods": { "url": "https://www.dickssportinggoods.com/p/nike-mens-club-brushed-fleece-hoodie-25nikmmnkclbbbphdnft/25nikmmnkclbbbphdnft", "price": 65.00 },
+
+  "converse-chuck-taylor:converse": { "url": "https://www.converse.com/shop/p/chuck-taylor-all-star-canvas-unisex-low-top-shoe/M9696MP.html", "price": 65.00 },
+
+  "vans-old-skool:vans": { "url": "https://www.vans.com/en-us/p/shoes/icons/old-skool-5205/old-skool-shoe-VN000D3HY28", "price": 75.00 },
+
+  "reebok-club-c-85:reebok": { "url": "https://www.reebok.com/products/reebok-club-c-85-shoes-white-royal-gum-100050", "price": 85.00 },
+  "reebok-club-c-85:footlocker": { "url": "https://www.footlocker.com/product/model/reebok-club-c-85/271749.html", "price": 85.00 },
+
+  "adidas-stan-smith:adidas": { "url": "https://www.adidas.com/us/stan-smith-shoes/M20324.html", "price": 100.00 }
 }
