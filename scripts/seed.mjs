@@ -150,6 +150,27 @@ const CATALOG = [
   // inventory is unpredictable, not a stable specific-item listing.
   { id: "lululemon-align-leggings", name: "Lululemon Align High-Rise Leggings 25\"", brand: "Lululemon", upc: "627987451236", category: "apparel", emoji: "🩳", msrp: 98, flippable: false, retailers: ["lululemon", "ebay"] },
   { id: "the-north-face-nuptse", name: "The North Face 1996 Retro Nuptse Jacket", brand: "The North Face", upc: "196011234567", category: "apparel", emoji: "🧥", msrp: 320, flippable: true, retailers: ["thenorthface", "nordstrom", "rei", "dickssportinggoods"] },
+
+  // Broader Nike bench (search for "Nike" was only turning up 3 results
+  // before) plus a spread across other brands/categories.
+  { id: "nike-air-force-1-07", name: "Nike Air Force 1 '07", brand: "Nike", upc: "195866112233", category: "sneakers", emoji: "👟", msrp: 115, flippable: false, retailers: ["nike", "footlocker", "dickssportinggoods", "amazon", "stockx"] },
+  { id: "nike-air-max-90", name: "Nike Air Max 90", brand: "Nike", upc: "195866223344", category: "sneakers", emoji: "👟", msrp: 145, flippable: false, retailers: ["nike", "footlocker", "jdsports", "finishline", "amazon"] },
+  { id: "nike-air-max-97", name: "Nike Air Max 97", brand: "Nike", upc: "195866334455", category: "sneakers", emoji: "👟", msrp: 190, flippable: true, retailers: ["nike", "footlocker", "stockx", "goat", "ebay"] },
+  { id: "nike-pegasus-41", name: "Nike Pegasus 41 Running Shoes", brand: "Nike", upc: "195866445566", category: "sneakers", emoji: "👟", msrp: 145, flippable: false, retailers: ["nike", "dickssportinggoods", "footlocker", "academysports", "amazon"] },
+  { id: "nike-blazer-mid-77", name: "Nike Blazer Mid '77", brand: "Nike", upc: "195866556677", category: "sneakers", emoji: "👟", msrp: 100, flippable: false, retailers: ["nike", "footlocker", "jdsports", "amazon"] },
+  { id: "nike-dri-fit-shorts", name: "Nike Dri-FIT Challenger Running Shorts", brand: "Nike", upc: "195866667788", category: "apparel", emoji: "🩳", msrp: 40, flippable: false, retailers: ["nike", "amazon", "dickssportinggoods", "footlocker"] },
+  { id: "nike-windrunner-jacket", name: "Nike Sportswear Windrunner Jacket", brand: "Nike", upc: "195866778899", category: "apparel", emoji: "🧥", msrp: 110, flippable: false, retailers: ["nike", "amazon", "footlocker", "nordstrom"] },
+
+  { id: "adidas-ultraboost", name: "Adidas Ultraboost 1.0", brand: "Adidas", upc: "195866889900", category: "sneakers", emoji: "👟", msrp: 190, flippable: false, retailers: ["adidas", "footlocker", "dickssportinggoods", "amazon"] },
+  { id: "adidas-samba-og", name: "Adidas Samba OG", brand: "Adidas", upc: "195866990011", category: "sneakers", emoji: "👟", msrp: 100, flippable: true, retailers: ["adidas", "dickssportinggoods", "footlocker", "stockx", "ebay"] },
+  { id: "new-balance-550", name: "New Balance 550", brand: "New Balance", upc: "195866001122", category: "sneakers", emoji: "👟", msrp: 110, flippable: false, retailers: ["newbalance", "footlocker", "dickssportinggoods", "amazon"] },
+
+  { id: "apple-watch-series-10", name: "Apple Watch Series 10", brand: "Apple", upc: "195949876543", category: "electronics", emoji: "⌚", msrp: 399, flippable: false, retailers: ["amazon", "walmart", "target", "bestbuy"] },
+  { id: "ipad-air", name: "Apple iPad Air 11-inch (M4)", brand: "Apple", upc: "195949765432", category: "electronics", emoji: "📱", msrp: 599, flippable: false, retailers: ["amazon", "walmart", "target", "bestbuy"] },
+  { id: "samsung-galaxy-buds", name: "Samsung Galaxy Buds3 Pro", brand: "Samsung", upc: "887276654321", category: "electronics", emoji: "🎧", msrp: 249.99, flippable: false, retailers: ["amazon", "walmart", "target", "bestbuy"] },
+
+  { id: "lego-star-wars-xwing", name: "LEGO Star Wars X-Wing Starfighter", brand: "LEGO", upc: "673419398071", category: "collectibles", emoji: "🧱", msrp: 259.99, flippable: false, retailers: ["legostore", "amazon", "walmart", "target"] },
+  { id: "levis-trucker-jacket", name: "Levi's Trucker Jacket", brand: "Levi's", upc: "052562544892", category: "apparel", emoji: "🧥", msrp: 98, flippable: false, retailers: ["levis", "amazon", "target", "walmart", "macys", "kohls"] },
 ];
 
 const products = CATALOG.map((item) => {

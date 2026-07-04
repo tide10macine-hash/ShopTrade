@@ -37,7 +37,7 @@ This MVP is built around that constraint on purpose:
 - **"View deal" links to the real, exact product page wherever one exists —
   and the displayed price matches it.** `src/data/productUrlOverrides.json`
   pairs a hand-curated, web-search-verified URL with the real price found
-  *at that same URL* (76 of 102 demo offers as of this writing) —
+  *at that same URL* (88 of 169 demo offers as of this writing) —
   `scripts/seed.mjs` uses both together. Generating a URL and a price
   independently is exactly how you get a compare page that says $120 and a
   linked page that says $55 for the same shoe; the fix is to source them as
@@ -48,7 +48,7 @@ This MVP is built around that constraint on purpose:
   removed as a retailer for that product entirely, not just relinked), and
   single-seller marketplace listings (eBay `itm` URLs) are deliberately
   excluded since they expire when the item sells — eBay falls back to a
-  stable search link instead. This is manual curation for a 20-product demo
+  stable search link instead. This is manual curation for a 35-product demo
   catalog, not a live pipeline: it won't scale past this catalog and it
   *will* drift stale (prices change constantly, pages get discontinued,
   and some of today's "real" numbers are themselves approximate — search

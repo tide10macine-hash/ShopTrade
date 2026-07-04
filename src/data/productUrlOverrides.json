@@ -95,5 +95,26 @@
   "the-north-face-nuptse:thenorthface": { "url": "https://www.thenorthface.com/en-us/p/mens/mens-jackets-and-vests/mens-insulated-and-down-300771/mens-1996-retro-nuptse-jacket-NF0A3C8D", "price": 320.00 },
   "the-north-face-nuptse:rei": { "url": "https://www.rei.com/product/200874/the-north-face-1996-retro-nuptse-down-jacket-mens", "price": 320.00 },
   "the-north-face-nuptse:dickssportinggoods": { "url": "https://www.dickssportinggoods.com/p/the-north-face-mens-1996-retro-nuptse-jacket-18tnomm1996rtrnptapoa/18tnomm1996rtrnptapoa", "price": 320.00 },
-  "the-north-face-nuptse:nordstrom": { "url": "https://www.nordstrom.com/s/1996-retro-nuptse-700-fill-power-down-packable-jacket/7929183", "price": 320.00 }
+  "the-north-face-nuptse:nordstrom": { "url": "https://www.nordstrom.com/s/1996-retro-nuptse-700-fill-power-down-packable-jacket/7929183", "price": 320.00 },
+
+  "nike-air-force-1-07:nike": { "url": "https://www.nike.com/t/air-force-1-07-mens-shoes-jBrhbr", "price": 115.00 },
+  "nike-air-force-1-07:stockx": { "url": "https://stockx.com/nike-air-force-1-low-white-07", "price": 105.00 },
+
+  "nike-air-max-90:nike": { "url": "https://www.nike.com/t/air-max-90-mens-shoes-bAZ6AeHT/CN8490-100", "price": 145.00 },
+
+  "nike-air-max-97:stockx": { "url": "https://stockx.com/nike-air-max-97-triple-black", "price": 160.00 },
+
+  "nike-pegasus-41:dickssportinggoods": { "url": "https://www.dickssportinggoods.com/p/nike-mens-pegasus-41-running-shoes-24nikmpgss41vltccrnn/24nikmpgss41vltccrnn", "price": 144.99 },
+  "nike-pegasus-41:footlocker": { "url": "https://www.footlocker.com/product/model/nike-air-zoom-pegasus-41-mens/428217.html", "price": 139.99 },
+
+  "nike-blazer-mid-77:footlocker": { "url": "https://www.footlocker.com/product/model/nike-blazer-mid-77-mens/309922.html", "price": 100.00 },
+
+  "adidas-ultraboost:adidas": { "url": "https://www.adidas.com/us/ultraboost-1.0-shoes/HQ4199.html", "price": 180.00 },
+
+  "adidas-samba-og:adidas": { "url": "https://www.adidas.com/us/samba-og-shoes/B75807.html", "price": 100.00 },
+  "adidas-samba-og:dickssportinggoods": { "url": "https://www.dickssportinggoods.com/p/adidas-samba-og-shoes-23adiasmbgwhtblkwmns/23adiasmbgwhtblkwmns", "price": 100.00 },
+
+  "apple-watch-series-10:amazon": { "url": "https://www.amazon.com/Apple-Watch-Smartwatch-Aluminium-Always/dp/B0DGHQ2QH6", "price": 399.00 },
+
+  "ipad-air:amazon": { "url": "https://www.amazon.com/Apple-iPad-Air-11-inch-M4/dp/B0GQVPX1PJ", "price": 599.00 }
 }
