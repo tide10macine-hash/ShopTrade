@@ -28,21 +28,21 @@ function retailerCarriesBrand(retailerId, productBrand) {
   return !brandOnly || brandOnly === productBrand;
 }
 
-// Real, manually verified product-page URL where we have one (see
+// Real, manually verified product-page URL + price where we have one (see
 // productUrlOverrides.json — sourced via web search, not a live pipeline, so
-// it will drift stale over time). Otherwise falls back to that retailer's
-// own on-site search for the product name: a verified search URL pattern
-// where we have one, a generic {domain}/search?q= guess otherwise. Either
-// way it's a real, working page — never a guessed product-page URL that may
-// not exist. True live deep links are what the adapters in
-// src/lib/retailers/liveAdapters.ts are for.
-function buildOfferUrl(productId, retailerId, productName) {
+// both will drift stale over time). The price MUST come from the same
+// lookup as the URL — generating them independently is how a shoe can show
+// $120 on the compare page but $55 on the real linked page. Falls back to a
+// generic on-site search link + synthetic MSRP-based price only when we
+// have no verified pair for that offer.
+function buildOffer(productId, retailerId, productName) {
   const override = URL_OVERRIDES[`${productId}:${retailerId}`];
-  if (override) return override;
+  if (override) return { url: override.url, price: override.price, verified: true };
 
   const domain = DOMAIN_BY_RETAILER[retailerId] ?? `${retailerId}.com`;
   const template = SEARCH_URL_BY_RETAILER[retailerId] ?? `https://www.${domain}/search?q={q}`;
-  return template.replace("{q}", encodeURIComponent(productName));
+  const url = template.replace("{q}", encodeURIComponent(productName));
+  return { url, price: null, verified: false };
 }
 
 // Mulberry32 seeded PRNG so the generated dataset is reproducible.
@@ -158,14 +158,20 @@ const products = CATALOG.map((item) => {
   const rand = mulberry32(hashSeed(item.id));
 
   const offers = retailerIds.map((retailerId) => {
-    const variance = 1 + (rand() * 0.16 - 0.06); // -6% to +10% off MSRP
-    const price = Math.round(item.msrp * variance * 100) / 100;
+    const { url, price: realPrice } = buildOffer(item.id, retailerId, item.name);
+    let price;
+    if (realPrice != null) {
+      price = realPrice;
+    } else {
+      const variance = 1 + (rand() * 0.16 - 0.06); // -6% to +10% off MSRP
+      price = Math.round(item.msrp * variance * 100) / 100;
+    }
     return {
       retailerId,
       price,
       currency: "USD",
       inStock: rand() > 0.08,
-      url: buildOfferUrl(item.id, retailerId, item.name),
+      url,
       lastChecked: TODAY.toISOString(),
       history: generateHistory(`${item.id}-${retailerId}`, price),
     };
