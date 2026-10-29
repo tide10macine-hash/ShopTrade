@@ -27,7 +27,9 @@
     "dev": "remotion studio",
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
-    "lint": "eslint src && tsc"
+    "lint": "eslint src && tsc",
+    "sfx": "node scripts/synth-audio.mjs",
+    "render": "remotion render src/index.ts PikobuyAd out/pikobuy-ad.mp4 --codec=h264 --crf=17"
   },
   "allowScripts": {
     "esbuild": false
