@@ -1,11 +1,11 @@
 """Generate the voiceover track with Kokoro (local neural TTS, no API key).
 
 Usage:
-  python scripts/voiceover.py <model_dir> [voice]
+  python scripts/voiceover.py <model_dir> [voice] [out_path]
 
 <model_dir> holds kokoro-v1.0.onnx and voices-v1.0.bin from
 https://github.com/thewh1teagle/kokoro-onnx/releases/tag/model-files-v1.0
-Writes public/vo/voiceover.wav, a full-length track aligned to the timeline.
+Writes public/vo/voiceover.wav (or out_path), a full-length track aligned to the timeline.
 """
 
 import subprocess
@@ -28,7 +28,7 @@ PRONUNCIATIONS = {"Pikobuy": "Peekoh-buy"}
 LINES = [
     (0.25, 2.9, 1.0, "Wait... you're still paying full price for shipping?"),
     (3.3, 8.8, 1.0, "Ordering from China? Between air freight, customs, and delivery, shipping adds up fast."),
-    (9.35, 13.8, 1.0, "Meet Pikobuy. Your shopping agent for China. You order, they buy, it ships to you."),
+    (9.25, 13.9, 1.0, "Meet Pikobuy. Your shopping agent for China. You order, they ship it to you."),
     (14.35, 20.8, 1.0, "New here? Sign up through my link, and get two forty-percent-off shipping coupons."),
     (21.25, 24.6, 1.0, "Don't miss out. First link in my bio."),
 ]
@@ -65,7 +65,8 @@ def main() -> int:
         print(__doc__)
         return 1
     model_dir = Path(sys.argv[1])
-    voice = sys.argv[2] if len(sys.argv) > 2 else "af_heart"
+    voice = sys.argv[2] if len(sys.argv) > 2 else "am_michael"
+    target = Path(sys.argv[3]) if len(sys.argv) > 3 else OUT / "voiceover.wav"
     kokoro = Kokoro(str(model_dir / "kokoro-v1.0.onnx"), str(model_dir / "voices-v1.0.bin"))
 
     sr = 24000
@@ -86,11 +87,11 @@ def main() -> int:
     # Broadcast-style loudness so the voice sits clearly above the music bed.
     subprocess.run(
         ["ffmpeg", "-v", "error", "-y", "-i", str(raw), "-af", "loudnorm=I=-16:TP=-1.5:LRA=11", "-ar", "44100",
-         str(OUT / "voiceover.wav")],
+         str(target)],
         check=True,
     )
     raw.unlink()
-    print(f"wrote {OUT / 'voiceover.wav'}  voice={voice}")
+    print(f"wrote {target}  voice={voice}")
     return 0 if ok else 2
 
 
