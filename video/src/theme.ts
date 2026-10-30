@@ -20,6 +20,10 @@ export const theme = {
     ui: "#E9ECEF", // placeholder bars and dividers on light scenes
     uiStrong: "#CDD2D8",
     uiDark: "rgba(255, 255, 255, 0.16)", // placeholder bars on dark scenes
+    festive: "#E1251B", // Singles' Day red
+    gold: "#FFD23F",
+    taobao: "#FF5000",
+    go: "#22C55E", // check stamps
   },
   fonts: {
     display: "'Inter Tight', Inter, sans-serif",

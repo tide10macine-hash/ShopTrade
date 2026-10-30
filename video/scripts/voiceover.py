@@ -23,7 +23,13 @@ OUT = ROOT / "public" / "vo"
 MAX_SPEED = 1.25
 
 # Spoken-only respellings so Kokoro says the brand names clearly.
-PRONUNCIATIONS = {"Pikobuy": "Peekoh-buy", "Hipobuy": "Hippo-buy", "Litbuy": "Litt-buy"}
+PRONUNCIATIONS = {
+    "Pikobuy": "Peekoh-buy",
+    "Hipobuy": "Hippo-buy",
+    "Litbuy": "Litt-buy",
+    "1688": "sixteen eighty-eight",
+    "Weidian": "Way-dee-en",
+}
 
 
 @dataclass(frozen=True)
@@ -84,6 +90,21 @@ SCRIPTS = {
             (28.3, 30.45, "But on Pikobuy, it stays at two hundred."),
             (30.65, 33.9, "On these figures, Pikobuy stands out for price and speed."),
             (34.15, 38.7, "Check current rates for your destination, and find the first link in my bio!"),
+        ),
+    ),
+    # Scene starts (s): 0, 4.5, 8.5, 14, 17.5, 22.5. Mirrors src/singles/timeline.ts.
+    "singles": Script(
+        seconds=29.0,
+        voice="am_puck",
+        speed=1.0,
+        file="singles.wav",
+        lines=(
+            (0.15, 4.4, "China's biggest shopping day is coming. Singles' Day, November eleventh!"),
+            (4.65, 8.4, "Get ready to explore deals on thousands of products."),
+            (8.65, 13.9, "Find your favorites on Taobao, 1688, and Weidian, and plan your next haul."),
+            (14.15, 17.4, "Many sellers take part, so be quick!"),
+            (17.65, 22.4, "And with Pikobuy, new sign-ups get two forty-percent-off shipping coupons."),
+            (22.65, 28.0, "Get ready for Singles' Day, grab your Pikobuy coupons, and check the link in my bio!"),
         ),
     ),
 }

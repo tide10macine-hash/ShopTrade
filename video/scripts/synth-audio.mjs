@@ -206,3 +206,4 @@ writeWav("shimmer", shimmer());
 writeWav("music", music(PIKOBUY_BED));
 writeWav("music-tips", music(loopBed(30)));
 writeWav("music-compare", music(loopBed(39)));
+writeWav("music-singles", music(loopBed(29)));
