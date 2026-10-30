@@ -26,7 +26,7 @@ export const Sticker: React.FC<{
         paintOrder: "stroke fill",
         textShadow: `0 ${Math.round(size * 0.07)}px 0 ${theme.colors.inkText}`,
         opacity: Math.min(1, p * 2),
-        transform: `scale(${interpolate(p, [0, 1], [1.8, 1])}) rotate(${interpolate(p, [0, 1], [-6, -2])}deg)`,
+        transform: `scale(${interpolate(p, [0, 1], [1.4, 1])}) rotate(${interpolate(p, [0, 1], [-6, -2])}deg)`,
         ...style,
       }}
     >
