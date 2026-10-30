@@ -3,18 +3,18 @@ import { AbsoluteFill, interpolate, useVideoConfig } from "remotion";
 import { theme } from "../../theme";
 import { AGENTS, compareCopy, PIKOBUY } from "../copy";
 import { SceneShell } from "../../components/layers";
-import { Entrance, useSec, useSpring, WordReveal } from "../../components/motion";
+import { clamp, Entrance, useSec, useSpring, WordReveal } from "../../components/motion";
 import { display } from "../../components/type";
 import { Card, Footnote, Label } from "../../tips/parts";
 import { AgentName, highlightRing, LogoTile, Money } from "../parts";
 
 // Local seconds where the voiceover reads each agent's price.
-const PRICE_AT = [2.6, 5.6, 8.2];
+const PRICE_AT = [2.6, 5.6, 7.9];
 
 const PriceCard: React.FC<{ index: number }> = ({ index }) => {
   const sec = useSec();
   const agent = AGENTS[index];
-  const count = useSpring(sec(PRICE_AT[index]), theme.spring.counter);
+  const count = useSpring(sec(PRICE_AT[index]), theme.spring.smooth);
   const focus = useSpring(sec(PRICE_AT[0] + 0.4), theme.spring.snappy);
   const ring = agent.highlight ? Math.min(1, focus) : 0;
   const diff = agent.shipping5kg - PIKOBUY.shipping5kg;
@@ -38,7 +38,12 @@ const PriceCard: React.FC<{ index: number }> = ({ index }) => {
           <LogoTile agent={agent} size={150} />
           <AgentName agent={agent} tone="light" size={32} />
           <Label tone="light">5 KG</Label>
-          <Money value={interpolate(count, [0, 1], [0, agent.shipping5kg])} size={96} color={theme.colors.inkText} />
+          {count > 0.01 ? (
+            <Money value={interpolate(count, [0, 1], [0, agent.shipping5kg], clamp)} size={96} color={theme.colors.inkText} />
+          ) : (
+            // Not yet spoken: a placeholder, never a misleading $0.
+            <span style={{ fontFamily: theme.fonts.display, fontWeight: 900, fontSize: 96, lineHeight: 1, color: theme.colors.uiStrong }}>$—</span>
+          )}
         </Card>
       </div>
       {diff > 0 && (
