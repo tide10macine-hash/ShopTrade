@@ -1,15 +1,17 @@
-"""Generate the voiceover track with Kokoro (local neural TTS, no API key).
+"""Generate voiceover tracks with Kokoro (local neural TTS, no API key).
 
 Usage:
-  python scripts/voiceover.py <model_dir> [voice] [out_path]
+  python scripts/voiceover.py <model_dir> [script] [voice] [out_path]
 
 <model_dir> holds kokoro-v1.0.onnx and voices-v1.0.bin from
 https://github.com/thewh1teagle/kokoro-onnx/releases/tag/model-files-v1.0
-Writes public/vo/voiceover.wav (or out_path), a full-length track aligned to the timeline.
+[script] is a key of SCRIPTS (default "pikobuy"). Writes a full-length track
+aligned to that composition's timeline into public/vo/.
 """
 
 import subprocess
 import sys
+from dataclasses import dataclass
 from pathlib import Path
 
 import numpy as np
@@ -18,31 +20,65 @@ from kokoro_onnx import Kokoro
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "public" / "vo"
-TOTAL_SECONDS = 25.0
 MAX_SPEED = 1.25
 
 # Spoken-only respellings. Kokoro reads "Pikobuy" as "PICK-uh-buy".
 PRONUNCIATIONS = {"Pikobuy": "Peekoh-buy"}
 
-# (start_s, must_end_by_s, speed, text). Lines mirror the on-screen copy in src/copy.ts.
-LINES = [
-    (0.25, 2.9, 1.0, "Wait... you're still paying full price for shipping?"),
-    (3.3, 8.8, 1.0, "Ordering from China? Between air freight, customs, and delivery, shipping adds up fast."),
-    (9.25, 13.9, 1.0, "Meet Pikobuy. Your shopping agent for China. You order, they ship it to you."),
-    (14.35, 20.8, 1.0, "New here? Sign up through my link, and get two forty-percent-off shipping coupons."),
-    (21.25, 24.6, 1.0, "Don't miss out. First link in my bio."),
-]
+
+@dataclass(frozen=True)
+class Script:
+    seconds: float
+    voice: str
+    speed: float
+    file: str
+    # (start_s, must_end_by_s, text). Lines mirror the on-screen copy.
+    lines: tuple[tuple[float, float, str], ...]
 
 
-def trim_silence(audio: np.ndarray, threshold: float = 0.01) -> np.ndarray:
-    voiced = np.flatnonzero(np.abs(audio) > threshold)
-    return audio if voiced.size == 0 else audio[voiced[0] : voiced[-1] + 1]
+SCRIPTS = {
+    "pikobuy": Script(
+        seconds=25.0,
+        voice="am_michael",
+        speed=1.0,
+        file="voiceover.wav",
+        lines=(
+            (0.25, 2.9, "Wait... you're still paying full price for shipping?"),
+            (3.3, 8.8, "Ordering from China? Between air freight, customs, and delivery, shipping adds up fast."),
+            (9.25, 13.9, "Meet Pikobuy. Your shopping agent for China. You order, they ship it to you."),
+            (14.35, 20.8, "New here? Sign up through my link, and get two forty-percent-off shipping coupons."),
+            (21.25, 24.6, "Don't miss out. First link in my bio."),
+        ),
+    ),
+    # Scene starts (s): 0, 3, 6.5, 10, 13, 16, 21, 26.5. Mirrors src/tips/timeline.ts.
+    "tips": Script(
+        seconds=30.0,
+        voice="am_puck",
+        speed=1.1,
+        file="tips.wav",
+        lines=(
+            (0.1, 2.95, "Stop overpaying for shipping! Here are five ways to save."),
+            (3.15, 6.4, "One: vacuum-bag your clothes to cut parcel volume."),
+            (6.65, 9.9, "Two: remove extra boxes and packaging you don't need."),
+            (10.15, 12.9, "Three: compare tax-free lines for your destination."),
+            (13.15, 15.9, "Four: always use your shipping coupons."),
+            (16.15, 20.9, "Five: use rehearsal, so you know your real packed size and weight before you ship."),
+            (21.15, 26.4, "Pikobuy shipping is advertised from forty dollars for five kilos. Check current rates."),
+            (26.65, 29.4, "Save on your next haul. First link in my bio!"),
+        ),
+    ),
+}
 
 
 def spoken(text: str) -> str:
     for written, said in PRONUNCIATIONS.items():
         text = text.replace(written, said)
     return text
+
+
+def trim_silence(audio: np.ndarray, threshold: float = 0.01) -> np.ndarray:
+    voiced = np.flatnonzero(np.abs(audio) > threshold)
+    return audio if voiced.size == 0 else audio[voiced[0] : voiced[-1] + 1]
 
 
 def synth_fitted(kokoro: Kokoro, voice: str, text: str, speed: float, budget: float) -> tuple[np.ndarray, int, float]:
@@ -65,15 +101,16 @@ def main() -> int:
         print(__doc__)
         return 1
     model_dir = Path(sys.argv[1])
-    voice = sys.argv[2] if len(sys.argv) > 2 else "am_michael"
-    target = Path(sys.argv[3]) if len(sys.argv) > 3 else OUT / "voiceover.wav"
+    script = SCRIPTS[sys.argv[2] if len(sys.argv) > 2 else "pikobuy"]
+    voice = sys.argv[3] if len(sys.argv) > 3 else script.voice
+    target = Path(sys.argv[4]) if len(sys.argv) > 4 else OUT / script.file
     kokoro = Kokoro(str(model_dir / "kokoro-v1.0.onnx"), str(model_dir / "voices-v1.0.bin"))
 
     sr = 24000
-    track = np.zeros(int(TOTAL_SECONDS * sr), dtype=np.float32)
+    track = np.zeros(int(script.seconds * sr), dtype=np.float32)
     ok = True
-    for start, end, speed, text in LINES:
-        audio, sr, used_speed = synth_fitted(kokoro, voice, text, speed, end - start)
+    for start, end, text in script.lines:
+        audio, sr, used_speed = synth_fitted(kokoro, voice, text, script.speed, end - start)
         length = len(audio) / sr
         fits = start + length <= end
         ok &= fits
@@ -82,7 +119,7 @@ def main() -> int:
         track[begin : begin + len(audio)] += audio[: len(track) - begin]
 
     OUT.mkdir(parents=True, exist_ok=True)
-    raw = OUT / "voiceover.raw.wav"
+    raw = target.with_suffix(".raw.wav")
     sf.write(raw, track, sr)
     # Broadcast-style loudness so the voice sits clearly above the music bed.
     subprocess.run(

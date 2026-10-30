@@ -16,6 +16,10 @@ export const theme = {
     glow: "rgba(126, 252, 248, 0.45)",
     glass: "rgba(255, 255, 255, 0.07)",
     glassEdge: "rgba(255, 255, 255, 0.14)",
+    warn: "#FF453A",
+    ui: "#E9ECEF", // placeholder bars and dividers on light scenes
+    uiStrong: "#CDD2D8",
+    uiDark: "rgba(255, 255, 255, 0.16)", // placeholder bars on dark scenes
   },
   fonts: {
     display: "'Inter Tight', Inter, sans-serif",

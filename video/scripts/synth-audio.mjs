@@ -113,37 +113,53 @@ const shimmer = () => {
 };
 
 // Tense minor feel for the hook/problem, lift to major at the reveal (9s).
-const CHORDS = [
-  [0, [57, 60, 64]],
-  [3, [53, 57, 60]],
-  [6, [50, 53, 57]],
-  [7.5, [52, 56, 59]],
-  [9, [55, 60, 64]],
-  [11, [55, 59, 62]],
-  [13, [57, 60, 64]],
-  [14, [53, 57, 60]],
-  [16, [55, 60, 64]],
-  [18, [55, 59, 62]],
-  [20, [57, 60, 64]],
-  [21, [53, 57, 60]],
-  [23, [55, 60, 64]],
-];
-const BEAT = 0.5;
-const LENGTH = 25;
-
-const chordAt = (t) => {
-  const idx = CHORDS.findLastIndex(([start]) => start <= t);
-  const end = CHORDS[idx + 1]?.[0] ?? LENGTH;
-  return { start: CHORDS[idx][0], end, notes: CHORDS[idx][1] };
+const PIKOBUY_BED = {
+  length: 25,
+  kickFrom: 3,
+  hatsFrom: 9,
+  liftAt: 9,
+  chords: [
+    [0, [57, 60, 64]],
+    [3, [53, 57, 60]],
+    [6, [50, 53, 57]],
+    [7.5, [52, 56, 59]],
+    [9, [55, 60, 64]],
+    [11, [55, 59, 62]],
+    [13, [57, 60, 64]],
+    [14, [53, 57, 60]],
+    [16, [55, 60, 64]],
+    [18, [55, 59, 62]],
+    [20, [57, 60, 64]],
+    [21, [53, 57, 60]],
+    [23, [55, 60, 64]],
+  ],
 };
 
-const music = () => {
+// Upbeat I-V-vi-IV loop throughout; tips videos stay positive.
+const LOOP = [[55, 60, 64], [55, 59, 62], [57, 60, 64], [53, 57, 60]];
+const TIPS_BED = {
+  length: 30,
+  kickFrom: 0,
+  hatsFrom: 3,
+  liftAt: 0,
+  chords: Array.from({ length: 15 }, (_, i) => [i * 2, LOOP[i % 4]]),
+};
+
+const BEAT = 0.5;
+
+const chordAt = (chords, length, t) => {
+  const idx = chords.findLastIndex(([start]) => start <= t);
+  const end = chords[idx + 1]?.[0] ?? length;
+  return { start: chords[idx][0], end, notes: chords[idx][1] };
+};
+
+const music = ({ length, kickFrom, hatsFrom, liftAt, chords }) => {
   const n = noise(53);
-  const d = buffer(LENGTH);
+  const d = buffer(length);
   let hatLp = 0;
   for (let i = 0; i < d.length; i++) {
     const t = i / SR;
-    const { start, end, notes } = chordAt(t);
+    const { start, end, notes } = chordAt(chords, length, t);
     const segEnv = Math.min(1, (t - start) / 0.15) * Math.min(1, (end - t) / 0.12);
 
     let pad = 0;
@@ -153,10 +169,10 @@ const music = () => {
         pad += (Math.sin(TAU * f * k * t) + Math.sin(TAU * f * 1.004 * k * t)) / (k * k);
       }
     }
-    let s = pad * segEnv * (t < 9 ? 0.05 : 0.065);
+    let s = pad * segEnv * (t < liftAt ? 0.05 : 0.065);
 
     const beatT = t % BEAT;
-    if (t >= 3) {
+    if (t >= kickFrom) {
       const kickPhase = TAU * (45 * beatT + (105 / 30) * (1 - Math.exp(-30 * beatT)));
       s += Math.sin(kickPhase) * Math.exp(-beatT * 9) * 0.9;
 
@@ -164,7 +180,7 @@ const music = () => {
       const root = midiHz(notes[0] - 12);
       s += (Math.sin(TAU * root * t) + 0.3 * Math.sin(TAU * root * 2 * t)) * Math.exp(-eighthT * 8) * 0.32;
     }
-    if (t >= 9) {
+    if (t >= hatsFrom) {
       const x = n();
       hatLp += 0.3 * (x - hatLp);
       const offT = (t + BEAT / 2) % BEAT;
@@ -174,7 +190,7 @@ const music = () => {
       s += x * Math.exp(-barT * 22) * 0.2;
     }
 
-    const fadeOut = Math.min(1, (LENGTH - t) / 0.6);
+    const fadeOut = Math.min(1, (length - t) / 0.6);
     d[i] = s * fadeOut;
   }
   return d;
@@ -187,4 +203,5 @@ writeWav("pop", pop());
 writeWav("click", click());
 writeWav("riser", riser());
 writeWav("shimmer", shimmer());
-writeWav("music", music());
+writeWav("music", music(PIKOBUY_BED));
+writeWav("music-tips", music(TIPS_BED));
