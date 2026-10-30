@@ -60,6 +60,7 @@ const Soundtrack: React.FC<{ voiceover: string | null }> = ({ voiceover }) => {
   const { durationInFrames } = useVideoConfig();
   const sec = useSec();
   const bed = voiceover ? 0.16 : 0.34;
+  const sfxScale = voiceover ? 0.7 : 1;
   return (
     <>
       <Html5Audio
@@ -71,7 +72,7 @@ const Soundtrack: React.FC<{ voiceover: string | null }> = ({ voiceover }) => {
       {voiceover && <Html5Audio src={staticFile(voiceover)} volume={1} />}
       {CUES.map(([seconds, sfx, volume]) => (
         <Sequence key={`${seconds}-${sfx}`} from={Math.max(0, sec(seconds) - 2)} durationInFrames={sec(1.6)}>
-          <Html5Audio src={staticFile(`sfx/${sfx}.wav`)} volume={volume} />
+          <Html5Audio src={staticFile(`sfx/${sfx}.wav`)} volume={volume * sfxScale} />
         </Sequence>
       ))}
     </>

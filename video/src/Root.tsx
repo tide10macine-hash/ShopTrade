@@ -3,7 +3,7 @@ import { Composition } from "remotion";
 import { PikobuyAd, PikobuyAdProps } from "./PikobuyAd";
 import { FPS, TOTAL_SECONDS } from "./timeline";
 
-const defaultProps: PikobuyAdProps = { voiceover: null };
+const defaultProps: PikobuyAdProps = { voiceover: "vo/voiceover.wav" };
 
 export const RemotionRoot: React.FC = () => (
   <Composition
