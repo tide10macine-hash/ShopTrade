@@ -5,17 +5,17 @@ import { AGENTS, compareCopy, PIKOBUY } from "../copy";
 import { SceneShell } from "../../components/layers";
 import { Entrance, useSec, useSpring, WordReveal } from "../../components/motion";
 import { display } from "../../components/type";
-import { Card, Footnote, Label, Parcel } from "../../tips/parts";
-import { AgentMark, highlightRing, Money } from "../parts";
+import { Card, Footnote, Label } from "../../tips/parts";
+import { AgentName, highlightRing, LogoTile, Money } from "../parts";
 
 // Local seconds where the voiceover reads each agent's price.
-const PRICE_AT = [1.7, 3.6, 4.8];
+const PRICE_AT = [2.6, 5.6, 8.2];
 
 const PriceCard: React.FC<{ index: number }> = ({ index }) => {
   const sec = useSec();
   const agent = AGENTS[index];
   const count = useSpring(sec(PRICE_AT[index]), theme.spring.counter);
-  const focus = useSpring(sec(PRICE_AT[2] + 0.6), theme.spring.snappy);
+  const focus = useSpring(sec(PRICE_AT[0] + 0.4), theme.spring.snappy);
   const ring = agent.highlight ? Math.min(1, focus) : 0;
   const diff = agent.shipping5kg - PIKOBUY.shipping5kg;
 
@@ -35,14 +35,14 @@ const PriceCard: React.FC<{ index: number }> = ({ index }) => {
             ...highlightRing(ring),
           }}
         >
-          <AgentMark agent={agent} tone="light" size={30} />
-          <Parcel width={150} />
+          <LogoTile agent={agent} size={150} />
+          <AgentName agent={agent} tone="light" size={32} />
           <Label tone="light">5 KG</Label>
           <Money value={interpolate(count, [0, 1], [0, agent.shipping5kg])} size={96} color={theme.colors.inkText} />
         </Card>
       </div>
       {diff > 0 && (
-        <Entrance delay={sec(PRICE_AT[2] + 0.9)} config={theme.spring.bouncy}>
+        <Entrance delay={sec(PRICE_AT[index] + 0.5)} config={theme.spring.bouncy}>
           <div style={{ fontFamily: theme.fonts.display, fontWeight: 800, fontSize: 40, color: theme.colors.inkDim }}>+${diff}</div>
         </Entrance>
       )}

@@ -67,19 +67,23 @@ SCRIPTS = {
             (26.65, 29.4, "Save on your next haul. First link in my bio!"),
         ),
     ),
-    # Scene starts (s): 0, 6, 12.5, 18, 25.5, 29. Mirrors src/compare/timeline.ts.
+    # Scene starts (s): 0, 6, 15.5, 22, 30.5, 34. Mirrors src/compare/timeline.ts.
+    # Normal speed with separate price sentences so the names are never rushed.
     "compare": Script(
-        seconds=34.0,
+        seconds=39.0,
         voice="am_puck",
-        speed=1.1,
+        speed=1.0,
         file="compare.wav",
         lines=(
-            (0.15, 5.9, "Cheapest shopping agent of 2026? Let's compare Pikobuy, Hipobuy, and Litbuy."),
-            (6.15, 12.4, "Shipping for five kilos: Pikobuy, forty-two dollars. Hipobuy, sixty-four. Litbuy, seventy-two."),
-            (12.65, 17.9, "Warehouse arrival: one to three days on Pikobuy, versus three to five on Hipobuy and Litbuy."),
-            (18.15, 25.4, "Product pricing: in this example, a two-hundred-dollar item comes to two-twenty on Litbuy, and two hundred on Pikobuy."),
-            (25.65, 28.9, "On these figures, Pikobuy stands out for price and speed."),
-            (29.15, 33.6, "Rates change, so compare for your destination. Check the first link in my bio!"),
+            (0.15, 5.9, "Cheapest agent of 2026? Let's compare, Pikobuy, Hipobuy, and Litbuy."),
+            (6.15, 10.4, "For a five kilo parcel, Pikobuy charges forty-two dollars."),
+            (10.65, 12.9, "Hipobuy charges sixty-four dollars."),
+            (13.1, 15.4, "And Litbuy charges seventy-two dollars."),
+            (15.65, 21.9, "Warehouse arrival: one to three days with Pikobuy, versus three to five with Hipobuy and Litbuy."),
+            (22.15, 28.2, "In this example, the same two-hundred-dollar item costs two hundred and twenty dollars on Litbuy."),
+            (28.3, 30.45, "But on Pikobuy, it stays at two hundred."),
+            (30.65, 33.9, "On these figures, Pikobuy stands out for price and speed."),
+            (34.15, 38.7, "Check current rates for your destination, and find the first link in my bio!"),
         ),
     ),
 }

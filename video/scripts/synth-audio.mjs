@@ -205,4 +205,4 @@ writeWav("riser", riser());
 writeWav("shimmer", shimmer());
 writeWav("music", music(PIKOBUY_BED));
 writeWav("music-tips", music(loopBed(30)));
-writeWav("music-compare", music(loopBed(34)));
+writeWav("music-compare", music(loopBed(39)));

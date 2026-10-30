@@ -5,8 +5,7 @@ import { AGENTS, compareCopy } from "../copy";
 import { SceneShell } from "../../components/layers";
 import { Breathe, clamp, Entrance, useSec, useSpring, WordReveal } from "../../components/motion";
 import { display } from "../../components/type";
-import { Parcel } from "../../tips/parts";
-import { AgentMark } from "../parts";
+import { AgentName, LogoTile } from "../parts";
 
 const PriceTag: React.FC<{ delay: number; highlight: boolean }> = ({ delay, highlight }) => {
   const drop = useSpring(delay, theme.spring.bouncy);
@@ -59,11 +58,11 @@ export const HookCompare: React.FC = () => {
               <PriceTag delay={sec(1.4) + i * sec(0.25)} highlight={agent.highlight} />
               <Entrance delay={sec(0.3) + i * sec(0.15)} distance={80}>
                 <Breathe amplitude={6} period={24} phase={i}>
-                  <Parcel width={240} />
+                  <LogoTile agent={agent} size={230} glow={agent.highlight} />
                 </Breathe>
               </Entrance>
               <Entrance delay={sec(0.5) + i * sec(0.15)} distance={20}>
-                <AgentMark agent={agent} tone="dark" size={36} />
+                <AgentName agent={agent} tone="dark" size={40} />
               </Entrance>
             </div>
           ))}

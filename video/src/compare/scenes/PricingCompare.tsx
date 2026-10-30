@@ -32,10 +32,10 @@ export const PricingCompare: React.FC = () => {
   const copy = compareCopy.pricing;
   const extra = (LITBUY.itemTotal ?? copy.basePrice) - copy.basePrice;
 
-  // The voiceover reaches "two-twenty on Litbuy" around 3.6s into this scene.
-  const charge = useSpring(sec(3.3), theme.spring.snappy);
-  const total = useSpring(sec(3.6), theme.spring.counter);
-  const ring = Math.min(1, useSpring(sec(5.0), theme.spring.snappy));
+  // The voiceover says "two hundred and twenty" ~3.6s in and "on Pikobuy" ~6.3s in.
+  const charge = useSpring(sec(3.4), theme.spring.snappy);
+  const total = useSpring(sec(3.7), theme.spring.counter);
+  const ring = Math.min(1, useSpring(sec(6.3), theme.spring.snappy));
 
   return (
     <SceneShell tone="light" exitAt={durationInFrames - 8}>

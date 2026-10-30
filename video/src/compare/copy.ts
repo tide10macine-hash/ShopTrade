@@ -2,6 +2,7 @@
 // Keep them labelled as example/supplied figures and check current rates before posting.
 export type Agent = {
   name: string;
+  logo: string; // under public/
   highlight: boolean;
   shipping5kg: number;
   arrivalDays: readonly [number, number];
@@ -10,9 +11,9 @@ export type Agent = {
 };
 
 export const AGENTS: readonly Agent[] = [
-  { name: "PIKOBUY", highlight: true, shipping5kg: 42, arrivalDays: [1, 3], itemTotal: 200 },
-  { name: "HIPOBUY", highlight: false, shipping5kg: 64, arrivalDays: [3, 5], itemTotal: null },
-  { name: "LITBUY", highlight: false, shipping5kg: 72, arrivalDays: [3, 5], itemTotal: 220 },
+  { name: "PIKOBUY", logo: "img/logo.png", highlight: true, shipping5kg: 42, arrivalDays: [1, 3], itemTotal: 200 },
+  { name: "HIPOBUY", logo: "img/hipobuy.png", highlight: false, shipping5kg: 64, arrivalDays: [3, 5], itemTotal: null },
+  { name: "LITBUY", logo: "img/litbuy.png", highlight: false, shipping5kg: 72, arrivalDays: [3, 5], itemTotal: 220 },
 ];
 
 export const PIKOBUY = AGENTS[0];

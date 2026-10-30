@@ -5,7 +5,6 @@ import { compareCopy } from "../copy";
 import { Pill, SceneShell } from "../../components/layers";
 import { Breathe, clamp, Entrance, useSec, useSpring, WordReveal } from "../../components/motion";
 import { display } from "../../components/type";
-import { Parcel } from "../../tips/parts";
 
 export const CtaCompare: React.FC = () => {
   const frame = useCurrentFrame();
@@ -14,7 +13,6 @@ export const CtaCompare: React.FC = () => {
   const copy = compareCopy.cta;
 
   const intro = useSpring(sec(0.1), theme.spring.bouncy);
-  const spin = Math.sin(frame / 24) * 16;
   const zoom = interpolate(frame, [0, durationInFrames], [1, 1.05], { ...clamp, easing: theme.ease.inOut });
   const bounce = Math.abs(Math.sin(frame / 7)) * 10;
 
@@ -33,13 +31,10 @@ export const CtaCompare: React.FC = () => {
             transform: `scale(${interpolate(intro, [0, 1], [0.6, 1])})`,
           }}
         >
-          <div style={{ transform: `perspective(900px) rotateY(${spin}deg)` }}>
-            <Parcel width={270} />
-          </div>
           <Breathe amplitude={5} period={28}>
             <Img
               src={staticFile("img/logo.png")}
-              style={{ width: 270, display: "block", borderRadius: 62, boxShadow: `0 0 70px ${theme.colors.glow}` }}
+              style={{ width: 340, display: "block", borderRadius: 76, boxShadow: `0 0 70px ${theme.colors.glow}` }}
             />
           </Breathe>
         </div>

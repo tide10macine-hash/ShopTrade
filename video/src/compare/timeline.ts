@@ -2,9 +2,9 @@
 // the 0.5s beat grid. Mirrors SCRIPTS["compare"] in scripts/voiceover.py.
 export const COMPARE_SCENE_SECONDS = {
   hook: 6,
-  shipping: 6.5,
-  warehouse: 5.5,
-  pricing: 7.5,
+  shipping: 9.5,
+  warehouse: 6.5,
+  pricing: 8.5,
   table: 3.5,
   cta: 5,
 } as const;
