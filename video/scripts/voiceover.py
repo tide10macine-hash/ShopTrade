@@ -22,8 +22,8 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "public" / "vo"
 MAX_SPEED = 1.25
 
-# Spoken-only respellings. Kokoro reads "Pikobuy" as "PICK-uh-buy".
-PRONUNCIATIONS = {"Pikobuy": "Peekoh-buy"}
+# Spoken-only respellings so Kokoro says the brand names clearly.
+PRONUNCIATIONS = {"Pikobuy": "Peekoh-buy", "Hipobuy": "Hippo-buy", "Litbuy": "Litt-buy"}
 
 
 @dataclass(frozen=True)
@@ -65,6 +65,21 @@ SCRIPTS = {
             (16.15, 20.9, "Five: use rehearsal, so you know your real packed size and weight before you ship."),
             (21.15, 26.4, "Pikobuy shipping is advertised from forty dollars for five kilos. Check current rates."),
             (26.65, 29.4, "Save on your next haul. First link in my bio!"),
+        ),
+    ),
+    # Scene starts (s): 0, 6, 12.5, 18, 25.5, 29. Mirrors src/compare/timeline.ts.
+    "compare": Script(
+        seconds=34.0,
+        voice="am_puck",
+        speed=1.1,
+        file="compare.wav",
+        lines=(
+            (0.15, 5.9, "Cheapest shopping agent of 2026? Let's compare Pikobuy, Hipobuy, and Litbuy."),
+            (6.15, 12.4, "Shipping for five kilos: Pikobuy, forty-two dollars. Hipobuy, sixty-four. Litbuy, seventy-two."),
+            (12.65, 17.9, "Warehouse arrival: one to three days on Pikobuy, versus three to five on Hipobuy and Litbuy."),
+            (18.15, 25.4, "Product pricing: in this example, a two-hundred-dollar item comes to two-twenty on Litbuy, and two hundred on Pikobuy."),
+            (25.65, 28.9, "On these figures, Pikobuy stands out for price and speed."),
+            (29.15, 33.6, "Rates change, so compare for your destination. Check the first link in my bio!"),
         ),
     ),
 }

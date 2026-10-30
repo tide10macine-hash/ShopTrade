@@ -4,9 +4,12 @@ import { PikobuyAd, PikobuyAdProps } from "./PikobuyAd";
 import { FPS, TOTAL_SECONDS } from "./timeline";
 import { TipsAd, TipsAdProps } from "./tips/TipsAd";
 import { TIPS_TOTAL_SECONDS } from "./tips/timeline";
+import { CompareAd, CompareAdProps } from "./compare/CompareAd";
+import { COMPARE_TOTAL_SECONDS } from "./compare/timeline";
 
 const pikobuyProps: PikobuyAdProps = { voiceover: "vo/voiceover.wav" };
 const tipsProps: TipsAdProps = { voiceover: "vo/tips.wav" };
+const compareProps: CompareAdProps = { voiceover: "vo/compare.wav" };
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -27,6 +30,15 @@ export const RemotionRoot: React.FC = () => (
       width={1080}
       height={1920}
       defaultProps={tipsProps}
+    />
+    <Composition
+      id="AgentCompare"
+      component={CompareAd}
+      durationInFrames={Math.round(COMPARE_TOTAL_SECONDS * FPS)}
+      fps={FPS}
+      width={1080}
+      height={1920}
+      defaultProps={compareProps}
     />
   </>
 );

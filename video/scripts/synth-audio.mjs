@@ -137,13 +137,13 @@ const PIKOBUY_BED = {
 
 // Upbeat I-V-vi-IV loop throughout; tips videos stay positive.
 const LOOP = [[55, 60, 64], [55, 59, 62], [57, 60, 64], [53, 57, 60]];
-const TIPS_BED = {
-  length: 30,
+const loopBed = (length) => ({
+  length,
   kickFrom: 0,
   hatsFrom: 3,
   liftAt: 0,
-  chords: Array.from({ length: 15 }, (_, i) => [i * 2, LOOP[i % 4]]),
-};
+  chords: Array.from({ length: Math.ceil(length / 2) }, (_, i) => [i * 2, LOOP[i % 4]]),
+});
 
 const BEAT = 0.5;
 
@@ -204,4 +204,5 @@ writeWav("click", click());
 writeWav("riser", riser());
 writeWav("shimmer", shimmer());
 writeWav("music", music(PIKOBUY_BED));
-writeWav("music-tips", music(TIPS_BED));
+writeWav("music-tips", music(loopBed(30)));
+writeWav("music-compare", music(loopBed(34)));
