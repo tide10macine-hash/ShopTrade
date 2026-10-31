@@ -336,6 +336,10 @@ def make_vo():
 
 
 def main():
+    import sys
+    no_vo = "--no-vo" in sys.argv
+    if no_vo:
+        return main_no_vo()
     make_vo()
     sfx, mus = build()
     L = sfx.L[:N] * 0.8 + reverb(mus.L[:N], 2.5, 0.35)
@@ -363,6 +367,23 @@ def main():
                     "-filter_complex", "[0:a]volume=0.9[m];[1:a]volume=2.2[v];[m][v]amix=inputs=2:normalize=0,"
                     "alimiter=limit=0.95:attack=2:release=50,loudnorm=I=-14:TP=-1.5:LRA=11[out]",
                     "-map", "[out]", "-ar", "48000", os.path.join(B, "mix.wav")], check=True)
+
+
+def main_no_vo():
+    """Version ohne Sprecher: nur Musik + Sounddesign, ohne Ducking."""
+    sfx, mus = build()
+    L = sfx.L[:N] * 0.8 + reverb(mus.L[:N], 2.5, 0.35)
+    R = sfx.R[:N] * 0.8 + reverb(mus.R[:N], 2.6, 0.35)
+    s0, s1 = int(55.6 * SR), int(55.95 * SR)
+    fade = np.linspace(1, 0, int(0.01 * SR))
+    for ch in (L, R):
+        ch[s0:s1] = 0
+        ch[s0 - len(fade):s0] *= fade
+    peak = max(np.abs(L).max(), np.abs(R).max())
+    write_wav(os.path.join(B, "sfx_music_novo.wav"), L / peak * 0.7, R / peak * 0.7)
+    subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", os.path.join(B, "sfx_music_novo.wav"),
+                    "-af", "alimiter=limit=0.95:attack=2:release=50,loudnorm=I=-14:TP=-1.5:LRA=11",
+                    "-ar", "48000", os.path.join(B, "mix_novo.wav")], check=True)
 
 
 if __name__ == "__main__":
