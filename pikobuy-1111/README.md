@@ -43,7 +43,8 @@ tools/
 ```bash
 npm install
 npm run studio     # live editor / preview
-npm run render     # writes out/PIKOBUY_11.11_MEGA_SALE.mp4
+npm run render                                   # writes out/PIKOBUY_11.11_MEGA_SALE.mp4
+./tools/master_audio.sh                          # masters audio to -14 LUFS target / true peak < -2 dBTP and remuxes
 python3 tools/make_audio.py public/assets/audio   # regenerate audio
 ```
 
