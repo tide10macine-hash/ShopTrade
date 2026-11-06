@@ -21,7 +21,7 @@ export const S7Final: React.FC = () => {
         <Sticker src="reference-icons/checkmark.png" x={920} y={390} w={140} delay={26} rot={10} />
         <Sticker src="stickers/pikobuy-coupon-2x40-shipping.png" x={165} y={800} w={290} delay={30} rot={-14} />
         <Sticker src="reference-icons/singles-day-bag.png" x={945} y={790} w={190} delay={34} rot={9} />
-        <Pop x={540} y={610} from="slam" delay={0} idle={0.5}>
+        <Pop x={540} y={610} from="slam" delay={0} idle={0.5} pulse={0.03}>
           <Logo w={440} />
         </Pop>
         <PopText text="PIKOBUY 11.11" x={540} y={935} size={98} delay={18} stagger={1} color={C.white} rim={8} />
@@ -33,7 +33,7 @@ export const S7Final: React.FC = () => {
         words={[{ t: "UP", color: C.red }, { t: "TO", color: C.red }, { t: "80%", color: C.red }, { t: "OFF", color: C.red }, { t: "WITH" }, { t: "COUPONS!*" }]}
         x={540} y={1330} size={56} delay={62} stagger={3} rim={5} gap={14}
       />
-      <Pop x={540} y={1445} delay={84} rot={-2}>
+      <Pop x={540} y={1445} delay={84} rot={-2} pulse={0.05}>
         <Banner text="SHOP MORE. SAVE MORE." size={58} bg={C.red} color={C.white} />
       </Pop>
       <Sticker src="reference-icons/delivery-truck.png" x={200} y={1650} w={350} delay={38} from="left" rot={-3} />

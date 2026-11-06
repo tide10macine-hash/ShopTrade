@@ -204,7 +204,9 @@ export const Sticker: React.FC<{
 export const Pop: React.FC<{
   x: number; y: number; delay?: number; rot?: number; from?: From; idle?: number; out?: number;
   shadow?: boolean; z?: number; children: React.ReactNode; scale?: number;
-}> = ({ x, y, delay = 0, rot = 0, from = "pop", idle = 1, out, shadow = true, z, children, scale = 1 }) => {
+  /** beat pulse amount (e.g. 0.04) synced to the 120 BPM music once the element has landed */
+  pulse?: number;
+}> = ({ x, y, delay = 0, rot = 0, from = "pop", idle = 1, out, shadow = true, z, children, scale = 1, pulse = 0 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const f = frame - delay;
@@ -222,6 +224,7 @@ export const Pop: React.FC<{
   ty += idle * 4 * Math.sin(t * 2.2 + seed);
   r += idle * 1.1 * Math.sin(t * 1.7 + seed);
   let op = from === "slam" ? interpolate(f, [0, 3], [0, 1], clamp) : interpolate(s, [0, 0.15], [0, 1], clamp);
+  if (pulse && f > 24) sc *= 1 + pulse * Math.exp(-(frame % 30) / 5);
   if (out !== undefined && frame >= out) {
     const p = interpolate(frame - out, [0, 8], [0, 1], { ...clamp, easing: EASE.in });
     sc *= 1 - p; op *= 1 - p;

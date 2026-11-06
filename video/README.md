@@ -59,6 +59,8 @@ You can regenerate the asset pipeline from the two source videos. It samples the
 python3 -I tools/extract_icons.py fA fB assets          # first pass (rembg)
 python3 -I tools/extract_icons_pass2.py fA cal.png assets
 python3 -I tools/extract_icons_pass3.py fA cal.png assets  # truck composite, calendar, parcel, thumbs-up cleanup
+python3 -I tools/extract_icons_pass4.py fA f60 assets        # parcel/checkmark/coin-stack from un-clipped frames
+python3 -I tools/cleanup_truck_parcel.py truck.png parcel.png assets/reference-icons  # convex re-cut, specks, rear wheel
 python3 -I tools/extract_logo.py pikobuy.mp4 assets/logos
 python3 -I tools/extract_paper.py fA assets/backgrounds/crumpled-paper.png
 ```

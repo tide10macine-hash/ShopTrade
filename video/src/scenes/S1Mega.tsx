@@ -8,7 +8,7 @@ export const S1Mega: React.FC = () => (
   <>
     <Sticker src="reference-icons/sale-tags.png" x={540} y={250} w={760} delay={5} from="drop" rot={0} />
     <Sticker src="reference-icons/thumbs-up.png" x={150} y={560} w={170} delay={26} rot={-10} />
-    <Pop x={540} y={740} from="slam" delay={0} idle={0.6}>
+    <Pop x={540} y={740} from="slam" delay={0} idle={0.6} pulse={0.035}>
       <Outlined text="11.11" size={400} color={C.red} extrude={C.black} rim={16} />
     </Pop>
     <Pop x={905} y={560} delay={18} rot={12}>

@@ -41,7 +41,7 @@ export const S3Shipping: React.FC = () => (
       </div>
     </Sticker>
     <Sticker src="reference-icons/checkmark.png" x={900} y={620} w={150} delay={46} rot={8} z={3} />
-    <SpeedLines x={0} y={1090} w={420} h={170} delay={26} dir={-1} />
+    <SpeedLines x={-60} y={1100} w={260} h={150} delay={26} />
     <Sticker src="reference-icons/parcel-box.png" x={300} y={1170} w={270} delay={26} from="left" rot={-6}>
       <div style={{ position: "absolute", left: "16%", top: "48%", transform: "skewY(-14deg) rotate(4deg)" }}>
         <Logo w={70} />
