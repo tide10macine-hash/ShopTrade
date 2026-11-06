@@ -14,8 +14,8 @@ export const S1Mega: React.FC = () => (
     <Pop x={905} y={560} delay={18} rot={12}>
       <Logo w={175} />
     </Pop>
-    <PopText text="MEGA SALE" x={540} y={1040} size={128} delay={20} stagger={2} color={C.red} rim={10} />
-    <PunchWords words={[{ t: "IS" }, { t: "HERE!", color: C.red }]} x={540} y={1185} size={112} delay={40} rim={8} />
+    <PopText text="MEGA SALE" x={540} y={1040} size={128} delay={48} stagger={2} color={C.red} rim={10} />
+    <PunchWords words={[{ t: "IS" }, { t: "HERE!", color: C.red }]} x={540} y={1185} size={112} delay={94} rim={8} />
     <Sticker src="reference-icons/singles-day-bag.png" x={210} y={1420} w={270} delay={14} rot={-12} />
     <Sticker src="reference-icons/parcel-box.png" x={860} y={1430} w={330} delay={22} rot={7} />
     <Sticker src="reference-icons/zigzag-arrow.png" x={560} y={1500} w={300} delay={30} rot={0} from="left" />
@@ -28,6 +28,7 @@ export const S1Mega: React.FC = () => (
     <Sfx at={22} name="pop" vol={0.6} />
     <Sfx at={26} name="pop-high" vol={0.5} />
     <Sfx at={30} name="whoosh" vol={0.45} />
-    <Sfx at={40} name="pop" vol={0.6} />
+    <Sfx at={48} name="whoosh" vol={0.35} />
+    <Sfx at={94} name="pop" vol={0.6} />
   </>
 );

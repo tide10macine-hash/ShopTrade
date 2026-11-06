@@ -1,6 +1,6 @@
 # PIKOBUY – 11.11 MEGA SALE (TikTok / Reels / Shorts)
 
-**Final video:** `out/PIKOBUY_11.11_MEGA_SALE.mp4`. It is 1080×1920 (9:16), 60 fps, H.264 High at yuv420p, 20.0 s long, with AAC 320k audio mastered to about −11.5 LUFS and −0.8 dBFS peak.
+**Final video:** `out/PIKOBUY_11.11_MEGA_SALE.mp4`. It is 1080×1920 (9:16), 60 fps, H.264 High at yuv420p, 22.5 s long, with AAC 320k audio mastered to about −11.2 LUFS and −0.9 dBFS peak. It includes the ElevenLabs male voiceover.
 **Preview:** `preview/storyboard.png` (one frame per second) and `preview/preview_small.mp4`.
 
 The project is built in Remotion (React), so every layer can be edited in code. All media sits in `assets/`.
@@ -32,17 +32,21 @@ tools/                          reproducible asset pipeline (Python / ffmpeg)
 
 | Time | Scene | Key sync |
 |---|---|---|
-| 0–2 s | 11.11 slams in, SALE tags drop, "MEGA SALE IS HERE!" | impact at frame 2, paper rustle, sticker pops |
-| 2–4 s | THE CHEAPEST PRICES! The zigzag arrow slams in, price tags drop, coins appear | cash register, coins |
-| 4–6 s | FASTEST SHIPPING! The truck (logo on the cargo box), plane and parcels arrive with speed lines | truck, airplane whoosh, checkmark ding |
-| 6–10 s | **UP TO 80% OFF!** The number counts up to 80, then the official 2×40% shipping coupon flies in and gets the REDEEMED stamp | music drop-out, then cinematic impact, coupon chimes, stamp |
-| 10–13 s | WHY PAY MORE? Three benefit boards, each ticked | whooshes, three checkmarks |
-| 13–16 s | Calendar with Nov 11 circled, "DON'T MISS OUT!", STARTS 11.11 | clock ticks on 8th notes |
-| 16–20 s | PIKOBUY logo slam with the full sticker collage, slogan, final hit at 19 s | cinematic impacts, riser |
+| 0–2.5 s | 11.11 slams in, SALE tags drop, "MEGA SALE IS HERE!" | impact at frame 2, paper rustle, sticker pops |
+| 2.5–5.5 s | THE CHEAPEST PRICES! The zigzag arrow slams in, price tags drop, coins appear | cash register, coins |
+| 5.5–8.5 s | FASTEST SHIPPING! The truck (logo on the cargo box), plane and parcels arrive with speed lines | truck, airplane whoosh, checkmark ding |
+| 8.5–13 s | **UP TO 80% OFF!** The number counts up to 80, then the official 2×40% shipping coupon flies in and gets the REDEEMED stamp | music drop-out, then cinematic impact, coupon chimes, stamp |
+| 13–15.5 s | WHY PAY MORE? Three benefit boards, each ticked | whooshes, three checkmarks |
+| 15.5–18 s | Calendar with Nov 11 circled, "DON'T MISS OUT!", STARTS 11.11 | clock ticks on 8th notes |
+| 18–22.5 s | PIKOBUY logo slam with the full sticker collage, slogan, final hit at 22 s | cinematic impacts, riser |
 
 ## Voiceover
 
-The voice prompt and timed script are in `voiceover/VOICEOVER_PROMPT.md`.
+- **Source:** the ElevenLabs take ("Adam – Radio Announcer") is kept unedited in `assets/audio/voice/source/`.
+- **Clips:** `tools/prepare_voice.py` cuts it into 11 phrase clips. It applies a high-pass filter, light compression and loudness normalisation, then speeds each clip up 1.12× with pitch preserved.
+- **Timing:** `src/voice.ts` places each clip, and every scene starts on a beat and is timed to its line. Fitting the voice made the video 22.5 s long. The 24.6 s take holds 21.6 s of speech, which can't fit in 20 s without sounding rushed.
+- **Mix:** music ducks about 60 % and effects about 55 % while the voice speaks.
+- **Prompt and script:** `voiceover/VOICEOVER_PROMPT.md`.
 
 ## Commands
 
@@ -50,6 +54,7 @@ The voice prompt and timed script are in `voiceover/VOICEOVER_PROMPT.md`.
 npm install
 npm run studio          # live preview / timeline editing
 npm run audio           # regenerate SFX + music (tools/make_audio.py)
+python3 -I tools/prepare_voice.py assets/audio/voice/source/voiceover-adam-radio-announcer.mp3 assets/audio/voice
 REMOTION_CHROME=/path/to/chrome-headless-shell npm run render   # renders + masters to out/PIKOBUY_11.11_MEGA_SALE.mp4
 ```
 

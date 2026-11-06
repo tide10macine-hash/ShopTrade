@@ -6,7 +6,7 @@ import { useCount } from "../components/graphics";
 import { Sfx } from "../components/Sfx";
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
-const PHASE_B = 110; // hero shrinks to the top, the official coupon flies in
+const PHASE_B = 160; // hero shrinks to the top, the official coupon flies in
 const COUPON = "stickers/pikobuy-coupon-2x40-shipping.png"; // official PIKOBUY asset, used as supplied
 
 const Hero: React.FC = () => {
@@ -43,17 +43,17 @@ export const S4Coupon: React.FC = () => {
       <Flash at={1} dur={12} color="#fff" max={0.9} />
       <Hero />
       {/* phase A supporting line */}
-      <PunchWords words={[{ t: "WITH" }, { t: "EXCLUSIVE" }]} x={540} y={1340} size={76} delay={30} rim={6} out={PHASE_B - 6} />
-      <PunchWords words={[{ t: "11.11", color: C.red }, { t: "COUPONS!", color: C.red }]} x={540} y={1440} size={96} delay={40} rim={6} out={PHASE_B - 6} />
-      <Sticker src="reference-icons/checkmark.png" x={910} y={1150} w={150} delay={52} rot={10} out={PHASE_B - 4} />
-      <Sticker src="reference-icons/thumbs-up.png" x={170} y={1130} w={150} delay={58} rot={-10} out={PHASE_B - 4} />
+      <PunchWords words={[{ t: "WITH" }, { t: "EXCLUSIVE" }]} x={540} y={1340} size={76} delay={82} rim={6} out={PHASE_B - 6} />
+      <PunchWords words={[{ t: "11.11", color: C.red }, { t: "COUPONS!", color: C.red }]} x={540} y={1440} size={96} delay={108} rim={6} out={PHASE_B - 6} />
+      <Sticker src="reference-icons/checkmark.png" x={910} y={1150} w={150} delay={100} rot={10} out={PHASE_B - 4} />
+      <Sticker src="reference-icons/thumbs-up.png" x={170} y={1130} w={150} delay={110} rot={-10} out={PHASE_B - 4} />
 
       {/* phase B: official 2x40% shipping coupon */}
       <Sticker src={COUPON} x={540} y={960} w={1000} delay={PHASE_B + 6} from="left" rot={-3} idle={0.5} />
-      <Sticker src="reference-icons/redeemed-stamp.png" x={860} y={1080} w={330} delay={PHASE_B + 46} from="slam" rot={-16} idle={0.2} shadow={false} />
-      <Sticker src="reference-icons/checkmark.png" x={150} y={800} w={130} delay={PHASE_B + 62} rot={-8} />
-      <Sticker src="reference-icons/checkmark.png" x={930} y={790} w={120} delay={PHASE_B + 68} rot={10} />
-      <Pop x={540} y={1360} delay={PHASE_B + 74} rot={-3}>
+      <Sticker src="reference-icons/redeemed-stamp.png" x={860} y={1080} w={330} delay={PHASE_B + 34} from="slam" rot={-16} idle={0.2} shadow={false} />
+      <Sticker src="reference-icons/checkmark.png" x={150} y={800} w={130} delay={PHASE_B + 46} rot={-8} />
+      <Sticker src="reference-icons/checkmark.png" x={930} y={790} w={120} delay={PHASE_B + 52} rot={10} />
+      <Pop x={540} y={1360} delay={PHASE_B + 16} rot={-3}>
         <Banner text="STACK YOUR SAVINGS!" size={62} bg={C.black} color={C.white} />
       </Pop>
 
@@ -61,17 +61,17 @@ export const S4Coupon: React.FC = () => {
       <Sfx at={4} name="coins" vol={0.5} />
       <Sfx at={10} name="pop" vol={0.5} />
       <Sfx at={16} name="impact" vol={0.6} />
-      <Sfx at={24} name="cash-register" vol={0.8} />
-      <Sfx at={30} name="pop-high" vol={0.45} />
-      <Sfx at={52} name="checkmark" vol={0.55} />
+      <Sfx at={24} name="cash-register" vol={0.7} />
+      <Sfx at={82} name="pop" vol={0.4} />
+      <Sfx at={100} name="checkmark" vol={0.5} />
+      <Sfx at={108} name="pop-high" vol={0.45} />
       <Sfx at={PHASE_B} name="whoosh" vol={0.55} />
       <Sfx at={PHASE_B + 10} name="coupon-confirm" vol={0.8} />
-      <Sfx at={PHASE_B + 32} name="coupon-confirm" vol={0.6} />
-      <Sfx at={PHASE_B + 48} name="stamp" vol={0.95} />
-      <Sfx at={PHASE_B + 62} name="checkmark" vol={0.6} />
-      <Sfx at={PHASE_B + 68} name="checkmark" vol={0.5} />
-      <Sfx at={PHASE_B + 74} name="pop-high" vol={0.5} />
-      <Sfx at={PHASE_B + 80} name="cash-register" vol={0.6} />
+      <Sfx at={PHASE_B + 16} name="pop-high" vol={0.45} />
+      <Sfx at={PHASE_B + 36} name="stamp" vol={0.95} />
+      <Sfx at={PHASE_B + 46} name="checkmark" vol={0.55} />
+      <Sfx at={PHASE_B + 52} name="checkmark" vol={0.45} />
+      <Sfx at={PHASE_B + 70} name="cash-register" vol={0.55} />
     </>
   );
 };

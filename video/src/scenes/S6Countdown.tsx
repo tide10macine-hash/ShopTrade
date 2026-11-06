@@ -27,10 +27,10 @@ export const S6Countdown: React.FC = () => {
           <RoundBadge d={250} top="NOV" big="11" />
         </Pop>
       </div>
-      <Pop x={540} y={1340} delay={58} rot={-3}>
+      <Pop x={540} y={1340} delay={82} rot={-3}>
         <Banner text="DON'T MISS OUT!" size={76} bg={C.red} color={C.white} />
       </Pop>
-      <Pop x={540} y={1470} delay={74}>
+      <Pop x={540} y={1470} delay={96}>
         <StatusChip text={live ? "LIVE NOW" : "STARTS 11.11"} live={live} />
       </Pop>
 
@@ -38,8 +38,8 @@ export const S6Countdown: React.FC = () => {
       <Sfx at={16} name="impact" vol={0.7} />
       <Sfx at={30} name="paper-rustle" vol={0.5} />
       <Sfx at={40} name="pop" vol={0.55} />
-      <Sfx at={58} name="pop-high" vol={0.55} />
-      {Array.from({ length: 11 }, (_, i) => (
+      <Sfx at={82} name="pop-high" vol={0.55} />
+      {Array.from({ length: 9 }, (_, i) => (
         <Sfx key={i} at={20 + i * 15} name={i % 2 ? "tock" : "tick"} vol={0.55} />
       ))}
     </>

@@ -3,16 +3,16 @@ import { useCurrentFrame, interpolate } from "remotion";
 import { C, FONT } from "../theme";
 import { Banner, Flash, Logo, Pop, PopText, PunchWords, Sticker } from "../components/core";
 import { Sfx } from "../components/Sfx";
+import { END_HIT } from "../timeline";
 import { CAMPAIGN } from "../campaign";
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
-const END_HIT = 180; // final impact (19.0s)
 
 // 16-20s: final PIKOBUY branding
 export const S7Final: React.FC = () => {
   const frame = useCurrentFrame();
   const punch = 1 + 0.06 * Math.exp(-Math.max(0, frame - END_HIT) / 6) * (frame >= END_HIT ? 1 : 0);
-  const fine = interpolate(frame, [110, 124], [0, 1], clamp);
+  const fine = interpolate(frame, [150, 164], [0, 1], clamp);
   return (
     <>
       <div style={{ position: "absolute", inset: 0, transform: `scale(${punch})`, transformOrigin: "540px 620px" }}>
@@ -24,16 +24,16 @@ export const S7Final: React.FC = () => {
         <Pop x={540} y={610} from="slam" delay={0} idle={0.5} pulse={0.03}>
           <Logo w={440} />
         </Pop>
-        <PopText text="PIKOBUY 11.11" x={540} y={935} size={98} delay={18} stagger={1} color={C.white} rim={8} />
-        <PopText text="MEGA SALE" x={540} y={1060} size={128} delay={28} stagger={2} color={C.red} rim={10} />
+        <PopText text="PIKOBUY 11.11" x={540} y={935} size={98} delay={10} stagger={1} color={C.white} rim={8} />
+        <PopText text="MEGA SALE" x={540} y={1060} size={128} delay={80} stagger={2} color={C.red} rim={10} />
       </div>
-      <PunchWords words={[{ t: "CHEAPEST" }, { t: "PRICES." }]} x={540} y={1180} size={58} delay={46} rim={5} />
-      <PunchWords words={[{ t: "FASTEST" }, { t: "SHIPPING." }]} x={540} y={1250} size={58} delay={54} rim={5} />
+      <PunchWords words={[{ t: "CHEAPEST" }, { t: "PRICES." }]} x={540} y={1180} size={58} delay={100} rim={5} />
+      <PunchWords words={[{ t: "FASTEST" }, { t: "SHIPPING." }]} x={540} y={1250} size={58} delay={108} rim={5} />
       <PunchWords
         words={[{ t: "UP", color: C.red }, { t: "TO", color: C.red }, { t: "80%", color: C.red }, { t: "OFF", color: C.red }, { t: "WITH" }, { t: "COUPONS!*" }]}
-        x={540} y={1330} size={56} delay={62} stagger={3} rim={5} gap={14}
+        x={540} y={1330} size={56} delay={116} stagger={3} rim={5} gap={14}
       />
-      <Pop x={540} y={1445} delay={84} rot={-2} pulse={0.05}>
+      <Pop x={540} y={1445} delay={130} rot={-2} pulse={0.05}>
         <Banner text="SHOP MORE. SAVE MORE." size={58} bg={C.red} color={C.white} />
       </Pop>
       <Sticker src="reference-icons/delivery-truck.png" x={200} y={1650} w={350} delay={38} from="left" rot={-3} />
@@ -56,10 +56,11 @@ export const S7Final: React.FC = () => {
       <Sfx at={30} name="pop" vol={0.45} />
       <Sfx at={34} name="pop-high" vol={0.45} />
       <Sfx at={38} name="truck" vol={0.4} />
-      <Sfx at={46} name="cash-register" vol={0.55} />
-      <Sfx at={62} name="coupon-confirm" vol={0.6} />
-      <Sfx at={84} name="pop" vol={0.6} />
-      <Sfx at={END_HIT - 54} name="riser" vol={0.6} />
+      <Sfx at={80} name="whoosh" vol={0.35} />
+      <Sfx at={100} name="cash-register" vol={0.45} />
+      <Sfx at={116} name="coupon-confirm" vol={0.5} />
+      <Sfx at={130} name="pop" vol={0.55} />
+      <Sfx at={END_HIT - 40} name="riser" vol={0.4} />
       <Sfx at={END_HIT} name="impact-cinematic" vol={1} />
     </>
   );

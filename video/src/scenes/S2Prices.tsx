@@ -17,8 +17,8 @@ export const S2Prices: React.FC = () => (
       <PriceTag w={210} text={"BEST\nDEAL"} color={C.redDark} />
     </Pop>
     <Sticker src="reference-icons/zigzag-arrow.png" x={545} y={880} w={600} delay={10} from="slam" z={2} />
-    <PunchWords words={[{ t: "MORE" }, { t: "PRODUCTS." }]} x={540} y={1160} size={78} delay={34} rim={6} />
-    <PunchWords words={[{ t: "LESS", color: C.red }, { t: "MONEY.", color: C.red }]} x={540} y={1265} size={96} delay={44} rim={6} />
+    <PunchWords words={[{ t: "MORE" }, { t: "PRODUCTS." }]} x={540} y={1160} size={78} delay={84} rim={6} />
+    <PunchWords words={[{ t: "LESS", color: C.red }, { t: "MONEY.", color: C.red }]} x={540} y={1265} size={96} delay={138} rim={6} />
     <Sticker src="reference-icons/coin-stack.png" x={360} y={1500} w={230} delay={26} from="bottom" rot={-6} />
     <Sticker src="reference-icons/coin-stack.png" x={720} y={1510} w={210} delay={34} from="bottom" rot={7} />
     <Sticker src="reference-icons/coin-stack.png" x={545} y={1560} w={270} delay={30} from="bottom" />
@@ -29,6 +29,7 @@ export const S2Prices: React.FC = () => (
     <Sfx at={28} name="pop-high" vol={0.55} />
     <Sfx at={30} name="cash-register" vol={0.85} />
     <Sfx at={36} name="coins" vol={0.6} />
-    <Sfx at={44} name="pop" vol={0.5} />
+    <Sfx at={84} name="pop" vol={0.45} />
+    <Sfx at={138} name="pop-high" vol={0.5} />
   </>
 );

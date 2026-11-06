@@ -48,14 +48,15 @@ export const S3Shipping: React.FC = () => (
       </div>
     </Sticker>
     <Plane delay={18} />
-    <PunchWords words={[{ t: "YOUR" }, { t: "PACKAGES," }]} x={540} y={1395} size={80} delay={36} rim={6} />
-    <PunchWords words={[{ t: "FASTER!", color: C.red }]} x={540} y={1490} size={100} delay={46} rim={6} />
+    <PunchWords words={[{ t: "YOUR" }, { t: "PACKAGES," }]} x={540} y={1395} size={80} delay={80} rim={6} />
+    <PunchWords words={[{ t: "FASTER!", color: C.red }]} x={540} y={1490} size={100} delay={128} rim={6} />
 
     <Sfx at={4} name="truck" vol={0.8} />
     <Sfx at={8} name="whoosh" vol={0.55} />
     <Sfx at={16} name="airplane" vol={0.7} />
     <Sfx at={26} name="whoosh-reverse" vol={0.45} />
-    <Sfx at={36} name="pop" vol={0.5} />
+    <Sfx at={80} name="pop" vol={0.45} />
+    <Sfx at={128} name="pop-high" vol={0.45} />
     <Sfx at={48} name="checkmark" vol={0.7} />
   </>
 );

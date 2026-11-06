@@ -263,7 +263,12 @@ def sfx_stamp():
 # ------------------------------------------------------------------ MUSIC (120 BPM, A minor)
 BPM = 120
 BEAT = 60 / BPM
-DUR = 20.0
+DUR = 22.5
+# section times (s) - keep in sync with src/timeline.ts
+DROP_80 = 8.5      # 80% reveal (coupon scene start)
+DROP_LOGO = 18.0   # final logo slam
+STOP = 22.0        # end hit; music stops, chord tail rings out
+HOOKS = [8.5, 13.0, 18.0]
 
 
 def kick():
@@ -313,7 +318,7 @@ def music():
     beats = int(DUR / BEAT)
     # sections (in seconds): drop-out before the 80% reveal (5.75-6.0) and before logo (15.75-16)
     def muted(sec):
-        return 5.75 <= sec < 6.0 or 15.75 <= sec < 16.0 or sec >= 19.0
+        return DROP_80 - 0.25 <= sec < DROP_80 or DROP_LOGO - 0.25 <= sec < DROP_LOGO or sec >= STOP
     prog = [("A1", ["A3", "C4", "E4"]), ("F1", ["F3", "A3", "C4"]), ("C2", ["G3", "C4", "E4"]), ("G1", ["G3", "B3", "D4"])]
     K, C = kick(), clap()
     for b in range(beats):
@@ -356,7 +361,7 @@ def music():
             chords[i:i + len(x)] += stereo(x, 0, 0.011)[: N - i] * 0.42
     # lead hook (square-ish pluck) in the 80% section and finale
     hook = ["E5", "E5", "A5", "G5", "E5", "D5", "E5", "C5"]
-    for start in [6.0, 10.0, 16.0]:
+    for start in HOOKS:
         for k, nm in enumerate(hook):
             ls = start + k * BEAT / 2
             if muted(ls):
@@ -370,11 +375,14 @@ def music():
     # final sustained chord tail after the stop (19.0s)
     tail = sum(saw(note(c), 1.9, (-12, 0, 12)) for c in ["A3", "C4", "E4", "A4"]) / 4
     tail = filt(tail, "low", 2400) * env_exp(len(tail), 0.6) * 0.35
-    i = int(19.0 * SR)
+    i = int(STOP * SR)
     chords[i:i + len(tail)] += stereo(tail, 0, 0.012)[: N - i]
     mix = drums + stereo(bass * side) + chords * side[:, None] + lead * (0.6 + 0.4 * side[:, None])
     mix = np.tanh(mix * 1.1) * 0.9
-    return norm(mix[: int(DUR * SR)], 0.85)
+    mix = mix[: int(DUR * SR)]
+    nf = int(0.35 * SR)  # short fade so the ringing chord ends cleanly at the last frame
+    mix[-nf:] *= np.linspace(1, 0, nf)[:, None] ** 1.5
+    return norm(mix, 0.85)
 
 
 if __name__ == "__main__":
