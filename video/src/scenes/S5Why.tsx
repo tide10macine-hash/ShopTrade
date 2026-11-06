@@ -11,7 +11,7 @@ const icon = (src: string, w: number) => <Img src={staticFile(src)} style={{ wid
 export const S5Why: React.FC = () => (
   <>
     <PopText text="WHY PAY" x={540} y={300} size={132} delay={4} color={C.red} rim={10} />
-    <PopText text="MORE?" x={540} y={445} size={160} delay={14} color={C.red} extrude={C.yellow} rim={10} />
+    <PopText text="MORE?" x={540} y={445} size={160} delay={14} color={C.red} rim={10} />
     <Pop x={540} y={690} from="left" delay={16} rot={-3}>
       <BenefitBoard icon={icon("reference-icons/zigzag-arrow.png", 210)} top="CHEAPEST" bottom="PRICES" />
     </Pop>
@@ -20,7 +20,7 @@ export const S5Why: React.FC = () => (
     </Pop>
     <Pop x={540} y={1200} from="left" delay={36} rot={-2}>
       <BenefitBoard
-        icon={icon("reference-icons/coupon-gifts.png", 225)}
+        icon={icon("stickers/pikobuy-coupon-2x40-shipping.png", 225)}
         top="UP TO 80%"
         bottom="OFF*"
       />
@@ -29,7 +29,7 @@ export const S5Why: React.FC = () => (
     <Sticker src="reference-icons/checkmark.png" x={930} y={885} w={120} delay={72} rot={-6} z={5} />
     <Sticker src="reference-icons/checkmark.png" x={930} y={1140} w={120} delay={82} rot={6} z={5} />
     <PunchWords words={[{ t: "SHOP" }, { t: "SMART" }, { t: "WITH" }]} x={540} y={1390} size={70} delay={92} rim={6} />
-    <PunchWords words={[{ t: "PIKOBUY!", color: C.yellow }]} x={540} y={1480} size={104} delay={106} rim={6} />
+    <PunchWords words={[{ t: "PIKOBUY!", color: C.cyan }]} x={540} y={1480} size={104} delay={106} rim={6} />
 
     <Sfx at={16} name="whoosh" vol={0.45} />
     <Sfx at={26} name="whoosh-reverse" vol={0.45} />

@@ -1,57 +1,9 @@
 import React from "react";
 import { interpolate, useCurrentFrame, useVideoConfig, spring } from "remotion";
 import { C, EASE, FONT, SPRING } from "../theme";
-import { Logo, Outlined } from "./core";
+import { Outlined } from "./core";
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
-
-/** Ticket-style coupon with perforation notches and the PIKOBUY logo on the stub. */
-export const CouponCard: React.FC<{ value: string; label: string; w?: number }> = ({ value, label, w = 700 }) => {
-  const h = w * 0.42;
-  const stub = w * 0.28;
-  const r = h * 0.11;
-  const sw = 9;
-  // ticket outline with semicircle notches at the perforation line
-  const path = `M ${r} 0 H ${stub - r} A ${r} ${r} 0 0 0 ${stub + r} 0 H ${w - r} Q ${w} 0 ${w} ${r}
-    V ${h - r} Q ${w} ${h} ${w - r} ${h} H ${stub + r} A ${r} ${r} 0 0 0 ${stub - r} ${h} H ${r} Q 0 ${h} 0 ${h - r} V ${r} Q 0 0 ${r} 0 Z`;
-  return (
-    <div style={{ position: "relative", width: w + sw, height: h + sw }}>
-      <svg width={w + sw} height={h + sw} style={{ position: "absolute", left: 0, top: 0 }}>
-        <defs>
-          <clipPath id="tk">
-            <path d={path} transform={`translate(${sw / 2},${sw / 2})`} />
-          </clipPath>
-        </defs>
-        <g clipPath="url(#tk)">
-          <rect x={0} y={0} width={w + sw} height={h + sw} fill={C.yellow} />
-          <rect x={0} y={0} width={stub + sw / 2} height={h + sw} fill={C.red} />
-        </g>
-        <path d={path} transform={`translate(${sw / 2},${sw / 2})`} fill="none" stroke={C.black} strokeWidth={sw} />
-        <line
-          x1={stub + sw / 2} y1={r * 1.6} x2={stub + sw / 2} y2={h - r * 1.6}
-          stroke={C.black} strokeWidth={6} strokeDasharray="14 12" strokeLinecap="round"
-        />
-      </svg>
-      <div style={{ position: "absolute", left: sw / 2, top: sw / 2, width: stub, height: h, display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <Logo w={stub * 0.66} />
-      </div>
-      <div
-        style={{
-          position: "absolute", left: stub + sw, top: sw / 2, width: w - stub - sw, height: h,
-          display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 6,
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "flex-end", gap: 10 }}>
-          <Outlined text={value} size={h * 0.48} color={C.red} />
-          <Outlined text="OFF" size={h * 0.24} color={C.black} stroke={0.1} style={{ marginBottom: h * 0.05 }} />
-        </div>
-        <div style={{ fontFamily: FONT.display, fontWeight: 900, fontSize: h * 0.12, color: C.black, letterSpacing: "0.02em" }}>
-          {label}
-        </div>
-      </div>
-    </div>
-  );
-};
 
 /** Red price tag with string and a white down arrow. */
 export const PriceTag: React.FC<{ w?: number; text?: string; color?: string }> = ({ w = 260, text = "LOW\nPRICE", color = C.red }) => {

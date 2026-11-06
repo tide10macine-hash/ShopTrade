@@ -17,23 +17,23 @@ export const S7Final: React.FC = () => {
     <>
       <div style={{ position: "absolute", inset: 0, transform: `scale(${punch})`, transformOrigin: "540px 620px" }}>
         <Pop x={540} y={600} delay={3} idle={0} shadow={false}>
-          <Burst r={360} points={22} fill={C.yellow} spin={-10} />
+          <Burst r={360} points={22} fill={C.white} spin={-10} />
         </Pop>
         <Sticker src="reference-icons/sale-tags.png" x={540} y={150} w={500} delay={14} from="drop" />
         <Sticker src="reference-icons/thumbs-up.png" x={160} y={390} w={150} delay={22} rot={-10} />
         <Sticker src="reference-icons/checkmark.png" x={920} y={390} w={140} delay={26} rot={10} />
-        <Sticker src="reference-icons/coupon-gifts.png" x={145} y={800} w={250} delay={30} rot={-8} />
+        <Sticker src="stickers/pikobuy-coupon-2x40-shipping.png" x={165} y={800} w={290} delay={30} rot={-14} />
         <Sticker src="reference-icons/singles-day-bag.png" x={945} y={790} w={190} delay={34} rot={9} />
         <Pop x={540} y={610} from="slam" delay={0} idle={0.5}>
           <Logo w={440} />
         </Pop>
         <PopText text="PIKOBUY 11.11" x={540} y={935} size={98} delay={18} stagger={1} color={C.white} rim={8} />
-        <PopText text="MEGA SALE" x={540} y={1060} size={128} delay={28} stagger={2} color={C.red} extrude={C.yellow} rim={10} />
+        <PopText text="MEGA SALE" x={540} y={1060} size={128} delay={28} stagger={2} color={C.red} rim={10} />
       </div>
       <PunchWords words={[{ t: "CHEAPEST" }, { t: "PRICES." }]} x={540} y={1180} size={58} delay={46} rim={5} />
       <PunchWords words={[{ t: "FASTEST" }, { t: "SHIPPING." }]} x={540} y={1250} size={58} delay={54} rim={5} />
       <PunchWords
-        words={[{ t: "UP", color: C.yellow }, { t: "TO", color: C.yellow }, { t: "80%", color: C.yellow }, { t: "OFF", color: C.yellow }, { t: "WITH" }, { t: "COUPONS!*" }]}
+        words={[{ t: "UP", color: C.red }, { t: "TO", color: C.red }, { t: "80%", color: C.red }, { t: "OFF", color: C.red }, { t: "WITH" }, { t: "COUPONS!*" }]}
         x={540} y={1330} size={56} delay={62} stagger={3} rim={5} gap={14}
       />
       <Pop x={540} y={1445} delay={84} rot={-2}>
@@ -50,7 +50,7 @@ export const S7Final: React.FC = () => {
         {CAMPAIGN.finePrintShort}
       </div>
       <Flash at={0} dur={10} color="#fff" max={0.9} />
-      <Flash at={END_HIT} dur={14} color={C.yellow} max={0.35} />
+      <Flash at={END_HIT} dur={14} color="#fff" max={0.5} />
 
       <Sfx at={0} name="impact-cinematic" vol={1} />
       <Sfx at={14} name="whoosh-reverse" vol={0.4} />

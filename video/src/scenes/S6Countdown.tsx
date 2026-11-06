@@ -21,14 +21,14 @@ export const S6Countdown: React.FC = () => {
           <MarkerCircle w={150} h={135} delay={30} />
         </div>
         <Pop x={540} y={540} from="slam" delay={16} rot={-2}>
-          <Outlined text="11.11!" size={190} color={C.red} extrude={C.yellow} rim={12} />
+          <Outlined text="11.11!" size={190} color={C.red} rim={12} />
         </Pop>
         <Pop x={840} y={1150} delay={40} rot={10}>
           <RoundBadge d={250} top="NOV" big="11" />
         </Pop>
       </div>
       <Pop x={540} y={1340} delay={58} rot={-3}>
-        <Banner text="DON'T MISS OUT!" size={76} />
+        <Banner text="DON'T MISS OUT!" size={76} bg={C.red} color={C.white} />
       </Pop>
       <Pop x={540} y={1470} delay={74}>
         <StatusChip text={live ? "LIVE NOW" : "STARTS 11.11"} live={live} />

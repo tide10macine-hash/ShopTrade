@@ -32,7 +32,7 @@ const Plane: React.FC<{ delay: number }> = ({ delay }) => {
 export const S3Shipping: React.FC = () => (
   <>
     <PopText text="FASTEST" x={540} y={320} size={132} delay={4} stagger={2} color={C.red} rim={10} />
-    <PopText text="SHIPPING!" x={540} y={460} size={132} delay={12} stagger={2} color={C.red} extrude={C.yellow} rim={10} />
+    <PopText text="SHIPPING!" x={540} y={460} size={132} delay={12} stagger={2} color={C.red} rim={10} />
     <SpeedLines x={560} y={700} w={560} h={260} delay={6} />
     <Sticker src="reference-icons/delivery-truck.png" x={520} y={830} w={660} delay={6} from="right" idle={0.6}>
       {/* official logo placed on the cargo-box side panel */}
@@ -49,7 +49,7 @@ export const S3Shipping: React.FC = () => (
     </Sticker>
     <Plane delay={18} />
     <PunchWords words={[{ t: "YOUR" }, { t: "PACKAGES," }]} x={540} y={1395} size={80} delay={36} rim={6} />
-    <PunchWords words={[{ t: "FASTER!", color: C.yellow }]} x={540} y={1490} size={100} delay={46} rim={6} />
+    <PunchWords words={[{ t: "FASTER!", color: C.red }]} x={540} y={1490} size={100} delay={46} rim={6} />
 
     <Sfx at={4} name="truck" vol={0.8} />
     <Sfx at={8} name="whoosh" vol={0.55} />

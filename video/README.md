@@ -15,7 +15,8 @@ assets/
   audio/sfx/*.wav               17 synthesized sound effects (original, royalty-free)
   audio/music/music-bed-120bpm.wav  synthesized 120 BPM electronic bed (original)
   fonts/                        Montserrat + Poppins (SIL OFL, licences included)
-  stickers/ products/           notes (campaign stickers are code components; no product photos were supplied)
+  stickers/pikobuy-coupon-2x40-shipping.png  official PIKOBUY coupon artwork (used as supplied)
+  products/                     no product photos were supplied
 src/
   campaign.ts                   ALL on-screen copy, coupon terms, "upcoming" / "live" switch
   timeline.ts                   scene timings, camera-shake hits
@@ -34,10 +35,14 @@ tools/                          reproducible asset pipeline (Python / ffmpeg)
 | 0–2 s | 11.11 slams in, SALE tags drop, "MEGA SALE IS HERE!" | impact at frame 2, paper rustle, sticker pops |
 | 2–4 s | THE CHEAPEST PRICES! The zigzag arrow slams in, price tags drop, coins appear | cash register, coins |
 | 4–6 s | FASTEST SHIPPING! The truck (logo on the cargo box), plane and parcels arrive with speed lines | truck, airplane whoosh, checkmark ding |
-| 6–10 s | **UP TO 80% OFF!** The number counts up to 80, then two coupon cards stack and get the REDEEMED stamp | music drop-out, then cinematic impact, coupon chimes, stamp |
+| 6–10 s | **UP TO 80% OFF!** The number counts up to 80, then the official 2×40% shipping coupon flies in and gets the REDEEMED stamp | music drop-out, then cinematic impact, coupon chimes, stamp |
 | 10–13 s | WHY PAY MORE? Three benefit boards, each ticked | whooshes, three checkmarks |
 | 13–16 s | Calendar with Nov 11 circled, "DON'T MISS OUT!", STARTS 11.11 | clock ticks on 8th notes |
 | 16–20 s | PIKOBUY logo slam with the full sticker collage, slogan, final hit at 19 s | cinematic impacts, riser |
+
+## Voiceover
+
+The voice prompt and timed script are in `voiceover/VOICEOVER_PROMPT.md`.
 
 ## Commands
 
@@ -62,4 +67,4 @@ python3 -I tools/extract_paper.py fA assets/backgrounds/crumpled-paper.png
 
 - The 80% figure follows the coupon offer shown in PIKOBUY's own video: **two 40% OFF shipping coupons for new sign-ups, with terms and eligibility set by PIKOBUY**. The video shows the two coupons stacking, and fine print states the condition. If the official 11.11 terms differ, edit `src/campaign.ts` and re-render.
 - The video makes no delivery-time promises. "Cheapest" and "fastest" are comparative claims, and some ad platforms and regions require substantiation for them.
-- Reference-video stickers were reused as requested. Competitor branding was removed: LITBUY and Gopbuy logos, DHL, and the third-party "China 11.11" banner. The influencer photo and the other apps' logos were not extracted.
+- Reference-video stickers were reused as requested. Stickers the reference had clipped at the frame edge were re-extracted from frames where they are fully visible, or rebuilt: the parcel, checkmark and coin stack. Competitor branding was removed: LITBUY and Gopbuy logos, DHL, and the third-party "China 11.11" banner. The influencer photo and the other apps' logos were not extracted.

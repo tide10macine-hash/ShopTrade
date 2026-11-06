@@ -391,7 +391,7 @@ export const PunchWords: React.FC<{
 /* ------------------------------------------------------------------ graphics */
 export const Burst: React.FC<{
   r: number; points?: number; fill?: string; stroke?: string; spin?: number; inner?: number;
-}> = ({ r, points = 18, fill = C.yellow, stroke = C.black, spin = 12, inner = 0.78 }) => {
+}> = ({ r, points = 18, fill = C.white, stroke = C.black, spin = 12, inner = 0.78 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const pts: string[] = [];
@@ -443,7 +443,7 @@ export const SpeedLines: React.FC<{ x: number; y: number; w: number; h: number; 
 
 /** Yellow label banner (tilted), like the reference's highlighted captions. */
 export const Banner: React.FC<{ text: string; size: number; bg?: string; color?: string; pad?: number }> = ({
-  text, size, bg = C.yellow, color = C.black, pad,
+  text, size, bg = C.white, color = C.black, pad,
 }) => (
   <div
     style={{

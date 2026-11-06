@@ -8,6 +8,7 @@ export const C = {
   yellowDeep: "#F7B500",
   white: "#FFFFFF",
   black: "#111111",
+  cyan: "#00B6D4", // PIKOBUY brand cyan (logo / official coupon)
   green: "#1DA83C",
   greenDark: "#0E7A2A",
   paperShadow: "rgba(40,30,30,0.32)",
