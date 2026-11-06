@@ -1,3 +1,4 @@
 node_modules/
 out/*
 !out/PIKOBUY_11.11_MEGA_SALE.mp4
+__pycache__/
