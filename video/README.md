@@ -65,6 +65,6 @@ python3 -I tools/extract_paper.py fA assets/backgrounds/crumpled-paper.png
 
 ## Claims and compliance notes
 
-- The 80% figure follows the coupon offer shown in PIKOBUY's own video: **two 40% OFF shipping coupons for new sign-ups, with terms and eligibility set by PIKOBUY**. The video shows the two coupons stacking, and fine print states the condition. If the official 11.11 terms differ, edit `src/campaign.ts` and re-render.
+- The 80% figure follows the coupon offer shown in PIKOBUY's own video: **two 40% OFF shipping coupons for new sign-ups, with terms and eligibility set by PIKOBUY**. The video shows the official 2×40% coupon. The coupon scene has no fine print, at the client's request. The closing scene keeps one line: "*Coupon terms & eligibility set by PIKOBUY." If the official 11.11 terms differ, edit `src/campaign.ts` and re-render.
 - The video makes no delivery-time promises. "Cheapest" and "fastest" are comparative claims, and some ad platforms and regions require substantiation for them.
 - Reference-video stickers were reused as requested. Stickers the reference had clipped at the frame edge were re-extracted from frames where they are fully visible, or rebuilt: the parcel, checkmark and coin stack. Competitor branding was removed: LITBUY and Gopbuy logos, DHL, and the third-party "China 11.11" banner. The influencer photo and the other apps' logos were not extracted.

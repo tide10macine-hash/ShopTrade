@@ -1,10 +1,9 @@
 import React from "react";
 import { interpolate, useCurrentFrame, AbsoluteFill } from "remotion";
-import { C, EASE, FONT } from "../theme";
-import { Banner, Burst, Flash, Logo, Outlined, Pop, PunchWords, Sticker } from "../components/core";
+import { C, EASE } from "../theme";
+import { Banner, Flash, Logo, Outlined, Pop, PunchWords, Sticker } from "../components/core";
 import { useCount } from "../components/graphics";
 import { Sfx } from "../components/Sfx";
-import { CAMPAIGN } from "../campaign";
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const PHASE_B = 110; // hero shrinks to the top, the official coupon flies in
@@ -19,9 +18,6 @@ const Hero: React.FC = () => {
   const pulse = frame < PHASE_B ? 1 + 0.03 * Math.exp(-((frame - 4) % 30) / 6) : 1;
   return (
     <AbsoluteFill style={{ transform: `translateY(${ty}px) scale(${sc})`, transformOrigin: "540px 820px" }}>
-      <Pop x={540} y={820} delay={2} idle={0} shadow={false}>
-        <Burst r={470} points={20} fill={C.cyan} spin={14} />
-      </Pop>
       <Pop x={540} y={470} delay={10} rot={-5}>
         <Banner text="UP TO" size={92} bg={C.red} color={C.white} />
       </Pop>
@@ -42,8 +38,6 @@ const Hero: React.FC = () => {
 
 // 6-10s: THE 80% COUPON MOMENT
 export const S4Coupon: React.FC = () => {
-  const frame = useCurrentFrame();
-  const fine = interpolate(frame, [PHASE_B + 10, PHASE_B + 20], [0, 1], clamp);
   return (
     <>
       <Flash at={1} dur={12} color="#fff" max={0.9} />
@@ -62,15 +56,6 @@ export const S4Coupon: React.FC = () => {
       <Pop x={540} y={1360} delay={PHASE_B + 74} rot={-3}>
         <Banner text="STACK YOUR SAVINGS!" size={62} bg={C.black} color={C.white} />
       </Pop>
-      <div
-        style={{
-          position: "absolute", left: 90, right: 90, top: 1470, opacity: fine, textAlign: "center",
-          fontFamily: FONT.display, fontWeight: 700, fontSize: 27, lineHeight: 1.25, color: C.black,
-          background: "rgba(255,255,255,0.85)", borderRadius: 14, padding: "8px 16px",
-        }}
-      >
-        {CAMPAIGN.finePrint}
-      </div>
 
       <Sfx at={0} name="impact-cinematic" vol={1} />
       <Sfx at={4} name="coins" vol={0.5} />

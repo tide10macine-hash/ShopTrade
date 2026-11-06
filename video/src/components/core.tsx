@@ -389,24 +389,6 @@ export const PunchWords: React.FC<{
 };
 
 /* ------------------------------------------------------------------ graphics */
-export const Burst: React.FC<{
-  r: number; points?: number; fill?: string; stroke?: string; spin?: number; inner?: number;
-}> = ({ r, points = 18, fill = C.white, stroke = C.black, spin = 12, inner = 0.78 }) => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const pts: string[] = [];
-  for (let i = 0; i < points * 2; i++) {
-    const a = (Math.PI * i) / points;
-    const rr = i % 2 === 0 ? r : r * inner;
-    pts.push(`${r + 12 + rr * Math.cos(a)},${r + 12 + rr * Math.sin(a)}`);
-  }
-  return (
-    <svg width={(r + 12) * 2} height={(r + 12) * 2} style={{ transform: `rotate(${(frame / fps) * spin}deg)`, display: "block" }}>
-      <polygon points={pts.join(" ")} fill={fill} stroke={stroke} strokeWidth={10} strokeLinejoin="round" />
-    </svg>
-  );
-};
-
 export const SpeedLines: React.FC<{ x: number; y: number; w: number; h: number; delay?: number; dir?: 1 | -1 }> = ({
   x, y, w, h, delay = 0, dir = 1,
 }) => {

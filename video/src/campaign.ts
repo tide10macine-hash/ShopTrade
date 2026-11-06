@@ -5,7 +5,5 @@ export const CAMPAIGN = {
   // Official offer as shown in PIKOBUY's own material: 2 x 40% OFF shipping coupons for new sign-ups.
   couponValue: "40%",
   couponLabel: "SHIPPING COUPON",
-  finePrint:
-    "*Up to 80% = 2 stacked 40% OFF shipping coupons for new sign-ups. Coupon terms & eligibility set by PIKOBUY.",
   finePrintShort: "*Coupon terms & eligibility set by PIKOBUY.",
 };

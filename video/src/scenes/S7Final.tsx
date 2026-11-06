@@ -1,7 +1,7 @@
 import React from "react";
 import { useCurrentFrame, interpolate } from "remotion";
 import { C, FONT } from "../theme";
-import { Banner, Burst, Flash, Logo, Pop, PopText, PunchWords, Sticker } from "../components/core";
+import { Banner, Flash, Logo, Pop, PopText, PunchWords, Sticker } from "../components/core";
 import { Sfx } from "../components/Sfx";
 import { CAMPAIGN } from "../campaign";
 
@@ -16,9 +16,6 @@ export const S7Final: React.FC = () => {
   return (
     <>
       <div style={{ position: "absolute", inset: 0, transform: `scale(${punch})`, transformOrigin: "540px 620px" }}>
-        <Pop x={540} y={600} delay={3} idle={0} shadow={false}>
-          <Burst r={360} points={22} fill={C.white} spin={-10} />
-        </Pop>
         <Sticker src="reference-icons/sale-tags.png" x={540} y={150} w={500} delay={14} from="drop" />
         <Sticker src="reference-icons/thumbs-up.png" x={160} y={390} w={150} delay={22} rot={-10} />
         <Sticker src="reference-icons/checkmark.png" x={920} y={390} w={140} delay={26} rot={10} />
