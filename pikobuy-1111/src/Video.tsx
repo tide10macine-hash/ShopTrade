@@ -10,7 +10,7 @@ import { S4Coupon } from "./scenes/S4Coupon";
 import { S5Collage } from "./scenes/S5Collage";
 import { S6Countdown } from "./scenes/S6Countdown";
 import { S7Endcard } from "./scenes/S7Endcard";
-import { SCENES } from "./theme";
+import { MIX, SCENES } from "./theme";
 
 const ORDER: [keyof typeof SCENES, React.FC][] = [
   ["hook", S1Hook],
@@ -35,6 +35,6 @@ export const Pikobuy1111: React.FC = () => (
       </Sequence>
     ))}
     <Finish />
-    <Html5Audio src={asset("audio/music-bed.wav")} volume={musicVol} />
+    <Html5Audio src={asset("audio/music-bed.wav")} volume={(f) => musicVol(f) * MIX.music} />
   </AbsoluteFill>
 );

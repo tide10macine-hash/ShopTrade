@@ -39,6 +39,9 @@ export const SPRING = {
   soft: { damping: 20, stiffness: 120, mass: 1 },
 };
 
+/** Mix bus gains (headroom so overlapping SFX never clip; final loudness set in tools/master_audio.sh). */
+export const MIX = { sfx: 0.5, music: 0.55 };
+
 /** Scene boundaries in frames (60 fps). Total = 20 s. */
 export const SCENES = {
   hook: { from: 0, dur: 120 }, // 0-2s   11.11 MEGA SALE
@@ -63,7 +66,7 @@ export const COPY = {
     sub: "WITH EXCLUSIVE 11.11 COUPONS!",
     stack: "STACK YOUR SAVINGS!",
     // 80% = maximum combined saving from the two 40% coupons (per the link-in-bio offer "80% OFF [2x 40%]").
-    fine: "*Max. total coupon savings (2 × 40% coupons) on eligible orders. Coupon T&Cs apply.",
+    fine: "*Max. total coupon savings (2x 40% coupons) on eligible orders. Coupon T&Cs apply.",
   },
   collage: { head: "WHY PAY MORE?", sub: "SHOP SMART WITH PIKOBUY!", badges: ["CHEAPEST PRICES", "FASTEST SHIPPING", "UP TO 80% OFF*"] },
   countdown: { head: "THE BIG SHOPPING EVENT!", sub: "DON'T MISS OUT!" },

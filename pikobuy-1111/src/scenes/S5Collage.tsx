@@ -30,9 +30,9 @@ export const S5Collage: React.FC = () => {
         <Pop at={26} x={100} y={470} z={4}><CheckBadge size={110} drawAt={26} /></Pop>
         <Pop at={40} x={985} y={720} z={4}><CheckBadge size={110} drawAt={40} /></Pop>
         <Pop at={54} x={95} y={970} z={4}><CheckBadge size={110} drawAt={54} /></Pop>
-        <Pop at={70} x={900} y={1290} rot={10} z={4}><Ref name="thumbs-up" w={210} /></Pop>
-        <Pop at={84} x={170} y={1340} rot={-8}><Ref name="box-price-drop" w={250} /></Pop>
-        <Center y={1250} z={3}>
+        <Pop at={70} x={950} y={1430} rot={10} z={4}><Ref name="thumbs-up" w={190} /></Pop>
+        <Pop at={84} x={140} y={1440} rot={-8}><Ref name="box-price-drop" w={230} /></Pop>
+        <Center y={1215} z={3}>
           <LinePop text="SHOP SMART" at={76} size={92} fill={C.white} strokes={[{ w: 30, color: C.white }, { w: 16, color: C.black }]} rot={-2} />
           <div style={{ height: 6 }} />
           <LinePop text="WITH PIKOBUY!" at={84} size={92} fill={C.red} rot={-2} />

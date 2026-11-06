@@ -39,8 +39,8 @@ export const S4Coupon: React.FC = () => {
         <Pop at={84} x={540} y={1410} z={6}><Outlined text="+" size={130} fill={C.yellow} strokes={[{ w: 34, color: C.white }, { w: 20, color: C.black }]} /></Pop>
         <Pop at={96} x={150} y={760} rot={-14} z={2}><Ref name="coupon-ticket" w={250} /></Pop>
         <Pop at={120} x={540} y={1395} from="slam" rot={-11} z={8} exit={176}><Ref name="stamp-redeemed" w={660} /></Pop>
-        <Pop at={132} x={110} y={1260} z={9}><CheckBadge size={130} drawAt={132} /></Pop>
-        <Pop at={140} x={975} y={1280} z={9}><CheckBadge size={130} drawAt={140} /></Pop>
+        <Pop at={132} x={95} y={1330} z={9}><CheckBadge size={130} drawAt={132} /></Pop>
+        <Pop at={140} x={985} y={1345} z={9}><CheckBadge size={130} drawAt={140} /></Pop>
         <Pop at={180} x={540} y={1420} rot={-4} z={10}>
           <div style={{ background: C.red, padding: "18px 34px", borderRadius: 22, boxShadow: `0 0 0 8px ${C.black}, 0 0 0 18px ${C.white}` }}>
             <Outlined text={COPY.coupon.stack} size={76} fill={C.yellow} strokes={[{ w: 14, color: C.black }]} />

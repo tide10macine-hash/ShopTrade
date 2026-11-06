@@ -39,15 +39,15 @@ export const S7Endcard: React.FC = () => {
         ))}
 
         {/* ---------- Phase B: link-in-bio CTA + closing ---------- */}
-        <Center y={175} z={6}><LinePop text={COPY.endcard.slogan} at={190} size={76} fill={C.red} rot={-2} /></Center>
+        <Center y={175} z={6}><LinePop text={COPY.endcard.slogan} at={190} size={86} fill={C.red} rot={-2} /></Center>
         <Pop at={124} x={540} y={410} from="slam" z={5}>
           <div style={{ transform: `scale(${finalBump})` }}><LogoCard file="pikobuy.jpg" w={190} pad={10} radius={34} /></div>
         </Pop>
         <Pop at={130} x={540} y={870} from="bottom" rot={-2} z={4}>
           <div style={{ position: "relative", width: 380 + 28, padding: 14, background: C.white, borderRadius: 30, boxShadow: `0 0 0 6px ${C.black}` }}>
             <Img src={asset("stickers/link-in-bio.jpg")} style={{ width: 380, height: shotH, display: "block", borderRadius: 20 }} />
-            <div style={{ position: "absolute", left: -40, top: 14 + shotH * 0.465 - 70 }}>
-              <DrawCircle w={490} h={140} at={150} />
+            <div style={{ position: "absolute", left: -30, top: 14 + shotH * 0.465 - 88 }}>
+              <DrawCircle w={470} h={176} at={150} />
             </div>
           </div>
         </Pop>
