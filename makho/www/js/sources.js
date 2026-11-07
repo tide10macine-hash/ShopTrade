@@ -86,14 +86,18 @@
 
   /* ---------- Wikipedia ---------- */
   const WP = "https://de.wikipedia.org/";
-  const UA = { "Api-User-Agent": "Makho/2.0 (persönlicher Sprachassistent)" };
+  const UA = { "Api-User-Agent": "Makho/3.0 (Sprachassistent; https://github.com/tide10macine-hash/ShopTrade)", "User-Agent": "Makho/3.0 (Sprachassistent; https://github.com/tide10macine-hash/ShopTrade)" };
+  async function wpJSON(url) {
+    try { return await getJSON(url, 9000, UA); }
+    catch (e) { if (/HTTP 429/.test(e.message)) { await new Promise(r => setTimeout(r, 1200)); return getJSON(url, 9000, UA); } throw e; }
+  }
   const wiki = {
     async lookup(query) {
-      const s = await getJSON(WP + "w/api.php?action=query&list=search&srlimit=3&format=json&origin=*&srsearch=" + encodeURIComponent(query), 9000, UA);
+      const s = await wpJSON(WP + "w/api.php?action=query&list=search&srlimit=3&format=json&origin=*&srsearch=" + encodeURIComponent(query));
       const hits = (s.query && s.query.search) || [];
       if (!hits.length) return null;
       const title = hits[0].title;
-      const p = await getJSON(WP + "api/rest_v1/page/summary/" + encodeURIComponent(title.replace(/ /g, "_")), 9000, UA);
+      const p = await wpJSON(WP + "api/rest_v1/page/summary/" + encodeURIComponent(title.replace(/ /g, "_")));
       if (!p || !p.extract) return null;
       return { title: p.title || title, description: p.description || "", extract: p.extract, image: (p.thumbnail && p.thumbnail.source) || null, url: (p.content_urls && p.content_urls.mobile && p.content_urls.mobile.page) || "" };
     }

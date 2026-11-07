@@ -10,7 +10,10 @@ async function check(name, fn, ok) {
     const good = ok(r);
     console.log((good ? "OK   " : "FAIL ") + name + " → " + JSON.stringify(r).slice(0, 260));
     if (!good) fail++;
-  } catch (e) { fail++; console.log("FAIL " + name + " → " + e.message); }
+  } catch (e) {
+    if (/HTTP 429/.test(e.message)) { console.log("WARN " + name + " → gedrosselt (429), auf geteilten CI-Servern normal"); return; }
+    fail++; console.log("FAIL " + name + " → " + e.message);
+  }
 }
 
 await check("tagesschau ausland", () => S.news.list("ausland"), r => r.length >= 3 && r[0].title);
