@@ -1,0 +1,59 @@
+name: Makho Android-App
+
+on:
+  push:
+    paths:
+      - "makho/**"
+      - ".github/workflows/makho-android.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: makho
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Abhängigkeiten installieren
+        run: npm ci
+
+      - name: Web-App in Android übernehmen
+        run: npx cap sync android
+
+      - name: APK bauen
+        run: |
+          chmod +x android/gradlew
+          cd android && ./gradlew assembleDebug --no-daemon --stacktrace
+          cp app/build/outputs/apk/debug/app-debug.apk ../Makho.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Makho-APK
+          path: makho/Makho.apk
+
+      - name: Als Release veröffentlichen
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: makho-v1.0.${{ github.run_number }}
+          name: Makho 1.0.${{ github.run_number }}
+          target_commitish: ${{ github.sha }}
+          files: makho/Makho.apk
+          body: |
+            Makho für Android. Auf dem Handy die Datei **Makho.apk** antippen und installieren.
+            Beim ersten Start das Mikrofon erlauben und dann „Hallo Makho“ sagen.

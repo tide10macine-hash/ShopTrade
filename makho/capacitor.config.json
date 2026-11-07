@@ -1,0 +1,15 @@
+{
+  "appId": "de.makho.assistant",
+  "appName": "Makho",
+  "webDir": "www",
+  "backgroundColor": "#0a0605",
+  "android": {
+    "backgroundColor": "#0a0605",
+    "adjustMarginsForEdgeToEdge": "force"
+  },
+  "plugins": {
+    "CapacitorHttp": {
+      "enabled": true
+    }
+  }
+}

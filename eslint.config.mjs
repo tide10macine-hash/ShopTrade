@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Makho (Android-App) ist ein eigenes Projekt.
+    "makho/**",
   ]),
 ]);
 
