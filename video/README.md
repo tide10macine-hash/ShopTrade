@@ -104,3 +104,31 @@ python3 -I tools/extract_paper.py fA assets/backgrounds/crumpled-paper.png
 - **Clips:** `assets/audio/voice-3reasons/phrases.json` sets the 8 phrase cut points, and `python3 -I tools/prepare_voice.py <take.mp3> assets/audio/voice-3reasons assets/audio/voice-3reasons/phrases.json 1.0` makes the clips without any speed change.
 - **Timing:** `src/reasons/voice.ts` places each clip on its visual. Music and effects duck under the voice.
 - **Generating with the API:** `tools/generate_voice.mjs` can generate takes through the ElevenLabs SDK. Library voices such as Adam need a paid ElevenLabs plan.
+
+---
+
+# PIKOBUY – 5 Tips explainer (third composition)
+
+**Final video:** `out/PIKOBUY_5_TIPS_CHINA_HAULS.mp4`. It is a faceless "5 things I'd do starting China hauls from zero" video: 1080×1920, 60 fps, about 48 s.
+**Render:** `npm run render:tips` (composition `Pikobuy5Tips`).
+
+**Format:**
+- A dark neon background whose colour changes for each tip (blue / green / orange / red), with a glitch cut at each change.
+- Word-synced captions: an italic serif line, a bold neon key phrase that types itself out, and short auto-captions along the bottom.
+- An original SVG and HTML graphic in the middle for each tip.
+- It ends with a PIKOBUY plug: logo, the official 2×40% shipping coupon, and the link-in-bio page with a tap.
+
+**Voice:** ElevenLabs "Liam – Energetic, Social Media Creator" (a built-in voice, so it works on the free plan).
+- The script is in `src/tips/script.json`. `npm run voice:tips` regenerates the take plus word timestamps (`assets/audio/voice-tips/words.json`).
+- Run it with `ELEVENLABS_API_KEY` set; in the cloud session it's `proxy-injected`, plus `NODE_USE_ENV_PROXY=1`.
+- Scenes, captions and sound cues are anchored to word indices, so a regenerated take re-times itself.
+
+**Source files** (all in `src/tips/`):
+- `timeline.ts`: sections, colours, caption blocks
+- `Captions.tsx`: the caption system
+- `Background.tsx`: neon background and glitch
+- `icons.tsx`, `cards.tsx`: the graphics
+- `Visuals.tsx`: the per-section animation
+- `Tips.tsx`: the mix and sound cues
+
+**Audio:** new effects `glitch` and `vacuum`, and a 48 s music bed (`npm run audio:tips`).

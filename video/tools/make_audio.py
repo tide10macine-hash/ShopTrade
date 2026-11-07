@@ -416,6 +416,37 @@ def sfx_doorbell():
     return norm(stereo(reverb(x, 0.5, 0.2)[:n], 0, 0.01), 0.7)
 
 
+def sfx_glitch():
+    d = 0.32
+    n = int(d * SR)
+    x = np.zeros(n)
+    pos = 0
+    while pos < n - 400:
+        g = int(rng.uniform(0.008, 0.03) * SR)
+        kind = rng.integers(0, 3)
+        tt = np.arange(g) / SR
+        if kind == 0:
+            seg = np.sign(np.sin(2 * np.pi * rng.uniform(200, 2400) * tt))
+        elif kind == 1:
+            seg = rng.uniform(-1, 1, g)
+            seg = np.round(seg * 3) / 3
+        else:
+            seg = np.zeros(g)
+        x[pos:pos + g] = seg[: n - pos] * rng.uniform(0.3, 1)
+        pos += g
+    x = filt(x, "band", [200, 9000]) * env_exp(n, 0.14)
+    return norm(stereo(x, 0, 0.004), 0.6)
+
+
+def sfx_vacuum():
+    d = 1.1
+    n = int(d * SR)
+    hiss = filt(noise(d), "band", [2500, 9000])
+    tone = sweep_sine(900, 380, d) * 0.15
+    e = np.minimum(1, np.arange(n) / (0.05 * SR)) * np.exp(-np.maximum(0, np.arange(n) / SR - 0.75) / 0.12)
+    return norm(stereo((hiss + tone) * e, 0, 0.006), 0.55)
+
+
 if __name__ == "__main__":
     S = os.path.join(OUT, "sfx")
     write(f"{S}/impact.wav", sfx_impact())
@@ -435,6 +466,13 @@ if __name__ == "__main__":
     write(f"{S}/tick.wav", sfx_tick(True))
     write(f"{S}/tock.wav", sfx_tick(False))
     write(f"{S}/stamp.wav", sfx_stamp())
+    if len(sys.argv) > 2 and sys.argv[2] == "--tips":
+        # "5 Tips" explainer: 48 s bed; small drop before the PIKOBUY reveal; stops at the end
+        DUR, DROP_80, DROP_LOGO, STOP, HOOKS = 48.2, 40.0, 46.0, 47.6, []
+        write(f"{S}/glitch.wav", sfx_glitch())
+        write(f"{S}/vacuum.wav", sfx_vacuum())
+        write(os.path.join(OUT, "music", "music-bed-tips-120bpm.wav"), music())
+        sys.exit(0)
     if len(sys.argv) > 2 and sys.argv[2] == "--reasons":
         # "3 Reasons" video: 18 s bed, drop before the 80% scene and the logo, stop on the end hit
         DUR, DROP_80, DROP_LOGO, STOP, HOOKS = 18.0, 10.0, 15.5, 17.5, [6.0, 10.0, 15.5]

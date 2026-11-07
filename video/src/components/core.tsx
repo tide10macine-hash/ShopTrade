@@ -23,6 +23,7 @@ export const Fonts: React.FC = () => {
     const faces = [
       new FontFace("Montserrat", `url(${staticFile("fonts/Montserrat-Variable.ttf")})`, { weight: "100 900" }),
       new FontFace("Poppins", `url(${staticFile("fonts/Poppins-Black.ttf")})`, { weight: "900" }),
+      new FontFace("Instrument Serif", `url(${staticFile("fonts/InstrumentSerif-Italic.ttf")})`, { style: "italic", weight: "400" }),
     ];
     Promise.all(faces.map((f) => f.load())).then((loaded) => {
       loaded.forEach((f) => document.fonts.add(f));
