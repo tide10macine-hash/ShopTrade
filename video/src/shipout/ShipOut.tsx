@@ -5,9 +5,21 @@ import { DuckContext, SceneStart, Sfx } from "../components/Sfx";
 import { makeVoiceActivity } from "../voice";
 import { Subtitles } from "../tips/Captions";
 import { SCENES, TornBand } from "./Scenes";
-import { SECTIONS, SHAKES, W, sectionEnd } from "./timeline";
+import { PUNCHES, SECTIONS, SHAKES, W, sectionEnd } from "./timeline";
+import { useCurrentFrame } from "remotion";
 
 const voiceAct = makeVoiceActivity(W.map((w, i) => ({ clip: String(i), at: w.start, dur: w.end - w.start })));
+
+/** brief zoom-in punches on key words (scales the whole camera layer) */
+const Punch: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const f = useCurrentFrame();
+  let s = 1;
+  for (const [at, k] of PUNCHES) {
+    const d = f - at;
+    if (d >= 0 && d < 24) s += k * Math.exp(-d / 5) * Math.min(1, d / 2);
+  }
+  return <AbsoluteFill style={{ transform: `scale(${s})` }}>{children}</AbsoluteFill>;
+};
 
 /** PIKOBUY - "3 tips before shipping out" (paper collage, torn-paper band transitions, no music) */
 export const ShipOut: React.FC<{ withVoice?: boolean }> = ({ withVoice = true }) => (
@@ -16,6 +28,7 @@ export const ShipOut: React.FC<{ withVoice?: boolean }> = ({ withVoice = true })
     <DuckContext.Provider value={voiceAct}>
       <Camera shakes={SHAKES}>
         <Paper />
+        <Punch>
         {SECTIONS.map((s, i) => {
           const C = SCENES[i];
           return (
@@ -26,6 +39,7 @@ export const ShipOut: React.FC<{ withVoice?: boolean }> = ({ withVoice = true })
             </Sequence>
           );
         })}
+        </Punch>
         <TornBand />
       </Camera>
       <Subtitles words={W} />
@@ -33,10 +47,9 @@ export const ShipOut: React.FC<{ withVoice?: boolean }> = ({ withVoice = true })
       {withVoice && <Html5Audio src={staticFile("audio/voice-shipout/voice.wav")} />}
       {SECTIONS.slice(1, 4).map((s) => (
         <React.Fragment key={s.key}>
-          <Sfx at={s.from - 8} name="paper-rustle" vol={0.6} />
-          <Sfx at={s.from - 4} name="whoosh" vol={0.5} />
-          <Sfx at={s.from + 10} name="impact" vol={0.4} />
-          <Sfx at={s.from + 26} name="whoosh-reverse" vol={0.4} />
+          <Sfx at={s.from - 8} name="paper-tear" vol={0.7} />
+          <Sfx at={s.from + 8} name="kick-boom" vol={0.55} />
+          <Sfx at={s.from + 26} name="paper-tear" vol={0.35} />
         </React.Fragment>
       ))}
     </DuckContext.Provider>

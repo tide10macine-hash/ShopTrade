@@ -447,6 +447,130 @@ def sfx_vacuum():
     return norm(stereo((hiss + tone) * e, 0, 0.006), 0.55)
 
 
+# ---------------------------------------------------------------- "3 tips before shipping" kit
+def sfx_paper_tear():
+    d = 0.55
+    n = int(d * SR)
+    x = np.zeros(n)
+    pos = 0
+    while pos < n - 200:  # dense crackle bursts that thin out
+        g = int(rng.uniform(0.002, 0.008) * SR)
+        x[pos:pos + g] += rng.uniform(-1, 1, g) * rng.uniform(0.4, 1)
+        pos += int(rng.uniform(0.001, 0.006) * SR * (1 + 3 * pos / n))
+    x = filt(x, "band", [800, 8000]) * np.linspace(1, 0.2, n) * np.minimum(1, np.arange(n) / (0.02 * SR))
+    return norm(pan_sweep(x, -0.4, 0.5), 0.75)
+
+
+def sfx_tape_rip():
+    d = 0.4
+    n = int(d * SR)
+    tt = t(d)
+    am = 0.5 + 0.5 * np.sign(np.sin(2 * np.pi * (60 + 140 * tt / d) * tt))
+    x = filt(noise(d), "band", [1500, 7000]) * am * np.sin(np.pi * np.linspace(0, 1, n)) ** 0.7
+    return norm(stereo(x, 0.2, 0.005), 0.65)
+
+
+def sfx_cardboard_thud():
+    d = 0.5
+    n = int(d * SR)
+    body = sweep_sine(150, 70, d) * env_exp(n, 0.06)
+    knock = filt(noise(d), "band", [200, 1800]) * env_exp(n, 0.03)
+    return norm(stereo(np.tanh((body + knock * 0.9) * 1.8)), 0.85)
+
+
+def sfx_scanner_beep():
+    d = 0.16
+    n = int(d * SR)
+    x = (np.sin(2 * np.pi * 2350 * t(d)) + 0.3 * np.sin(2 * np.pi * 4700 * t(d))) * env_adsr(n, 0.004, 0.03)
+    return norm(stereo(x), 0.5)
+
+
+def sfx_laser_sweep():
+    d = 0.7
+    n = int(d * SR)
+    x = sweep_sine(500, 2600, d, "lin") * 0.6 + filt(noise(d), "band", [3000, 9000]) * 0.15
+    x *= np.sin(np.pi * np.linspace(0, 1, n)) ** 0.8
+    return norm(pan_sweep(x, -0.7, 0.7), 0.5)
+
+
+def sfx_receipt_print():
+    d = 0.9
+    n = int(d * SR)
+    x = np.zeros(n)
+    step = int(0.018 * SR)
+    for k in range(0, n - step, step):
+        g = int(0.008 * SR)
+        x[k:k + g] += filt(rng.uniform(-1, 1, g), "band", [1200, 5000]) * env_exp(g, 0.002) * (0.6 + 0.4 * ((k // step) % 2))
+    x += np.sign(np.sin(2 * np.pi * 95 * t(d))) * 0.05
+    return norm(stereo(x * np.minimum(1, np.arange(n)[::-1] / (0.05 * SR)), 0, 0.004), 0.55)
+
+
+def sfx_ding_bright():
+    d = 1.0
+    return norm(stereo(reverb(bell([1760, 3520, 5280, 7040], [1, .45, .2, .1], d, 0.3), 0.6, 0.22)[: int(d * SR)]), 0.7)
+
+
+def sfx_kick_boom():
+    d = 0.9
+    n = int(d * SR)
+    x = sweep_sine(120, 38, d) * env_exp(n, 0.22) + filt(noise(d), "low", 300) * env_exp(n, 0.05) * 0.6
+    x[: int(0.002 * SR)] += 0.7
+    return norm(stereo(np.tanh(x * 2.2)), 0.9)
+
+
+def sfx_slide_whistle():
+    d = 0.6
+    n = int(d * SR)
+    x = sweep_sine(1600, 300, d) * (1 + 0.15 * np.sin(2 * np.pi * 7 * t(d))) * np.sin(np.pi * np.linspace(0, 1, n)) ** 0.5
+    return norm(pan_sweep(x, 0.2, -0.9), 0.5)
+
+
+def sfx_bubble_pop():
+    d = 0.09
+    n = int(d * SR)
+    x = sweep_sine(500, 1800, d) * env_exp(n, 0.02)
+    return norm(stereo(x), 0.6)
+
+
+def sfx_zip_up():
+    d = 0.35
+    n = int(d * SR)
+    tt = t(d)
+    x = np.sign(np.sin(2 * np.pi * (40 + 220 * tt / d) * tt)) * filt(noise(d), "band", [1500, 6000]) * 0.8
+    return norm(pan_sweep(x * np.sin(np.pi * np.linspace(0, 1, n)), -0.5, 0.5), 0.55)
+
+
+def sfx_coin_cascade():
+    d = 1.4
+    n = int(d * SR)
+    x = np.zeros(n)
+    for k in range(22):
+        s0 = int((0.03 + k * 0.045 + rng.uniform(0, 0.02)) * SR)
+        f = rng.uniform(2600, 4200)
+        c = bell([f, f * 1.6, f * 2.4], [1, .5, .3], 0.25, 0.04) * (1 - k / 30)
+        x[s0:s0 + len(c)] += c[: n - s0]
+    return norm(stereo(reverb(x, 0.4, 0.18)[:n], 0, 0.012), 0.6)
+
+
+def sfx_rubber_stretch():
+    d = 0.45
+    n = int(d * SR)
+    x = sweep_sine(90, 260, d) * (1 + 0.5 * np.sin(2 * np.pi * 28 * t(d)))
+    x = filt(np.tanh(x * 2), "low", 1800) * np.sin(np.pi * np.linspace(0, 1, n)) ** 0.6
+    return norm(stereo(x), 0.55)
+
+
+def sfx_shine():
+    d = 0.8
+    n = int(d * SR)
+    x = np.zeros(n)
+    for k, f in enumerate([2093, 2637, 3136, 4186, 5274]):
+        s0 = int(k * 0.05 * SR)
+        b = bell([f, f * 2], [1, .3], d - k * 0.05, 0.12)
+        x[s0:s0 + len(b)] += b[: n - s0] * (0.5 + 0.1 * k)
+    return norm(stereo(reverb(x, 0.5, 0.25)[:n], 0, 0.01), 0.55)
+
+
 if __name__ == "__main__":
     S = os.path.join(OUT, "sfx")
     write(f"{S}/impact.wav", sfx_impact())
@@ -466,6 +590,14 @@ if __name__ == "__main__":
     write(f"{S}/tick.wav", sfx_tick(True))
     write(f"{S}/tock.wav", sfx_tick(False))
     write(f"{S}/stamp.wav", sfx_stamp())
+    if len(sys.argv) > 2 and sys.argv[2] == "--shipout":
+        for name, fn in [("paper-tear", sfx_paper_tear), ("tape-rip", sfx_tape_rip), ("cardboard-thud", sfx_cardboard_thud),
+                         ("scanner-beep", sfx_scanner_beep), ("laser-sweep", sfx_laser_sweep), ("receipt-print", sfx_receipt_print),
+                         ("ding-bright", sfx_ding_bright), ("kick-boom", sfx_kick_boom), ("slide-whistle", sfx_slide_whistle),
+                         ("bubble-pop", sfx_bubble_pop), ("zip-up", sfx_zip_up), ("coin-cascade", sfx_coin_cascade),
+                         ("rubber-stretch", sfx_rubber_stretch), ("shine", sfx_shine)]:
+            write(f"{S}/{name}.wav", fn())
+        sys.exit(0)
     if len(sys.argv) > 2 and sys.argv[2] == "--tips":
         # "5 Mistakes" countdown: 39 s bed; drops before mistake #5 and before the PIKOBUY reveal
         DUR, DROP_80, DROP_LOGO, STOP, HOOKS = 39.0, 6.0, 33.0, 38.6, [33.0]

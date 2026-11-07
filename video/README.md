@@ -166,10 +166,15 @@ It ends with PIKOBUY's 2×40% shipping coupons for new sign-ups, "LINK IN MY BIO
 **Composition:** `Pikobuy3TipsShipOut`. **Render:** `npm run render:shipout` → `out/PIKOBUY_3_TIPS_BEFORE_SHIPPING.mp4`. A visual-only preview without voice is in `preview/`.
 
 **Tips:**
-1. Rehearsal: it's free, it shows the exact shipping price, and you have 90 days to ship.
+1. Rehearsal: it's free, and it shows the exact shipping price before you pay.
 2. Coupons: 2×40% shipping coupons for new sign-ups, via the link in bio.
-3. Remove packaging such as shoeboxes to save money.
+3. Remove packaging such as shoeboxes: a smaller parcel means cheaper shipping.
 
-**Style:** between tips, a dark torn-paper band sweeps through carrying a giant green number.
+**Style:**
+- Between tips, a dark torn-paper band carries a giant number. It enters from a different direction each time.
+- Each tip has its own motion: a laser scan with a progress bar and a FREE stamp with ink splash; a printing receipt; a coupon that flips and fans into two; price bars that shrink; a link-in-bio card with a tap; a shoebox that opens, the sneaker jumping out and the box flying away; a parcel that shrinks; coin rain; and a light sweep across the logo.
+- The camera zoom-punches on key words.
+
+**Sound kit:** 14 new effects made for this video (`npm run audio -- --shipout`): paper-tear, tape-rip, cardboard-thud, scanner-beep, laser-sweep, receipt-print, ding-bright, kick-boom, slide-whistle, bubble-pop, zip-up, coin-cascade, rubber-stretch and shine.
 
 **Voice:** still to be generated. The script is in `src/shipout/script.json`. `assets/audio/voice-shipout/words.json` currently holds *estimated* timings (`tools/estimate_words.py`). Once credits are available, `npm run voice:shipout` writes the real voice and timings, and every scene re-times automatically.

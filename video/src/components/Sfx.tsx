@@ -4,7 +4,9 @@ import { Html5Audio, Sequence, staticFile } from "remotion";
 export type SfxName =
   | "impact" | "impact-cinematic" | "riser" | "whoosh" | "whoosh-reverse" | "airplane" | "pop" | "pop-high"
   | "paper-rustle" | "cash-register" | "coins" | "truck" | "coupon-confirm" | "checkmark" | "tick" | "tock" | "stamp"
-  | "page-flip" | "camera-shutter" | "doorbell" | "glitch" | "vacuum";
+  | "page-flip" | "camera-shutter" | "doorbell" | "glitch" | "vacuum"
+  | "paper-tear" | "tape-rip" | "cardboard-thud" | "scanner-beep" | "laser-sweep" | "receipt-print" | "ding-bright"
+  | "kick-boom" | "slide-whistle" | "bubble-pop" | "zip-up" | "coin-cascade" | "rubber-stretch" | "shine";
 
 // master SFX bus gain (keeps the summed mix below 0 dBFS; final loudness is set in tools/finish.sh)
 export const SFX_GAIN = 0.38;

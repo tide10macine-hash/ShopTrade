@@ -2,6 +2,9 @@
   "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
   "voiceName": "Liam - Energetic, Social Media Creator",
   "modelId": "eleven_v4",
-  "settings": { "stability": 0.5, "similarityBoost": 0.75 },
-  "text": "Three tips before you ship out your haul on PikoBuy! Tip one: do a rehearsal. It's free, you see the exact shipping price, and you have ninety days to ship it out. Tip two: use coupons. New sign-ups get two forty percent shipping coupons, through the link in my bio. And tip three: remove the packaging, like shoeboxes, and save money!"
+  "settings": {
+    "stability": 0.5,
+    "similarityBoost": 0.75
+  },
+  "text": "Three tips before you ship out your haul on PikoBuy! Tip one: do a rehearsal. It's free, and you see the exact shipping price before you pay. Tip two: use coupons. New sign-ups get two forty percent shipping coupons, through the link in my bio. And tip three: remove the packaging, like shoeboxes. Smaller parcel, cheaper shipping!"
 }
