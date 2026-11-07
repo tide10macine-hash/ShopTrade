@@ -7,7 +7,9 @@
     "studio": "remotion studio src/index.ts",
     "audio": "python3 -I tools/make_audio.py assets/audio",
     "render": "remotion render src/index.ts Pikobuy1111 out/master.mp4 --codec h264 --crf 16 --audio-bitrate 320k && tools/finish.sh out/master.mp4 out/PIKOBUY_11.11_MEGA_SALE.mp4",
-    "still": "remotion still src/index.ts Pikobuy1111"
+    "still": "remotion still src/index.ts Pikobuy1111",
+    "render:reasons": "remotion render src/index.ts Pikobuy3Reasons out/master-reasons.mp4 --codec h264 --crf 16 --audio-bitrate 320k && tools/finish.sh out/master-reasons.mp4 out/PIKOBUY_3_REASONS_TO_SHOP.mp4",
+    "audio:reasons": "python3 -I tools/make_audio.py assets/audio --reasons"
   },
   "dependencies": {
     "@remotion/bundler": "^4.0.541",

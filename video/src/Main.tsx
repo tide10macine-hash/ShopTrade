@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill, Html5Audio, Sequence, interpolate, staticFile } from "remotion";
 import { Camera, Finish, Fonts, Paper, SceneShell } from "./components/core";
-import { END_HIT, SCENES, WHIP } from "./timeline";
+import { END_HIT, SCENES, SHAKES, WHIP } from "./timeline";
 import { VOICE, VOICE_GAIN, voiceActivity } from "./voice";
 import { S1Mega } from "./scenes/S1Mega";
 import { S2Prices } from "./scenes/S2Prices";
@@ -10,7 +10,7 @@ import { S4Coupon } from "./scenes/S4Coupon";
 import { S5Why } from "./scenes/S5Why";
 import { S6Countdown } from "./scenes/S6Countdown";
 import { S7Final } from "./scenes/S7Final";
-import { SceneStart, Sfx } from "./components/Sfx";
+import { DuckContext, SceneStart, Sfx } from "./components/Sfx";
 
 const ORDER = [
   { key: "mega", C: S1Mega, enter: null, exit: "up" },
@@ -32,7 +32,8 @@ const musicVolume = (f: number) => {
 export const Main: React.FC = () => (
   <AbsoluteFill style={{ backgroundColor: "#f1f1f3" }}>
     <Fonts />
-    <Camera>
+    <DuckContext.Provider value={voiceActivity}>
+    <Camera shakes={SHAKES}>
       <Paper />
       {ORDER.map(({ key, C, enter, exit }) => {
         const sc = SCENES[key];
@@ -59,5 +60,6 @@ export const Main: React.FC = () => (
     {ORDER.slice(1).map(({ key }) => (
       <Sfx key={key} at={SCENES[key].from - 5} name="whoosh" vol={0.5} />
     ))}
+    </DuckContext.Provider>
   </AbsoluteFill>
 );

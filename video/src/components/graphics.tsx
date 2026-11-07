@@ -37,9 +37,9 @@ export const PriceTag: React.FC<{ w?: number; text?: string; color?: string }> =
 };
 
 /** White cut-out board with an icon and a two-tone label (scene 5). */
-export const BenefitBoard: React.FC<{ icon: React.ReactNode; top: string; bottom: string; w?: number }> = ({
-  icon, top, bottom, w = 860,
-}) => (
+export const BenefitBoard: React.FC<{
+  icon: React.ReactNode; top: string; bottom: string; w?: number; topSize?: number; bottomSize?: number;
+}> = ({ icon, top, bottom, w = 860, topSize = 70, bottomSize = 70 }) => (
   <div
     style={{
       width: w, height: 230, background: C.white, border: `8px solid ${C.black}`, borderRadius: 34,
@@ -49,8 +49,8 @@ export const BenefitBoard: React.FC<{ icon: React.ReactNode; top: string; bottom
   >
     <div style={{ width: 230, height: 190, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{icon}</div>
     <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-      <Outlined text={top} size={70} color={C.red} />
-      <Outlined text={bottom} size={70} color={C.black} stroke={1} />
+      <Outlined text={top} size={topSize} color={C.red} />
+      <Outlined text={bottom} size={bottomSize} color={C.black} stroke={1} />
     </div>
   </div>
 );

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import {
   AbsoluteFill,
   Img,
@@ -11,7 +11,7 @@ import {
   useVideoConfig,
 } from "remotion";
 import { C, EASE, FONT, SHADOW, SPRING } from "../theme";
-import { SHAKES, WHIP } from "../timeline";
+import { WHIP } from "../timeline";
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 
@@ -73,10 +73,15 @@ export const Finish: React.FC = () => {
 };
 
 /* ------------------------------------------------------------------ camera */
+export type Shake = { at: number; amp: number };
+/** camera-shake hits for the composition being rendered (global frames) */
+export const ShakeContext = createContext<Shake[]>([]);
+
 export const useShake = () => {
   const frame = useCurrentFrame();
+  const shakes = useContext(ShakeContext);
   let x = 0, y = 0, r = 0;
-  for (const s of SHAKES) {
+  for (const s of shakes) {
     const d = frame - s.at;
     if (d < 0 || d > 22) continue;
     const k = s.amp * Math.exp(-d / 5);
@@ -87,7 +92,13 @@ export const useShake = () => {
   return { x, y, r };
 };
 
-export const Camera: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const Camera: React.FC<{ shakes: Shake[]; children: React.ReactNode }> = ({ shakes, children }) => (
+  <ShakeContext.Provider value={shakes}>
+    <CameraInner>{children}</CameraInner>
+  </ShakeContext.Provider>
+);
+
+const CameraInner: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { x, y, r } = useShake();
   return (
     <AbsoluteFill style={{ transform: `translate(${x}px,${y}px) rotate(${r}deg)` }}>{children}</AbsoluteFill>
@@ -450,7 +461,7 @@ export const Banner: React.FC<{ text: string; size: number; bg?: string; color?:
   </div>
 );
 
-export const Logo: React.FC<{ w: number; backing?: boolean }> = ({ w, backing = true }) => (
+export const Logo: React.FC<{ w: number; backing?: boolean; src?: string }> = ({ w, backing = true, src = "logos/pikobuy-logo.png" }) => (
   // Official PIKOBUY icon, used as-is (no recolour / redraw). White backing = sticker cut margin.
   <div
     style={{
@@ -460,7 +471,7 @@ export const Logo: React.FC<{ w: number; backing?: boolean }> = ({ w, backing = 
       borderRadius: w * 0.25,
     }}
   >
-    <Img src={staticFile("logos/pikobuy-logo.png")} style={{ width: w, height: "auto", display: "block" }} />
+    <Img src={staticFile(src)} style={{ width: w, height: "auto", display: "block" }} />
   </div>
 );
 

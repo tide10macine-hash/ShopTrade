@@ -385,6 +385,37 @@ def music():
     return norm(mix, 0.85)
 
 
+def sfx_page_flip():
+    d = 0.16
+    n = int(d * SR)
+    x = filt(noise(d), "band", [900, 7000]) * np.sin(np.pi * np.linspace(0, 1, n)) ** 0.5 * env_exp(n, 0.06)
+    x[: int(0.004 * SR)] += filt(noise(0.004), "high", 3000) * 0.8
+    return norm(pan_sweep(x, -0.3, 0.3), 0.6)
+
+
+def sfx_shutter():
+    d = 0.22
+    n = int(d * SR)
+    x = np.zeros(n)
+    for off, amp in [(0.0, 1.0), (0.075, 0.8)]:
+        s0 = int(off * SR)
+        c = filt(noise(0.05), "band", [1500, 9000]) * env_exp(int(0.05 * SR), 0.006) * amp
+        c += sweep_sine(1800, 600, 0.05) * env_exp(int(0.05 * SR), 0.008) * 0.4 * amp
+        x[s0:s0 + len(c)] += c[: n - s0]
+    return norm(stereo(x, 0, 0.005), 0.7)
+
+
+def sfx_doorbell():
+    d = 1.3
+    n = int(d * SR)
+    x = np.zeros(n)
+    for off, f in [(0.0, 659.3), (0.42, 523.3)]:
+        s0 = int(off * SR)
+        b = bell([f, f * 2.0, f * 3.0, f * 4.2], [1, .5, .2, .08], d - off, 0.35)
+        x[s0:s0 + len(b)] += b[: n - s0]
+    return norm(stereo(reverb(x, 0.5, 0.2)[:n], 0, 0.01), 0.7)
+
+
 if __name__ == "__main__":
     S = os.path.join(OUT, "sfx")
     write(f"{S}/impact.wav", sfx_impact())
@@ -404,4 +435,12 @@ if __name__ == "__main__":
     write(f"{S}/tick.wav", sfx_tick(True))
     write(f"{S}/tock.wav", sfx_tick(False))
     write(f"{S}/stamp.wav", sfx_stamp())
+    if len(sys.argv) > 2 and sys.argv[2] == "--reasons":
+        # "3 Reasons" video: 18 s bed, drop before the 80% scene and the logo, stop on the end hit
+        DUR, DROP_80, DROP_LOGO, STOP, HOOKS = 18.0, 10.0, 15.5, 17.5, [6.0, 10.0, 15.5]
+        write(os.path.join(OUT, "music", "music-bed-3reasons-120bpm.wav"), music())
+        sys.exit(0)
     write(os.path.join(OUT, "music", "music-bed-120bpm.wav"), music())
+    write(f"{S}/page-flip.wav", sfx_page_flip())
+    write(f"{S}/camera-shutter.wav", sfx_shutter())
+    write(f"{S}/doorbell.wav", sfx_doorbell())

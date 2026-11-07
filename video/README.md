@@ -75,3 +75,25 @@ python3 -I tools/extract_paper.py fA assets/backgrounds/crumpled-paper.png
 - The 80% figure follows the coupon offer shown in PIKOBUY's own video: **two 40% OFF shipping coupons for new sign-ups, with terms and eligibility set by PIKOBUY**. The video shows the official 2×40% coupon. The coupon scene has no fine print, at the client's request. The closing scene keeps one line: "*Coupon terms & eligibility set by PIKOBUY." If the official 11.11 terms differ, edit `src/campaign.ts` and re-render.
 - The video makes no delivery-time promises. "Cheapest" and "fastest" are comparative claims, and some ad platforms and regions require substantiation for them.
 - Reference-video stickers were reused as requested. Stickers the reference had clipped at the frame edge were re-extracted from frames where they are fully visible, or rebuilt: the parcel, checkmark and coin stack. Competitor branding was removed: LITBUY and Gopbuy logos, DHL, and the third-party "China 11.11" banner. The influencer photo and the other apps' logos were not extracted.
+
+---
+
+# PIKOBUY – 3 Reasons to Shop (second composition)
+
+**Final video:** `out/PIKOBUY_3_REASONS_TO_SHOP.mp4`. It is 1080×1920, 60 fps, H.264, 18.0 s long, mastered to about −11.2 LUFS.
+**Preview:** `preview/storyboard_3reasons.png`.
+**Render:** `npm run render:reasons` (composition `Pikobuy3Reasons`). Music: `npm run audio:reasons`.
+
+| Time | Scene | Source |
+|---|---|---|
+| 0–2 s | A giant "3" slams in, then REASONS / TO SHOP WITH / PIKOBUY!, logo, mascot | `src/reasons/scenes/R1Hook.tsx` |
+| 2–6 s | #1 FREE REHEARSAL: the parcel is inspected (magnifier + camera flashes), then CHEAPEST SHIPPING PRICES! | `R2Rehearsal.tsx` |
+| 6–10 s | #2 YOUR HAUL ARRIVES: truck and plane, a tear-off calendar flips 1→6, a giant "6 DAYS!*", parcel and doorbell | `R3SixDays.tsx` |
+| 10–14 s | #3 80% OFF! counts up while coupons stack, then COUPONS FOR NEW SIGN-UPS, LINK IN MY BIO on a phone showing the link page | `R4Coupons.tsx` |
+| 14–18 s | Three ticked benefit boards, then a logo slam, SHOP SMARTER WITH PIKOBUY!, mascot, REEZY REPZ badge | `R5Final.tsx` |
+
+**Copy and qualifiers:** these live in `src/reasons/campaign.ts`. The 6-day note is a placeholder until the shipping line or destination is named.
+
+**Official assets:** `tools/prepare_brand_assets.py` prepares them. None of the art is redrawn: the logo gets its white corners made transparent, the mascot is copied as supplied, and the REEZY REPZ badge is cropped from the link-in-bio screenshot.
+
+**New effects:** page-flip, camera-shutter and doorbell.
