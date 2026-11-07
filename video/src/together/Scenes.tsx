@@ -58,12 +58,11 @@ export const Hook: React.FC = () => {
     <>
       <Title t="DON'T SHIP THESE" at={t(0)} y={360} />
       <Title t="ITEMS TOGETHER!" at={t(3)} y={470} color={C.white} />
-      <Pop x={540} y={1050} delay={t(1)}><Clothes w={460} /></Pop>
-      <Sticker src="reference-icons/thumbs-up.png" x={880} y={1250} w={150} delay={t(6)} rot={180} />
-      <Pop x={250} y={830} delay={t(2)} rot={-14}><Earbuds w={190} /></Pop>
-      <Pop x={850} y={820} delay={t(3) + 6} rot={12}><Perfume w={110} color="#ffb3d1" /></Pop>
-      <Pop x={540} y={720} delay={t(4)} from="slam" rot={-6}><StopSign w={210} /></Pop>
-      <Title t="WITH YOUR CLOTHES" at={t(5)} y={580} color={C.black} max={84} />
+      <Pop x={540} y={1110} delay={t(1)}><Clothes w={560} /></Pop>
+      <Pop x={210} y={860} delay={t(2)} rot={-14}><Earbuds w={250} /></Pop>
+      <Pop x={880} y={850} delay={t(3) + 6} rot={12}><Perfume w={140} color="#ffb3d1" /></Pop>
+      <Pop x={540} y={760} delay={t(4)} from="slam" rot={-6}><StopSign w={250} /></Pop>
+      <Title t="WITH YOUR CLOTHES" at={t(5)} y={580} color={C.red} max={84} />
 
       <Sfx at={0} name="paper-rustle" vol={0.6} />
       <Sfx at={t(1)} name="whoosh" vol={0.4} />
@@ -85,20 +84,20 @@ export const Electronics: React.FC = () => {
       <Chip n={1} />
       <BigNum n={1} out={t(9) - 4} />
       <Title t="ELECTRONICS" at={t(9)} />
-      <Pop x={540 - 230 * slide} y={1000} delay={t(9)} out={t(22) - 6}>
-        <div style={{ display: "flex", alignItems: "flex-end", gap: 10 }}><Smartwatch w={210} /><Earbuds w={230} /></div>
+      <Pop x={540 - 270 * slide} y={1000} delay={t(9)} out={t(22) - 6}>
+        <div style={{ display: "flex", alignItems: "flex-end", gap: 10, transform: `scale(${1 - 0.18 * slide})` }}><Smartwatch w={240} /><Earbuds w={260} /></div>
       </Pop>
-      <Pop x={790} y={1030} delay={t(14)} from="right" out={fix + 30}><Clothes w={340} /></Pop>
-      <Pop x={560} y={1010} delay={t(14) + 6} out={fix - 2}>
+      <Pop x={840} y={1040} delay={t(14)} from="right" out={fix + 30}><Clothes w={360} /></Pop>
+      <Pop x={600} y={1010} delay={t(14) + 6} out={fix - 2}>
         <div style={{ fontFamily: "'Montserrat', sans-serif", fontWeight: 900, fontSize: 120, color: C.black }}>+</div>
       </Pop>
-      <Pop x={560} y={1010} delay={t(16)} from="slam" out={fix - 2}><RedX size={460} /></Pop>
+      <Pop x={560} y={1010} delay={t(16)} from="slam" out={fix - 2}><RedX size={520} /></Pop>
       <Title t="SEPARATE HAUL!" at={fix + 6} y={600} color={C.white} max={92} />
       {/* carriers that run the special lines */}
       {["ems", "ups", "yodel"].map((c, i) => (
         <React.Fragment key={c}>
-          <Pop x={250 + i * 290} y={1020} delay={t(22) + i * 7} rot={[-6, 3, 7][i]} pulse={0.03}>
-            <Img src={staticFile(`logos/carriers/${c}-logo.png`)} style={{ width: 230, display: "block", filter: "drop-shadow(0 12px 10px rgba(40,30,30,0.3))" }} />
+          <Pop x={250 + i * 290} y={1000} delay={t(22) + i * 7} rot={[-6, 3, 7][i]} pulse={0.03}>
+            <Img src={staticFile(`logos/carriers/${c}-logo.png`)} style={{ width: 260, display: "block", filter: "drop-shadow(0 12px 10px rgba(40,30,30,0.3))" }} />
           </Pop>
           <Sfx at={t(22) + i * 7} name={i % 2 ? "pop-high" : "pop"} vol={0.45} />
         </React.Fragment>
@@ -126,29 +125,30 @@ export const Perfumes: React.FC = () => {
       <Chip n={2} />
       <BigNum n={2} out={t(26) - 4} />
       <Title t="PERFUMES" at={t(26)} out={cust - 4} />
-      <Pop x={540} y={1060} delay={t(26)} out={cust - 4}>
-        <OpenBox w={440}>
-          {[["#ffb3d1", 70, 0], ["#7ad9ff", 175, -24], ["#ffe08a", 280, 4]].map(([c, x, r], i) => (
-            <div key={i} style={{ position: "absolute", left: x as number, top: interpolate(f, [t(26) + i * 5, t(26) + i * 5 + 10], [140, 0], clamp), transform: `rotate(${r}deg)` }}>
-              <Perfume w={90} color={c as string} />
+      <Pop x={540} y={1080} delay={t(26)} out={cust - 4}>
+        <OpenBox w={540}>
+          {[["#ffb3d1", 80, 0], ["#7ad9ff", 215, -24], ["#ffe08a", 345, 4]].map(([c, x, r], i) => (
+            <div key={i} style={{ position: "absolute", left: x as number, top: interpolate(f, [t(26) + i * 5, t(26) + i * 5 + 10], [170, -20], clamp), transform: `rotate(${r}deg)` }}>
+              <Perfume w={110} color={c as string} />
             </div>
           ))}
         </OpenBox>
       </Pop>
-      <Pop x={540} y={1060} delay={t(26) + 26} from="slam" out={cust - 4}><RedX size={420} /></Pop>
+      <Pop x={540} y={1080} delay={t(26) + 26} from="slam" out={cust - 4}><RedX size={500} /></Pop>
       {[0, 1, 2].map((i) => (
         <Pop key={i} x={[180, 900, 860][i]} y={[820, 860, 1290][i]} delay={t(27) + i * 5} out={cust - 4}><Drop w={[90, 70, 60][i]} /></Pop>
       ))}
       <Title t="CUSTOMS CHECKS" at={cust} color={C.red} out={sep - 4} />
-      <Pop x={540} y={760} delay={cust} from="slam" out={sep - 4}><Warning w={230} /></Pop>
-      <Pop x={540} y={1110} delay={cust + 6} from="bottom" out={sep - 4}><Officer w={300} /></Pop>
-      <Title t="SHIP THEM SEPARATELY" at={sep} color={C.white} max={80} />
-      <Pop x={540} y={1060} delay={sep + 4}>
-        <OpenBox w={380}>
-          <div style={{ position: "absolute", left: 140, top: 10 }}><Perfume w={100} color="#7ad9ff" /></div>
+      <Pop x={540} y={760} delay={cust} from="slam" out={sep - 4}><Warning w={290} /></Pop>
+      <Pop x={540} y={1130} delay={cust + 6} from="bottom" out={sep - 4}><Officer w={400} /></Pop>
+      <Title t="SHIP THEM" at={sep} color={C.white} />
+      <Title t="SEPARATELY!" at={t(37)} y={600} color={C.red} />
+      <Pop x={540} y={1080} delay={sep + 4}>
+        <OpenBox w={480}>
+          <div style={{ position: "absolute", left: 176, top: -10 }}><Perfume w={128} color="#7ad9ff" /></div>
         </OpenBox>
       </Pop>
-      <Sticker src={CHECK} x={820} y={860} w={140} delay={t(37)} rot={10} />
+      <Sticker src={CHECK} x={850} y={840} w={160} delay={t(37)} rot={10} />
 
       <Sfx at={t(26)} name="impact" vol={0.5} />
       <Sfx at={t(26) + 26} name="stamp" vol={0.7} />
@@ -169,11 +169,11 @@ export const PowerBanks: React.FC = () => {
       <Chip n={3} />
       <BigNum n={3} out={t(40) - 4} />
       <Title t="POWER BANKS" at={t(40)} />
-      <Pop x={410} y={1010} delay={t(40)} rot={-8}><PowerBank w={250} /></Pop>
-      <Pop x={700} y={1040} delay={t(42)} rot={8}><Battery w={140} /></Pop>
-      <Pop x={540} y={1010} delay={t(41) + 14} from="slam" out={t(44)}><RedX size={420} /></Pop>
+      <Pop x={370} y={1000} delay={t(40)} rot={-8}><PowerBank w={290} /></Pop>
+      <Pop x={760} y={1050} delay={t(42)} rot={8}><Battery w={160} /></Pop>
+      <Pop x={540} y={1010} delay={t(41) + 14} from="slam" out={t(44)}><RedX size={500} /></Pop>
       <Title t="BATTERIES TOO!" at={t(42)} y={600} color={C.white} max={92} />
-      <Sticker src="reference-icons/airplane.png" x={800} y={1180} w={300} delay={t(45)} from="left" rot={-12} />
+      <Sticker src="reference-icons/airplane.png" x={830} y={1170} w={340} delay={t(45)} from="left" rot={-12} />
       <SpecialLine at={t(45)} />
       <Sticker src={CHECK} x={170} y={1230} w={140} delay={t(47)} rot={-10} />
 
@@ -191,7 +191,7 @@ export const Plug: React.FC = () => {
   const t = L(4);
   return (
     <>
-      <Title t="NEW SIGN-UPS GET" at={t(48)} y={380} color={C.white} max={92} />
+      <Title t="NEW SIGN-UPS GET" at={t(48)} y={380} color={C.white} max={110} />
       <Pop x={540} y={720} delay={t(51)} from="slam" pulse={0.03}>
         <Img src={staticFile("logos/pikobuy-logo-official.png")} style={{ width: 330, display: "block" }} />
       </Pop>
