@@ -149,12 +149,12 @@ python3 -I tools/extract_paper.py fA assets/backgrounds/crumpled-paper.png
 **Render:** `npm run render:together` (composition `PikobuyDontShipTogether`). Voice: `npm run voice:together` (Liam, from `src/together/script.json`).
 
 **Structure:** the hook ("Don't ship these items together with your clothes!") is followed by three items, each with an ITEM n/3 chip, a big #n, the item, a red ✗ over mixing it with clothes, and the fix with a ✓:
-1. electronics: special shipping line (truck)
+1. electronics: special shipping line (EMS / UPS / Yodel logos)
 2. perfumes: liquids get extra customs checks, so ship them separately
 3. power banks: batteries need a special line (plane)
 
 It ends with PIKOBUY's 2×40% shipping coupons for new sign-ups, "LINK IN MY BIO" and the mascot.
 
-**Carriers:** they are shown generically ("SPECIAL SHIPPING LINE"). No carrier logos are used.
+**Carriers:** the EMS, UPS and Yodel logos appear at the electronics "special shipping line" moment. They were cut from the reference video by `tools/extract_carrier_logos.py` into `assets/logos/carriers/`.
 
 **Source:** `src/together/` (`Scenes.tsx`, `icons.tsx`, `timeline.ts`, `Together.tsx`). It reuses the shared subtitles, red ✗, paper and SFX components.

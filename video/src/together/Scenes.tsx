@@ -85,7 +85,7 @@ export const Electronics: React.FC = () => {
       <Chip n={1} />
       <BigNum n={1} out={t(9) - 4} />
       <Title t="ELECTRONICS" at={t(9)} />
-      <Pop x={540 - 230 * slide} y={1000} delay={t(9)}>
+      <Pop x={540 - 230 * slide} y={1000} delay={t(9)} out={t(22) - 6}>
         <div style={{ display: "flex", alignItems: "flex-end", gap: 10 }}><Smartwatch w={210} /><Earbuds w={230} /></div>
       </Pop>
       <Pop x={790} y={1030} delay={t(14)} from="right" out={fix + 30}><Clothes w={340} /></Pop>
@@ -94,14 +94,21 @@ export const Electronics: React.FC = () => {
       </Pop>
       <Pop x={560} y={1010} delay={t(16)} from="slam" out={fix - 2}><RedX size={460} /></Pop>
       <Title t="SEPARATE HAUL!" at={fix + 6} y={600} color={C.white} max={92} />
-      <Sticker src="reference-icons/delivery-truck.png" x={740} y={1040} w={420} delay={t(22)} from="right" />
+      {/* carriers that run the special lines */}
+      {["ems", "ups", "yodel"].map((c, i) => (
+        <React.Fragment key={c}>
+          <Pop x={250 + i * 290} y={1020} delay={t(22) + i * 7} rot={[-6, 3, 7][i]} pulse={0.03}>
+            <Img src={staticFile(`logos/carriers/${c}-logo.png`)} style={{ width: 230, display: "block", filter: "drop-shadow(0 12px 10px rgba(40,30,30,0.3))" }} />
+          </Pop>
+          <Sfx at={t(22) + i * 7} name={i % 2 ? "pop-high" : "pop"} vol={0.45} />
+        </React.Fragment>
+      ))}
       <SpecialLine at={t(22)} />
       <Sticker src={CHECK} x={170} y={1230} w={140} delay={t(24)} rot={-10} />
 
       <Sfx at={t(9)} name="impact" vol={0.5} />
       <Sfx at={t(14)} name="whoosh-reverse" vol={0.4} />
       <Sfx at={t(16)} name="stamp" vol={0.7} />
-      <Sfx at={t(22)} name="truck" vol={0.6} />
       <Sfx at={t(22) + 4} name="pop-high" vol={0.4} />
       <Sfx at={t(24)} name="checkmark" vol={0.55} />
     </>
