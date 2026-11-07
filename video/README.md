@@ -139,4 +139,4 @@ python3 -I tools/extract_paper.py fA assets/backgrounds/crumpled-paper.png
 - `Tips.tsx`: the mix
 - `icons.tsx`, `cards.tsx`: the graphics
 
-**Music:** a 39 s bed (`npm run audio:tips`).
+**Audio:** there's no background music, at the client's request. The voice and dense sound effects carry the video: a pop on every caption line, an impact on each big #N, a stamp on each ✗, a ding on each fix, whooshes and paper rustle on the whip pans, a tracker tick, and a final hit after "bio!". `npm run audio:tips` regenerates the glitch and vacuum effects.

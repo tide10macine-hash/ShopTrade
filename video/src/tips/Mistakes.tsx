@@ -27,6 +27,7 @@ const Chip: React.FC<{ n: number; fixAt: number }> = ({ n, fixAt }) => {
   return (
     <div style={{ position: "absolute", left: 540, top: 365, transform: `translate(-50%,-50%) rotate(${fixed ? 2 : -3}deg) scale(${0.3 + 0.7 * s})` }}>
       <Banner text={fixed ? "THE FIX" : `MISTAKE #${n}`} size={58} bg={fixed ? C.green : C.red} color={C.white} />
+      <Sfx at={fixAt} name="coupon-confirm" vol={0.45} />
     </div>
   );
 };
@@ -49,6 +50,8 @@ const RedX: React.FC<{ size?: number }> = ({ size = 420 }) => (
 const BigNum: React.FC<{ n: number; out: number }> = ({ n, out }) => (
   <Pop x={540} y={1000} from="slam" delay={4} out={out} idle={0.5}>
     <Outlined text={`#${n}`} size={430} color={C.red} extrude={C.black} rim={20} />
+    <Sfx at={4} name="impact" vol={0.5} />
+    <Sfx at={out} name="whoosh-reverse" vol={0.3} />
   </Pop>
 );
 
@@ -56,7 +59,10 @@ const BigNum: React.FC<{ n: number; out: number }> = ({ n, out }) => (
 const Lines: React.FC<{ lines: { t: string; at: number; color?: string }[]; out?: number; y?: number }> = ({ lines, out, y = 490 }) => (
   <>
     {lines.map((l, k) => (
-      <PopText key={k} text={l.t} x={540} y={y + k * 112} size={fit(l.t)} delay={l.at} stagger={1} color={l.color ?? C.red} rim={10} out={out} idle={0.6} />
+      <React.Fragment key={k}>
+        <PopText text={l.t} x={540} y={y + k * 112} size={fit(l.t)} delay={l.at} stagger={1} color={l.color ?? C.red} rim={10} out={out} idle={0.6} />
+        <Sfx at={l.at} name={k % 2 ? "pop-high" : "pop"} vol={0.32} />
+      </React.Fragment>
     ))}
   </>
 );
@@ -328,9 +334,9 @@ export const M1: React.FC = () => {
         <div style={{ position: "relative" }}>
           <Phone w={400} src="stickers/link-in-bio-reezy-repz.jpg" />
           {f >= tap && (
-            <div style={{ position: "absolute", left: 200, top: 345, width: 30 + 140 * tapP, height: 30 + 140 * tapP, borderRadius: "50%", border: `6px solid ${C.red}`, transform: "translate(-50%,-50%)", opacity: 1 - tapP }} />
+            <div style={{ position: "absolute", left: 240, top: 318, width: 30 + 140 * tapP, height: 30 + 140 * tapP, borderRadius: "50%", border: `6px solid ${C.red}`, transform: "translate(-50%,-50%)", opacity: 1 - tapP }} />
           )}
-          <div style={{ position: "absolute", left: 290, top: 360 + 30 * Math.max(0, 1 - Math.abs((f - tap) / 6)), opacity: interpolate(f, [link + 2, link + 10], [0, 1], clamp) }}>
+          <div style={{ position: "absolute", left: 212, top: 300 + 30 * Math.max(0, 1 - Math.abs((f - tap) / 6)), opacity: interpolate(f, [link + 2, link + 10], [0, 1], clamp) }}>
             <svg viewBox="0 0 60 70" width={90} height={105} style={{ filter: "drop-shadow(0 6px 8px rgba(0,0,0,0.4))" }}>
               <path d="M 20 6 Q 20 0 26 0 Q 32 0 32 6 L 32 30 L 46 32 Q 56 34 54 46 L 50 62 Q 48 70 40 70 L 22 70 Q 16 70 12 64 L 2 46 Q 0 40 6 38 Q 12 36 16 42 L 20 48 Z" fill="#fff" stroke="#111" strokeWidth="3.5" strokeLinejoin="round" />
             </svg>
