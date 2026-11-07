@@ -30,6 +30,11 @@
   };
 
   /* ---------- Yahoo Finance ---------- */
+  const cleanName = n => {
+    let s = String(n || "").replace(/\s{2,}.*$/, "").replace(/\s+(AG|SE|Inc\.?|Corp\.?|Corporation|plc|N\.V\.|S\.A\.|Holdings?|Group|& Co\.? KGaA|KGaA)\b.*$/i, "").trim();
+    if (s === s.toUpperCase() && s.length > 4) s = s.toLowerCase().replace(/(^|[\s\-])\S/g, c => c.toUpperCase());
+    return s || String(n || "");
+  };
   const YF = "https://query1.finance.yahoo.com/";
   const markets = {
     async chart(symbol, range = "1mo", interval = "1d") {
@@ -38,14 +43,15 @@
       const closes = (x.indicators.quote[0].close || []).filter(v => v != null);
       const price = x.meta.regularMarketPrice != null ? x.meta.regularMarketPrice : closes[closes.length - 1];
       let prev = x.meta.previousClose != null ? x.meta.previousClose : null;
-      if (prev == null && closes.length > 1) prev = Math.abs(closes[closes.length - 1] - price) < 1e-9 ? closes[closes.length - 2] : closes[closes.length - 1];
-      const series = closes.slice(); if (series.length && Math.abs(series[series.length - 1] - price) > 1e-9) series.push(price);
+      const same = (a, b) => Math.abs(a - b) <= Math.abs(b) * 1e-4;
+      if (prev == null && closes.length > 1) prev = same(closes[closes.length - 1], price) ? closes[closes.length - 2] : closes[closes.length - 1];
+      const series = closes.slice(); if (series.length && !same(series[series.length - 1], price)) series.push(price);
       return { symbol, price, prev, change: prev ? (price / prev - 1) * 100 : null, series, currency: x.meta.currency || "", name: x.meta.longName || x.meta.shortName || symbol, high: x.meta.regularMarketDayHigh, low: x.meta.regularMarketDayLow, time: x.meta.regularMarketTime ? x.meta.regularMarketTime * 1000 : null };
     },
     async search(q) {
       const j = await getJSON(YF + "v1/finance/search?q=" + encodeURIComponent(q) + "&quotesCount=5&newsCount=0&lang=de-DE&region=DE");
       const hit = (j.quotes || []).find(x => x.symbol && /EQUITY|ETF|INDEX|CRYPTOCURRENCY|FUTURE|CURRENCY/.test(x.quoteType || ""));
-      return hit ? { symbol: hit.symbol, name: hit.shortname || hit.longname || hit.symbol } : null;
+      return hit ? { symbol: hit.symbol, name: cleanName(hit.longname || hit.shortname || hit.symbol) } : null;
     }
   };
 
@@ -93,7 +99,7 @@
     }
   };
 
-  const api = { getJSON, strip, news, markets, weather, wiki };
+  const api = { getJSON, strip, news, markets, weather, wiki, cleanName };
   root.MakhoSources = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);
