@@ -44,7 +44,7 @@ const Title: React.FC<{
 };
 
 const Chip: React.FC<{ n: number; bg: string }> = ({ n, bg }) => (
-  <Pop x={540} y={330} delay={34} from="top" rot={-3}>
+  <Pop x={540} y={330} delay={26} from="top" rot={-3}>
     <Banner text={`TIP ${n}/3`} size={48} bg={bg} color={C.white} />
   </Pop>
 );
@@ -141,16 +141,16 @@ export const Hook: React.FC = () => {
   const t = L(0);
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const boxIn = t(4) - 4;
+  const boxIn = 10;
   const tape = interpolate(f, [t(6), t(6) + 14], [0, 1], { ...clamp, easing: EASE.out });
-  const three = spring({ frame: f - t(0), fps, config: { damping: 9, stiffness: 200, mass: 0.7 } });
+  const three = spring({ frame: f, fps, config: { damping: 9, stiffness: 200, mass: 0.7 } });
   return (
     <>
       {/* giant "3" + TIPS */}
-      <div style={{ position: "absolute", left: 300, top: 380, transform: `translate(-50%,-50%) scale(${interpolate(three, [0, 1], [4, 1])}) rotate(${-8 + 8 * three}deg)`, opacity: Math.min(1, three * 3) }}>
+      <div style={{ position: "absolute", left: 300, top: 380, transform: `translate(-50%,-50%) scale(${interpolate(three, [0, 1], [2.2, 1])}) rotate(${-8 + 8 * three}deg)` }}>
         <Outlined text="3" size={340} color={C.red} extrude={C.black} rim={18} />
       </div>
-      <Pop x={680} y={330} delay={t(1)} from="right" rot={-4}><Outlined text="TIPS" size={170} color={C.green} rim={12} /></Pop>
+      <Pop x={680} y={330} delay={t(1)} from="pop" rot={-4}><Outlined text="TIPS" size={170} color={C.green} rim={12} /></Pop>
       <Title t="BEFORE SHIPPING OUT" at={t(2)} y={580} color={C.white} max={96} sfx="zip-up" />
       {/* parcel drops, tape seals it */}
       <Pop x={540} y={1080} delay={boxIn} from="drop" idle={0.4}>
@@ -204,7 +204,7 @@ export const Tip1: React.FC = () => {
   return (
     <>
       <Chip n={1} bg={C.green} />
-      <Title t="REHEARSAL" at={t(14) - 8} color={C.green} sfx="zip-up" />
+      <Title t="REHEARSAL" at={Math.min(t(14) - 8, 30)} color={C.green} sfx="zip-up" />
       {/* parcel under the scanner */}
       <Pop x={540} y={1050} delay={36} from="bottom" out={price - 6} idle={0.3}>
         <div style={{ position: "relative", width: 480 }}>
@@ -233,7 +233,7 @@ export const Tip1: React.FC = () => {
       {/* exact price receipt, then "before you pay" */}
       <Title t="EXACT SHIPPING PRICE" at={price} y={600} color={C.red} max={80} sfx={null} out={pay - 4} />
       <Title t="BEFORE YOU PAY!" at={pay} y={600} color={C.green} max={96} sfx="ding-bright" />
-      <Pop x={540} y={1050} delay={price + 2} from="top" idle={0.25}><Receipt at={price + 8} /></Pop>
+      <Pop x={540} y={1050} delay={price + 2} from="pop" idle={0.25}><Receipt at={price + 8} /></Pop>
       <Sticker src={CHECK} x={860} y={1260} w={150} delay={pay + 6} rot={10} />
 
       <Sfx at={36} name="whoosh-reverse" vol={0.35} />
@@ -272,24 +272,25 @@ const PriceBars: React.FC<{ at: number }> = ({ at }) => {
 export const Tip2: React.FC = () => {
   const t = L(2);
   const f = useCurrentFrame();
-  const flip = interpolate(f, [t(29), t(29) + 16], [90, 0], { ...clamp, easing: EASE.out });
+  const cIn = Math.min(t(29), 32);
+  const flip = interpolate(f, [cIn, cIn + 16], [90, 0], { ...clamp, easing: EASE.out });
   const two = t(34);
   const link = t(39);
   return (
     <>
       <Chip n={2} bg={C.red} />
-      <Title t="COUPONS" at={t(29)} color={C.red} sfx="zip-up" />
+      <Title t="COUPONS" at={Math.min(t(29), 30)} color={C.red} sfx="zip-up" />
       <Title t="FOR NEW SIGN-UPS" at={t(31)} y={600} color={C.green} max={88} sfx={null} out={link - 4} />
       {/* coupon flips in, then fans out to two */}
-      <div style={{ position: "absolute", left: 540, top: 820, transform: `translate(-50%,-50%) perspective(1200px) rotateY(${flip}deg)`, opacity: f >= t(29) ? 1 : 0 }}>
+      <div style={{ position: "absolute", left: 540, top: 800, transform: `translate(-50%,-50%) perspective(1200px) rotateY(${flip}deg)`, opacity: f >= cIn ? 1 : 0 }}>
         {[0, 1].map((i) => {
           const fan = interpolate(f, [two, two + 12], [0, 1], { ...clamp, easing: EASE.out });
           return (
-            <Img key={i} src={staticFile(COUPON)} style={{ position: i ? "absolute" : "relative", left: 0, top: 0, width: 760, display: "block", transform: `translate(${(i ? 60 : -40) * fan}px, ${(i ? 70 : -40) * fan}px) rotate(${(i ? 7 : -7) * fan}deg)`, filter: "drop-shadow(0 14px 10px rgba(0,0,0,0.3))" }} />
+            <Img key={i} src={staticFile(COUPON)} style={{ position: i ? "absolute" : "relative", left: 0, top: 0, width: 640, display: "block", transform: `translate(${(i ? 70 : -60) * fan}px, ${(i ? 95 : -55) * fan}px) rotate(${(i ? 6 : -6) * fan}deg)`, filter: "drop-shadow(0 14px 10px rgba(0,0,0,0.3))" }} />
           );
         })}
       </div>
-      <Pop x={540} y={1170} delay={t(36)} from="bottom" out={link - 4}><PriceBars at={t(36) + 4} /></Pop>
+      <Pop x={540} y={1200} delay={t(36)} from="pop" out={link - 4}><PriceBars at={t(36) + 4} /></Pop>
       {/* link in bio card */}
       <Pop x={540} y={1170} delay={link} from="bottom" idle={0.2}>
         <div style={{ width: 640, background: "#fff", border: `8px solid ${C.black}`, borderRadius: 30, boxShadow: `10px 12px 0 ${C.black}`, padding: 26, fontFamily: FONT.display, position: "relative" }}>
@@ -338,16 +339,16 @@ export const Tip3: React.FC = () => {
   return (
     <>
       <Chip n={3} bg={C.black} />
-      <Title t="REMOVE THE" at={t(48)} color={C.white} sfx="zip-up" out={small - 4} />
+      <Title t="REMOVE THE" at={Math.min(t(48), 30)} color={C.white} sfx="zip-up" out={small - 4} />
       <Title t="PACKAGING" at={t(50)} y={590} color={C.red} sfx={null} out={small - 4} />
       {/* shoebox opens, sneaker jumps out, box flies away */}
       {f < small && (
         <>
           {f >= box + 10 && (
-            <div style={{ position: "absolute", left: 540, top: 1060 - 220 * jump, transform: `translate(-50%,-50%) rotate(${-12 * jump}deg)` }}><Sneaker w={380} /></div>
+            <div style={{ position: "absolute", left: 540, top: 1060 - 220 * jump, transform: `translate(-50%,-50%) rotate(${-12 * jump}deg)` }}><Sneaker w={460} /></div>
           )}
           {away < 1 && (
-            <Pop x={540 + 800 * away} y={1120 + 200 * away} delay={t(48)} from="bottom">
+            <Pop x={540 + 800 * away} y={1120 + 200 * away} delay={Math.min(t(48), 32)} from="drop">
               <div style={{ transform: `rotate(${30 * away}deg)` }}><ShoeBox w={520} lid={lid} /></div>
             </Pop>
           )}
@@ -396,7 +397,6 @@ export const End: React.FC = () => {
         <Banner text="LINK IN MY BIO" size={62} bg={C.black} color={C.white} />
       </Pop>
       <div style={{ position: "absolute", left: 790, top: 1195 }}><PointArrow delay={30} w={180} /></div>
-      <Sticker src="stickers/pikobuy-mascot.png" x={870} y={470} w={260} delay={14} from="right" rot={6} />
       <Sfx at={0} name="kick-boom" vol={0.8} />
       <Sfx at={18} name="shine" vol={0.5} />
       <Sfx at={22} name="whoosh" vol={0.4} />
