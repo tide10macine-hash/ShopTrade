@@ -1,7 +1,7 @@
 import React from "react";
 import { Img, interpolate, random, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { C, EASE, FONT } from "../theme";
-import { Banner, Outlined, Pop, PopText, Sticker } from "../components/core";
+import { Banner, Outlined, Pop, PopText, SpeedLines, Sticker } from "../components/core";
 import { Sfx, SfxName } from "../components/Sfx";
 import { PointArrow } from "../reasons/graphics";
 import { ShoeBox, Sneaker } from "../tips/icons";
@@ -124,9 +124,8 @@ export const TornBand: React.FC = () => {
               <polyline points={bot.join(" ")} fill="none" stroke="#f4f1ea" strokeWidth="10" />
             </svg>
             <div style={{ position: "absolute", left: 0, right: 0, top: h / 2 - 250, display: "flex", alignItems: "center", justifyContent: "center", gap: 30 }}>
-              <Img src={staticFile(PARCEL)} style={{ width: 280, transform: `rotate(${-rot * 2}deg)` }} />
               <div style={{ transform: `scale(${numScale})` }}>
-                <Outlined text={`${k + 1}`} size={440} color={BAND_COLORS[k]} extrude={k === 2 ? C.red : C.black} rim={18} />
+                <Outlined text={`TIP ${k + 1}`} size={300} color={BAND_COLORS[k]} extrude={k === 2 ? C.red : C.black} rim={16} />
               </div>
             </div>
           </div>
@@ -142,7 +141,6 @@ export const Hook: React.FC = () => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
   const boxIn = 10;
-  const tape = interpolate(f, [t(6), t(6) + 14], [0, 1], { ...clamp, easing: EASE.out });
   const three = spring({ frame: f, fps, config: { damping: 9, stiffness: 200, mass: 0.7 } });
   return (
     <>
@@ -152,24 +150,30 @@ export const Hook: React.FC = () => {
       </div>
       <Pop x={680} y={330} delay={t(1)} from="pop" rot={-4}><Outlined text="TIPS" size={170} color={C.green} rim={12} /></Pop>
       <Title t="BEFORE SHIPPING OUT" at={t(2)} y={580} color={C.white} max={96} sfx="zip-up" />
-      {/* parcel drops, tape seals it */}
-      <Pop x={540} y={1080} delay={boxIn} from="drop" idle={0.4}>
-        <div style={{ position: "relative" }}>
-          <Img src={staticFile(PARCEL)} style={{ width: 560, display: "block" }} />
-          <div style={{ position: "absolute", left: 90, top: 150, width: 380 * tape, height: 54, background: "rgba(200,170,120,0.85)", border: "3px solid rgba(120,90,50,0.6)", transform: "rotate(-26deg)", transformOrigin: "left center" }} />
-          {f >= t(9) && (
-            <div style={{ position: "absolute", right: -20, top: 240, transform: `rotate(10deg) scale(${spring({ frame: f - t(9), fps, config: { damping: 10, stiffness: 260, mass: 0.6 } })})` }}>
-              <Img src={staticFile(LOGO)} style={{ width: 210, display: "block", filter: "drop-shadow(0 10px 8px rgba(0,0,0,0.35))" }} />
-            </div>
-          )}
+      {/* delivery truck races in, plane flies over */}
+      <SpeedLines x={620} y={940} w={520} h={260} delay={boxIn} />
+      <Sticker src="reference-icons/delivery-truck.png" x={520} y={1080} w={720} delay={boxIn} from="right" idle={0.5}>
+        <div style={{ position: "absolute", left: "66%", top: "16%", transform: "skewY(5deg) rotate(2deg)" }}>
+          <Img src={staticFile(LOGO)} style={{ width: 170, display: "block" }} />
         </div>
-      </Pop>
+      </Sticker>
+      {f >= t(6) && (
+        <div
+          style={{
+            position: "absolute", width: 340,
+            left: interpolate(f, [t(6), t(6) + 30], [-380, 840], { ...clamp, easing: EASE.out }),
+            top: interpolate(f, [t(6), t(6) + 30], [960, 700], { ...clamp, easing: EASE.out }) + 6 * Math.sin(f / 9),
+            transform: "translate(-50%,-50%) rotate(-14deg)", filter: `drop-shadow(0 14px 10px rgba(40,30,30,0.3)) blur(${interpolate(f, [t(6), t(6) + 14, t(6) + 22], [10, 3, 0], clamp)}px)`,
+          }}
+        >
+          <Img src={staticFile("reference-icons/airplane.png")} style={{ width: "100%" }} />
+        </div>
+      )}
       <Sfx at={t(0)} name="kick-boom" vol={0.8} />
       <Sfx at={t(1)} name="rubber-stretch" vol={0.4} />
-      <Sfx at={boxIn + 10} name="cardboard-thud" vol={0.7} />
-      <Sfx at={t(6)} name="tape-rip" vol={0.6} />
-      <Sfx at={t(9)} name="stamp" vol={0.5} />
-      <Sfx at={t(9) + 4} name="shine" vol={0.4} />
+      <Sfx at={boxIn} name="truck" vol={0.7} />
+      <Sfx at={t(6)} name="airplane" vol={0.65} />
+      <Sfx at={t(9)} name="shine" vol={0.4} />
     </>
   );
 };

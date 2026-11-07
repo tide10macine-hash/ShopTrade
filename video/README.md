@@ -161,9 +161,9 @@ It ends with PIKOBUY's 2×40% shipping coupons for new sign-ups, "LINK IN MY BIO
 
 ---
 
-# PIKOBUY – 3 Tips Before Shipping Out (fifth composition, voice pending)
+# PIKOBUY – 3 Tips Before Shipping Out (fifth composition)
 
-**Composition:** `Pikobuy3TipsShipOut`. **Render:** `npm run render:shipout` → `out/PIKOBUY_3_TIPS_BEFORE_SHIPPING.mp4`. A visual-only preview without voice is in `preview/`.
+**Final video:** `out/PIKOBUY_3_TIPS_BEFORE_SHIPPING.mp4`. It is 24.25 s long. **Composition:** `Pikobuy3TipsShipOut`. **Render:** `npm run render:shipout`.
 
 **Tips:**
 1. Rehearsal: it's free, and it shows the exact shipping price before you pay.
@@ -171,10 +171,13 @@ It ends with PIKOBUY's 2×40% shipping coupons for new sign-ups, "LINK IN MY BIO
 3. Remove packaging such as shoeboxes: a smaller parcel means cheaper shipping.
 
 **Style:**
-- Between tips, a dark torn-paper band carries a giant number. It enters from a different direction each time.
+- The hook shows a PIKOBUY truck racing in, with a plane flying over.
+- Between tips, a dark torn-paper band carries a giant "TIP n". It enters from a different direction each time.
 - Each tip has its own motion: a laser scan with a progress bar and a FREE stamp with ink splash; a printing receipt; a coupon that flips and fans into two; price bars that shrink; a link-in-bio card with a tap; a shoebox that opens, the sneaker jumping out and the box flying away; a parcel that shrinks; coin rain; and a light sweep across the logo.
 - The camera zoom-punches on key words.
 
 **Sound kit:** 14 new effects made for this video (`npm run audio -- --shipout`): paper-tear, tape-rip, cardboard-thud, scanner-beep, laser-sweep, receipt-print, ding-bright, kick-boom, slide-whistle, bubble-pop, zip-up, coin-cascade, rubber-stretch and shine.
 
-**Voice:** still to be generated. The script is in `src/shipout/script.json`. `assets/audio/voice-shipout/words.json` currently holds *estimated* timings (`tools/estimate_words.py`). Once credits are available, `npm run voice:shipout` writes the real voice and timings, and every scene re-times automatically.
+**Voice:** ElevenLabs "Adam – Radio Announcer", recorded by the client on the website and stored in `assets/audio/voice-shipout/voice.mp3`.
+- Because it has no API timestamps, `tools/align_voice.py` derives the word timings. It splits the take into phrases at the pauses, takes anchors from speech recognition, and spreads the remaining words by length.
+- To replace the take, run `python3 -I tools/align_voice.py <take.mp3> src/shipout/script.json assets/audio/voice-shipout/words.json`.
