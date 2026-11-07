@@ -21,10 +21,10 @@ export const R5Final: React.FC = () => {
         <BenefitBoard w={960} icon={icon("reference-icons/parcel-box.png", 190)} top="FREE REHEARSAL" bottom="+ CHEAPEST SHIPPING" topSize={58} bottomSize={44} />
       </Pop>
       <Pop x={540} y={820} from="right" delay={12} rot={2.5} out={OUT + 2}>
-        <BenefitBoard w={960} icon={icon("reference-icons/delivery-truck.png", 215)} top="DELIVERY IN" bottom="JUST 6 DAYS*" topSize={64} bottomSize={64} />
+        <BenefitBoard w={960} icon={icon("reference-icons/delivery-truck.png", 215)} top="DELIVERY IN" bottom="JUST 6 DAYS" topSize={64} bottomSize={64} />
       </Pop>
       <Pop x={540} y={1080} from="left" delay={20} rot={-2} out={OUT + 4}>
-        <BenefitBoard w={960} icon={icon("stickers/pikobuy-coupon-2x40-shipping.png", 215)} top="80% OFF" bottom="COUPONS*" topSize={74} bottomSize={64} />
+        <BenefitBoard w={960} icon={icon("stickers/pikobuy-coupon-2x40-shipping.png", 215)} top="80% OFF" bottom="COUPONS" topSize={74} bottomSize={64} />
       </Pop>
       <Sticker src="reference-icons/checkmark.png" x={960} y={490} w={120} delay={32} rot={8} z={5} out={OUT} />
       <Sticker src="reference-icons/checkmark.png" x={960} y={750} w={120} delay={40} rot={-6} z={5} out={OUT + 2} />

@@ -3,8 +3,7 @@ import { Img, interpolate, staticFile, useCurrentFrame } from "remotion";
 import { C, EASE, SHADOW } from "../../theme";
 import { Banner, Logo, Outlined, Pop, PopText, SpeedLines, Sticker } from "../../components/core";
 import { Sfx } from "../../components/Sfx";
-import { Chip, FinePrint, FlipCalendar } from "../graphics";
-import { R_COPY } from "../campaign";
+import { Chip, FlipCalendar } from "../graphics";
 import { R_PHASE } from "../timeline";
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
@@ -29,8 +28,6 @@ const Plane: React.FC<{ delay: number; out: number }> = ({ delay, out }) => {
 
 // 6-10 s: REASON 2 - your haul arrives in 6 days
 export const R3SixDays: React.FC = () => {
-  const frame = useCurrentFrame();
-  const fine = interpolate(frame, [R_PHASE + 24, R_PHASE + 34], [0, 1], clamp);
   return (
     <>
       <Pop x={540} y={250} delay={2} from="top">
@@ -59,11 +56,10 @@ export const R3SixDays: React.FC = () => {
         <Outlined text="6" size={640} color={C.red} extrude={C.black} rim={22} />
       </Pop>
       <Pop x={800} y={1150} from="slam" delay={R_PHASE + 16} rot={-6}>
-        <Outlined text="DAYS!*" size={150} color={C.white} rim={10} />
+        <Outlined text="DAYS!" size={150} color={C.white} rim={10} />
       </Pop>
       <Sticker src="reference-icons/parcel-box.png" x={200} y={1400} w={230} delay={R_PHASE + 40} from="drop" rot={-6} />
       <Sticker src="reference-icons/checkmark.png" x={300} y={1300} w={120} delay={R_PHASE + 56} rot={10} />
-      <FinePrint text={R_COPY.deliveryNote} y={1500} opacity={fine} />
 
       <Sfx at={2} name="whoosh-reverse" vol={0.4} />
       <Sfx at={4} name="pop" vol={0.45} />

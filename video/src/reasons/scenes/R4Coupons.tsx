@@ -4,8 +4,7 @@ import { C, EASE } from "../../theme";
 import { Banner, Flash, Logo, Outlined, Pop, PopText, PunchWords, Sticker } from "../../components/core";
 import { useCount } from "../../components/graphics";
 import { Sfx } from "../../components/Sfx";
-import { Chip, FinePrint, Phone, PointArrow } from "../graphics";
-import { R_COPY } from "../campaign";
+import { Chip, Phone, PointArrow } from "../graphics";
 import { R_PHASE } from "../timeline";
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
@@ -17,7 +16,6 @@ export const R4Coupons: React.FC = () => {
   const frame = useCurrentFrame();
   const n = useCount(5, 80, 2, 24);
   const out = interpolate(frame, [R_PHASE - 8, R_PHASE + 2], [0, 1], { ...clamp, easing: EASE.in });
-  const fine = interpolate(frame, [R_PHASE + 40, R_PHASE + 50], [0, 1], clamp);
   return (
     <>
       <Flash at={1} dur={12} color="#fff" max={0.9} />
@@ -57,7 +55,6 @@ export const R4Coupons: React.FC = () => {
       </div>
       <Sticker src={COUPON} x={240} y={1350} w={380} delay={R_PHASE + 38} rot={-12} />
       <Sticker src="reference-icons/checkmark.png" x={110} y={1230} w={120} delay={R_PHASE + 50} rot={-8} />
-      <FinePrint text={R_COPY.couponNote} y={1490} opacity={fine} />
 
       <Sfx at={0} name="impact-cinematic" vol={1} />
       <Sfx at={4} name="coins" vol={0.55} />

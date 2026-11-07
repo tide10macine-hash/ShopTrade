@@ -92,7 +92,7 @@ python3 -I tools/extract_paper.py fA assets/backgrounds/crumpled-paper.png
 | 10–14 s | #3 80% OFF! counts up while coupons stack, then COUPONS FOR NEW SIGN-UPS, LINK IN MY BIO on a phone showing the link page | `R4Coupons.tsx` |
 | 14–18 s | Three ticked benefit boards, then a logo slam, SHOP SMARTER WITH PIKOBUY!, mascot, REEZY REPZ badge | `R5Final.tsx` |
 
-**Copy and qualifiers:** these live in `src/reasons/campaign.ts`. The 6-day claim refers to the DHL Express line.
+**Copy:** all wording lives in `src/reasons/campaign.ts`. The 6-day claim refers to the DHL Express line. At the client's request there are no on-screen asterisk disclaimers.
 
 **Official assets:** `tools/prepare_brand_assets.py` prepares them. None of the art is redrawn: the logo gets its white corners made transparent, the mascot is copied as supplied, and the REEZY REPZ badge is cropped from the link-in-bio screenshot.
 
