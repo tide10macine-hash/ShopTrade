@@ -112,7 +112,9 @@
     let m;
 
     if (STOP_ANY.test(t) || (n <= 4 && STOP_SHORT.test(t))) {
+      if (/stoppuhr/.test(t)) return { intent: "sw.stop" };
       if (/timer|wecker|countdown/.test(t)) return { intent: "timer.cancel" };
+      if (ctx.quiz && /quiz/.test(t)) return { intent: "quiz.end" };
       return { intent: "stop" };
     }
     if (!ctx.awake) return WAKE.test(full) ? { intent: "wake" } : { intent: "none" };
@@ -126,6 +128,56 @@
     if (ctx.awaitingCity && n <= 4 && !/\d/.test(t)) {
       return { intent: "weather", city: t.replace(/^(in|für|nach)\s+/, ""), day: ctx.awaitingCity.day || 0 };
     }
+
+    /* Quiz läuft: Antworten haben Vorrang */
+    if (ctx.quiz) {
+      if (/(quiz|spiel)\s*(beenden|ende|aufhören|stopp)|^(beenden|aufhören|ich will nicht mehr|keine lust mehr)/.test(t)) return { intent: "quiz.end" };
+      if (/^(weiß (ich )?nicht|keine ahnung|ich passe|passe|überspring\w*|nächste frage|lösung|sag(s)? mir|auflösen|ka)\b/.test(t)) return { intent: "quiz.skip" };
+      if (/^(wiederhol|noch ?mal|wie war die frage)/.test(t)) return { intent: "quiz.repeat" };
+      return { intent: "quiz.answer", text: t };
+    }
+
+    /* Persönliches & Einstellungen */
+    if ((m = t.match(/^(?:ich heiße|ich heisse|mein name ist|nenn mich|du kannst mich (.+?) nennen)\s*(.*)$/))) { const nm = (m[2] || m[1] || "").replace(/\s+(nennen)$/, "").trim(); if (nm) return { intent: "name.set", name: nm }; }
+    if (/(wie heiße ich|wie heisse ich|kennst du meinen namen|weißt du wie ich heiße|wer bin ich)/.test(t)) return { intent: "name.get" };
+    if (/(einstellungen|api.?key|api.?schlüssel|schlüssel eingeben|ki.?gehirn|gehirn (an|aktivieren|einrichten|verbinden)|claude (verbinden|einrichten|aktivieren))/.test(t)) return { intent: "settings" };
+    if (/(neues gespräch|vergiss (unser|das|dieses) gespräch|neues thema|gespräch zurücksetzen)/.test(t)) return { intent: "brain.reset" };
+
+    /* Stoppuhr */
+    if (/stoppuhr/.test(t)) { const r = t.replace(/stoppuhr/g, " "); return /\b(stopp\w*|stop|anhalten|halt\w*|beend\w*|aus)\b/.test(r) ? { intent: "sw.stop" } : /(start|los|beginn|\ban\b)/.test(r) ? { intent: "sw.start" } : { intent: "sw.status" }; }
+
+    /* Wecker zu einer Uhrzeit */
+    if ((m = t.match(/(?:weck\w*\s+mich|wecker|alarm|erinner\w*\s+mich)\b.*?\bum\s+(\d{1,2})(?:[:.](\d{2})|\s*uhr(?:\s*(\d{1,2}))?)?/))) {
+      return { intent: "alarm.at", h: +m[1], m: +(m[2] || m[3] || 0), pm: /(abends|nachmittags|am abend)/.test(t) };
+    }
+
+    /* Datum rechnen */
+    if (/(wie viele tage|wie lange (noch )?bis|wieviele tage|in wie vielen tagen|wann ist)/.test(t) && /(weihnacht|heiligabend|silvester|neujahr|ostern|valentin|halloween|sommer|einheit|\d{1,2}\.)/.test(t)) return { intent: "days.until", text: t };
+    if (/(welcher wochentag|was für ein (wochen)?tag|welcher tag (war|ist|wird))/.test(t) && /\d/.test(t)) return { intent: "weekday.of", text: t };
+    if (/(kalenderwoche|welche kw|welche woche haben wir)/.test(t)) return { intent: "kw" };
+
+    /* Umrechnen & Währungen */
+    if ((m = t.match(/(?:^|\s)(\d+(?:[.,]\d+)?|ein|eine|einen)\s+([a-zäöüß\/0-9$€£\- ]+?)\s+(?:in|nach|zu)\s+([a-zäöüß\/0-9$€£\- ]+?)(?:\s+(?:um|umrechnen|umgerechnet|sind das))?$/))) {
+      const val = /^\d/.test(m[1]) ? parseFloat(m[1].replace(",", ".")) : 1;
+      return { intent: "convert", value: val, from: m[2].replace(/^(us|amerikanische)\s+/, "$1 ").trim(), to: m[3].trim() };
+    }
+    if ((m = t.match(/(?:wechselkurs|kurs)\s+(?:von\s+)?(?:dem\s+)?([a-zäöüß\-]+)\s+(?:zu|in|zum|gegen|und)\s+(?:dem\s+)?([a-zäöüß\-]+)/))) return { intent: "convert", value: 1, from: m[1], to: m[2] };
+
+    /* Übersetzen */
+    if ((m = t.match(/^(?:was heißt|was heisst|was bedeutet|wie sagt man|wie heißt|wie heisst|übersetz\w*|sag)\s+(.+?)\s+(?:auf|ins|in|nach)\s+([a-zäöüß]+)$/))) return { intent: "translate", text: m[1], lang: m[2] };
+
+    /* Gleichungen, Chemie, Formeln */
+    if (/^(löse|berechne die gleichung)/.test(t) || (/\bx\b/.test(t) && /(=|\bgleich\b)/.test(t))) return { intent: "equation", text: t };
+    if (/(periodensystem|ordnungszahl|chemische\w* (symbol|zeichen)|welches symbol hat|welches element|element mit|atommasse)/.test(t)) return { intent: "element", text: t };
+    if (/(formel (für|von|des|der)|wie berechnet man|wie rechnet man|wie lautet die formel|formel)/.test(t)) return { intent: "formula", text: t };
+
+    /* Lernen & Unterhaltung */
+    if (/(quiz|frag mich ab|frag mich .{2,30} ab|teste (mein|mich)|wissenstest|abfragen|stell mir (eine )?fragen)/.test(t)) {
+      const cat = (t.match(/(mathe|physik|chemie|biologie|geschichte|erdkunde|geographie|geografie|deutsch|englisch|wirtschaft|technik)/) || [])[1] || null;
+      return { intent: "quiz.start", cat: cat === "geographie" || cat === "geografie" ? "erdkunde" : cat };
+    }
+    if (/(fakt|wusstest du|was interessantes|etwas interessantes|fun fact|überrasch mich)/.test(t)) return { intent: "fact" };
+    if (/(zitat|motivier|weisheit|spruch des tages|inspirier)/.test(t)) return { intent: "quote" };
 
     /* Timer */
     if (/(timer|wecker|countdown|eieruhr)/.test(t) && /(stopp|aus\b|abbrechen|lösch|beend|weg|cancel|ausschalten)/.test(t)) return { intent: "timer.cancel" };

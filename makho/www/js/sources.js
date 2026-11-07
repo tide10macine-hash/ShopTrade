@@ -99,7 +99,28 @@
     }
   };
 
-  const api = { getJSON, strip, news, markets, weather, wiki, cleanName };
+  /* ---------- Wechselkurse (EZB-Referenzkurse über Frankfurter) ---------- */
+  const fx = {
+    async convert(amount, from, to) {
+      if (from === to) return { amount, from, to, result: amount, rate: 1, date: null };
+      const j = await getJSON("https://api.frankfurter.app/latest?amount=" + encodeURIComponent(amount) + "&from=" + from + "&to=" + to);
+      const result = j.rates && j.rates[to];
+      if (result == null) throw new Error("Kein Kurs");
+      return { amount, from, to, result, rate: result / amount, date: j.date || null };
+    }
+  };
+
+  /* ---------- Übersetzen (MyMemory) ---------- */
+  const translate = {
+    async text(q, target, source = "de") {
+      const j = await getJSON("https://api.mymemory.translated.net/get?q=" + encodeURIComponent(q) + "&langpair=" + source + "|" + target);
+      const t = j.responseData && j.responseData.translatedText;
+      if (!t || /MYMEMORY WARNING|QUERY LENGTH LIMIT/i.test(t)) throw new Error("Keine Übersetzung");
+      return strip(t);
+    }
+  };
+
+  const api = { getJSON, strip, news, markets, weather, wiki, cleanName, fx, translate };
   root.MakhoSources = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);

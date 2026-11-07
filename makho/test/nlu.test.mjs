@@ -20,6 +20,14 @@ const cases = [
   ["Was kannst du", A, "help"], ["Wiederhole das", A, "repeat"], ["Zurück", A, "close"], ["Sprich langsamer", A, "voice.rate"], ["Andere Stimme", A, "voice.next"],
   ["Erzähl einen Witz", A, "joke"], ["Wirf eine Münze", A, "coin"], ["Zufallszahl zwischen 1 und 100", A, "random"],
   ["Gute Nacht", A, "sleep"], ["Tschüss Makho", A, "sleep"], ["Danke", A, "thanks"], ["Okay danke", A, "thanks"], ["Wie geht es dir", A, "howareyou"], ["Wer bist du", A, "whoami"],
+  ["Ich heiße Junas", A, "name.set"], ["Wie heiße ich", A, "name.get"], ["Öffne die Einstellungen", A, "settings"],
+  ["Starte die Stoppuhr", A, "sw.start"], ["Stoppuhr stopp", A, "sw.stop"], ["Weck mich um 7 Uhr 30", A, "alarm.at"], ["Stell den Wecker um 6:45", A, "alarm.at"],
+  ["Wie viele Tage bis Weihnachten", A, "days.until"], ["Welcher Wochentag war der 1.1.2000", A, "weekday.of"], ["Welche Kalenderwoche haben wir", A, "kw"],
+  ["Wie viel sind 5 Meilen in Kilometer", A, "convert"], ["100 Euro in Dollar", A, "convert"], ["Was sind 30 Grad Celsius in Fahrenheit", A, "convert"], ["Wie viel ist ein Dollar in Euro", A, "convert"],
+  ["Was heißt Schmetterling auf Englisch", A, "translate"], ["Übersetze guten Morgen ins Spanische", A, "translate"],
+  ["Löse 2x plus 3 gleich 11", A, "equation"], ["Welches Symbol hat Gold", A, "element"], ["Welches Element hat die Ordnungszahl 26", A, "element"], ["Wie lautet die Formel für die Kreisfläche", A, "formula"],
+  ["Mach ein Quiz", A, "quiz.start"], ["Frag mich in Geschichte ab", A, "quiz.start"], ["1989", {awake:true,quiz:true}, "quiz.answer"], ["Keine Ahnung", {awake:true,quiz:true}, "quiz.skip"], ["Quiz beenden", {awake:true,quiz:true}, "quiz.end"],
+  ["Erzähl mir einen Fakt", A, "fact"], ["Motivier mich", A, "quote"], ["Neues Gespräch", A, "brain.reset"],
   ["Gib mir ein Briefing", A, "briefing"], ["Guten Morgen", A, "greet"], ["blablub", A, "unknown"]
 ];
 let fail = 0;
@@ -32,4 +40,7 @@ const tm = [["Stell einen Timer auf 5 Minuten", 300], ["Timer für 1 Stunde und 
 for (const [t, v] of tm) { const r = N.parse(t, A); if (r.seconds !== v) { fail++; console.log("FAIL Timer", t, r.seconds); } }
 const w = N.parse("Wie wird das Wetter morgen in Hamburg", A); if (w.city !== "hamburg" || w.day !== 1) { fail++; console.log("FAIL Wetter", w); }
 const pl = N.parse("Geh mal noch mal nach Russland bitte", A); if (!pl.place || pl.place.name !== "Russland") { fail++; console.log("FAIL Ort", pl); }
-console.log(`${cases.length + 13 - fail}/${cases.length + 13} bestanden`); process.exit(fail ? 1 : 0);
+const cv = N.parse("Wie viel sind 5 Meilen in Kilometer", A); if (cv.value !== 5 || cv.from !== "meilen" || cv.to !== "kilometer") { fail++; console.log("FAIL Umrechnung", cv); }
+const tr = N.parse("Was heißt Schmetterling auf Englisch", A); if (tr.text !== "schmetterling" || tr.lang !== "englisch") { fail++; console.log("FAIL Übersetzung", tr); }
+const al = N.parse("Weck mich um 7 Uhr 30", A); if (al.h !== 7 || al.m !== 30) { fail++; console.log("FAIL Wecker", al); }
+console.log(`${cases.length + 16 - fail}/${cases.length + 16} bestanden`); process.exit(fail ? 1 : 0);

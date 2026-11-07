@@ -26,5 +26,9 @@ await check("open-meteo wetter", () => S.weather.forecast(52.52, 13.4), r => typ
 await check("wikipedia", () => S.wiki.lookup("Mount Everest"), r => r && /Everest/.test(r.title) && r.extract.length > 50);
 await check("wikipedia frage", () => S.wiki.lookup("schwarzes Loch"), r => r && r.extract.length > 50);
 
+await check("frankfurter", () => S.fx.convert(100, "EUR", "USD"), r => r.result > 50 && r.result < 200);
+await check("mymemory", () => S.translate.text("Schmetterling", "en"), r => /butterfly/i.test(r));
+await check("claude api erreichbar", async () => { const r = await fetch("https://api.anthropic.com/v1/models", { headers: { "x-api-key": "test", "anthropic-version": "2023-06-01" } }); return r.status; }, s => s === 401);
+
 console.log(fail ? `${fail} Quelle(n) fehlerhaft` : "Alle Quellen erreichbar");
 process.exit(fail ? 1 : 0);
