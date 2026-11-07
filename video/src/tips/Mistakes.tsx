@@ -45,6 +45,13 @@ const RedX: React.FC<{ size?: number }> = ({ size = 420 }) => (
   </svg>
 );
 
+/** big sticker number shown while "Mistake number N" is spoken */
+const BigNum: React.FC<{ n: number; out: number }> = ({ n, out }) => (
+  <Pop x={540} y={1000} from="slam" delay={4} out={out} idle={0.5}>
+    <Outlined text={`#${n}`} size={430} color={C.red} extrude={C.black} rim={20} />
+  </Pop>
+);
+
 /** one or two caption lines (sticker letters), each popping in on its word */
 const Lines: React.FC<{ lines: { t: string; at: number; color?: string }[]; out?: number; y?: number }> = ({ lines, out, y = 490 }) => (
   <>
@@ -103,6 +110,7 @@ export const Hook: React.FC = () => {
       ))}
       <Sticker src="reference-icons/zigzag-arrow.png" x={300} y={1300} w={260} delay={t(6)} rot={180} flip out={mid} />
 
+      <PopText text="HERE ARE" x={540} y={430} size={96} delay={t(10)} stagger={1} color={C.white} rim={9} />
       {/* "5 MISTAKES" */}
       <Pop x={540} y={780} from="slam" delay={t(12)} idle={0.5} pulse={0.04}>
         <Outlined text="5" size={520} color={C.red} extrude={C.black} rim={20} />
@@ -122,6 +130,7 @@ export const Hook: React.FC = () => {
       <Sfx at={t(6)} name="whoosh" vol={0.35} />
       <Sfx at={t(7)} name="coins" vol={0.4} />
       <Sfx at={mid} name="whoosh-reverse" vol={0.45} />
+      <Sfx at={t(10)} name="pop" vol={0.45} />
       <Sfx at={t(12)} name="impact-cinematic" vol={0.7} />
       <Sfx at={t(13)} name="pop" vol={0.45} />
       {[0, 1, 2].map((i) => <Sfx key={`x${i}`} at={t(15) + i * 5} name="stamp" vol={0.35} />)}
@@ -139,6 +148,7 @@ export const M5: React.FC = () => {
   return (
     <>
       <Chip n={5} fixAt={fix} />
+      <BigNum n={5} out={t(20) - 4} />
       <Lines lines={[{ t: "SHIPPING", at: t(20) }, { t: "SHOEBOXES", at: t(22) }]} out={t(24) - 4} />
       <Lines lines={[{ t: "= PAYING TO", at: t(24), color: C.white }, { t: "SHIP AIR!", at: t(26) }]} out={fix - 4} />
       <Lines lines={[{ t: "REMOVE THEM!", at: fix + 2, color: C.green }]} y={530} />
@@ -182,6 +192,7 @@ export const M4: React.FC = () => {
   return (
     <>
       <Chip n={4} fixAt={fix} />
+      <BigNum n={4} out={t(33) - 4} />
       <Lines lines={[{ t: "SENDING PUFFERS", at: t(33) }, { t: "AS THEY ARE", at: t(35), color: C.white }]} out={fix - 4} />
       <Lines lines={[{ t: "VACUUM PACKING", at: fix + 4, color: C.green }, { t: "WAY LESS SPACE", at: t(44), color: C.white }]} />
       <Pop x={540} y={1100} delay={t(33)} out={fix - 2}>
@@ -223,6 +234,7 @@ export const M3: React.FC = () => {
   return (
     <>
       <Chip n={3} fixAt={fix} />
+      <BigNum n={3} out={t(53) - 4} />
       <Lines lines={[{ t: "TRUSTING THE", at: t(51), color: C.white }, { t: "SELLER PHOTOS", at: t(53) }]} out={fix - 4} />
       <Lines lines={[{ t: "CHECK YOUR REAL", at: fix + 4, color: C.white }, { t: "QC PHOTOS!", at: t(59), color: C.green }]} />
       <Pop x={540 - 220 * slide} y={1060} delay={t(53)} scale={1 - 0.15 * slide}><PhotoCard kind="seller" w={340} /></Pop>
@@ -252,6 +264,7 @@ export const M2: React.FC = () => {
   return (
     <>
       <Chip n={2} fixAt={fix} />
+      <BigNum n={2} out={t(66) - 4} />
       <Lines lines={[{ t: "A RISKY", at: t(65), color: C.white }, { t: "FIRST HAUL", at: t(67) }]} out={fix - 4} />
       <Lines lines={[{ t: "KEEP IT SIMPLE:", at: fix + 2, color: C.white }, { t: "START WITH CLOTHES", at: t(72), color: C.green }]} />
       {/* risky items: become "banned" at the fix */}
@@ -294,6 +307,7 @@ export const M1: React.FC = () => {
   return (
     <>
       <Chip n={1} fixAt={fix} />
+      <BigNum n={1} out={t(79) - 4} />
       <Lines lines={[{ t: "PAYING FULL", at: t(79), color: C.white }, { t: "SHIPPING PRICE", at: t(81) }]} out={fix - 4} />
       <Lines lines={[{ t: "NEW SIGN-UPS GET", at: fix + 2, color: C.white }]} y={490} out={link - 4} />
       <Pop x={540} y={1060} delay={t(79)} out={fix - 2} idle={0.25}>
