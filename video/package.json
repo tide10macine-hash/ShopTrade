@@ -12,6 +12,7 @@
     "audio:reasons": "python3 -I tools/make_audio.py assets/audio --reasons"
   },
   "dependencies": {
+    "@elevenlabs/elevenlabs-js": "^2.77.0",
     "@remotion/bundler": "^4.0.541",
     "@remotion/cli": "^4.0.541",
     "@types/react": "^19.3.0",
