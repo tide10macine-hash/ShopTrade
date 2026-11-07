@@ -8,8 +8,6 @@
     "apk": "cap sync android && cd android && ./gradlew assembleDebug"
   },
   "dependencies": {
-    "@capacitor-community/speech-recognition": "7.0.1",
-    "@capacitor-community/text-to-speech": "6.1.0",
     "@capacitor/android": "7.4.5",
     "@capacitor/core": "7.4.5"
   },

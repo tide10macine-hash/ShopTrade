@@ -2,564 +2,258 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#0a0605">
 <title>Makho</title>
 <style>
-@font-face{font-family:"Oxanium";src:url(fonts/oxanium-latin-600-normal.woff2) format("woff2");font-weight:600}
-@font-face{font-family:"Oxanium";src:url(fonts/oxanium-latin-700-normal.woff2) format("woff2");font-weight:700}
-@font-face{font-family:"IBM Plex Sans";src:url(fonts/ibm-plex-sans-latin-400-normal.woff2) format("woff2");font-weight:400}
-@font-face{font-family:"IBM Plex Sans";src:url(fonts/ibm-plex-sans-latin-600-normal.woff2) format("woff2");font-weight:600}
-@font-face{font-family:"IBM Plex Mono";src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format("woff2");font-weight:400}
-@font-face{font-family:"IBM Plex Mono";src:url(fonts/ibm-plex-mono-latin-500-normal.woff2) format("woff2");font-weight:500}
-/* Makho – HUD im Stil eines Kommandostands. Nur dunkel. */
+@font-face{font-family:"Oxanium";src:url(fonts/oxanium-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Oxanium";src:url(fonts/oxanium-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"IBM Plex Sans";src:url(fonts/ibm-plex-sans-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"IBM Plex Sans";src:url(fonts/ibm-plex-sans-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"IBM Plex Mono";src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"IBM Plex Mono";src:url(fonts/ibm-plex-mono-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
+/* Makho – Kommandostand im Hochformat. Ein Raster, das je nach Zustand umgebaut wird; die Kugel folgt ihrem Platzhalter auf der Leinwand. */
 :root{
-  --bg:#0a0605;--panel:#140c0a;--panel2:#1c110d;--line:rgba(255,122,64,.16);--line2:rgba(255,122,64,.4);
+  --bg:#0a0605;--panel:#150c0a;--panel2:#1d120e;--line:rgba(255,122,64,.15);--line2:rgba(255,122,64,.38);
   --fg:#f4e7df;--muted:#a88f85;--dim:#6e5850;--accent:#ff7a3d;--hot:#ff4a2f;--good:#6fd39a;--bad:#ff6457;
   --fd:"Oxanium","Segoe UI",system-ui,sans-serif;--fb:"IBM Plex Sans",system-ui,sans-serif;--fm:"IBM Plex Mono",ui-monospace,monospace;
-  --st:env(safe-area-inset-top,0px);--sb:env(safe-area-inset-bottom,0px);--sl:env(safe-area-inset-left,0px);--sr:env(safe-area-inset-right,0px);
+  --H:100vh;--st:env(safe-area-inset-top,0px);--sb:env(safe-area-inset-bottom,0px);
   color-scheme:dark;
 }
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:var(--fb);font-size:15px;line-height:1.45;overflow:hidden}
-body{background-image:radial-gradient(900px 600px at 50% 30%,rgba(255,80,30,.10),transparent 65%)}
-button,input{font:inherit;color:inherit}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font:400 15px/1.45 var(--fb);overflow:hidden;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 [hidden]{display:none!important}
-.mono{font-family:var(--fm);font-variant-numeric:tabular-nums}
+#fx{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .label{font-family:var(--fm);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-
-/* Orb: eine Leinwand, die je nach Zustand ihren Platz wechselt */
-#orb{position:fixed;z-index:1;pointer-events:none;transition:all .9s cubic-bezier(.6,.1,.2,1)}
-body.locked #orb{left:50%;top:44%;width:min(88vw,62vh);height:min(88vw,62vh);transform:translate(-50%,-50%)}
-body.awake #orb{left:50%;top:calc(var(--st) + 64px);width:min(70vw,34vh);height:min(70vw,34vh);transform:translateX(-50%)}
-body.awake.staged #orb{left:calc(var(--sl) + 6px);top:calc(var(--st) + 50px);width:96px;height:96px;transform:none}
-
-/* Sperrbildschirm */
-#lock{position:fixed;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:0 24px calc(var(--sb) + 48px);gap:14px;text-align:center}
-#lock .brand{font-family:var(--fd);font-weight:700;letter-spacing:.5em;font-size:26px;margin-right:-.5em}
-#lock .brand span{color:var(--accent)}
-#lock .hint{font-family:var(--fd);font-weight:600;letter-spacing:.12em;font-size:17px;color:var(--fg)}
-#lock .hint em{font-style:normal;color:var(--accent)}
-body.awake #lock{display:none}
-#lock .linkbtn{background:none;border:0;color:var(--dim);font-family:var(--fm);font-size:11.5px;letter-spacing:.08em;text-decoration:underline;cursor:pointer;padding:6px}
-#lock .tapzone{position:absolute;left:50%;top:44%;width:min(88vw,62vh);height:min(88vw,62vh);transform:translate(-50%,-50%);border-radius:50%;background:none;border:0;cursor:pointer}
-.pill{display:inline-flex;align-items:center;gap:8px;font-family:var(--fm);font-size:11px;letter-spacing:.1em;padding:5px 11px;border:1px solid var(--line);border-radius:999px;color:var(--muted);white-space:nowrap;background:rgba(10,6,5,.6)}
-.dot{width:7px;height:7px;border-radius:50%;background:var(--dim);flex:none}
-.dot.on{background:var(--good);box-shadow:0 0 8px var(--good)}
-.dot.talk{background:var(--accent);box-shadow:0 0 8px var(--accent)}
-.dot.off{background:var(--bad)}
-.btn{background:transparent;border:1px solid var(--line2);color:var(--fg);padding:11px 18px;border-radius:4px;cursor:pointer;font-family:var(--fd);font-weight:600;letter-spacing:.16em;text-transform:uppercase;font-size:13px}
-.btn.primary{background:linear-gradient(180deg,#ff8a4c,#ff5a2a);border-color:transparent;color:#1a0904}
-.btn:active{transform:scale(.98)}
-
-/* HUD */
-#hud{position:fixed;inset:0;z-index:2;display:flex;flex-direction:column;padding:calc(var(--st) + 10px) max(14px,var(--sr)) calc(var(--sb) + 10px) max(14px,var(--sl));opacity:0;pointer-events:none;transition:opacity .8s .3s}
-body.awake #hud{opacity:1;pointer-events:auto}
-header{display:flex;align-items:center;gap:10px;height:34px;flex:none}
-header .brand{font-family:var(--fd);font-weight:700;letter-spacing:.36em;font-size:17px}
-header .brand span{color:var(--accent)}
-header .clock{margin-left:auto;font-family:var(--fm);font-size:13px}
-.spacer{flex:none;height:min(70vw,34vh);margin-top:20px;transition:height .9s cubic-bezier(.6,.1,.2,1)}
-body.staged .spacer{height:0;margin-top:0}
-.speech{flex:none;min-height:86px;padding:14px 4px 8px;display:flex;flex-direction:column;gap:6px;transition:padding .6s}
-body.staged .speech{padding-left:108px;min-height:96px;padding-top:6px}
-#caption{margin:0;font-family:var(--fb);font-size:17px;line-height:1.4;color:var(--fg);text-wrap:balance}
-body.staged #caption{font-size:14.5px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-#heard{margin:0;font-family:var(--fm);font-size:12px;color:var(--muted)}
-#heard b{color:var(--dim);font-weight:400;letter-spacing:.12em}
-.ask{flex:none;border:1px solid var(--line2);background:linear-gradient(180deg,var(--panel2),var(--panel));border-radius:6px;padding:14px;display:flex;flex-direction:column;gap:12px;margin:6px 0}
-.ask p{margin:0;font-family:var(--fd);font-weight:600;letter-spacing:.04em;font-size:16px}
-.ask .row{display:flex;gap:10px}.ask .row .btn{flex:1}
-
-#stage{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;border-top:1px solid var(--line);padding-top:12px;margin-top:4px;opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s}
-#stage.show{opacity:1;transform:none}
-.stagehead{display:flex;align-items:baseline;gap:10px;margin-bottom:10px}
-.stagehead h2{margin:0;font-family:var(--fd);font-weight:700;font-size:26px;letter-spacing:.14em;text-transform:uppercase;line-height:1}
-.stagehead .label{margin-left:auto;text-align:right}
-.globebox{position:relative;width:100%;max-width:520px;aspect-ratio:1/1;max-height:42vh;margin:0 auto 10px}
-#globe{width:100%;height:100%;display:block}
-.news{display:flex;flex-direction:column;gap:9px;padding-bottom:12px}
-.item{border:1px solid var(--line);border-left:2px solid var(--accent);background:rgba(255,122,61,.03);padding:10px 12px;border-radius:3px}
-.item:first-child{border-left-color:var(--hot)}
-.item .tag{font-family:var(--fm);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
-.item h3{margin:2px 0 3px;font-weight:600;font-size:15px;line-height:1.3}
-.item p{margin:0;color:var(--muted);font-size:13px}
-.item a{color:var(--dim);font-family:var(--fm);font-size:11px;text-decoration:none}
-.mkt{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;padding-bottom:12px}
-.q{border:1px solid var(--line);border-radius:4px;padding:10px;min-width:0}
-.q .n{font-weight:600;font-size:13.5px}
-.q .v{font-family:var(--fm);font-size:17px;margin-top:2px}
-.q .c{font-family:var(--fm);font-size:12px}
-.q svg{width:100%;height:40px;display:block;margin-top:6px}
+.mono{font-family:var(--fm);font-variant-numeric:tabular-nums}
 .up{color:var(--good)}.down{color:var(--bad)}
-.kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;padding-bottom:12px}
-.kpi{border:1px solid var(--line);border-radius:4px;padding:12px;min-width:0}
-.kpi .v{font-family:var(--fd);font-weight:700;font-size:28px;line-height:1.05;margin:4px 0}
-.kpi .d{font-family:var(--fm);font-size:11.5px}
-.note{font-size:12.5px;color:var(--muted);border:1px dashed var(--line2);border-radius:4px;padding:8px 10px;margin-bottom:10px}
 
-footer{flex:none;display:flex;align-items:center;gap:8px;padding-top:8px}
-footer .pill{margin-right:auto}
-.icon{width:42px;height:38px;display:grid;place-items:center;border:1px solid var(--line);border-radius:4px;background:none;cursor:pointer;color:var(--muted)}
-.icon svg{width:18px;height:18px}
+#app{position:relative;z-index:1;height:var(--H);display:grid;grid-template-columns:clamp(64px,19vw,84px) minmax(0,1fr);
+  grid-template-rows:auto auto auto auto minmax(0,1fr) auto;
+  grid-template-areas:"head head" "orb orb" "say say" "offer offer" "stage stage" "foot foot";
+  padding:calc(var(--st) + 10px) 16px calc(var(--sb) + 10px);column-gap:12px}
+#head{grid-area:head;display:flex;align-items:center;gap:8px;height:34px;transition:opacity .6s,transform .6s;min-width:0}
+#head .brand{font:700 17px/1 var(--fd);letter-spacing:.34em;margin-right:4px}
+#head .brand b{color:var(--accent)}
+.chip{display:inline-flex;align-items:center;gap:6px;font:500 10px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;padding:5px 8px;border:1px solid var(--line);border-radius:999px;color:var(--muted);white-space:nowrap;background:rgba(10,6,5,.5)}
+.chip i{width:6px;height:6px;border-radius:50%;background:var(--dim)}
+.chip.ok i{background:var(--good);box-shadow:0 0 6px var(--good)}.chip.bad i{background:var(--bad)}
+#tchip{border-color:var(--line2);color:var(--fg)}#tchip i{background:var(--accent);animation:blink 1s steps(2) infinite}
+#clock{margin-left:auto;font:500 13px var(--fm);font-variant-numeric:tabular-nums}
+#orbSlot{grid-area:orb;justify-self:center;width:min(66vw,calc(var(--H) * .32));aspect-ratio:1/1;margin:8px 0 2px}
+#say-wrap{grid-area:say;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:6px;min-height:72px;padding:6px 0}
+#say{margin:0;font:400 18px/1.42 var(--fb);color:var(--fg);text-wrap:pretty;overflow-wrap:anywhere}
+#say .w{color:rgba(244,231,223,.42);transition:color .25s}
+#say .w.on{color:var(--fg)}
+#say.in{animation:sayIn .5s ease-out}
+#heard{margin:0;min-height:18px;font:400 12.5px/1.4 var(--fm);color:var(--muted);overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+#heard .label{color:var(--accent);margin-right:4px}
+.caret{display:inline-block;width:7px;height:13px;background:var(--accent);vertical-align:-2px;margin-left:3px;animation:blink .9s steps(2) infinite}
+#offer{grid-area:offer;min-width:0;display:flex;flex-direction:column;gap:6px;padding:0 13px;border:0 solid var(--line2);border-radius:6px;background:linear-gradient(180deg,rgba(29,18,14,.92),rgba(21,12,10,.92));margin:4px 0 8px;opacity:0;transform:translateY(-6px);max-height:0;overflow:hidden;transition:all .45s cubic-bezier(.2,.8,.2,1)}
+#offer.show{opacity:1;transform:none;max-height:140px;padding-block:11px;border-width:1px;animation:offerGlow 2.4s ease-in-out infinite}
+#offer .q{margin:0;font:600 15px/1.3 var(--fd);letter-spacing:.03em}
+#offer .hint b{color:var(--accent);font-weight:500}
+#offer .bar{height:2px;background:var(--line);border-radius:1px;overflow:hidden}
+#offer.show .bar i{display:block;height:100%;background:var(--accent);animation:drain 30s linear forwards}
+#stage{grid-area:stage;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;position:relative;scrollbar-width:none;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 10px,#000 calc(100% - 14px),transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 10px,#000 calc(100% - 14px),transparent 100%)}
+#stage::-webkit-scrollbar{display:none}
+#foot{grid-area:foot;display:flex;align-items:center;gap:10px;padding-top:8px;min-width:0}
+#mic{display:flex;align-items:center;gap:8px;flex:none}
+#lvl{--l:0;display:flex;align-items:center;gap:3px;height:18px}
+#lvl i{width:3px;border-radius:2px;background:var(--accent);height:calc(4px + var(--l) * var(--k) * 14px);opacity:calc(.35 + var(--l) * .65);transition:height .08s}
+body[data-orb="speak"] #lvl i{background:var(--fg);animation:eq .5s ease-in-out infinite alternate;animation-delay:calc(var(--k) * -.5s)}
+body[data-orb="think"] #lvl i{animation:eq .3s ease-in-out infinite alternate;animation-delay:calc(var(--k) * -.3s)}
+#tip{flex:1;min-width:0;font:400 12px/1.3 var(--fm);color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:opacity .5s;text-align:right}
 
-/* Blätter */
-.sheet{position:fixed;left:0;right:0;bottom:0;z-index:5;background:var(--panel2);border-top:1px solid var(--line2);border-radius:12px 12px 0 0;padding:16px max(16px,var(--sr)) calc(var(--sb) + 16px) max(16px,var(--sl));max-height:85vh;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
-.sheet h3{margin:0;font-family:var(--fd);letter-spacing:.14em;text-transform:uppercase;font-size:14px}
-.sheet label{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--muted)}
-.sheet .pair{display:flex;gap:8px}
-.sheet input{width:100%;min-width:0;background:#0d0706;border:1px solid var(--line2);border-radius:4px;padding:10px}
-.sheet .row{display:flex;gap:8px;flex-wrap:wrap}
-.scrim{position:fixed;inset:0;z-index:4;background:rgba(0,0,0,.55)}
-.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(var(--sb) + 70px);z-index:6;background:var(--panel2);border:1px solid var(--line2);padding:10px 14px;border-radius:4px;font-size:13px;width:max-content;max-width:calc(100% - 32px)}
-@media (min-width:760px){.mkt,.kpis{grid-template-columns:repeat(4,minmax(0,1fr))}}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* Ruhezustand */
+#lock{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:14px;padding:0 24px calc(var(--sb) + 44px);text-align:center;pointer-events:none;opacity:0;transition:opacity .6s}
+#lock .brand{font:700 26px/1 var(--fd);letter-spacing:.55em;margin-right:-.55em;animation:lockGlow 3.2s ease-in-out infinite}
+#lock .brand b{color:var(--accent)}
+#lock .hint{font:600 17px/1.3 var(--fd);letter-spacing:.1em}
+#lock .hint em{font-style:normal;color:var(--accent)}
+#lock .chip{font-size:11px}
+#grantBox{pointer-events:auto;display:flex;flex-direction:column;gap:10px;align-items:center;max-width:320px}
+#grantBox p{margin:0;color:var(--muted);font-size:13px}
+.btn{background:linear-gradient(180deg,#ff8a4c,#ff5a2a);border:0;color:#1a0904;padding:12px 18px;border-radius:4px;font:700 13px var(--fd);letter-spacing:.16em;text-transform:uppercase}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--dim);display:inline-block}.dot.on{background:var(--good);box-shadow:0 0 8px var(--good)}.dot.off{background:var(--bad)}
+
+body[data-state="sleep"] #app{grid-template-areas:"orb orb";grid-template-rows:1fr}
+body[data-state="sleep"] #orbSlot{width:min(84vw,calc(var(--H) * .5));align-self:center;margin-top:calc(var(--H) * -.12)}
+body[data-state="sleep"] #head,body[data-state="sleep"] #say-wrap,body[data-state="sleep"] #offer,body[data-state="sleep"] #stage,body[data-state="sleep"] #foot{display:none}
+body[data-state="sleep"] #lock{opacity:1}
+body[data-state="awake"] #head{animation:headIn .8s cubic-bezier(.2,.8,.2,1) both}
+body[data-state="awake"] #foot{animation:fadeIn .8s .4s both}
+body.staged #app{grid-template-areas:"head head" "orb say" "offer offer" "stage stage" "foot foot"}
+body.staged #orbSlot{width:100%;margin:4px 0 0;align-self:start}
+body.staged #say{font-size:15px;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+body.alarm::after{content:"";position:fixed;inset:0;z-index:3;pointer-events:none;box-shadow:inset 0 0 0 3px var(--hot),inset 0 0 90px rgba(255,74,47,.45);animation:alarm 1s ease-in-out infinite}
+
+/* Startprotokoll */
+#boot{position:fixed;right:16px;top:calc(var(--st) + 52px);z-index:4;display:flex;flex-direction:column;gap:4px;pointer-events:none;opacity:0;transition:opacity .4s}
+#boot.show{opacity:1}
+#boot .bl{display:flex;gap:10px;justify-content:space-between;min-width:170px;font:500 10.5px var(--fm);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:4px 8px;border-left:2px solid var(--accent);background:rgba(21,12,10,.85);animation:bootIn .35s ease-out both}
+#boot .bl b{font-weight:500}#boot .ok{color:var(--good)}#boot .bad{color:var(--bad)}
+
+/* Ansichten */
+.view{padding:6px 0 18px;transform-origin:50% 0}
+.view.leave{position:absolute;inset:0 0 auto;animation:leave .35s ease-in forwards;pointer-events:none}
+.rise{animation:rise .6s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0) * 70ms)}
+.vhead{display:flex;align-items:baseline;gap:10px;margin:2px 0 12px;position:relative;padding-bottom:8px}
+.vhead::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:linear-gradient(90deg,var(--accent),transparent);transform-origin:0 50%;animation:draw .9s .1s cubic-bezier(.2,.8,.2,1) both}
+.vhead h2{margin:0;font:700 clamp(22px,7vw,30px)/1 var(--fd);letter-spacing:.12em;text-transform:uppercase;min-width:0;overflow-wrap:anywhere}
+.vhead .label{margin-left:auto;text-align:right;flex:none;max-width:48%}
+.globebox{width:100%;max-width:440px;aspect-ratio:1/1;max-height:calc(var(--H) * .36);margin:0 auto 8px}
+.globe,.wicon{width:100%;height:100%;display:block}
+.news,.nlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.news li,.nlist li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:8px;padding:10px 12px;border:1px solid var(--line);border-radius:4px;background:rgba(255,122,61,.035);position:relative;overflow:hidden}
+.news li::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--accent);transform-origin:50% 0;animation:drawY .6s both;animation-delay:calc(var(--i) * 70ms + .2s)}
+.news li:nth-child(-n+3)::before{background:var(--hot)}
+.num{font:600 13px var(--fd);color:var(--accent);padding-top:2px}
+.tag{font:500 10px var(--fm);letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.news h3{margin:2px 0;font:600 15px/1.3 var(--fb);overflow-wrap:anywhere}
+.news p,.nlist p{margin:0;color:var(--muted);font-size:13px;overflow-wrap:anywhere}
+.nlist p{color:var(--fg);font-size:14.5px}
+.atitle{margin:0 0 10px;font:600 19px/1.3 var(--fb)}
+.v-article p{margin:0 0 10px;color:#e6d6cd;font-size:15px;line-height:1.55}
+.ticker{overflow:hidden;border-block:1px solid var(--line);margin-bottom:12px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.ticker .track{display:flex;gap:26px;width:max-content;padding:7px 0;font:400 12px var(--fm);animation:ticker 28s linear infinite}
+.ticker b{font-weight:500;color:var(--fg)}
+.qgrid,.kgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.q,.kpi{border:1px solid var(--line);border-radius:4px;padding:10px;min-width:0;background:rgba(255,122,61,.03)}
+.qn{font:600 13px var(--fb);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.qv{font:500 17px var(--fm);font-variant-numeric:tabular-nums;margin:2px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chg{font:500 11.5px var(--fm);font-variant-numeric:tabular-nums}
+.spark{width:100%;height:42px;display:block;margin-top:6px;overflow:visible}
+.spark .line{stroke-dasharray:1;stroke-dashoffset:1;animation:dash 1.4s .3s cubic-bezier(.4,0,.2,1) forwards}
+.spark .area{opacity:0;animation:fadeIn .8s 1.2s forwards}
+.spark .end{opacity:0;animation:pop .5s 1.5s forwards;transform-box:fill-box;transform-origin:center}
+.big{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.bv{font:700 clamp(34px,11vw,48px)/1 var(--fd);font-variant-numeric:tabular-nums}
+.big .chg{font-size:14px}
+.chart .spark{height:min(170px,calc(var(--H) * .22));margin:14px 0}
+.chart .spark .end{display:none}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.facts>div{border:1px solid var(--line);border-radius:4px;padding:8px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.facts b{font:500 13px var(--fm);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wnow{display:grid;grid-template-columns:clamp(96px,30vw,140px) minmax(0,1fr);gap:12px;align-items:center;margin-bottom:12px}
+.wicon{aspect-ratio:1/1;height:auto}
+.wtemp{font:700 clamp(48px,15vw,68px)/1 var(--fd)}
+.wdesc{font:600 16px var(--fb)}
+.wmeta{font:400 12px var(--fm);color:var(--muted);margin-top:4px}
+.wdays{display:flex;flex-direction:column;gap:6px}
+.wday{display:grid;grid-template-columns:58px 20px minmax(0,1fr) 76px 38px;align-items:center;gap:8px;padding:7px 10px;border:1px solid var(--line);border-radius:4px}
+.wday.on{border-color:var(--line2);background:rgba(255,122,61,.06)}
+.wday .wi{font-size:16px;text-align:center}
+.wday .bar{height:5px;background:rgba(255,122,61,.1);border-radius:3px;position:relative;overflow:hidden}
+.wday .bar i{position:absolute;top:0;bottom:0;left:calc(var(--lo) * 100%);right:calc((1 - var(--hi)) * 100%);background:linear-gradient(90deg,#ffb347,var(--hot));border-radius:3px;transform-origin:0 50%;animation:draw .9s both;animation-delay:calc(var(--i) * 70ms + .3s)}
+.wday .mono{font-size:12px;text-align:right}
+.wday .rain{font:400 11px var(--fm);color:#8cbcff;text-align:right}
+.wimg{width:100%;max-height:calc(var(--H) * .3);overflow:hidden;border-radius:4px;margin-bottom:10px;border:1px solid var(--line)}
+.wimg img{width:100%;max-height:calc(var(--H) * .3);object-fit:cover;display:block;animation:imgIn 1.2s cubic-bezier(.2,.8,.2,1) both}
+.wdesc2{margin:0 0 8px;color:var(--accent);font:500 12.5px var(--fm)}
+.extract{margin:0;font-size:15px;line-height:1.55;color:#e6d6cd}
+.infobig{font:700 clamp(52px,18vw,86px)/1 var(--fd);letter-spacing:.02em;margin:18px 0 10px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere;animation:popBig .7s cubic-bezier(.2,1.4,.4,1) both}
+.v-info.flip .infobig{animation:flip .9s cubic-bezier(.2,.8,.2,1) both}
+.v-info.alarm .infobig{color:var(--hot);animation:pulse 1s ease-in-out infinite}
+.infosub{margin:0;color:var(--muted);font:400 14px var(--fm);overflow-wrap:anywhere}
+.tlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+.tcard{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px;border:1px solid var(--line);border-radius:6px}
+.ring{width:100%;max-width:180px;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:6}
+.ring .bg{stroke:rgba(255,122,61,.12)}
+.ring .fg{stroke:var(--accent);stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:0;transition:stroke-dashoffset .25s linear;filter:drop-shadow(0 0 6px rgba(255,122,61,.6))}
+.tval{position:absolute;top:calc(50% - 24px);font-size:clamp(22px,7vw,30px)}
+.tcard.done{opacity:.4}
+.kv{font:700 clamp(24px,7.5vw,32px)/1.05 var(--fd);margin:6px 0 4px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.kbar{display:block;height:3px;background:var(--line);border-radius:2px;margin-top:8px;overflow:hidden}
+.kbar i{display:block;height:100%;width:var(--w);background:linear-gradient(90deg,var(--hot),var(--accent));transform-origin:0 50%;animation:draw 1.2s .5s cubic-bezier(.2,.8,.2,1) both}
+.note,.muted{font-size:13px;color:var(--muted)}
+.note{border:1px dashed var(--line2);border-radius:4px;padding:8px 10px;margin:0 0 10px}
+.hgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.hcard{border:1px solid var(--line);border-radius:4px;padding:10px;min-width:0}
+.hcard h3{margin:0 0 6px;font:600 13px var(--fd);letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.hcard p{margin:0 0 4px;font-size:12.5px;color:#e6d6cd}
+
+@media (min-width:600px){.qgrid,.kgrid{grid-template-columns:repeat(4,minmax(0,1fr))}.hgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:359px){#app{padding-left:12px;padding-right:12px}.wday{grid-template-columns:48px 18px minmax(0,1fr) 68px 32px;gap:6px;padding:6px 8px}#head .chip.opt{display:none}}
+@media (max-height:680px){#say{font-size:16px}#orbSlot{width:min(52vw,calc(var(--H) * .26))}}
+
+@keyframes rise{from{opacity:0;transform:translateY(16px);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+@keyframes leave{to{opacity:0;transform:translateY(-10px) scale(.98)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes headIn{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:none}}
+@keyframes sayIn{from{opacity:.2;filter:blur(3px);transform:translateY(4px)}to{opacity:1;filter:none;transform:none}}
+@keyframes draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes drawY{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes dash{to{stroke-dashoffset:0}}
+@keyframes pop{from{opacity:0;transform:scale(0)}60%{opacity:1;transform:scale(1.8)}to{opacity:1;transform:scale(1)}}
+@keyframes popBig{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes flip{from{opacity:0;transform:perspective(400px) rotateX(-270deg)}to{opacity:1;transform:none}}
+@keyframes pulse{50%{opacity:.55;transform:scale(.97)}}
+@keyframes blink{50%{opacity:0}}
+@keyframes eq{from{height:4px}to{height:calc(6px + var(--k) * 12px)}}
+@keyframes ticker{to{transform:translateX(-50%)}}
+@keyframes drain{from{width:100%}to{width:0}}
+@keyframes offerGlow{50%{border-color:rgba(255,122,64,.75);box-shadow:0 0 22px rgba(255,90,40,.18)}}
+@keyframes bootIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
+@keyframes imgIn{from{opacity:0;transform:scale(1.12);filter:saturate(0) blur(6px)}to{opacity:1;transform:none;filter:none}}
+@keyframes alarm{50%{opacity:.35}}
+@keyframes lockGlow{50%{text-shadow:0 0 18px rgba(255,122,64,.55)}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition:none!important}}
 </style>
 </head>
-<body class="locked">
-<canvas id="orb" aria-hidden="true"></canvas>
-
-<section id="lock" aria-label="Makho schläft">
-  <button class="tapzone" id="tapWake" aria-label="Makho aufwecken"></button>
-  <div class="brand">MAKH<span>O</span></div>
-  <div class="hint" id="lockHint">Sag <em>„Hallo Makho“</em></div>
-  <span class="pill"><i class="dot" id="lockDot"></i><span id="lockMic">Mikrofon wird gestartet …</span></span>
-  <button class="btn primary" id="grantMic" hidden>Mikrofon erlauben</button>
-  <button class="linkbtn" id="lockKb" type="button">Lieber tippen</button>
-</section>
-
-<section id="hud" aria-label="Makho">
-  <header>
-    <div class="brand">MAKH<span>O</span></div>
-    <span class="pill"><i class="dot on"></i>SYSTEME ONLINE</span>
-    <div class="clock" id="clock">--:--</div>
+<body data-state="sleep">
+<canvas id="fx" aria-hidden="true"></canvas>
+<main id="app">
+  <header id="head">
+    <div class="brand">MAKH<b>O</b></div>
+    <span class="chip ok opt" id="net"><i></i><span>Online</span></span>
+    <span class="chip" id="tchip" hidden><i></i><span>0:00</span></span>
+    <div id="clock">--:--</div>
   </header>
-  <div class="spacer"></div>
-  <div class="speech">
-    <p id="caption"></p>
+  <div id="orbSlot" aria-hidden="true"></div>
+  <div id="say-wrap" aria-live="polite">
+    <p id="say"></p>
     <p id="heard"></p>
   </div>
-  <div class="ask" id="ask" hidden>
-    <p id="askText"></p>
-    <div class="row"><button class="btn primary" id="yes">Ja</button><button class="btn" id="no">Nein</button></div>
+  <div id="offer" role="status">
+    <p class="q"></p>
+    <div class="hint label">Sag <b>„Ja“</b> oder <b>„Nein“</b></div>
+    <div class="bar"><i></i></div>
   </div>
-  <div id="stage" hidden></div>
-  <footer>
-    <span class="pill"><i class="dot" id="micDot"></i><span id="micText">Bereit</span></span>
-    <button class="icon" id="kbBtn" aria-label="Befehl tippen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2.5" y="6" width="19" height="12" rx="2"/><path d="M6 10h1M9 10h1M12 10h1M15 10h1M18 10h1M7 14h10"/></svg></button>
-    <button class="icon" id="setBtn" aria-label="Einstellungen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></button>
+  <section id="stage" aria-live="polite"></section>
+  <footer id="foot">
+    <div id="mic"><span id="lvl" aria-hidden="true"><i style="--k:.5"></i><i style="--k:.9"></i><i style="--k:1"></i><i style="--k:.7"></i><i style="--k:.4"></i></span><span class="label" id="micText">Hört zu</span></div>
+    <div id="tip"></div>
   </footer>
-</section>
-
-<div class="scrim" id="scrim" hidden></div>
-<form class="sheet" id="kbSheet" hidden>
-  <h3>Befehl an Makho</h3>
-  <input id="kbInput" autocomplete="off" placeholder="z. B. Zeig mir die Börse" aria-label="Befehl">
-  <div class="row"><button class="btn primary" type="submit">Senden</button><button class="btn" type="button" data-close>Schließen</button></div>
-</form>
-<form class="sheet" id="setSheet" hidden>
-  <h3>Zahlen der Woche</h3>
-  <div id="kpiFields"></div>
-  <div class="row"><button class="btn primary" type="submit">Speichern</button><button class="btn" type="button" id="resetKpi">Beispielwerte</button></div>
-  <h3 style="margin-top:8px">Makho</h3>
-  <div class="row"><button class="btn" type="button" id="sleepBtn">Schlafen legen</button><button class="btn" type="button" data-close>Schließen</button></div>
-  <p class="label" style="text-transform:none;letter-spacing:.04em">Nachrichten: tagesschau.de · Kurse: Yahoo Finance · Ohne Internet zeigt Makho sein letztes Lagebild.</p>
-</form>
-<div class="toast" id="toast" hidden></div>
+  <div id="lock">
+    <div class="brand">MAKH<b>O</b></div>
+    <div class="hint">Sag <em>„Hallo Makho“</em></div>
+    <span class="chip"><span class="dot" id="lockDot"></span><span id="lockMic">Mikrofon wird gestartet …</span></span>
+    <div id="grantBox" hidden>
+      <p>Makho braucht das Mikrofon. Erlaube es hier oder in den Android-Einstellungen unter Apps › Makho › Berechtigungen.</p>
+      <button class="btn" id="grant">Mikrofon erlauben</button>
+    </div>
+  </div>
+</main>
+<div id="boot" aria-hidden="true"></div>
 
 <script>
-(() => {
-"use strict";
-const $ = s => document.querySelector(s);
-const wait = ms => new Promise(r => setTimeout(r, ms));
-const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-/* ================= Native Bausteine ================= */
-const Cap = window.Capacitor;
-const native = !!(Cap && Cap.isNativePlatform && Cap.isNativePlatform());
-const plug = n => native ? (Cap.registerPlugin ? Cap.registerPlugin(n) : Cap.Plugins[n]) : null;
-const SR = plug("SpeechRecognition");
-const TTS = plug("TextToSpeech");
-
-/* ================= Stimme ================= */
-let VOICE = {lines:{}, env:{}};
-const voiceReady = fetch("voice.json").then(r => r.json()).then(v => VOICE = v).catch(() => {});
-let speaking = false, level = 0, levelTarget = 0, envTimer = null, curAudio = null;
-function hush(){ try{ curAudio && curAudio.pause(); }catch(e){} curAudio = null; try{ TTS ? TTS.stop() : speechSynthesis.cancel(); }catch(e){} clearInterval(envTimer); levelTarget = 0; }
-
-function caption(text){ $("#caption").textContent = text; }
-function playClip(key){
-  return new Promise(res => {
-    const a = new Audio("voice/" + key + ".mp3"); curAudio = a;
-    const env = VOICE.env[key] || [];
-    a.onplay = () => { clearInterval(envTimer); envTimer = setInterval(() => { levelTarget = env[Math.floor(a.currentTime * 30)] || 0; }, 33); };
-    const done = () => { clearInterval(envTimer); levelTarget = 0; res(); };
-    a.onended = done; a.onerror = done; a.onpause = done;
-    a.play().catch(done);
-  });
-}
-async function speakTTS(text){
-  levelTarget = .45; const pulse = setInterval(() => levelTarget = .25 + Math.random() * .5, 110);
-  try{
-    const cap = wait(text.length * 95 + 4000);
-    if (TTS) await Promise.race([TTS.speak({ text, lang: "de-DE", rate: 1.0, pitch: 0.9, volume: 1.0, category: "playback" }), cap]);
-    else if ("speechSynthesis" in window) await Promise.race([new Promise(r => { const u = new SpeechSynthesisUtterance(text); u.lang = "de-DE"; u.pitch = .9; u.onend = u.onerror = r; speechSynthesis.speak(u); }), cap]);
-    else await wait(Math.min(9000, text.length * 55));
-  }catch(e){ await wait(400); }
-  clearInterval(pulse); levelTarget = 0;
-}
-/* Eine Rede ist eine Folge aus Aufnahmen ({clip}) und Handy-Stimme ({tts}). */
-let speechId = 0;
-async function speak(parts){
-  const id = ++speechId; hush(); speaking = true; setMic("talk");
-  await voiceReady;
-  for (const p of parts){
-    if (id !== speechId) break;
-    if (p.clip){ caption(p.show || VOICE.lines[p.clip] || ""); await playClip(p.clip); }
-    else if (p.tts){ caption(p.show || p.tts); await speakTTS(p.tts); }
-    await wait(180);
-  }
-  if (id === speechId){ speaking = false; setMic(); }
-}
-
-/* ================= Spracherkennung ================= */
-let micOK = false, listening = false;
-function setMic(state){
-  const d = $("#micDot"), t = $("#micText");
-  if (state === "talk" || speaking){ d.className = "dot talk"; t.textContent = "Makho spricht"; return; }
-  if (!micOK){ d.className = "dot off"; t.textContent = "Mikrofon aus · tippe"; return; }
-  d.className = "dot on"; t.textContent = "Hört zu";
-}
-async function micPermission(ask){
-  if (!SR) return false;
-  try{
-    let p = await SR.checkPermissions();
-    if (p.speechRecognition !== "granted" && ask) p = await SR.requestPermissions();
-    return p.speechRecognition === "granted";
-  }catch(e){ return false; }
-}
-async function listenLoop(){
-  if (listening) return; listening = true;
-  while (micOK){
-    if (speaking || sheetOpen){ await wait(250); continue; }
-    try{
-      const r = await Promise.race([
-        SR.start({ language: "de-DE", maxResults: 4, partialResults: false, popup: false }),
-        wait(14000).then(() => { try{ SR.stop(); }catch(e){} return null; })
-      ]);
-      if (r && r.matches && r.matches.length) await heard(r.matches);
-    }catch(e){ await wait(350); }
-  }
-  listening = false;
-}
-/* Browser-Testmodus (am PC): Web Speech, falls vorhanden */
-const WebSR = !native && (window.SpeechRecognition || window.webkitSpeechRecognition);
-function webListen(){
-  if (!WebSR) return;
-  const rec = new WebSR(); rec.lang = "de-DE"; rec.continuous = true; rec.maxAlternatives = 3;
-  rec.onresult = e => { const r = e.results[e.results.length - 1]; heard([...r].map(x => x.transcript)); };
-  rec.onend = () => setTimeout(() => { try{ rec.start(); }catch(e){} }, 300);
-  try{ rec.start(); micOK = true; }catch(e){}
-}
-
-/* ================= Ablauf ================= */
-const WAKE = /(hallo|hey|hi|hello|servus|moin)\W*(ma(k|c|ck|ch|g)?h?o|makko|macho|maho|marko|marco|mako)\b/i;
-const YES = /^(ja|jo|jap|jawohl|gerne?|klar|okay|ok|bitte|na klar|sicher|natürlich|unbedingt|zeig|mach|los|sehr gern|warum nicht|auf jeden)/i;
-const NO = /^(nein|nee|nö|ne\b|nicht|später|lass|kein|danke nein|nein danke)/i;
-const SLEEP = /(schlaf|gute nacht|tschüss|tschau|ciao|bis später|ruhe|pause|aus machen|ausschalten)/i;
-const THANKS = /^(danke|okay danke|ok danke|super|perfekt|top)\b/i;
-const TOPICS = [
-  ["numbers", /(zahlen|kpi|umsatz|newsletter|reichweite|statistik)/i],
-  ["markets", /(börse|boerse|aktie|markt|dax|kurs|bitcoin|gold|öl\b|nasdaq|dow)/i],
-  ["germany", /(deutschland|berlin|bundes|inland)/i],
-  ["russia", /(russland|russen|moskau|putin|ukraine|kiew|kreml)/i],
-  ["world", /(nachricht|news|welt|neuigkeit|lage|was gibt.s neues|was ist los|schlagzeile|ausland)/i]
-];
-const NEXT = { world:"germany", germany:"russia", russia:"markets", markets:"numbers", numbers:null };
-const ASK = { world:"ask_news", germany:"ask_germany", russia:"ask_russia", markets:"ask_markets", numbers:"ask_numbers" };
-let awake = false, pending = null, idleTimer = null;
-
-async function heard(alts){
-  const text = alts[0].trim(); if (!text) return;
-  const any = re => alts.some(a => re.test(a.trim()));
-  bumpIdle();
-  if (!awake){ if (any(WAKE)) wake(); return; }
-  $("#heard").innerHTML = "<b>DU ·</b> " + esc(text);
-  const t = text.replace(/^(makho|macho|mako)\W*/i, "");
-  if (any(SLEEP)) return sleep();
-  const topic = (TOPICS.find(([, re]) => re.test(t)) || [])[0];
-  if (topic) return show(topic);
-  if (pending && YES.test(t)) return show(pending);
-  if (pending && NO.test(t)) return decline();
-  if (THANKS.test(t)){ await speak([{clip:"thanks"}]); return; }
-  if (any(WAKE)){ return offer(pending || "world", true); }
-  await speak([{clip:"unknown"}]);
-}
-function askCard(key){
-  pending = key;
-  if (!key){ $("#ask").hidden = true; return; }
-  $("#askText").textContent = VOICE.lines[ASK[key]] || "";
-  $("#ask").hidden = false;
-}
-async function offer(key, withMore){
-  if (!key){ askCard(null); await speak([{clip:"ask_more"}]); return; }
-  askCard(key); await speak([{clip: ASK[key]}]);
-}
-async function decline(){
-  const skipped = pending; askCard(null); flow++;
-  await speak([{clip:"no"}]);
-  const nxt = NEXT[skipped];
-  if (nxt) await offer(nxt); else await speak([{clip:"ask_more"}]);
-}
-async function wake(){
-  if (awake) return; awake = true;
-  document.body.classList.remove("locked"); document.body.classList.add("awake");
-  $("#heard").textContent = ""; prefetch();
-  await wait(600);
-  askCard("world");
-  await speak([{clip:"boot"}]);
-}
-async function sleep(){
-  askCard(null); flow++;
-  await speak([{clip:"sleep"}]);
-  awake = false; hideStage();
-  document.body.classList.remove("awake", "staged"); document.body.classList.add("locked");
-}
-function bumpIdle(){ clearTimeout(idleTimer); idleTimer = setTimeout(() => { if (awake && !speaking){ awake = false; askCard(null); hideStage(); document.body.classList.remove("awake","staged"); document.body.classList.add("locked"); } }, 6 * 60 * 1000); }
-
-/* ================= Bühne ================= */
-function hideStage(){ const s = $("#stage"); s.classList.remove("show"); s.hidden = true; s.innerHTML = ""; document.body.classList.remove("staged"); globeOn = false; }
-function openStage(html){
-  const s = $("#stage"); s.hidden = false; s.innerHTML = html; s.scrollTop = 0;
-  document.body.classList.add("staged");
-  requestAnimationFrame(() => s.classList.add("show"));
-}
-let flow = 0;
-async function show(topic){
-  askCard(null); bumpIdle(); flow++;
-  if (topic === "markets") return showMarkets();
-  if (topic === "numbers") return showNumbers();
-  return showNews(topic);
-}
-
-/* ---------- Nachrichten ---------- */
-const PLACES = [
-  ["Deutschland",/deutsch|berlin|bundes|merz|bundestag|bayern|hamburg|nrw/i,52.5,13.4],["Ukraine",/ukrain|kiew|kyjiw|selensk|charkiw|odessa/i,50.4,30.5],
-  ["Russland",/russ|moskau|putin|kreml/i,55.8,37.6],["USA",/usa|us-|washington|trump|amerika|vereinigte staaten|new york/i,38.9,-77],
-  ["China",/china|peking|xi jinping|taiwan/i,39.9,116.4],["Iran",/iran|teheran|hormus/i,35.7,51.4],["Nahost",/israel|gaza|hamas|libanon|nahost|westjordan/i,31.5,34.8],
-  ["Frankreich",/frankreich|paris|macron/i,48.9,2.35],["Großbritannien",/großbritannien|london|britisch|england/i,51.5,-.1],["Türkei",/türkei|ankara|erdogan|istanbul/i,39.9,32.9],
-  ["Syrien",/syrien|damaskus/i,33.5,36.3],["EU",/\beu\b|brüssel|europäische/i,50.85,4.35],["Polen",/polen|warschau/i,52.2,21],["Italien",/italien|rom\b|meloni/i,41.9,12.5],
-  ["Spanien",/spanien|madrid/i,40.4,-3.7],["Indien",/indien|neu-delhi/i,28.6,77.2],["Japan",/japan|tokio/i,35.7,139.7],["Venezuela",/venezuela|caracas/i,10.5,-66.9],
-  ["Brasilien",/brasilien/i,-15.8,-47.9],["Sudan",/sudan|khartum/i,15.5,32.5],["Korea",/korea|seoul|pjöngjang/i,37.5,127]
-];
-const FOCUS = { world:null, germany:["Deutschland",51.2,10.4], russia:["Russland",55.8,37.6] };
-const SNAP = {
-  world:[
-    {t:"Katar vermittelt erneut zwischen Iran und den USA",d:"Vermittler sind zurück in Teheran, um ein Abkommen voranzubringen.",s:"Times of Israel, 07.11.2026"},
-    {t:"Tanker brennt nach Minentreffer in der Straße von Hormus",d:"Das meldet Irans Marine für den östlichen Teil der Meerenge.",s:"Times of Israel, 07.11.2026"},
-    {t:"Russland und Ukraine: Luftangriffe, Gespräche „produktiv“",d:"Eine lokale Waffenruhe um Oleschky hält den dritten Tag.",s:"NBC News, 07.11.2026"},
-    {t:"Regen flutet Tausende Zelte in Gaza",d:"Betroffen sind Vertriebene, teilen die Hamas-Behörden mit.",s:"Times of Israel, 07.11.2026"}],
-  germany:[
-    {t:"Deutschlandticket wird teurer",d:"Wer bis 30. November nicht reagiert, verliert sein Abo.",s:"infranken.de, 07.11.2026"},
-    {t:"Pistorius will nach FCAS-Aus schnelle Alternative",d:"Personal für die Bundeswehr sieht er auch ohne Wehrpflicht.",s:"ZDFheute, 07.11.2026"},
-    {t:"Hubig wirbt für Prüfung eines AfD-Verbots",d:"Die Justizministerin will ein Verbotsverfahren prüfen lassen.",s:"ZDFheute, 07.11.2026"}],
-  russia:[
-    {t:"Luftangriffe auf beiden Seiten gehen weiter",d:"Der US-Gesandte nennt die neuen Gespräche produktiv.",s:"NBC News, 07.11.2026"},
-    {t:"Lokale Waffenruhe um Oleschky hält",d:"Ein Hilfskonvoi soll in die Stadt am Dnipro fahren.",s:"NBC News, 07.11.2026"},
-    {t:"Bericht: Moskau liefert Iran 90 Raketenwerfer",d:"Das berichtet die Financial Times.",s:"Times of Israel, 07.11.2026"}]
-};
-const live = { world:null, germany:null, russia:null, markets:null, at:null };
-async function getJSON(url, ms = 9000){
-  const c = new AbortController(); const t = setTimeout(() => c.abort(), ms);
-  try{ const r = await fetch(url, { signal: c.signal, headers: { "Accept": "application/json" } }); if (!r.ok) throw new Error(r.status); return await r.json(); }
-  finally{ clearTimeout(t); }
-}
-const mapTS = arr => (arr || []).filter(n => n && n.title && n.type !== "video").slice(0, 8).map(n => ({
-  t: n.title, top: n.topline || "", d: n.firstSentence || "", u: n.shareURL || n.detailsweb || "",
-  s: "tagesschau.de" + (n.date ? " · " + new Date(n.date).toLocaleTimeString("de-DE", {hour:"2-digit", minute:"2-digit"}) + " Uhr" : "")
-}));
-let prefetching = null;
-function prefetch(){
-  if (prefetching) return prefetching;
-  const base = "https://www.tagesschau.de/api2u/";
-  prefetching = Promise.allSettled([
-    getJSON(base + "news/?ressort=ausland").then(j => live.world = mapTS(j.news)),
-    getJSON(base + "news/?ressort=inland").then(j => live.germany = mapTS(j.news)),
-    getJSON(base + "search/?searchText=Russland&pageSize=12").then(j => live.russia = mapTS(j.searchResults)),
-    loadMarkets()
-  ]).then(() => { live.at = new Date(); setTimeout(() => prefetching = null, 10 * 60 * 1000); });
-  return prefetching;
-}
-function tagOf(n){ const s = n.top + " " + n.t + " " + n.d; let best = null, bi = 1e9; for (const p of PLACES){ const m = s.search(p[1]); if (m >= 0 && m < bi){ bi = m; best = p; } } return best; }
-
-async function showNews(topic){
-  const my = flow;
-  const intro = { world:"in_world", germany:"in_germany", russia:"in_russia" }[topic];
-  const introP = speak([{clip:intro}]);
-  await Promise.race([prefetch(), wait(6000)]);
-  const items = (live[topic] && live[topic].length) ? live[topic] : SNAP[topic].map(x => ({...x, top:"", u:""}));
-  const isLive = !!(live[topic] && live[topic].length);
-  const title = { world:"Welt", germany:"Deutschland", russia:"Russland" }[topic];
-  openStage(`<div class="stagehead"><h2>${title}</h2><span class="label">${isLive ? "Live · tagesschau.de" : "Lagebild 07.11.2026 · offline"}</span></div>
-    <div class="globebox"><canvas id="globe"></canvas></div>
-    <div class="news">${items.map(n => { const p = tagOf(n); return `<article class="item"><span class="tag">${esc(n.top || (p ? p[0] : ""))}</span><h3>${esc(n.t)}</h3>${n.d ? `<p>${esc(n.d)}</p>` : ""}<span class="item a" style="font-family:var(--fm);font-size:11px;color:var(--dim)">${esc(n.s)}</span></article>`; }).join("")}</div>`);
-  const marks = items.map(tagOf).filter(Boolean);
-  const f = FOCUS[topic] || (marks[0] ? [marks[0][0], marks[0][2], marks[0][3]] : ["Welt", 30, 20]);
-  startGlobe(f, marks);
-  await introP; if (my !== flow) return;
-  const top = items.slice(0, 3).map(n => n.t.replace(/[„“"]/g, "")).join(". ") + ".";
-  await speak([{tts: (isLive ? "" : "Ich habe gerade keinen Live-Zugang. Mein letztes Lagebild: ") + top, show: items[0].t}]);
-  if (my === flow) await offer(NEXT[topic]);
-}
-
-/* ---------- Börse ---------- */
-const SYMS = [["^GDAXI","DAX",""],["^GSPC","S&P 500",""],["^IXIC","Nasdaq",""],["^DJI","Dow Jones",""],["BZ=F","Brent","$"],["GC=F","Gold","$"],["BTC-USD","Bitcoin","$"],["EURUSD=X","Euro/Dollar",""]];
-const MSNAP = [["DAX",25820,-1.92],["S&P 500",7376.86,.31],["Nasdaq",24579,1.09],["Dow Jones",51286,-.46],["Brent",97.1,null],["Gold",4060,-.67],["Bitcoin",75900,null]];
-async function loadMarkets(){
-  const res = await Promise.allSettled(SYMS.map(([s]) => getJSON("https://query1.finance.yahoo.com/v8/finance/chart/" + encodeURIComponent(s) + "?range=1mo&interval=1d")));
-  const out = [];
-  res.forEach((r, i) => {
-    if (r.status !== "fulfilled") return;
-    try{
-      const x = r.value.chart.result[0]; const closes = x.indicators.quote[0].close.filter(v => v != null);
-      const price = x.meta.regularMarketPrice ?? closes[closes.length - 1];
-      const prev = closes.length > 1 ? (Math.abs(closes[closes.length - 1] - price) < 1e-9 ? closes[closes.length - 2] : closes[closes.length - 1]) : null;
-      out.push({ n: SYMS[i][1], cur: SYMS[i][2], v: price, c: prev ? (price / prev - 1) * 100 : null, series: closes.concat(price) });
-    }catch(e){}
-  });
-  if (out.length >= 3) live.markets = out;
-}
-const nf = (v, d) => v.toLocaleString("de-DE", { minimumFractionDigits: d, maximumFractionDigits: d });
-function spark(series, up){
-  if (!series || series.length < 2) return "";
-  const mn = Math.min(...series), mx = Math.max(...series), W = 200, H = 40, k = (H - 6) / ((mx - mn) || 1);
-  const pts = series.map((v, i) => [i / (series.length - 1) * W, H - 3 - (v - mn) * k]);
-  const d = pts.map((p, i) => (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1)).join("");
-  const col = up ? "#6fd39a" : "#ff6457"; const last = pts[pts.length - 1];
-  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><path d="${d} L${W} ${H} L0 ${H}Z" fill="${col}" opacity=".12"/><path d="${d}" fill="none" stroke="${col}" stroke-width="1.6" vector-effect="non-scaling-stroke"/><circle cx="${last[0]}" cy="${last[1]}" r="2.6" fill="${col}"/></svg>`;
-}
-async function showMarkets(){
-  const my = flow;
-  const introP = speak([{clip:"in_markets"}]);
-  await Promise.race([prefetch(), wait(6000)]);
-  const isLive = !!live.markets;
-  const list = isLive ? live.markets : MSNAP.map(([n, v, c]) => ({ n, v, c, cur: /Brent|Gold|Bitcoin/.test(n) ? "$" : "", series: null }));
-  const fmtV = q => q.n === "Euro/Dollar" ? nf(q.v, 4) : nf(q.v, q.v > 1000 ? 0 : 2) + (q.cur ? " $" : "");
-  openStage(`<div class="stagehead"><h2>Börse</h2><span class="label">${isLive ? "Live · Yahoo Finance · " + new Date().toLocaleTimeString("de-DE",{hour:"2-digit",minute:"2-digit"}) : "Schluss 06.11.2026 · offline"}</span></div>
-    <div class="mkt">${list.map(q => { const up = (q.c ?? 0) >= 0; return `<div class="q"><div class="n">${esc(q.n)}</div><div class="v">${fmtV(q)}</div><div class="c ${q.c == null ? "" : up ? "up" : "down"}">${q.c == null ? "–" : (up ? "▲ +" : "▼ −") + nf(Math.abs(q.c), 2) + " %"}</div>${spark(q.series, up)}</div>`; }).join("")}</div>
-    ${isLive ? "" : `<div class="note">Kein Live-Zugang. Das sind die Schlusskurse vom 6. November 2026.</div>`}`);
-  await introP; if (my !== flow) return;
-  const pick = ["DAX","S&P 500","Nasdaq","Brent","Bitcoin"].map(n => list.find(q => q.n === n)).filter(Boolean);
-  const ups = list.filter(q => (q.c ?? 0) > 0).length, downs = list.filter(q => (q.c ?? 0) < 0).length;
-  const mood = ups > downs ? "Die Börsen sind heute gut gelaunt." : downs > ups ? "Die Börsen haben heute schlechte Laune." : "Die Börsen wissen heute nicht, was sie wollen.";
-  const say = q => `${q.n === "S&P 500" ? "S und P 500" : q.n} ${nf(q.v, q.v > 1000 ? 0 : 2)}${q.cur ? " Dollar" : ""}${q.c == null ? "" : ", " + (q.c >= 0 ? "plus " : "minus ") + nf(Math.abs(q.c), 1) + " Prozent"}`;
-  await speak([{ tts: mood + " " + pick.map(say).join(". ") + ".", show: mood }]);
-  if (my === flow) await offer(NEXT.markets);
-}
-
-/* ---------- Zahlen der Woche ---------- */
-const KDEF = [{n:"Reichweite",u:"Aufrufe",v:2300000,p:1850000},{n:"Newsletter",u:"Leser",v:4300,p:4050},{n:"Umsatz",u:"€",v:52000,p:46500},{n:"Bestellungen",u:"Shop",v:318,p:296}];
-let kpis = KDEF.map(x => ({...x})), kCustom = false;
-try{ const s = JSON.parse(localStorage.getItem("makho.kpis") || "null"); if (Array.isArray(s) && s.length){ kpis = s; kCustom = true; } }catch(e){}
-const big = (v, u) => { const s = v >= 1e6 ? nf(v / 1e6, 1) + " Mio." : v >= 1e4 ? nf(v / 1e3, 1) + " Tsd." : nf(v, 0); return u === "€" ? s + " €" : s; };
-const spoken = (v, u) => { const s = v >= 1e6 ? nf(v / 1e6, 1) + " Millionen" : nf(v, 0); return s + " " + ({"Aufrufe":"Aufrufe","Leser":"Newsletter-Leser","€":"Euro Umsatz","Shop":"Bestellungen"}[u] || u); };
-async function showNumbers(){
-  const my = flow;
-  const introP = speak([{clip:"in_numbers"}]);
-  openStage(`<div class="stagehead"><h2>Zahlen</h2><span class="label">Diese Woche</span></div>
-    ${kCustom ? "" : `<div class="note">Beispielwerte. Trage deine echten Zahlen über das Zahnrad unten ein.</div>`}
-    <div class="kpis">${kpis.map(k => { const d = k.p ? (k.v - k.p) / k.p * 100 : 0; return `<div class="kpi"><span class="label">${esc(k.n)}</span><div class="v">${big(k.v, k.u)}</div><div class="d ${d >= 0 ? "up" : "down"}">${d >= 0 ? "▲" : "▼"} ${nf(Math.abs(d), 1)} % zur Vorwoche</div></div>`; }).join("")}</div>`);
-  await introP; if (my !== flow) return;
-  await speak([{ tts: kpis.map(k => spoken(k.v, k.u)).join(". ") + ".", show: kCustom ? "Ihre Zahlen der Woche." : "Beispielwerte, Master. Ihre echten Zahlen tragen Sie in den Einstellungen ein." }, { clip: "out_numbers" }]);
-  if (my === flow) await offer(null);
-}
-
-/* ================= Globus ================= */
-let LAND = []; fetch("land.json").then(r => r.json()).then(a => LAND = a).catch(() => {});
-let globeOn = false, gFocus = null, gMarks = [], rot = { lon: 0, lat: 20 };
-function startGlobe(focus, marks){ gFocus = focus; gMarks = marks; globeOn = true; rot.lon = focus[2] - 120; }
-function fit(c){ const r = c.getBoundingClientRect(), d = Math.min(2.5, devicePixelRatio || 1), w = Math.round(r.width * d), h = Math.round(r.height * d); if (w && h && (c.width !== w || c.height !== h)){ c.width = w; c.height = h; } return d; }
-function proj(lat, lon, R, cx, cy){
-  const rl = (lon - rot.lon) * Math.PI / 180, la = lat * Math.PI / 180, p0 = rot.lat * Math.PI / 180;
-  return [cx + Math.cos(la) * Math.sin(rl) * R, cy - (Math.cos(p0) * Math.sin(la) - Math.sin(p0) * Math.cos(la) * Math.cos(rl)) * R, Math.sin(p0) * Math.sin(la) + Math.cos(p0) * Math.cos(la) * Math.cos(rl)];
-}
-function drawGlobe(t){
-  const c = document.getElementById("globe"); if (!globeOn || !c) return;
-  const g = c.getContext("2d"), d = fit(c), W = c.width, H = c.height, cx = W / 2, cy = H / 2, R = Math.min(W, H) * .44;
-  g.clearRect(0, 0, W, H);
-  const dl = ((gFocus[2] - rot.lon + 540) % 360) - 180; rot.lon += dl * .035; rot.lat += (gFocus[1] * .7 - rot.lat) * .035;
-  const gr = g.createRadialGradient(cx - R * .3, cy - R * .3, R * .1, cx, cy, R * 1.15); gr.addColorStop(0, "rgba(255,110,50,.16)"); gr.addColorStop(1, "rgba(10,6,5,0)");
-  g.fillStyle = gr; g.beginPath(); g.arc(cx, cy, R * 1.15, 0, 7); g.fill();
-  g.strokeStyle = "rgba(255,122,64,.35)"; g.lineWidth = d; g.beginPath(); g.arc(cx, cy, R, 0, 7); g.stroke();
-  const ds = Math.max(1, R / 240);
-  for (let i = 0; i < LAND.length; i += 2){ const [x, y, z] = proj(LAND[i], LAND[i + 1], R, cx, cy); if (z <= 0) continue; g.fillStyle = `rgba(255,${120 + z * 50 | 0},${60 + z * 30 | 0},${.15 + z * .7})`; g.fillRect(x - ds, y - ds, ds * 2, ds * 2); }
-  const [fx, fy, fz] = proj(gFocus[1], gFocus[2], R, cx, cy);
-  const seen = new Set();
-  for (const m of gMarks){
-    if (seen.has(m[0])) continue; seen.add(m[0]);
-    const [x, y, z] = proj(m[2], m[3], R, cx, cy); if (z <= .05) continue;
-    if (fz > 0 && m[0] !== gFocus[0]){ g.strokeStyle = "rgba(255,122,61,.4)"; g.lineWidth = d; g.beginPath(); g.moveTo(fx, fy); g.quadraticCurveTo((fx + x) / 2, (fy + y) / 2 - Math.hypot(fx - x, fy - y) * .35, x, y); g.stroke(); }
-    g.fillStyle = "#ff7a3d"; g.beginPath(); g.arc(x, y, 2.6 * d, 0, 7); g.fill();
-    g.fillStyle = "rgba(244,231,223,.8)"; g.font = `${10 * d}px "IBM Plex Mono",monospace`; g.fillText(m[0].toUpperCase(), x + 6 * d, y - 5 * d);
-  }
-  if (fz > 0){ const p = reduce ? .5 : (Math.sin(t / 380) + 1) / 2; g.strokeStyle = `rgba(255,74,47,${.8 - p * .6})`; g.lineWidth = 1.6 * d; g.beginPath(); g.arc(fx, fy, 9 * d + p * 10 * d, 0, 7); g.stroke();
-    g.fillStyle = "#ffd2b8"; g.beginPath(); g.arc(fx, fy, 4 * d, 0, 7); g.fill();
-    if (gFocus[0] !== "Welt"){ g.fillStyle = "#f4e7df"; g.font = `600 ${12 * d}px "Oxanium",sans-serif`; g.fillText(gFocus[0].toUpperCase(), fx + 12 * d, fy + 4 * d); } }
-}
-
-/* ================= Orb ================= */
-const oc = $("#orb"), o = oc.getContext("2d"), PTS = [];
-for (let i = 0, N = 1000; i < N; i++){ const y = 1 - i / (N - 1) * 2, r = Math.sqrt(1 - y * y), th = i * 2.39996; PTS.push([Math.cos(th) * r, y, Math.sin(th) * r, Math.random() * 6.28]); }
-function drawOrb(t){
-  const d = fit(oc), W = oc.width, H = oc.height; if (!W) return; const cx = W / 2, cy = H / 2, R = Math.min(W, H) * .33;
-  o.clearRect(0, 0, W, H); level += (levelTarget - level) * .3;
-  const dim = awake ? 1 : .55, a = reduce ? 0 : t / 4200, ca = Math.cos(a), sa = Math.sin(a), ct = Math.cos(.35), st = Math.sin(.35), amp = level * .38;
-  const glow = o.createRadialGradient(cx, cy, 0, cx, cy, R * 1.8); glow.addColorStop(0, `rgba(255,96,40,${(.16 + level * .45) * dim})`); glow.addColorStop(1, "rgba(255,60,20,0)");
-  o.fillStyle = glow; o.beginPath(); o.arc(cx, cy, R * 1.8, 0, 7); o.fill();
-  o.globalCompositeOperation = "lighter";
-  for (const p of PTS){
-    const x = p[0] * ca - p[2] * sa; let z = p[0] * sa + p[2] * ca; const y = p[1], y2 = y * ct - z * st; z = y * st + z * ct;
-    const n = 1 + amp * Math.sin(p[3] * 3 + t / 170) + (reduce ? 0 : .03 * Math.sin(p[3] + t / 650)), rr = R * n, s = (z + 1.4) * .85 * d;
-    o.fillStyle = `rgba(255,${110 + (z + 1) * 55 | 0},${50 + (z + 1) * 25 | 0},${(.12 + (z + 1) * .33) * dim})`; o.fillRect(cx + x * rr, cy + y2 * rr, s, s);
-  }
-  o.globalCompositeOperation = "source-over";
-}
-function frame(t){ drawOrb(t); drawGlobe(t); requestAnimationFrame(frame); }
-requestAnimationFrame(frame);
-
-/* ================= Bedienung ================= */
-let sheetOpen = false;
-function openSheet(id){ sheetOpen = true; try{ SR && SR.stop(); }catch(e){} $("#scrim").hidden = false; $(id).hidden = false; }
-function closeSheets(){ sheetOpen = false; $("#scrim").hidden = true; $("#kbSheet").hidden = true; $("#setSheet").hidden = true; }
-document.querySelectorAll("[data-close]").forEach(b => b.onclick = closeSheets); $("#scrim").onclick = closeSheets;
-$("#kbBtn").onclick = $("#lockKb").onclick = () => { openSheet("#kbSheet"); setTimeout(() => $("#kbInput").focus(), 50); };
-$("#kbSheet").addEventListener("submit", e => { e.preventDefault(); const v = $("#kbInput").value.trim(); $("#kbInput").value = ""; closeSheets(); if (v) heard([v]); });
-$("#yes").onclick = () => { if (pending){ $("#heard").innerHTML = "<b>DU ·</b> Ja"; show(pending); } };
-$("#no").onclick = () => { if (pending){ $("#heard").innerHTML = "<b>DU ·</b> Nein"; decline(); } };
-$("#tapWake").onclick = () => { if (!awake) wake(); };
-$("#sleepBtn").onclick = () => { closeSheets(); sleep(); };
-function kpiForm(){ $("#kpiFields").innerHTML = kpis.map((k, i) => `<label>${esc(k.n)} (${esc(k.u)}) · diese Woche / Vorwoche<span class="pair"><input id="kv${i}" type="number" inputmode="numeric" value="${k.v}"><input id="kp${i}" type="number" inputmode="numeric" value="${k.p}"></span></label>`).join(""); }
-$("#setBtn").onclick = () => { kpiForm(); openSheet("#setSheet"); };
-$("#setSheet").addEventListener("submit", e => { e.preventDefault(); kpis = kpis.map((k, i) => ({...k, v: +$("#kv" + i).value || 0, p: +$("#kp" + i).value || 0})); kCustom = true; try{ localStorage.setItem("makho.kpis", JSON.stringify(kpis)); }catch(err){} closeSheets(); toast("Gespeichert."); });
-$("#resetKpi").onclick = () => { kpis = KDEF.map(x => ({...x})); kCustom = false; try{ localStorage.removeItem("makho.kpis"); }catch(e){} kpiForm(); toast("Beispielwerte wiederhergestellt."); };
-let tt; function toast(m){ const t = $("#toast"); t.textContent = m; t.hidden = false; clearTimeout(tt); tt = setTimeout(() => t.hidden = true, 3500); }
-function tick(){ $("#clock").textContent = new Date().toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" }); } tick(); setInterval(tick, 10000);
-
-/* ================= Start ================= */
-function lockStatus(){
-  const d = $("#lockDot"), t = $("#lockMic");
-  if (micOK){ d.className = "dot on"; t.textContent = "Ich höre zu"; $("#grantMic").hidden = true; $("#lockHint").innerHTML = "Sag <em>„Hallo Makho“</em>"; }
-  else { d.className = "dot off"; t.textContent = native ? "Mikrofon nicht freigegeben" : "Kein Mikrofon · tippe auf die Kugel"; $("#grantMic").hidden = !native; }
-}
-async function startMic(ask){
-  if (native){ micOK = await micPermission(ask); lockStatus(); setMic(); if (micOK) listenLoop(); }
-  else { webListen(); lockStatus(); setMic(); }
-}
-$("#grantMic").onclick = () => startMic(true);
-document.addEventListener("visibilitychange", () => { if (document.hidden){ speechId++; try{ TTS && TTS.stop(); }catch(e){} } });
-startMic(true);
-})();
+  /* Bildschirmhöhe exakt übernehmen (vermeidet Skalierungsfehler durch Systemleisten) */
+  (function () { const set = () => document.documentElement.style.setProperty("--H", window.innerHeight + "px"); set(); addEventListener("resize", set); })();
+  /* Wechselnde Beispiele in der Fußzeile */
+  (function () {
+    const tips = ["Sag „Was kannst du?“", "Sag „Wie wird das Wetter morgen?“", "Sag „Wie steht der DAX?“", "Sag „Wer ist Albert Einstein?“", "Sag „Timer auf 5 Minuten“", "Sag „Was gibt es Neues?“", "Sag „Stopp“ zum Unterbrechen", "Sag „Gib mir ein Briefing“"];
+    let i = 0; const el = document.getElementById("tip");
+    const next = () => { el.style.opacity = 0; setTimeout(() => { el.textContent = tips[i++ % tips.length]; el.style.opacity = 1; }, 500); };
+    next(); setInterval(next, 7000);
+  })();
 </script>
+<script src="js/nlu.js"></script>
+<script src="js/sources.js"></script>
+<script src="js/voice.js"></script>
+<script src="js/fx.js"></script>
+<script src="js/views.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
