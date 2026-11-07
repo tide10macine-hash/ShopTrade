@@ -2,6 +2,9 @@
   "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
   "voiceName": "Liam - Energetic, Social Media Creator",
   "modelId": "eleven_v4",
-  "settings": { "stability": 0.5, "similarityBoost": 0.75 },
-  "text": "If I had to start buying China hauls from zero, this is exactly what I'd do. Number one: grab your coupons first. Never pay full price for shipping when a coupon can cut it. Number two: start with clothes. No liquids, no batteries, no headaches. Number three: always check your QC photos. Seller pictures can look perfect, but the real item can look totally different. Number four: drop the shoeboxes. Unless you really need the box, you're paying to ship air. Number five: vacuum-pack your jackets. Puffers eat space, and space costs money. Do these five things from day one, and you'll save a lot. And if you need an agent, I use PikoBuy for all my hauls. New sign-ups get two forty percent shipping coupons, through the first link in my bio."
+  "settings": {
+    "stability": 0.5,
+    "similarityBoost": 0.75
+  },
+  "text": "Your China hauls are costing way more than they should. Here are five mistakes almost everyone makes. Mistake number five: shipping the shoeboxes. That's paying to ship air. Remove them. Mistake number four: sending puffers as they are. Ask for vacuum packing, and they take way less space. Mistake number three: trusting the seller photos. Always check your real QC photos first. Mistake number two: a risky first haul. Keep it simple, start with clothes. And mistake number one: paying full shipping price. New sign-ups on PikoBuy get two forty percent shipping coupons. Link in my bio!"
 }

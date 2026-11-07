@@ -26,7 +26,7 @@ export const Root: React.FC = () => (
     height={R_VIDEO.height}
   />
   <Composition
-    id="Pikobuy5Tips"
+    id="Pikobuy5Mistakes"
     component={Tips}
     durationInFrames={T_VIDEO.durationInFrames}
     fps={T_VIDEO.fps}

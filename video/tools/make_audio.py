@@ -467,8 +467,8 @@ if __name__ == "__main__":
     write(f"{S}/tock.wav", sfx_tick(False))
     write(f"{S}/stamp.wav", sfx_stamp())
     if len(sys.argv) > 2 and sys.argv[2] == "--tips":
-        # "5 Tips" explainer: 48 s bed; small drop before the PIKOBUY reveal; stops at the end
-        DUR, DROP_80, DROP_LOGO, STOP, HOOKS = 48.2, 40.0, 46.0, 47.6, []
+        # "5 Mistakes" countdown: 39 s bed; drops before mistake #5 and before the PIKOBUY reveal
+        DUR, DROP_80, DROP_LOGO, STOP, HOOKS = 39.0, 6.0, 33.0, 38.6, [33.0]
         write(f"{S}/glitch.wav", sfx_glitch())
         write(f"{S}/vacuum.wav", sfx_vacuum())
         write(os.path.join(OUT, "music", "music-bed-tips-120bpm.wav"), music())

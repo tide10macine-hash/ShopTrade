@@ -107,28 +107,36 @@ python3 -I tools/extract_paper.py fA assets/backgrounds/crumpled-paper.png
 
 ---
 
-# PIKOBUY – 5 Tips explainer (third composition)
+# PIKOBUY – 5 Shipping Mistakes (third composition)
 
-**Final video:** `out/PIKOBUY_5_TIPS_CHINA_HAULS.mp4`. It is a faceless "5 things I'd do starting China hauls from zero" video: 1080×1920, 60 fps, about 48 s.
-**Render:** `npm run render:tips` (composition `Pikobuy5Tips`).
+**Final video:** `out/PIKOBUY_5_SHIPPING_MISTAKES.mp4`. It is a 5→1 countdown of shipping mistakes, each followed by its fix: 1080×1920, 60 fps, about 39 s.
+**Render:** `npm run render:tips` (composition `Pikobuy5Mistakes`).
 
-**Format:**
-- A dark neon background whose colour changes for each tip (blue / green / orange / red), with a glitch cut at each change.
-- Word-synced captions: an italic serif line, a bold neon key phrase that types itself out, and short auto-captions along the bottom.
-- An original SVG and HTML graphic in the middle for each tip.
-- It ends with a PIKOBUY plug: logo, the official 2×40% shipping coupon, and the link-in-bio page with a tap.
+**Look:** the crumpled-paper collage style of the other two ads.
+- Sticker typography, the reference stickers and the original SVG graphics.
+- Whip pans between mistakes and camera shake on the stamps.
+- A 5-4-3-2-1 tracker at the top that ticks off each mistake.
+- Every mistake is stamped with a red ✗, then a green "THE FIX" chip shows the fix.
+- Subtitles at the bottom highlight the word being spoken.
+- It ends with PIKOBUY: logo, the official 2×40% coupon, and the link-in-bio page with a tap and the mascot.
 
-**Voice:** ElevenLabs "Liam – Energetic, Social Media Creator" (a built-in voice, so it works on the free plan).
-- The script is in `src/tips/script.json`. `npm run voice:tips` regenerates the take plus word timestamps (`assets/audio/voice-tips/words.json`).
-- Run it with `ELEVENLABS_API_KEY` set; in the cloud session it's `proxy-injected`, plus `NODE_USE_ENV_PROXY=1`.
-- Scenes, captions and sound cues are anchored to word indices, so a regenerated take re-times itself.
+| Order | Mistake | Fix |
+|---|---|---|
+| Hook | "Your China hauls are costing way more than they should" | 5 MISTAKES |
+| #5 | shipping shoeboxes ("paying to ship air") | remove them (switch turns on, box flies out) |
+| #4 | sending puffers as they are | vacuum packing (bag shrinks, LESS VOLUME) |
+| #3 | trusting seller photos | check real QC photos (camera flash, QC card) |
+| #2 | a risky first haul | start with clothes (bottle and battery banned) |
+| #1 | paying full shipping price | new sign-ups on PikoBuy get 2×40% shipping coupons, link in bio |
+
+**Voice:** ElevenLabs "Liam – Energetic, Social Media Creator".
+- `npm run voice:tips` regenerates the take plus word timestamps from `src/tips/script.json`. Run it with `ELEVENLABS_API_KEY` set; in the cloud session it's `proxy-injected`, plus `NODE_USE_ENV_PROXY=1`.
+- Scenes, captions and sound cues are anchored to word indices (`src/tips/timeline.ts`), so a regenerated take re-times itself.
 
 **Source files** (all in `src/tips/`):
-- `timeline.ts`: sections, colours, caption blocks
-- `Captions.tsx`: the caption system
-- `Background.tsx`: neon background and glitch
+- `Mistakes.tsx`: the scenes
+- `Captions.tsx`: the subtitles
+- `Tips.tsx`: the mix
 - `icons.tsx`, `cards.tsx`: the graphics
-- `Visuals.tsx`: the per-section animation
-- `Tips.tsx`: the mix and sound cues
 
-**Audio:** new effects `glitch` and `vacuum`, and a 48 s music bed (`npm run audio:tips`).
+**Music:** a 39 s bed (`npm run audio:tips`).
