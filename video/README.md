@@ -97,3 +97,10 @@ python3 -I tools/extract_paper.py fA assets/backgrounds/crumpled-paper.png
 **Official assets:** `tools/prepare_brand_assets.py` prepares them. None of the art is redrawn: the logo gets its white corners made transparent, the mascot is copied as supplied, and the REEZY REPZ badge is cropped from the link-in-bio screenshot.
 
 **New effects:** page-flip, camera-shutter and doorbell.
+
+**Voiceover:**
+- **Voice:** ElevenLabs "Liam – Energetic Social Media Creator" (v4, stability 50 %, similarity 75 %).
+- **Source:** the take is kept unedited in `assets/audio/voice-3reasons/source/`.
+- **Clips:** `assets/audio/voice-3reasons/phrases.json` sets the 8 phrase cut points, and `python3 -I tools/prepare_voice.py <take.mp3> assets/audio/voice-3reasons assets/audio/voice-3reasons/phrases.json 1.0` makes the clips without any speed change.
+- **Timing:** `src/reasons/voice.ts` places each clip on its visual. Music and effects duck under the voice.
+- **Generating with the API:** `tools/generate_voice.mjs` can generate takes through the ElevenLabs SDK. Library voices such as Adam need a paid ElevenLabs plan.

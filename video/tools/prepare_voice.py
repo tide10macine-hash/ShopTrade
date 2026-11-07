@@ -5,12 +5,13 @@ Chain per clip: high-pass 80 Hz -> gentle compression -> tempo x1.12 (pitch pres
 relative dynamics. Writes assets/audio/voice/vo-XX.wav and prints each clip's duration;
 those durations are what src/voice.ts schedules.
 
-Usage: python3 -I prepare_voice.py <voice.mp3> <out_dir>
+Usage: python3 -I prepare_voice.py <voice.mp3> <out_dir> [phrases.json] [tempo]
+  phrases.json: [[name, start, end, text], ...]; defaults to the 11.11 phrase list below.
 """
 import json, os, subprocess, sys
 
 SRC, OUT = sys.argv[1:3]
-TEMPO = 1.12
+TEMPO = float(sys.argv[4]) if len(sys.argv) > 4 else 1.12
 # phrase boundaries (seconds in the original take), from silence detection + recognition
 PHRASES = [
     ("vo-01", 0.00, 2.70, "Eleven-eleven mega sale is here!"),
@@ -25,6 +26,8 @@ PHRASES = [
     ("vo-10", 17.73, 20.18, "The big shopping event. Don't miss out!"),
     ("vo-11", 20.39, 24.50, "PikoBuy eleven-eleven Mega Sale. Shop more, save more!"),
 ]
+if len(sys.argv) > 3:
+    PHRASES = [tuple(p) for p in json.load(open(sys.argv[3]))]
 os.makedirs(OUT, exist_ok=True)
 full = os.path.join(OUT, "_full.wav")
 subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", SRC, "-af",
@@ -35,7 +38,7 @@ for name, a, b, text in PHRASES:
     dst = os.path.join(OUT, f"{name}.wav")
     d = b - a
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{a}", "-t", f"{d}", "-i", full, "-af",
-                    f"atempo={TEMPO},afade=t=in:d=0.008,areverse,afade=t=in:d=0.03,areverse",
+                    (f"atempo={TEMPO}," if TEMPO != 1 else "") + f"afade=t=in:d=0.008,areverse,afade=t=in:d=0.03,areverse",
                     "-ar", "44100", "-ac", "2", dst], check=True)
     dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", dst],
                                capture_output=True, text=True).stdout)

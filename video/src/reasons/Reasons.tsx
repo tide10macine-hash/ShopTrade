@@ -1,7 +1,8 @@
 import React from "react";
 import { AbsoluteFill, Html5Audio, Sequence, interpolate, staticFile } from "remotion";
 import { Camera, Finish, Fonts, Paper, SceneShell } from "../components/core";
-import { SceneStart, Sfx } from "../components/Sfx";
+import { DuckContext, SceneStart, Sfx } from "../components/Sfx";
+import { R_VOICE, R_VOICE_GAIN, rVoiceActivity } from "./voice";
 import { WHIP } from "../timeline";
 import { R_END_HIT, R_LOGO, R_SCENES, R_SHAKES } from "./timeline";
 import { R1Hook } from "./scenes/R1Hook";
@@ -22,13 +23,15 @@ const ORDER = [
 const musicVolume = (f: number) => {
   const duck = (at: number) => interpolate(f, [at - 2, at + 4, at + 40], [1, 0.45, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const fin = R_SCENES.final.from;
-  return 0.42 * Math.min(duck(R_SCENES.reason3.from), duck(R_SCENES.reason2.from + 120), duck(fin + R_LOGO), duck(fin + R_END_HIT));
+  const hits = Math.min(duck(R_SCENES.reason3.from), duck(R_SCENES.reason2.from + 120), duck(fin + R_LOGO), duck(fin + R_END_HIT));
+  return 0.38 * hits * (1 - 0.62 * rVoiceActivity(f));
 };
 
 /** PIKOBUY - 3 Reasons to shop (18 s, 9:16, 60 fps) */
 export const Reasons: React.FC = () => (
   <AbsoluteFill style={{ backgroundColor: "#f1f1f3" }}>
     <Fonts />
+    <DuckContext.Provider value={rVoiceActivity}>
     <Camera shakes={R_SHAKES}>
       <Paper />
       {ORDER.map(({ key, C, enter, exit }) => {
@@ -46,8 +49,15 @@ export const Reasons: React.FC = () => (
     </Camera>
     <Finish />
     <Html5Audio src={staticFile("audio/music/music-bed-3reasons-120bpm.wav")} volume={musicVolume} />
+    {/* voiceover, one layer per phrase */}
+    {R_VOICE.map((v) => (
+      <Sequence key={v.clip} from={Math.round(v.at * 60)} layout="none" name={`voice:${v.clip}`}>
+        <Html5Audio src={staticFile(`audio/voice-3reasons/${v.clip}.wav`)} volume={R_VOICE_GAIN} />
+      </Sequence>
+    ))}
     {ORDER.slice(1).map(({ key }) => (
       <Sfx key={key} at={R_SCENES[key].from - 5} name="whoosh" vol={0.55} />
     ))}
+    </DuckContext.Provider>
   </AbsoluteFill>
 );

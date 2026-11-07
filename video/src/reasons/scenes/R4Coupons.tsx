@@ -71,11 +71,9 @@ export const R4Coupons: React.FC = () => {
       <Sfx at={78} name="checkmark" vol={0.55} />
       <Sfx at={R_PHASE - 8} name="whoosh" vol={0.55} />
       <Sfx at={R_PHASE} name="pop" vol={0.5} />
-      <Sfx at={R_PHASE + 6} name="whoosh-reverse" vol={0.4} />
-      <Sfx at={R_PHASE + 16} name="pop-high" vol={0.55} />
-      <Sfx at={R_PHASE + 30} name="whoosh" vol={0.4} />
-      <Sfx at={R_PHASE + 38} name="coupon-confirm" vol={0.6} />
-      <Sfx at={R_PHASE + 50} name="checkmark" vol={0.5} />
+      <Sfx at={R_PHASE + 14} name="pop" vol={0.3} />
+      <Sfx at={R_PHASE + 100} name="coupon-confirm" vol={0.45} />
+      <Sfx at={R_PHASE + 92} name="checkmark" vol={0.4} />
     </>
   );
 };

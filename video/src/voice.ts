@@ -2,7 +2,7 @@ import { s } from "./timeline";
 
 // Voiceover cues (global seconds). Clip durations come from assets/audio/voice/clips.json
 // (tools/prepare_voice.py). Text on screen is timed to land on these words.
-export const VOICE: { clip: string; at: number; dur: number }[] = [
+export const VOICE: VoiceCue[] = [
   { clip: "vo-01", at: 0.06, dur: 2.43 }, // Eleven-eleven mega sale is here!
   { clip: "vo-02", at: 2.62, dur: 2.17 }, // The cheapest prices! More products
   { clip: "vo-03", at: 4.86, dur: 0.69 }, // less money!
@@ -18,10 +18,12 @@ export const VOICE: { clip: string; at: number; dur: number }[] = [
 
 export const VOICE_GAIN = 1.0;
 
-/** 0..1 voice activity envelope at a global frame (used to duck music and effects) */
-export const voiceActivity = (f: number) => {
+export type VoiceCue = { clip: string; at: number; dur: number };
+
+/** 0..1 voice-activity envelope at a global frame (used to duck music and effects) */
+export const makeVoiceActivity = (cues: VoiceCue[]) => (f: number) => {
   let v = 0;
-  for (const c of VOICE) {
+  for (const c of cues) {
     const a = s(c.at), b = s(c.at + c.dur);
     if (f < a - 8 || f > b + 12) continue;
     const up = Math.min(1, (f - (a - 8)) / 8);
@@ -30,3 +32,5 @@ export const voiceActivity = (f: number) => {
   }
   return v;
 };
+
+export const voiceActivity = makeVoiceActivity(VOICE);
