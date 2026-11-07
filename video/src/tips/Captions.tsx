@@ -1,11 +1,11 @@
 import React from "react";
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
-import { T, TE, W } from "./timeline";
+import { FPS, W as TIPS_WORDS, Word } from "./timeline";
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 
 // subtitle chunks: up to 3 words, broken at punctuation
-const CHUNKS: number[][] = (() => {
+const chunksOf = (W: Word[]): number[][] => {
   const out: number[][] = [];
   let cur: number[] = [];
   W.forEach((w, i) => {
@@ -14,12 +14,16 @@ const CHUNKS: number[][] = (() => {
   });
   if (cur.length) out.push(cur);
   return out;
-})();
+};
 
 /** bottom subtitles: white words with a black outline; the word being spoken turns red */
-export const Subtitles: React.FC = () => {
+export const Subtitles: React.FC<{ words?: Word[] }> = ({ words = TIPS_WORDS }) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
+  const W = words;
+  const T = (i: number) => Math.round(W[i].start * FPS);
+  const TE = (i: number) => Math.round(W[i].end * FPS);
+  const CHUNKS = React.useMemo(() => chunksOf(W), [W]);
   let k = -1;
   for (let c = 0; c < CHUNKS.length; c++) if (f >= T(CHUNKS[c][0]) - 2) k = c;
   if (k < 0) return null;

@@ -6,6 +6,8 @@ import { Reasons } from "./reasons/Reasons";
 import { R_VIDEO } from "./reasons/timeline";
 import { Tips } from "./tips/Tips";
 import { T_VIDEO } from "./tips/timeline";
+import { Together } from "./together/Together";
+import { G_VIDEO } from "./together/timeline";
 
 export const Root: React.FC = () => (
   <>
@@ -32,6 +34,14 @@ export const Root: React.FC = () => (
     fps={T_VIDEO.fps}
     width={T_VIDEO.width}
     height={T_VIDEO.height}
+  />
+  <Composition
+    id="PikobuyDontShipTogether"
+    component={Together}
+    durationInFrames={G_VIDEO.durationInFrames}
+    fps={G_VIDEO.fps}
+    width={G_VIDEO.width}
+    height={G_VIDEO.height}
   />
   </>
 );

@@ -140,3 +140,21 @@ python3 -I tools/extract_paper.py fA assets/backgrounds/crumpled-paper.png
 - `icons.tsx`, `cards.tsx`: the graphics
 
 **Audio:** there's no background music, at the client's request. The voice and dense sound effects carry the video: a pop on every caption line, an impact on each big #N, a stamp on each ✗, a ding on each fix, whooshes and paper rustle on the whip pans, a tracker tick, and a final hit after "bio!". `npm run audio:tips` regenerates the glitch and vacuum effects.
+
+---
+
+# PIKOBUY – Don't Ship These Items Together (fourth composition)
+
+**Final video:** `out/PIKOBUY_DONT_SHIP_TOGETHER.mp4`. It is 1080×1920, 60 fps, 25.6 s long, in the paper style and with no music.
+**Render:** `npm run render:together` (composition `PikobuyDontShipTogether`). Voice: `npm run voice:together` (Liam, from `src/together/script.json`).
+
+**Structure:** the hook ("Don't ship these items together with your clothes!") is followed by three items, each with an ITEM n/3 chip, a big #n, the item, a red ✗ over mixing it with clothes, and the fix with a ✓:
+1. electronics: special shipping line (truck)
+2. perfumes: liquids get extra customs checks, so ship them separately
+3. power banks: batteries need a special line (plane)
+
+It ends with PIKOBUY's 2×40% shipping coupons for new sign-ups, "LINK IN MY BIO" and the mascot.
+
+**Carriers:** they are shown generically ("SPECIAL SHIPPING LINE"). No carrier logos are used.
+
+**Source:** `src/together/` (`Scenes.tsx`, `icons.tsx`, `timeline.ts`, `Together.tsx`). It reuses the shared subtitles, red ✗, paper and SFX components.

@@ -33,7 +33,7 @@ const Chip: React.FC<{ n: number; fixAt: number }> = ({ n, fixAt }) => {
 };
 
 /** big red X stamped over the mistake */
-const RedX: React.FC<{ size?: number }> = ({ size = 420 }) => (
+export const RedX: React.FC<{ size?: number }> = ({ size = 420 }) => (
   <svg viewBox="0 0 100 100" width={size} height={size} style={{ overflow: "visible" }}>
     {[
       ["M 18 18 L 82 82", "M 82 18 L 18 82"],
