@@ -91,6 +91,16 @@
       } catch (e) { await wait(300); }
       speakingNow = false;
     },
+    /** Spricht einen Satz in einer anderen Sprache (z. B. Übersetzungen). */
+    async sayIn(text, lang) {
+      speakingNow = true;
+      try {
+        if (mode === "native") await Promise.race([P.speak({ text, lang, rate: settings.rate * 0.95, pitch: 1.0 }), wait(text.length * 120 + 5000)]);
+        else if (mode === "web" && root.speechSynthesis) await Promise.race([new Promise(res => { const u = new SpeechSynthesisUtterance(text); u.lang = lang; u.onend = u.onerror = res; speechSynthesis.speak(u); }), wait(text.length * 120 + 5000)]);
+        else await wait(20);
+      } catch (e) {}
+      speakingNow = false;
+    },
     async hush() {
       speakingNow = false;
       if (mode === "native") { try { await P.stopSpeaking(); } catch (e) {} }

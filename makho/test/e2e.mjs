@@ -46,8 +46,11 @@ function fixture(url) {
   if (u.host === "api.open-meteo.com") { const days = ["2026-11-07", "2026-11-08", "2026-11-09", "2026-11-10", "2026-11-11", "2026-11-12", "2026-11-13"]; return { current: { temperature_2m: 8.4, apparent_temperature: 5.9, weather_code: 61, wind_speed_10m: 18, relative_humidity_2m: 84, is_day: 1 }, daily: { time: days, weather_code: [61, 3, 2, 0, 80, 71, 95], temperature_2m_max: [10, 9, 11, 12, 8, 3, 13], temperature_2m_min: [5, 4, 3, 6, 2, -1, 7], precipitation_probability_max: [80, 30, 10, 0, 60, 70, 90] } }; }
   if (u.host === "de.wikipedia.org" && u.pathname.includes("api.php")) return { query: { search: [{ title: "Mount Everest" }] } };
   if (u.host === "de.wikipedia.org") return { title: "Mount Everest", description: "Berg im Himalaya", extract: "Der Mount Everest ist ein Berg im Himalaya und mit einer Höhe von 8848 Metern der höchste Berg der Erde. Er gehört zu den Seven Summits. Die Erstbesteigung gelang 1953.", thumbnail: { source: "https://upload.wikimedia.org/x.png" } };
+  if (u.host === "api.frankfurter.app") { const amt = +u.searchParams.get("amount"); return { amount: amt, base: u.searchParams.get("from"), date: "2026-11-06", rates: { [u.searchParams.get("to")]: amt * 1.1432 } }; }
+  if (u.host === "api.mymemory.translated.net") return { responseData: { translatedText: /schmetterling/i.test(u.searchParams.get("q")) ? "butterfly" : "good morning" } };
   return null;
 }
+let lastClaude = null;
 
 /* ---------- Gesprächsablauf ---------- */
 const SCRIPT = [
@@ -75,6 +78,30 @@ const SCRIPT = [
   ["Erzähl einen Witz", s => s.said.length > 10, "Witz"],
   ["Gib mir ein Briefing", s => s.view === "v-news" && /Top-Meldungen/.test(s.said), "Briefing"],
   ["blablub wurst", s => /verstanden|mitbekommen|passen/.test(s.said), "Unbekanntes"],
+  ["Wie viel sind 5 Meilen in Kilometer", s => s.view === "v-conv" && /8,047/.test(s.said), "Einheiten"],
+  ["100 Euro in Dollar", s => s.view === "v-conv" && /114,32 US-Dollar/.test(s.said), "Währung"],
+  ["Was heißt Schmetterling auf Englisch", s => s.view === "v-trans" && /Englisch/.test(s.said), "Übersetzung"],
+  ["Löse 2x plus 3 gleich 11", s => s.view === "v-eq" && /x ist gleich 4/.test(s.said), "Gleichung"],
+  ["Löse x Quadrat minus 5x plus 6 gleich 0", s => s.view === "v-eq" && /3/.test(s.said) && /2/.test(s.said), "quadratische Gleichung"],
+  ["Welches Symbol hat Gold", s => s.view === "v-elem" && /Ordnungszahl 79/.test(s.said), "Element"],
+  ["Wie lautet die Formel für die Kreisfläche", s => s.view === "v-formula", "Formel"],
+  ["Was ist EBITDA", s => s.view === "v-answer" && /Zinsen, Steuern/.test(s.said), "Lexikon"],
+  ["Ich heiße Junas", s => /Junas/.test(s.said), "Name merken"],
+  ["Wie heiße ich", s => /Junas/.test(s.said), "Name abrufen"],
+  ["Mach ein Quiz", s => s.view === "v-quiz" && /Frage 1/.test(s.said), "Quiz start"],
+  ["keine Ahnung", s => /Frage 2/.test(s.said) || /Lösung/.test(s.said), "Quiz überspringen"],
+  ["Quiz beenden", s => s.view === "v-qend" && /beendet/.test(s.said), "Quiz Ende"],
+  ["Erzähl mir einen Fakt", s => s.view === "v-quote" && /Wusstest du/.test(s.said), "Fakt"],
+  ["Motivier mich", s => s.view === "v-quote", "Zitat"],
+  ["Starte die Stoppuhr", s => s.view === "v-sw" && /läuft/.test(s.said), "Stoppuhr an"],
+  ["Stoppuhr stopp", s => s.view === "v-sw" && /Gestoppt/.test(s.said), "Stoppuhr aus"],
+  ["Weck mich um 7 Uhr", s => s.view === "v-timer" && /Wecker gestellt/.test(s.said), "Wecker"],
+  ["Timer stoppen", s => /gestoppt/.test(s.said), "Wecker aus"],
+  ["Wie viele Tage bis Weihnachten", s => s.view === "v-info" && /Weihnachten/.test(s.said), "Tage bis"],
+  ["Öffne die Einstellungen", s => s.view === "v-set" && s.keyInput, "Einstellungen"],
+  ["__brain", s => true, "Schlüssel setzen"],
+  ["Erklär mir die Fotosynthese", s => s.view === "v-answer" && /Lichtenergie/.test(s.said) && s.lastClaude && s.lastClaude.model === "claude-opus-5-5" && s.lastClaude.fallbacks === "default", "KI-Gehirn"],
+  ["Und warum ist das wichtig", s => s.view === "v-answer" && s.lastClaude && s.lastClaude.messages.length === 3, "KI mit Gesprächsverlauf"],
   ["Gute Nacht", s => s.state === "sleep", "einschlafen"]
 ];
 
@@ -82,15 +109,23 @@ const SIZES = [["Galaxy-S24", 360, 780], ["Galaxy-A54", 412, 915], ["klein", 360
 let fails = 0;
 const browser = await chromium.launch();
 for (const [name, w, h] of SIZES) {
+  lastClaude = null;
   const ctx = await browser.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
   const page = await ctx.newPage();
   const errors = [];
   page.on("pageerror", e => errors.push(e.message));
   page.on("console", m => { if (m.type() === "error" && !/Failed to load resource/.test(m.text())) errors.push(m.text()); });
   await page.addInitScript(() => { window.__MAKHO_MOCK = true; window.__MAKHO_MOCK_WORD_MS = 4; window.__said = []; });
-  await page.route(/^https:\/\/(www\.tagesschau\.de|query1\.finance\.yahoo\.com|geocoding-api\.open-meteo\.com|api\.open-meteo\.com|de\.wikipedia\.org|upload\.wikimedia\.org)\//, route => {
+  await page.route(/^https:\/\/(api\.anthropic\.com|api\.frankfurter\.app|api\.mymemory\.translated\.net|www\.tagesschau\.de|query1\.finance\.yahoo\.com|geocoding-api\.open-meteo\.com|api\.open-meteo\.com|de\.wikipedia\.org|upload\.wikimedia\.org)\//, route => {
     const url = route.request().url();
     if (url.includes("upload.wikimedia.org")) return route.fulfill({ status: 200, contentType: "image/png", body: PNG });
+    if (url.includes("api.anthropic.com")) {
+      if (route.request().method() === "OPTIONS") return route.fulfill({ status: 204, headers: { "access-control-allow-origin": "*", "access-control-allow-headers": "*", "access-control-allow-methods": "POST" } });
+      lastClaude = JSON.parse(route.request().postData() || "{}");
+      const n = lastClaude.messages.length;
+      const text = n === 1 ? "# Fotosynthese\nBei der Fotosynthese wandeln Pflanzen mit Lichtenergie Kohlendioxid und Wasser in Traubenzucker und Sauerstoff um. Das passiert in den Chloroplasten." : "# Warum sie wichtig ist\nOhne Fotosynthese gäbe es keinen Sauerstoff in der Atmosphäre und keine Nahrung für fast alle Lebewesen.";
+      return route.fulfill({ status: 200, contentType: "application/json", headers: { "access-control-allow-origin": "*" }, body: JSON.stringify({ id: "msg_test", type: "message", role: "assistant", model: "claude-opus-5-5", content: [{ type: "text", text }], stop_reason: "end_turn", usage: { input_tokens: 10, output_tokens: 30 } }) });
+    }
     const f = fixture(url); return f ? route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(f) }) : route.fulfill({ status: 404, body: "" });
   });
   await page.goto(BASE);
@@ -102,9 +137,10 @@ for (const [name, w, h] of SIZES) {
     step++;
     await page.evaluate(() => { window.__said = []; });
     if (utter.startsWith("__wait")) await page.waitForTimeout(+utter.split(" ")[1]);
+    else if (utter === "__brain") { await page.evaluate(() => window.MakhoBrain.setKey("sk-ant-test-key")); await page.evaluate(() => { window.__said.push("ok"); }); }
     else await page.evaluate(t => window.MakhoVoice.mock.hear(t), utter);
     // warten, bis Makho fertig gesprochen hat
-    if (utter !== "Stopp") await page.waitForFunction(() => !window.MakhoVoice.speaking && window.__said.length > 0, null, { timeout: 8000 }).catch(() => {});
+    if (utter !== "Stopp" && !utter.startsWith("__")) await page.waitForFunction(() => !window.MakhoVoice.speaking && window.__said.length > 0, null, { timeout: 8000 }).catch(() => {});
     await page.waitForTimeout(utter === "Hallo Macho" ? 2600 : 900);
     const s = await page.evaluate(() => {
       const v = document.querySelector("#stage .view:not(.leave)");
@@ -112,9 +148,10 @@ for (const [name, w, h] of SIZES) {
         state: document.body.dataset.state, say: document.querySelector("#say").textContent, said: window.__said.join(" | "),
         offer: document.querySelector("#offer.show .q") ? document.querySelector("#offer .q").textContent : "",
         view: v ? [...v.classList].find(c => c.startsWith("v-")) : "", title: v ? (v.querySelector("h2") || {}).textContent || "" : "",
-        cards: document.querySelectorAll("#stage .q").length, tchip: !document.querySelector("#tchip").hidden, alarm: document.body.classList.contains("alarm")
+        cards: document.querySelectorAll("#stage .q").length, keyInput: !!document.getElementById("keyIn"), tchip: !document.querySelector("#tchip").hidden, alarm: document.body.classList.contains("alarm")
       };
     });
+    s.lastClaude = lastClaude;
     const ok = check(s);
     if (!ok) { fails++; console.log(`FAIL [${name}] ${step}. „${utter}“ (${label}) →`, JSON.stringify(s).slice(0, 400)); }
     // Layoutprüfung: nichts darf horizontal überlaufen
@@ -125,7 +162,7 @@ for (const [name, w, h] of SIZES) {
       return [...new Set(bad)].slice(0, 5);
     });
     if (overflow.length) { fails++; console.log(`FAIL [${name}] Überlauf nach „${utter}“:`, overflow.join(", ")); }
-    if (["Ja bitte", "ja", "Wie steht Apple", "Hamburg", "Geh mal nach Russland", "Mehr zur zweiten Meldung", "Wie hoch ist der Mount Everest", "Was ist 15 Prozent von 80", "Stell einen Timer auf 2 Sekunden", "__wait 2500", "Gib mir die Zahlen der Woche", "Was kannst du", "Hallo Macho"].includes(utter)) {
+    if (["Ja bitte", "ja", "Wie steht Apple", "Hamburg", "Geh mal nach Russland", "Mehr zur zweiten Meldung", "Wie hoch ist der Mount Everest", "Was ist 15 Prozent von 80", "Stell einen Timer auf 2 Sekunden", "__wait 2500", "Gib mir die Zahlen der Woche", "Was kannst du", "Hallo Macho", "100 Euro in Dollar", "Was heißt Schmetterling auf Englisch", "Löse x Quadrat minus 5x plus 6 gleich 0", "Welches Symbol hat Gold", "Wie lautet die Formel für die Kreisfläche", "Mach ein Quiz", "Quiz beenden", "Motivier mich", "Öffne die Einstellungen", "Erklär mir die Fotosynthese"].includes(utter)) {
       await page.waitForTimeout(700);
       await page.screenshot({ path: `${OUT}/${name}-${String(step).padStart(2, "0")}.png` });
     }

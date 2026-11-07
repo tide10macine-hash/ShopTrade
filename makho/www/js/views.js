@@ -88,12 +88,78 @@
         ["Nachrichten", ["Was gibt es Neues?", "Wie ist es in Frankreich?", "Nachrichten über Fußball", "Mehr zur zweiten Meldung"]],
         ["Börse", ["Was macht der Aktienmarkt?", "Wie steht Apple?", "Was kostet ein Bitcoin?"]],
         ["Wetter", ["Wie wird das Wetter morgen?", "Wetter in Hamburg", "Brauche ich einen Schirm?"]],
-        ["Wissen", ["Wer ist Albert Einstein?", "Was ist ein schwarzes Loch?", "Wie hoch ist der Mount Everest?"]],
-        ["Alltag", ["Stell einen Timer auf 10 Minuten", "Was ist 15 Prozent von 80?", "Merke dir …", "Wie spät ist es?"]],
-        ["Makho", ["Stopp", "Sprich langsamer", "Andere Stimme", "Gute Nacht"]]
+        ["Wissen", ["Erklär mir die Fotosynthese", "Was ist EBITDA?", "Wer war Napoleon?", "Wie gründe ich eine GmbH?"]],
+        ["Schule", ["Löse 2x plus 3 gleich 11", "Formel für die Kreisfläche", "Welches Symbol hat Gold?", "Mach ein Quiz in Geschichte"]],
+        ["Umrechnen", ["100 Euro in Dollar", "5 Meilen in Kilometer", "Was heißt Danke auf Spanisch?"]],
+        ["Alltag", ["Timer auf 10 Minuten", "Weck mich um 7 Uhr", "Starte die Stoppuhr", "Wie viele Tage bis Weihnachten?", "Merke dir …"]],
+        ["Makho", ["Stopp", "Einstellungen", "Ich heiße …", "Andere Stimme", "Gute Nacht"]]
       ];
       return el(`<div class="view v-help">${head("Was ich kann", "Einfach sagen")}<div class="hgrid">${groups.map(([g, ex], i) => `<div class="rise hcard" style="--i:${i + 1}"><h3>${g}</h3>${ex.map(e => `<p>„${esc(e)}“</p>`).join("")}</div>`).join("")}</div></div>`);
     },
+    thinking(label) {
+      const node = el(`<div class="view v-think"><div class="neural"><canvas class="ncv"></canvas></div><p class="tlabel"><span>${esc(label || "Makho denkt nach")}</span><i></i><i></i><i></i></p></div>`);
+      requestAnimationFrame(() => FX.neural(node.querySelector(".ncv")));
+      return node;
+    },
+    answer({ title, text, badge }) {
+      const words = String(text).split(/(\s+)/).map(w => /\S/.test(w) ? `<span class="aw">${esc(w)}</span>` : w).join("");
+      return el(`<div class="view v-answer">${head(title || "Antwort", badge || "")}${rise(1, `<p class="answer">${words}</p>`)}</div>`);
+    },
+    convert({ fromVal, fromUnit, toVal, toUnit, note }) {
+      const node = el(`<div class="view v-conv">${head("Umrechnung", note || "")}
+        ${rise(1, `<div class="cbox"><div class="cside"><span class="cv">${esc(fromVal)}</span><span class="cu">${esc(fromUnit)}</span></div><div class="carrow"><i></i></div><div class="cside to"><span class="cv tv" data-v="${toVal}">0</span><span class="cu">${esc(toUnit)}</span></div></div>`)}</div>`);
+      const t = node.querySelector(".tv"); const v = +t.dataset.v; const d = Math.abs(v) >= 100 ? 2 : Math.abs(v) >= 1 ? 3 : 6;
+      FX.countUp(t, v, x => Number(x).toLocaleString("de-DE", { maximumFractionDigits: d }), 1200);
+      return node;
+    },
+    translate({ src, out, lang }) {
+      return el(`<div class="view v-trans">${head("Übersetzung", "Deutsch → " + lang)}
+        ${rise(1, `<div class="flip"><div class="card front"><span class="label">Deutsch</span><p>${esc(src)}</p></div><div class="card back"><span class="label">${esc(lang)}</span><p>${esc(out)}</p></div></div>`)}</div>`);
+    },
+    equation({ eq, steps, solutions }) {
+      return el(`<div class="view v-eq">${head("Gleichung", solutions && solutions.length ? (solutions.length === 1 ? "1 Lösung" : solutions.length + " Lösungen") : "")}
+        ${rise(1, `<div class="eqline mono">${esc(eq)}</div>`)}
+        <ol class="steps">${steps.map((s, i) => `<li class="rise mono" style="--i:${i + 2}">${esc(s)}</li>`).join("")}</ol>
+        <div class="sols">${(solutions || []).map((x, i) => `<div class="rise sol" style="--i:${steps.length + 2 + i}"><span>x${solutions.length > 1 ? "<sub>" + (i + 1) + "</sub>" : ""} =</span><b>${Number(x).toLocaleString("de-DE", { maximumFractionDigits: 4 })}</b></div>`).join("")}</div></div>`);
+    },
+    element(e) {
+      return el(`<div class="view v-elem">${head(e.name, e.group)}
+        ${rise(1, `<div class="ptile"><span class="pz">${e.z}</span><span class="psym">${esc(e.sym)}</span><span class="pname">${esc(e.name)}</span><span class="pmass">${Number(e.mass).toLocaleString("de-DE", { maximumFractionDigits: 3 })} u</span></div>`)}
+        ${rise(2, `<div class="facts"><div><span class="label">Ordnungszahl</span><b>${e.z}</b></div><div><span class="label">Symbol</span><b>${esc(e.sym)}</b></div><div><span class="label">Atommasse</span><b>${Number(e.mass).toLocaleString("de-DE", { maximumFractionDigits: 3 })} u</b></div></div>`)}</div>`);
+    },
+    formula(f) {
+      return el(`<div class="view v-formula">${head(f.name, "Formel")}${rise(1, `<div class="fbig">${esc(f.formula)}</div>`)}${rise(2, `<p class="extract">${esc(f.explain)}</p>`)}
+        ${f.legend.length ? `<div class="legend">${f.legend.map((l, i) => `<span class="rise chipl" style="--i:${i + 3}">${esc(l)}</span>`).join("")}</div>` : ""}</div>`);
+    },
+    quiz({ cat, q, n, total, score }) {
+      return el(`<div class="view v-quiz">${head("Quiz", cat)}
+        ${rise(1, `<div class="qprog">${Array.from({ length: total }, (_, i) => `<i class="${i < n - 1 ? "done" : i === n - 1 ? "now" : ""}"></i>`).join("")}<span class="label">Frage ${n} von ${total} · ${score} richtig</span></div>`)}
+        ${rise(2, `<div class="qcard"><p>${esc(q)}</p></div>`)}
+        ${rise(3, `<p class="muted">Sag deine Antwort. „Weiß nicht“ zeigt die Lösung, „Quiz beenden“ hört auf.</p>`)}</div>`);
+    },
+    quizResult({ ok, answer, said }) {
+      return el(`<div class="view v-qres ${ok ? "ok" : "bad"}">${head(ok ? "Richtig!" : "Leider falsch", "")}${rise(1, `<div class="qmark">${ok ? "✓" : "✗"}</div>`)}${rise(2, `<p class="extract">Lösung: <b>${esc(answer)}</b></p>`)}${said ? rise(3, `<p class="muted">Deine Antwort: ${esc(said)}</p>`) : ""}</div>`);
+    },
+    quizEnd({ score, total }) {
+      const pct = total ? score / total : 0;
+      return el(`<div class="view v-qend">${head("Ergebnis", "Quiz")}${rise(1, `<div class="scorering" style="--p:${pct}"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="bg"/><circle cx="60" cy="60" r="52" class="fg" pathLength="1"/></svg><div class="sc"><b>${score}</b><span>von ${total}</span></div></div>`)}</div>`);
+    },
+    stopwatch() {
+      return el(`<div class="view v-sw">${head("Stoppuhr", "")}${rise(1, `<div class="swv mono">0:00,0</div>`)}${rise(2, `<div class="swring"><i></i></div>`)}</div>`);
+    },
+    quote({ text, by, kind }) {
+      return el(`<div class="view v-quote">${head(kind === "fact" ? "Wusstest du?" : "Zitat", "")}${rise(1, `<blockquote>${esc(text)}</blockquote>`)}${by ? rise(2, `<p class="qby">— ${esc(by)}</p>`) : ""}</div>`);
+    },
+    settings({ hasKey, voice, rate, model }) {
+      return el(`<div class="view v-set">${head("Einstellungen", "")}
+        ${rise(1, `<div class="setcard"><h3>KI-Gehirn (Claude)</h3><p class="muted">Mit einem eigenen Claude-API-Key beantwortet Makho jede Frage, nutzt die Websuche und merkt sich das Gespräch. Den Key bekommst du auf console.anthropic.com. Er bleibt nur auf diesem Handy gespeichert.</p>
+          <p class="state ${hasKey ? "on" : ""}">${hasKey ? "● Aktiv · " + esc(model) : "○ Nicht eingerichtet"}</p>
+          <input id="keyIn" type="password" autocomplete="off" spellcheck="false" placeholder="sk-ant-…" aria-label="Claude API-Key">
+          <div class="row"><button class="btn" id="keySave" type="button">Speichern</button>${hasKey ? `<button class="btn ghost" id="keyDel" type="button">Entfernen</button>` : ""}<button class="btn ghost" id="setClose" type="button">Fertig</button></div>
+          <p class="muted" id="keyMsg"></p></div>`)}
+        ${rise(2, `<div class="setcard"><h3>Stimme</h3><p class="muted">Tempo ${nf(rate * 100, 0)} % · ${esc(voice || "Standardstimme")}</p><p class="muted">Per Stimme: „Sprich langsamer“, „Andere Stimme“, „Tiefer sprechen“.</p></div>`)}</div>`);
+    },
+
     big(v, u) { const s = v >= 1e6 ? nf(v / 1e6, 1) + " Mio." : v >= 1e4 ? nf(v / 1e3, 1) + " Tsd." : nf(v, 0); return u === "€" ? s + " €" : s; },
     dur(s) { const h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), x = Math.round(s % 60); return [h ? h + " Std." : "", m ? m + " Min." : "", x ? x + " Sek." : ""].filter(Boolean).join(" "); },
     priceFmt, nf, esc

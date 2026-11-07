@@ -186,8 +186,15 @@ public class MakhoPlugin extends Plugin {
         float pitch = call.getFloat("pitch", 1.0f);
         float volume = call.getFloat("volume", 1.0f);
         String voice = call.getString("voice", null);
+        String lang = call.getString("lang", null);
         boolean voiceSet = false;
-        if (voice != null && !voice.isEmpty()) {
+        if (lang != null && !lang.isEmpty() && !lang.startsWith("de")) {
+            // Fremdsprache (z. B. Übersetzung): passende Stimme der Sprache verwenden
+            try {
+                tts.setLanguage(Locale.forLanguageTag(lang));
+            } catch (Exception ignored) {}
+            voiceSet = true;
+        } else if (voice != null && !voice.isEmpty()) {
             for (Voice v : voices()) {
                 if (v.getName().equals(voice)) {
                     tts.setVoice(v);

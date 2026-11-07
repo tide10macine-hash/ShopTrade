@@ -95,7 +95,8 @@
       return { kind: "linear", eq: text, steps: [`${fmtC(b, "x", true)} = ${nf(-c, 4)}`, `x = ${nf(-c, 4)} : ${nf(b, 4)}`], solutions: [x], spoken: `x ist gleich ${nf(x, 4)}.` };
     }
     const D = b * b - 4 * a * c;
-    const steps = [show, `Diskriminante: ${nf(b, 4)}² − 4 · ${nf(a, 4)} · ${nf(c, 4)} = ${nf(D, 4)}`];
+    const par = v => v < 0 ? `(${nf(v, 4)})` : nf(v, 4);
+    const steps = [show, `Diskriminante: ${par(b)}² − 4 · ${par(a)} · ${par(c)} = ${nf(D, 4)}`];
     if (D < 0) return { kind: "quad", eq: text, steps, solutions: [], spoken: "Die Diskriminante ist negativ, es gibt keine reelle Lösung." };
     const x1 = (-b + Math.sqrt(D)) / (2 * a), x2 = (-b - Math.sqrt(D)) / (2 * a);
     steps.push("x = (−b ± √D) / 2a");

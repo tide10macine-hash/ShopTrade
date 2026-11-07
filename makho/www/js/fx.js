@@ -235,6 +235,51 @@
     });
   };
 
+  /* ================= Denk-Netzwerk ================= */
+  FX.neural = function (canvas) {
+    const g = canvas.getContext("2d"), born = performance.now();
+    const N = 34, nodes = Array.from({ length: N }, () => ({ x: Math.random(), y: Math.random(), vx: (Math.random() - 0.5) * 0.0016, vy: (Math.random() - 0.5) * 0.0016, p: Math.random() * 6.28 }));
+    const pulses = [];
+    FX.hooks.push(function hook(t) {
+      if (!canvas.isConnected) { FX.hooks.splice(FX.hooks.indexOf(hook), 1); return; }
+      const d = fit(canvas), W = canvas.width, H = canvas.height;
+      g.clearRect(0, 0, W, H);
+      const fade = Math.min(1, (t - born) / 600);
+      for (const n of nodes) { if (!reduce) { n.x += n.vx; n.y += n.vy; if (n.x < 0.03 || n.x > 0.97) n.vx *= -1; if (n.y < 0.05 || n.y > 0.95) n.vy *= -1; } }
+      const link = 0.28;
+      for (let i = 0; i < N; i++) for (let j = i + 1; j < N; j++) {
+        const a = nodes[i], b = nodes[j], dx = (a.x - b.x) * W / Math.max(W, H), dy = (a.y - b.y) * H / Math.max(W, H), dist = Math.hypot(dx, dy);
+        if (dist < link) {
+          g.strokeStyle = `rgba(255,122,64,${(1 - dist / link) * 0.35 * fade})`; g.lineWidth = d;
+          g.beginPath(); g.moveTo(a.x * W, a.y * H); g.lineTo(b.x * W, b.y * H); g.stroke();
+          if (!reduce && Math.random() < 0.004) pulses.push({ a, b, t });
+        }
+      }
+      for (let k = pulses.length - 1; k >= 0; k--) {
+        const p = pulses[k], q = (t - p.t) / 700; if (q > 1) { pulses.splice(k, 1); continue; }
+        const x = (p.a.x + (p.b.x - p.a.x) * q) * W, y = (p.a.y + (p.b.y - p.a.y) * q) * H;
+        g.fillStyle = "rgba(255,220,180,.95)"; g.beginPath(); g.arc(x, y, 2.4 * d, 0, 7); g.fill();
+      }
+      for (const n of nodes) { const r = (2 + 1.4 * Math.sin(t / 400 + n.p)) * d; g.fillStyle = `rgba(255,${150 + 60 * Math.sin(t / 500 + n.p) | 0},90,${0.85 * fade})`; g.beginPath(); g.arc(n.x * W, n.y * H, r, 0, 7); g.fill(); }
+    });
+  };
+
+  /* ================= Konfetti ================= */
+  FX.confetti = function () {
+    if (reduce) return;
+    const c = document.createElement("canvas"); c.className = "confetti"; document.body.appendChild(c);
+    const g = c.getContext("2d"), born = performance.now(), cols = ["#ff7a3d", "#ffd2b8", "#6fd39a", "#ffb347", "#ff4a2f", "#f4e7df"];
+    const parts = Array.from({ length: 140 }, () => ({ x: 0.5, y: 0.45, vx: (Math.random() - 0.5) * 0.03, vy: -Math.random() * 0.03 - 0.008, r: Math.random() * 6.28, vr: (Math.random() - 0.5) * 0.3, c: cols[Math.random() * cols.length | 0], s: 0.6 + Math.random() * 0.8 }));
+    FX.hooks.push(function hook(t) {
+      const age = t - born; if (age > 2600) { FX.hooks.splice(FX.hooks.indexOf(hook), 1); c.remove(); return; }
+      const d = fit(c), W = c.width, H = c.height; g.clearRect(0, 0, W, H);
+      for (const p of parts) {
+        p.vy += 0.0007; p.x += p.vx; p.y += p.vy; p.vx *= 0.99; p.r += p.vr;
+        g.save(); g.translate(p.x * W, p.y * H); g.rotate(p.r); g.globalAlpha = Math.max(0, 1 - age / 2600); g.fillStyle = p.c; g.fillRect(-4 * d * p.s, -2 * d * p.s, 8 * d * p.s, 4 * d * p.s); g.restore();
+      }
+    });
+  };
+
   /* ================= Hilfen ================= */
   FX.countUp = function (el, to, fmt, ms = 1100) {
     el.textContent = fmt(0);

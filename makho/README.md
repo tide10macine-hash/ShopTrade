@@ -23,7 +23,20 @@ Persönlicher Sprachassistent für Android (Capacitor + eigenes Sprach-Plugin). 
 | Stimme | „Sprich langsamer“, „Sprich schneller“, „Andere Stimme“, „Tiefer sprechen“ |
 | Sonstiges | „Gib mir ein Briefing“, „Was kannst du?“, „Wiederhole das“, „Zurück“, „Erzähl einen Witz“ |
 
-Datenquellen ohne API-Schlüssel: tagesschau.de, Yahoo Finance, Open-Meteo, Wikipedia.
+| Schule | „Löse 2x plus 3 gleich 11“, „Formel für die Kreisfläche“, „Welches Symbol hat Gold?“, „Mach ein Quiz in Geschichte“ |
+| Business | „Was ist EBITDA?“, „Was bedeutet Deckungsbeitrag?“, über 55 Begriffe offline |
+| Umrechnen | „100 Euro in Dollar“, „5 Meilen in Kilometer“, „30 Grad Celsius in Fahrenheit“ |
+| Übersetzen | „Was heißt Danke auf Spanisch?“ (liest in der Zielsprache vor) |
+| Zeit | „Weck mich um 7 Uhr“, „Starte die Stoppuhr“, „Wie viele Tage bis Weihnachten?“, „Welche Kalenderwoche?“ |
+| Persönlich | „Ich heiße …“, „Neues Gespräch“, „Einstellungen“ |
+
+## KI-Gehirn (optional)
+
+Mit einem eigenen Claude-API-Key (console.anthropic.com) beantwortet Makho jede Frage mit Claude Opus 5.5, nutzt die Websuche für Aktuelles und merkt sich den Gesprächsverlauf. Den Key einmalig unter „Einstellungen“ eintragen; er bleibt nur auf dem Gerät. Ohne Key nutzt Makho das eingebaute Wissen und Wikipedia.
+
+Datenquellen ohne API-Schlüssel: tagesschau.de, Yahoo Finance, Open-Meteo, Wikipedia, Frankfurter (EZB-Kurse), MyMemory (Übersetzung).
+
+Das Claude-SDK ist in `www/js/vendor/anthropic.js` gebündelt (`npx esbuild src/claude-entry.js --bundle --format=iife --minify --outfile=www/js/vendor/anthropic.js`).
 
 ## Entwicklung
 

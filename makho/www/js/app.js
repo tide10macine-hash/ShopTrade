@@ -1,11 +1,12 @@
 /* Makho – Ablauf und Fähigkeiten. Alles wird per Stimme gesteuert. */
 (function () {
   "use strict";
-  const N = window.MakhoNLU, S = window.MakhoSources, Voice = window.MakhoVoice, FX = window.MakhoFX, V = window.MakhoViews;
+  const N = window.MakhoNLU, S = window.MakhoSources, Voice = window.MakhoVoice, FX = window.MakhoFX, V = window.MakhoViews, K = window.MakhoKnow, B = window.MakhoBrain;
   const $ = s => document.querySelector(s);
   const wait = ms => new Promise(r => setTimeout(r, ms));
   const pick = a => a[Math.floor(Math.random() * a.length)];
   const nf = V.nf;
+  const nx = (v, d = 2) => Number(v).toLocaleString("de-DE", { maximumFractionDigits: d });
   const store = {
     get(k, d) { try { const v = localStorage.getItem("makho." + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
     set(k, v) { try { localStorage.setItem("makho." + k, JSON.stringify(v)); } catch (e) {} }
@@ -16,7 +17,8 @@
     awake: false, busy: false, pending: null, pendingAt: 0, awaitingCity: null,
     lastSaid: "", lastSaidAt: 0, flow: 0, cycleHandled: false, idleTimer: null,
     news: null, newsPage: 0, hintedMore: store.get("hintedMore", false),
-    city: store.get("city", null), notes: store.get("notes", []), timers: [], alarm: null
+    city: store.get("city", null), notes: store.get("notes", []), timers: [], alarm: null,
+    name: store.get("name", ""), quiz: null, sw: null, answerMode: false
   };
 
   /* ================= Oberfläche ================= */
@@ -36,7 +38,11 @@
     }
     box.classList.remove("in"); void box.offsetWidth; box.classList.add("in");
   }
-  function markWord(start) { for (const w of captionWords) if (w.start <= start) w.el.classList.add("on"); }
+  function markWord(start) {
+    let n = 0;
+    for (const w of captionWords) if (w.start <= start) { w.el.classList.add("on"); n++; }
+    if (st.answerMode) { const aw = document.querySelectorAll("#stage .v-answer:not(.leave) .aw"); for (let i = 0; i < n && i < aw.length; i++) aw[i].classList.add("on"); }
+  }
   function showHeard(text, live) {
     const h = $("#heard");
     h.innerHTML = text ? `<span class="label">Du</span> <span class="t"></span>${live ? '<i class="caret"></i>' : ""}` : "";
@@ -66,6 +72,7 @@
   async function say(text, opts = {}) {
     if (!text) return;
     const id = ++speakId;
+    st.answerMode = !!opts.answer;
     showCaption(text);
     st.lastSaid = text;
     setOrb("speak");
@@ -95,7 +102,7 @@
   function onSpeech(type, text, alts) {
     text = (text || "").trim(); if (!text) return;
     alts = (alts && alts.length ? alts : [text]).map(a => String(a || "").trim()).filter(Boolean);
-    const ctx = { awake: st.awake, pending: pendingValid() ? st.pending : null, awaitingCity: st.awaitingCity };
+    const ctx = { awake: st.awake, pending: pendingValid() ? st.pending : null, awaitingCity: st.awaitingCity, quiz: !!st.quiz };
     // Schnelle Reaktion bereits auf Teilergebnisse: Stopp und Aufwecken.
     const quick = alts.map(a => N.parse(a, ctx)).find(r => r.intent === "stop" || r.intent === "wake");
     if (type === "partial") {
@@ -124,7 +131,8 @@
   /* ================= Aufwachen & Schlafen ================= */
   function greeting() {
     const h = new Date().getHours();
-    return h < 5 ? "Noch wach? Ich auch." : h < 11 ? "Guten Morgen." : h < 18 ? "Hallo." : h < 23 ? "Guten Abend." : "Noch wach? Ich auch.";
+    const n = st.name ? ", " + st.name : "";
+    return h < 5 ? `Noch wach${n}? Ich auch.` : h < 11 ? `Guten Morgen${n}.` : h < 18 ? `Hallo${n}.` : h < 23 ? `Guten Abend${n}.` : `Noch wach${n}? Ich auch.`;
   }
   async function wake() {
     if (st.awake) return;
@@ -167,7 +175,7 @@
     if (r.intent !== "weather") st.awaitingCity = null;
     try {
       switch (r.intent) {
-        case "stop": return doStop();
+        case "stop": if (st.quiz) { st.quiz = null; } return doStop();
         case "wake": return say(pick(["Ich bin da.", "Ja?", "Ich höre."]));
         case "sleep": return sleep();
         case "yes": { const k = st.pending; clearOffer(); return runOffer(k, alive); }
@@ -193,7 +201,7 @@
         case "kpi.show": return kpiShow(alive);
         case "kpi.set": return kpiSet(r.key, r.value);
         case "kpi.newweek": { const k = kpis(); k.list.forEach(x => { x.p = x.v; }); saveKpis(k.list); stage(V.kpis({ list: k.list, example: false })); return say("Neue Woche gestartet. Die bisherigen Werte sind jetzt die Vorwoche."); }
-        case "help": stage(V.help()); return say("Ich zeige dir Nachrichten aus aller Welt, Börsenkurse und einzelne Aktien, das Wetter und Wissen aus Wikipedia. Außerdem stelle ich Timer, rechne und merke mir Notizen. Du kannst mich jederzeit mit Stopp unterbrechen.");
+        case "help": stage(V.help()); return say((B.ready ? "Frag mich einfach alles, vom Schulstoff bis zum Business-Wissen. " : "Ich beantworte Wissensfragen über Wikipedia und mein eingebautes Lexikon. ") + "Dazu kommen Nachrichten, Börse, Wetter, Umrechnen, Übersetzen, Gleichungen, Timer, Wecker, Notizen und ein Quiz. Du kannst mich jederzeit mit Stopp unterbrechen." + (B.ready ? "" : " Sag Einstellungen, um das KI-Gehirn einzurichten. Dann beantworte ich wirklich jede Frage."));
         case "repeat": return st.lastSaid ? say(st.lastSaid) : say("Ich habe noch nichts gesagt.");
         case "close": stage(null); return say(pick(["Erledigt.", "Okay.", "Bildschirm ist frei."]));
         case "voice.rate": { const v = Voice.adjust("rate", r.delta); return say(r.delta > 0 ? `Etwas schneller. Tempo ${nf(v * 100)} Prozent.` : `Etwas langsamer. Tempo ${nf(v * 100)} Prozent.`); }
@@ -210,9 +218,32 @@
         case "creator": return say("Ich wurde für dich gebaut. Programmiert hat mich Claude.");
         case "thanks": return say(pick(["Gern geschehen.", "Immer gern.", "Dafür bin ich da."]));
         case "compliment": return say(pick(["Danke, das hört man gern.", "Das geht runter wie Öl."]));
-        case "wiki": return wiki(r.query, r.raw, alive);
+        case "wiki": return knowledgeQuestion(raw, r.query, alive);
+        case "name.set": { const nm = r.name.replace(/\b\w/g, c => c.toUpperCase()).replace(/[.!?]$/, ""); st.name = nm; store.set("name", nm); return say(`Freut mich, ${nm}. Das merke ich mir.`); }
+        case "name.get": return say(st.name ? `Du heißt ${st.name}.` : "Das weiß ich noch nicht. Sag einfach: Ich heiße und dann deinen Namen.");
+        case "settings": return openSettings();
+        case "brain.reset": B.reset(); return say("Alles klar, wir fangen neu an.");
+        case "sw.start": st.sw = { start: Date.now() }; stage(V.stopwatch()); return say("Stoppuhr läuft.");
+        case "sw.stop": { if (!st.sw) return say("Die Stoppuhr läuft gerade nicht."); const ms = Date.now() - st.sw.start; st.sw.stopped = ms; const t = st.sw; st.sw = null; showSw(ms); return say(`Gestoppt bei ${spokenDur(Math.round(ms / 1000)) || "unter einer Sekunde"}.`); }
+        case "sw.status": { if (!st.sw) return say("Die Stoppuhr läuft gerade nicht. Sag: Starte die Stoppuhr."); stage(V.stopwatch()); return say(`Bisher ${spokenDur(Math.round((Date.now() - st.sw.start) / 1000))}.`); }
+        case "alarm.at": return alarmAt(r);
+        case "days.until": return daysUntil(r.text);
+        case "weekday.of": return weekdayOf(r.text);
+        case "kw": { const w = K.isoWeek(new Date()); stage(V.info({ title: "Kalenderwoche", big: "KW " + w, kind: "flip" })); return say(`Wir haben Kalenderwoche ${w}.`); }
+        case "convert": return convert(r, alive);
+        case "translate": return translateSkill(r, raw, alive);
+        case "equation": return equation(r.text, raw, alive);
+        case "element": return elementSkill(r.text, raw, alive);
+        case "formula": return formulaSkill(r.text, raw, alive);
+        case "quiz.start": return quizStart(r.cat);
+        case "quiz.answer": return quizAnswer(r.text);
+        case "quiz.skip": return quizAnswer(null);
+        case "quiz.repeat": return st.quiz ? say(st.quiz.items[st.quiz.i].q) : say("Es läuft gerade kein Quiz.");
+        case "quiz.end": return quizEnd(true);
+        case "fact": { const f = pick(K.FACTS); stage(V.quote({ text: f, kind: "fact" })); return say("Wusstest du schon? " + f); }
+        case "quote": { const [q, by] = pick(K.QUOTES); stage(V.quote({ text: q, by })); return say(`${q} Das sagte ${by}.`); }
         case "none": return;
-        default: return say(pick(["Das habe ich nicht verstanden. Sag zum Beispiel: Was kannst du?", "Das habe ich leider nicht mitbekommen. Versuch es noch mal anders.", "Da muss ich passen. Frag mich nach Nachrichten, Wetter, Börse oder Wissen."]));
+        default: return knowledgeQuestion(raw, null, alive, true);
       }
     } catch (e) {
       console.error(e);
@@ -244,9 +275,11 @@
   }
 
   /* ================= Denkpause ================= */
-  async function think(promise) {
+  async function think(promise, visual) {
     setOrb("think");
-    try { return await promise; } finally { if (st.awake) setOrb("listen"); }
+    let shown = false;
+    const tmr = visual ? setTimeout(() => { shown = true; stage(V.thinking(visual)); }, 450) : null;
+    try { return await promise; } finally { clearTimeout(tmr); if (st.awake) setOrb("listen"); }
   }
   const ORDINAL = ["Erstens", "Zweitens", "Drittens", "Viertens", "Fünftens"];
   const headlineText = items => items.slice(0, 3).map((n, i) => `${ORDINAL[i]}: ${n.title.replace(/[„“"]/g, "")}.`).join(" ");
@@ -411,6 +444,173 @@
     let txt = ""; for (const s of sentences) { if ((txt + s).length > 420 && txt) break; txt += s; }
     return say(txt.replace(/\s*\([^)]*\)/g, "").trim());
   }
+
+  /* ================= Wissen: Gehirn, Lexikon, Wikipedia ================= */
+  function ctxInfo() {
+    const d = new Date();
+    return { date: d.toLocaleString("de-DE", { weekday: "long", day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" }), city: st.city ? st.city.name : "", name: st.name || "" };
+  }
+  async function askBrain(question, alive) {
+    try {
+      const a = await think(B.ask(question, ctxInfo()), "Makho denkt nach");
+      if (!alive()) return true;
+      stage(V.answer({ title: a.title || "Antwort", text: a.text, badge: a.searched ? "KI · Websuche" : "KI" }));
+      await say(a.text, { answer: true });
+      return true;
+    } catch (e) {
+      if (!alive()) return true;
+      if (e.code === "auth") { stage(null); await say("Dein Claude-Schlüssel wird nicht akzeptiert. Sag Einstellungen, um ihn zu prüfen."); return true; }
+      if (e.code === "rate") { await say("Ich bekomme gerade zu viele Anfragen. Versuch es gleich noch einmal."); return true; }
+      if (e.code === "net" && navigator.onLine === false) { await say("Ich bin offline. Prüf bitte die Internetverbindung."); return true; }
+      return false; // auf das freie Wissen zurückfallen
+    }
+  }
+  async function knowledgeQuestion(raw, query, alive, unknown) {
+    const text = (raw || query || "").trim();
+    if (B.ready && text) { if (await askBrain(text, alive)) return; }
+    const g = K.glossary(text);
+    if (g && /(was ist|was sind|was bedeutet|erklär|definition|was heißt)/i.test(text)) { stage(V.answer({ title: g.name, text: g.def, badge: "Lexikon" })); return say(g.def, { answer: true }); }
+    const f = K.formula(text);
+    if (f && /(formel|berechnet|rechnet)/i.test(text)) return formulaSkill(text, raw, alive);
+    if (unknown && !/^(wie|wo|wann|warum|wieso|weshalb|welche|welcher|welches|wer|was|woher|wohin|erklär|erzähl|definier|kannst du|gibt es|ist|sind)\b/i.test(text)) {
+      return say(pick(["Das habe ich nicht verstanden. Sag zum Beispiel: Was kannst du?", "Das habe ich leider nicht mitbekommen. Versuch es noch mal anders."]));
+    }
+    return wiki(query || N.parse(text, { awake: true }).query || text, raw, alive);
+  }
+
+  /* ================= Umrechnen & Übersetzen ================= */
+  async function convert(r, alive) {
+    const cf = K.findCurrency(r.from), ct = K.findCurrency(r.to);
+    if (cf && ct) {
+      const x = await think(S.fx.convert(r.value, cf.code, ct.code));
+      if (!alive()) return;
+      stage(V.convert({ fromVal: nx(r.value, 2), fromUnit: cf.name, toVal: x.result, toUnit: ct.name, note: x.date ? "EZB-Kurs " + new Date(x.date).toLocaleDateString("de-DE") : "" }));
+      return say(`${nx(r.value, 2)} ${cf.name} sind ${nx(x.result, 2)} ${ct.name}.`);
+    }
+    const c = K.convert(r.value, r.from, r.to);
+    if (!c) return knowledgeQuestion(`Wie viel sind ${r.value} ${r.from} in ${r.to}?`, null, alive);
+    const d = Math.abs(c.value) >= 100 ? 1 : Math.abs(c.value) >= 1 ? 3 : 6;
+    stage(V.convert({ fromVal: nx(r.value, 4), fromUnit: c.from, toVal: c.value, toUnit: c.to }));
+    return say(`${nx(r.value, 4)} ${c.from} sind ${nx(c.value, d)} ${c.to}.`);
+  }
+  async function translateSkill(r, raw, alive) {
+    const code = K.LANG[r.lang];
+    if (!code) return knowledgeQuestion(raw, null, alive);
+    const src = (String(raw).match(new RegExp("(?:heißt|heisst|bedeutet|sagt man|übersetz\\w*|sag)\\s+(.+?)\\s+(?:auf|ins|in|nach)\\s+\\S+\\s*$", "i")) || [])[1] || r.text;
+    let out;
+    try { out = await think(S.translate.text(src, code)); } catch (e) { if (B.ready) return knowledgeQuestion(raw, null, alive); throw e; }
+    if (!alive()) return;
+    stage(V.translate({ src, out, lang: K.LANGNAME[code] }));
+    await say(`${src} heißt auf ${K.LANGNAME[code]}:`);
+    if (alive()) await Voice.sayIn(out, K.BCP[code]);
+  }
+
+  /* ================= Schule ================= */
+  function spokenNum(x) { return (x < 0 ? "minus " : "") + nx(Math.abs(x), 4); }
+  async function equation(text, raw, alive) {
+    const r = K.solve(text);
+    if (!r) return knowledgeQuestion(raw, null, alive);
+    stage(V.equation({ eq: text.replace(/^(löse|berechne)\s+(die gleichung\s+)?/i, ""), steps: r.steps, solutions: r.solutions || [] }));
+    const sp = r.solutions && r.solutions.length === 2 ? `Zwei Lösungen: x eins ist ${spokenNum(r.solutions[0])} und x zwei ist ${spokenNum(r.solutions[1])}.` : r.solutions && r.solutions.length === 1 ? `x ist gleich ${spokenNum(r.solutions[0])}.` : r.spoken;
+    return say(sp);
+  }
+  async function elementSkill(text, raw, alive) {
+    const e = K.element(raw || text);
+    if (!e) return knowledgeQuestion(raw, null, alive);
+    stage(V.element(e));
+    return say(`${e.name} hat das Symbol ${e.sym.split("").join(" ")}, die Ordnungszahl ${e.z} und eine Atommasse von ${nx(e.mass, 2)}. Es ist ein ${e.group}.`);
+  }
+  async function formulaSkill(text, raw, alive) {
+    const f = K.formula(text);
+    if (!f) return knowledgeQuestion(raw, null, alive);
+    stage(V.formula(f));
+    return say(`${f.name}: ${f.explain}`);
+  }
+
+  /* ================= Quiz ================= */
+  function quizStart(cat) {
+    let pool = K.QUIZ.filter(q => !cat || q.cat.toLowerCase() === cat);
+    if (pool.length < 3) pool = K.QUIZ;
+    pool = pool.slice().sort(() => Math.random() - 0.5).slice(0, 5);
+    st.quiz = { items: pool, i: 0, score: 0 };
+    return askQuiz(true);
+  }
+  function askQuiz(first) {
+    const q = st.quiz, it = q.items[q.i];
+    stage(V.quiz({ cat: it.cat, q: it.q, n: q.i + 1, total: q.items.length, score: q.score }));
+    return say((first ? `Quiz mit ${q.items.length} Fragen. Los geht's. ` : "") + `Frage ${q.i + 1}: ${it.q}`);
+  }
+  async function quizAnswer(said) {
+    const q = st.quiz; if (!q) return;
+    const it = q.items[q.i];
+    const ok = said != null && K.checkAnswer(it, said);
+    if (ok) { q.score++; FX.confetti(); FX.burst(0.5); }
+    stage(V.quizResult({ ok, answer: it.a, said }));
+    await say(ok ? pick(["Richtig!", "Genau!", "Stimmt, sehr gut!"]) : said == null ? `Die Lösung ist: ${it.a}.` : `Leider nicht. Richtig ist: ${it.a}.`);
+    if (!st.quiz) return;
+    q.i++;
+    if (q.i >= q.items.length) return quizEnd(false);
+    await wait(400);
+    if (st.quiz) return askQuiz(false);
+  }
+  async function quizEnd(early) {
+    const q = st.quiz; if (!q) return say("Es läuft gerade kein Quiz.");
+    st.quiz = null;
+    const total = early ? q.i : q.items.length;
+    stage(V.quizEnd({ score: q.score, total }));
+    if (!early && q.score === total) FX.confetti();
+    const verdict = total === 0 ? "" : q.score === total ? " Perfekt, alles richtig!" : q.score >= total * 0.6 ? " Starke Leistung." : " Da geht noch was. Nochmal?";
+    return say(`Quiz beendet. Du hast ${q.score} von ${total} Fragen richtig.${verdict}`);
+  }
+
+  /* ================= Zeit ================= */
+  function showSw(ms) { stage(V.stopwatch()); const e = document.querySelector("#stage .swv"); if (e) e.textContent = fmtSw(ms); document.querySelector("#stage .v-sw")?.classList.add("stopped"); }
+  function fmtSw(ms) { const s = Math.floor(ms / 1000), m = Math.floor(s / 60), h = Math.floor(m / 60); return (h ? h + ":" + String(m % 60).padStart(2, "0") : m) + ":" + String(s % 60).padStart(2, "0") + "," + Math.floor(ms % 1000 / 100); }
+  setInterval(() => { if (st.sw) { const e = document.querySelector("#stage .v-sw:not(.stopped) .swv"); if (e) e.textContent = fmtSw(Date.now() - st.sw.start); } }, 100);
+  function alarmAt(r) {
+    let h = r.h, m = r.m || 0;
+    if (r.pm && h < 12) h += 12;
+    if (h > 23 || m > 59) return say("Diese Uhrzeit gibt es nicht.");
+    const now = new Date(), at = new Date(); at.setHours(h, m, 0, 0);
+    if (at <= now) at.setDate(at.getDate() + 1);
+    const secs = Math.round((at - now) / 1000);
+    const t = { id: ++timerSeq, total: secs, end: at.getTime(), label: "Wecker " + at.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" }) };
+    st.timers.push(t); renderTimers(true);
+    return say(`Wecker gestellt auf ${h} Uhr${m ? " " + m : ""}${at.getDate() !== now.getDate() ? " morgen" : ""}. Das ist in ${spokenDur(Math.round(secs / 60) * 60)}. Lass die App dafür geöffnet.`);
+  }
+  function daysUntil(text) {
+    const now = new Date(), nd = K.namedDate(text, now);
+    if (!nd) return say("Welches Datum meinst du?");
+    const d = K.daysBetween(now, nd.date);
+    stage(V.info({ title: nd.name, big: String(d), sub: (d === 1 ? "Tag" : "Tage") + " · " + nd.date.toLocaleDateString("de-DE", { weekday: "long", day: "numeric", month: "long", year: "numeric" }), kind: "flip" }));
+    return say(d === 0 ? `${nd.name} ist heute!` : d < 0 ? `${nd.name} war vor ${-d} Tagen.` : `Bis ${nd.name} sind es noch ${d} ${d === 1 ? "Tag" : "Tage"}.`);
+  }
+  function weekdayOf(text) {
+    const nd = K.namedDate(text, new Date());
+    if (!nd) return say("Welches Datum meinst du?");
+    const wd = nd.date.toLocaleDateString("de-DE", { weekday: "long" });
+    stage(V.info({ title: nd.date.toLocaleDateString("de-DE", { day: "numeric", month: "long", year: "numeric" }), big: wd, kind: "flip" }));
+    return say(`Der ${nd.date.toLocaleDateString("de-DE", { day: "numeric", month: "long", year: "numeric" })} ist ein ${wd}.`);
+  }
+
+  /* ================= Einstellungen ================= */
+  function openSettings() {
+    const v = Voice.voices().find(x => x.name === Voice.settings.voice);
+    stage(V.settings({ hasKey: B.hasKey(), voice: v ? v.name : "", rate: Voice.settings.rate, model: B.MODEL }));
+    body.classList.add("setting");
+    const msg = t => { const e = document.getElementById("keyMsg"); if (e) e.textContent = t; };
+    document.getElementById("keySave").onclick = async () => {
+      const k = document.getElementById("keyIn").value.trim();
+      if (!/^sk-ant-/.test(k)) { msg("Das sieht nicht nach einem Claude-Key aus. Er beginnt mit sk-ant-."); return; }
+      B.setKey(k); msg("Prüfe den Schlüssel …");
+      try { await B.ask("Antworte nur mit: # Test\nVerbindung steht.", ctxInfo()); B.reset(); msg("Verbunden. Das KI-Gehirn ist aktiv."); closeSettings(); say("Mein KI-Gehirn ist jetzt aktiv. Frag mich, was du willst."); }
+      catch (e) { if (e.code === "auth") { B.setKey(""); msg("Der Schlüssel wurde abgelehnt."); } else msg("Gespeichert, aber die Prüfung schlug fehl: " + (e.message || e.code)); }
+    };
+    const del = document.getElementById("keyDel"); if (del) del.onclick = () => { B.setKey(""); closeSettings(); say("Das KI-Gehirn ist ausgeschaltet."); };
+    document.getElementById("setClose").onclick = closeSettings;
+    return say(B.hasKey() ? "Hier sind die Einstellungen. Das KI-Gehirn ist aktiv." : "Hier kannst du einmalig deinen Claude-API-Key eintragen. Danach beantworte ich jede Frage.");
+  }
+  function closeSettings() { body.classList.remove("setting"); stage(null); }
 
   /* ================= Rechnen ================= */
   function calc(r) {
