@@ -8,6 +8,8 @@ import { Tips } from "./tips/Tips";
 import { T_VIDEO } from "./tips/timeline";
 import { Together } from "./together/Together";
 import { G_VIDEO } from "./together/timeline";
+import { ShipOut } from "./shipout/ShipOut";
+import { S_VIDEO } from "./shipout/timeline";
 
 export const Root: React.FC = () => (
   <>
@@ -42,6 +44,15 @@ export const Root: React.FC = () => (
     fps={G_VIDEO.fps}
     width={G_VIDEO.width}
     height={G_VIDEO.height}
+  />
+  <Composition
+    id="Pikobuy3TipsShipOut"
+    component={ShipOut}
+    durationInFrames={S_VIDEO.durationInFrames}
+    fps={S_VIDEO.fps}
+    width={S_VIDEO.width}
+    height={S_VIDEO.height}
+    defaultProps={{ withVoice: false }}
   />
   </>
 );

@@ -14,7 +14,9 @@
     "audio:tips": "python3 -I tools/make_audio.py assets/audio --tips",
     "voice:tips": "node tools/generate_tips_voice.mjs src/tips/script.json assets/audio/voice-tips",
     "render:together": "remotion render src/index.ts PikobuyDontShipTogether out/master-together.mp4 --codec h264 --crf 16 --audio-bitrate 320k && tools/finish.sh out/master-together.mp4 out/PIKOBUY_DONT_SHIP_TOGETHER.mp4",
-    "voice:together": "node tools/generate_tips_voice.mjs src/together/script.json assets/audio/voice-together"
+    "voice:together": "node tools/generate_tips_voice.mjs src/together/script.json assets/audio/voice-together",
+    "render:shipout": "remotion render src/index.ts Pikobuy3TipsShipOut out/master-shipout.mp4 --codec h264 --crf 16 --audio-bitrate 320k --props '{\"withVoice\":true}' && tools/finish.sh out/master-shipout.mp4 out/PIKOBUY_3_TIPS_BEFORE_SHIPPING.mp4",
+    "voice:shipout": "node tools/generate_tips_voice.mjs src/shipout/script.json assets/audio/voice-shipout"
   },
   "dependencies": {
     "@elevenlabs/elevenlabs-js": "^2.77.0",

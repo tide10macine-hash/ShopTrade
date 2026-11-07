@@ -158,3 +158,18 @@ It ends with PIKOBUY's 2×40% shipping coupons for new sign-ups, "LINK IN MY BIO
 **Carriers:** the EMS, UPS and Yodel logos appear at the electronics "special shipping line" moment. They were cut from the reference video by `tools/extract_carrier_logos.py` into `assets/logos/carriers/`.
 
 **Source:** `src/together/` (`Scenes.tsx`, `icons.tsx`, `timeline.ts`, `Together.tsx`). It reuses the shared subtitles, red ✗, paper and SFX components.
+
+---
+
+# PIKOBUY – 3 Tips Before Shipping Out (fifth composition, voice pending)
+
+**Composition:** `Pikobuy3TipsShipOut`. **Render:** `npm run render:shipout` → `out/PIKOBUY_3_TIPS_BEFORE_SHIPPING.mp4`. A visual-only preview without voice is in `preview/`.
+
+**Tips:**
+1. Rehearsal: it's free, it shows the exact shipping price, and you have 90 days to ship.
+2. Coupons: 2×40% shipping coupons for new sign-ups, via the link in bio.
+3. Remove packaging such as shoeboxes to save money.
+
+**Style:** between tips, a dark torn-paper band sweeps through carrying a giant green number.
+
+**Voice:** still to be generated. The script is in `src/shipout/script.json`. `assets/audio/voice-shipout/words.json` currently holds *estimated* timings (`tools/estimate_words.py`). Once credits are available, `npm run voice:shipout` writes the real voice and timings, and every scene re-times automatically.
